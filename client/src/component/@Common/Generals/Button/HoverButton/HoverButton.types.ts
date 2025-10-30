@@ -1,3 +1,1 @@
-import { BoxButtonProps } from '../BoxButton';
-
-export interface HoverButtonProps extends BoxButtonProps {}
+export interface HoverButtonProps extends FlexButtonProps {}
