@@ -1,5 +1,5 @@
 import { AllColors, AllSizes } from '@theme';
-import { CustomComponentBorderStyles } from '../CustomComponent';
+import { CustomComponentBorderStyles } from '../../CustomComponent';
 import { CSSProperties } from 'react';
 
 export type ChipVariant = 'contained' | 'outlined';

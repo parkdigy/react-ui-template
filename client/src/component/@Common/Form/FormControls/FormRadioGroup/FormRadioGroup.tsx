@@ -13,7 +13,7 @@ import {
 import { FormRadioGroupItem, FormRadioGroupItemCommands } from './FormRadioGroupItem';
 import { koreanAppendRul } from '@pdg/korean';
 import { useFormControlGroupState, useFormState } from '../../FormContext';
-import { GridCols } from '../../../Layout';
+import { GridCols } from '../../../Layouts';
 import { useResizeDetector } from 'react-resize-detector';
 import './FormRadioGroup.scss';
 

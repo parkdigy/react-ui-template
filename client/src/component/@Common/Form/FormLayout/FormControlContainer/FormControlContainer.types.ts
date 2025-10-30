@@ -1,4 +1,4 @@
-import { BoxStyleProps } from '../../../Layout';
+import { BoxStyleProps } from '../../../Layouts';
 
 export interface FormControlContainerProps extends BoxStyleProps {
   children?: ReactNode;

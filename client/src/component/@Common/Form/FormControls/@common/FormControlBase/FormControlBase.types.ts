@@ -1,5 +1,5 @@
 import { FormControlType } from '../../../FormContext';
-import { BoxStyleProps } from '../../../../Layout';
+import { BoxStyleProps } from '../../../../Layouts';
 
 export interface FormControlCommands {
   focus: () => void;

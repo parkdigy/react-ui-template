@@ -1,6 +1,6 @@
 import React from 'react';
 import { IconHtmlProps, IconProps as Props } from './Icon.types';
-import { CustomComponent } from '../CustomComponent';
+import { CustomComponent } from '../../CustomComponent';
 import { AllColors, AllSizes } from '@theme';
 import util from '@util';
 import './Icon.scss';

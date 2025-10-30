@@ -1,10 +1,10 @@
 import { AllColors, AllSizes, ButtonColors } from '@theme';
-import { BoxProps } from '../../Layout';
+import { BoxProps } from '../../../Layouts';
 import {
   CustomComponentBackgroundStyles,
   CustomComponentFlexStyles,
   CustomComponentFontStyles,
-} from '../../CustomComponent';
+} from '../../../CustomComponent';
 import { CSSProperties } from 'react';
 
 export interface IconButtonProps

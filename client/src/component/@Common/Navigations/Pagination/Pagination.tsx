@@ -10,9 +10,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, Props>(({ paging, onP
    * Variable
    * ******************************************************************************************************************/
 
-  const { current_page, last_page: lastPage } = paging;
-
-  const currentPage = Math.min(current_page, lastPage);
+  const { current_page: currentPage, last_page: lastPage } = paging;
 
   let startPage = currentPage - SIDE_PAGES;
   let endPage = currentPage + SIDE_PAGES;

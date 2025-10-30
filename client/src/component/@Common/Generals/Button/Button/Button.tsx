@@ -5,8 +5,8 @@
 import React, { CSSProperties } from 'react';
 import { AllColors, ButtonColors, DefaultColors, getDefaultOnColor } from '@theme';
 import { ButtonHtmlProps, ButtonProps as Props, ButtonSizes } from './Button.types';
-import { LoadingIndicator } from '../../Loadings';
-import { CustomComponent } from '../../CustomComponent';
+import { LoadingIndicator } from '../../../Loadings';
+import { CustomComponent } from '../../../CustomComponent';
 import Color from 'color';
 import './Button.scss';
 

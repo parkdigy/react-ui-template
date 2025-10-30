@@ -1,6 +1,6 @@
 import React, { CSSProperties } from 'react';
 import { AllColors, AllSizes } from '@theme';
-import { CustomComponentFontStyles, CustomComponentProps, CustomComponentSizeStyles } from '../CustomComponent';
+import { CustomComponentFontStyles, CustomComponentProps, CustomComponentSizeStyles } from '../../CustomComponent';
 
 export type IconHtmlProps = React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
 

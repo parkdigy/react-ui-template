@@ -3,7 +3,7 @@ import {
   CustomComponentBackgroundStyles,
   CustomComponentBorderStyles,
   CustomComponentProps,
-} from '../../CustomComponent';
+} from '../../../CustomComponent';
 import { AllColors, AllSizes, ButtonColors } from '@theme';
 
 export const ButtonSizes = {

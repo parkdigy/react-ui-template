@@ -3,11 +3,9 @@
  * ******************************************************************************************************************/
 
 import React from 'react';
-import { ErrorRetryProps as Props } from './ErrorRetry.types';
-import { Button } from '../../Button';
-import Icon from '../../Icon';
-import './ErrorRetry.scss';
 import { getDefaultOnColor } from '@theme';
+import { ErrorRetryProps as Props } from './ErrorRetry.types';
+import './ErrorRetry.scss';
 
 const ErrorRetry = React.forwardRef<HTMLDivElement, Props>(
   (
