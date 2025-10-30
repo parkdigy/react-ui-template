@@ -75,6 +75,14 @@ export const useDevFormOptionTextControls = ({
   });
 
   /********************************************************************************************************************
+   * accept
+   * ******************************************************************************************************************/
+  const [accept, acceptControl] = useDevFormControl('accept', flatOptions.includes('accept'), defaultData?.accept, {
+    ...useFormControlData,
+    props: optionProps?.accept,
+  });
+
+  /********************************************************************************************************************
    * Return
    * ******************************************************************************************************************/
 
@@ -91,5 +99,7 @@ export const useDevFormOptionTextControls = ({
     helperTextControl,
     label,
     labelControl,
+    accept,
+    acceptControl,
   };
 };

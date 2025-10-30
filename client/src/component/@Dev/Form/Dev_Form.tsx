@@ -11,8 +11,19 @@ import Dev_Form_Textarea from './Textarea';
 import { Dev_Panel } from '../@Common';
 import { useLocation } from 'react-router';
 import app from '@app';
+import { Dev_Form_File } from './File';
 
-const TabValue = ['text', 'email', 'password', 'textarea', 'select', 'radioGroup', 'checkbox', 'controlGroup'] as const;
+const TabValue = [
+  'text',
+  'email',
+  'password',
+  'textarea',
+  'select',
+  'radioGroup',
+  'checkbox',
+  'controlGroup',
+  'file',
+] as const;
 type TabValue = (typeof TabValue)[number];
 const TabItems = [
   lv('FormText', 'text'),
@@ -23,6 +34,7 @@ const TabItems = [
   lv('FormRadioGroup', 'radioGroup'),
   lv('FormCheckbox', 'checkbox'),
   lv('FormControlGroup', 'controlGroup'),
+  lv('FormFile', 'file'),
 ] as Lv<string, TabValue, { disabled?: boolean }>[];
 
 export const Dev_Form = () => {
@@ -96,6 +108,8 @@ export const Dev_Form = () => {
         <Dev_Form_Checkbox titlePosition={titlePosition} />
       ) : activeTab === 'controlGroup' ? (
         <Dev_Form_ControlGroup titlePosition={titlePosition} />
+      ) : activeTab === 'file' ? (
+        <Dev_Form_File titlePosition={titlePosition} />
       ) : null}
     </Panel>
   );

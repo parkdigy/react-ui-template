@@ -31,6 +31,7 @@ export * from './Title';
 export * from './Placeholder';
 export * from './Message';
 export * from './HelperText';
+export * from './Accept';
 
 /** Boolean Controls */
 export * from './Disabled';

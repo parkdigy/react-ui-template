@@ -48,6 +48,7 @@ import { Dev_FormControl_ChipVariant } from './ChipVariant';
 import { Dev_FormControl_OnClick } from './OnClick';
 import { Dev_FormControl_OnRemoveClick } from './OnRemoveClick';
 import { Dev_FormControl_ButtonSize } from './ButtonSize';
+import { Dev_FormControl_Accept } from './Accept';
 
 export type UseDevFormControlData<TOption extends Exclude<Dev_FormOptionsOption, 'cols'>> = {
   screen: ScreenSizeInfo;
@@ -157,6 +158,8 @@ function useDevFormControl<TOption extends Exclude<Dev_FormOptionsOption, 'cols'
     <Dev_FormControl_HelperText {...defaultProps} />
   ) : option === 'label' ? (
     <Dev_FormControl_Label {...defaultProps} />
+  ) : option === 'accept' ? (
+    <Dev_FormControl_Accept {...defaultProps} />
   ) : /** Boolean Controls */ option === 'loading' ? (
     <Dev_FormControl_Loading {...defaultProps} />
   ) : option === 'disabled' ? (

@@ -39,6 +39,7 @@ import {
   Dev_FormControl_TitleProps,
   Dev_FormControl_TooltipPlaceProps,
   Dev_FormControl_UrlProps,
+  Dev_FormControl_AcceptProps,
 } from '../FormControls';
 import { Dev_CodeProps } from '../Code';
 import { AllColors } from '@theme';
@@ -79,6 +80,7 @@ export type Dev_FormOptionsOption =
   | 'placeholder'
   | 'helperText'
   | 'label'
+  | 'accept'
   /** Boolean Controls */
   | 'disabled'
   | 'loading'
@@ -156,6 +158,7 @@ export interface Dev_FormOptionsData<
   message?: Dev_FormControl_MessageProps['value'];
   helperText?: Dev_FormControl_HelperTextProps['value'];
   label?: Dev_FormControl_LabelProps['value'];
+  accept?: Dev_FormControl_AcceptProps['value'];
   /** Boolean Controls */
   loading?: Dev_FormControl_LoadingProps['value'];
   disabled?: Dev_FormControl_DisabledProps['value'];
@@ -212,6 +215,7 @@ export interface Dev_FormOptionsControlPropsMap {
   message?: Pick<Dev_FormControl_MessageProps, keyof Dev_FormOptionsControlCommonProps>;
   helperText?: Pick<Dev_FormControl_HelperTextProps, keyof Dev_FormOptionsControlCommonProps>;
   label?: Pick<Dev_FormControl_LabelProps, keyof Dev_FormOptionsControlCommonProps>;
+  accept?: Pick<Dev_FormControl_AcceptProps, keyof Dev_FormOptionsControlCommonProps>;
   /** Boolean Controls */
   loading?: Pick<Dev_FormControl_LoadingProps, keyof Dev_FormOptionsControlCommonProps>;
   disabled?: Pick<Dev_FormControl_DisabledProps, keyof Dev_FormOptionsControlCommonProps>;

@@ -1,0 +1,3 @@
+```react
+<NoData $[props] />
+```

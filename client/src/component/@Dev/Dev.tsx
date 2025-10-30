@@ -22,6 +22,7 @@ import { Dev_List } from './List';
 import { Dev_Chip } from './Chip';
 import { Dev_Screen } from './Screen';
 import './Dev.scss';
+import { Dev_NoData } from './NoData';
 
 const TabValue = [
   'color',
@@ -41,6 +42,7 @@ const TabValue = [
   'pagination',
   'list',
   'chip',
+  'noData',
   'screen',
 ] as const;
 type TabValue = (typeof TabValue)[number];
@@ -62,6 +64,7 @@ const TabItems = [
   lv('리스트', 'list'),
   lv('Alert', 'alert'),
   lv('Chip', 'chip'),
+  lv('NoData', 'noData'),
   lv('Form', 'form'),
 ] as Lv<string, TabValue, { disabled?: boolean }>[];
 
@@ -139,6 +142,8 @@ export const Dev = ({}: Props) => {
         <Dev_List />
       ) : activeTab === 'chip' ? (
         <Dev_Chip />
+      ) : activeTab === 'noData' ? (
+        <Dev_NoData />
       ) : activeTab === 'screen' ? (
         <Dev_Screen />
       ) : null}
