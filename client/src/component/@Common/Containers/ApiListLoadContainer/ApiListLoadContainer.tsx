@@ -188,7 +188,7 @@ export const ApiListLoadContainer = ToForwardRefExoticComponent(
     }, [error]);
 
     return (
-      <Flex className={classnames(className, 'ApiListLoadContainer')} gap={gap} {...props}>
+      <Flex ref={containerRef} className={classnames(className, 'ApiListLoadContainer')} gap={gap} {...props}>
         {contains(['loading', 'empty_error'], loadStatus) ? null : loadStatus === 'error' ? (
           <ErrorRetry message={errorMessage} onRetry={() => doLoad(true)} />
         ) : apiData ? (
