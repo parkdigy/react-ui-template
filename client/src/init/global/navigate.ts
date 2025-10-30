@@ -27,10 +27,19 @@ function navigate(path: string, replace = false, scrollTopPos = 0) {
     if (path === currentPath) {
       window.scrollTo({ left: 0, top: 0 });
     } else {
-      _navigate(path, { replace });
+      _navigate(path, { state: window.location.pathname, replace });
     }
   } else {
     console.log('!Not set navigate.');
+  }
+}
+
+function navigateBack(path: string) {
+  const pathname = path.split('?')[0].split('#')[0];
+  if (_location && _location.state === pathname) {
+    window.history.back();
+  } else {
+    navigate(path);
   }
 }
 
@@ -53,6 +62,7 @@ declare global {
   var __setNavigateScrollTopPos: typeof setNavigateScrollTopPos;
   var __getNavigateScrollTopPos: typeof getNavigateScrollTopPos;
   var __navigate: typeof navigate;
+  var __navigateBack: typeof navigateBack;
 }
 /* eslint-enable no-var */
 
@@ -61,5 +71,6 @@ globalThis.__setNavigate = setNavigate;
 globalThis.__setNavigateScrollTopPos = setNavigateScrollTopPos;
 globalThis.__getNavigateScrollTopPos = getNavigateScrollTopPos;
 globalThis.__navigate = navigate;
+globalThis.__navigateBack = navigateBack;
 
 export {};
