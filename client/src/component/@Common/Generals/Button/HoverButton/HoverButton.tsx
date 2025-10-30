@@ -5,9 +5,11 @@ import FlexButton from '../FlexButton';
 
 export const HoverButton = React.forwardRef<HTMLDivElement, Props>(({ className, children, ...props }, ref) => {
   return (
-    <FlexButton ref={ref} className={classnames(className, 'HoverButton')} {...props}>
-      <HoverContainer>{children}</HoverContainer>
-    </FlexButton>
+    <HoverContainer>
+      <FlexButton ref={ref} className={classnames(className, 'HoverButton')} {...props}>
+        {children}
+      </FlexButton>
+    </HoverContainer>
   );
 });
 

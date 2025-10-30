@@ -5,12 +5,13 @@ export interface ApiListLoadContainerCommands {
   load: () => void;
 }
 
-export type TApiListLoadContainerLoadedData<TListItem> = {
+export type ApiListLoadContainerLoadedData<TListItem> = {
   list: TListItem[];
   paging?: ApiPaging['paging'];
 };
 
-export interface ApiListLoadContainerProps<T, TListItem> extends Omit<BoxProps, 'ref' | 'children' | 'onLoad'> {
+export interface ApiListLoadContainerProps<T extends { [key in string]: any }, TListItem>
+  extends Omit<BoxProps, 'ref' | 'children' | 'onLoad'> {
   load?: boolean;
   data?: T;
   retryDelay?: number;
@@ -21,7 +22,7 @@ export interface ApiListLoadContainerProps<T, TListItem> extends Omit<BoxProps, 
   divider?: ReactNode;
   listWrapperProps?: Omit<FlexProps, 'ref' | 'children'>;
   onLoad:
-    | (() => Promise<TApiListLoadContainerLoadedData<TListItem>>)
-    | ((data: T & { page: number; limit?: number }) => Promise<TApiListLoadContainerLoadedData<TListItem>>);
+    | (() => Promise<ApiListLoadContainerLoadedData<TListItem>>)
+    | ((data: T & { page: number; limit?: number }) => Promise<ApiListLoadContainerLoadedData<TListItem>>);
   onRenderItem: (item: TListItem, index: number) => ReactNode;
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import {
   ApiListLoadContainerCommands,
   ApiListLoadContainerProps as Props,
-  TApiListLoadContainerLoadedData,
+  ApiListLoadContainerLoadedData,
 } from './ApiListLoadContainer.types';
 import { useTimeoutRef } from '@pdg/react-hook';
 import app from '@app';
@@ -12,7 +12,7 @@ import Pagination from '../../Navigations/Pagination';
 import NoData from '../../Feedbacks/NoData';
 
 export const ApiListLoadContainer = ToForwardRefExoticComponent(
-  AutoTypeForwardRef(function <T = any, TListItem = any>(
+  AutoTypeForwardRef(function <T extends { [key in string]: any } = any, TListItem = any>(
     {
       className,
       load,
@@ -65,7 +65,7 @@ export const ApiListLoadContainer = ToForwardRefExoticComponent(
 
     const [loadStatus, setLoadStatus] = useState<'loading' | 'success' | 'error' | 'empty_error'>('loading');
     const [error, setError] = useState<any>();
-    const [apiData, setApiData] = useState<TApiListLoadContainerLoadedData<TListItem>>();
+    const [apiData, setApiData] = useState<ApiListLoadContainerLoadedData<TListItem>>();
 
     /********************************************************************************************************************
      * Effect
