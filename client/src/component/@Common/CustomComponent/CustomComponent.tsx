@@ -328,6 +328,12 @@ export const CustomComponent = ToForwardRefExoticComponent(
     if (justifyTracks !== undefined) style.justifyTracks = justifyTracks;
 
     // font
+    const size = ifUndefined(initSize, initS);
+    if (size !== undefined) {
+      style.fontSize = theme.sizes[size].fontSize;
+      style.lineHeight = theme.sizes[size].lineHeight;
+    }
+
     let fontSize = ifUndefined(initFontSize, initFs);
     if (fontSize !== undefined && typeof fontSize === 'string' && contains(AllSizes, fontSize)) {
       fontSize = theme.sizes[fontSize].fontSize;
@@ -349,12 +355,6 @@ export const CustomComponent = ToForwardRefExoticComponent(
       color = theme.colors[color];
     }
     if (color !== undefined) style.color = color;
-
-    const size = ifUndefined(initSize, initS);
-    if (size !== undefined) {
-      if (style.fontSize === undefined) style.fontSize = theme.sizes[size].fontSize;
-      if (style.lineHeight === undefined) style.lineHeight = theme.sizes[size].lineHeight;
-    }
 
     if (font !== undefined) style.font = font;
     if (fontFamily !== undefined) style.fontFamily = fontFamily;

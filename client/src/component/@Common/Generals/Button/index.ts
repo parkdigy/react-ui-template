@@ -3,3 +3,4 @@ export * from './IconButton';
 export * from './TextButton';
 export * from './FlexButton';
 export * from './BoxButton';
+export * from './HoverButton';

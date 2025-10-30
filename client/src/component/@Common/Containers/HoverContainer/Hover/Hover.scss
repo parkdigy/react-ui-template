@@ -1,0 +1,30 @@
+.HoverContainer {
+  &:hover {
+    .Hover {
+      &.Hover-text-decoration {
+        text-decoration: var(--hcl_text-decoration);
+      }
+      &.Hover-color {
+        color: var(--hcl_color);
+      }
+      &.Hover-background {
+        background: var(--hcl_background);
+      }
+      &.Hover-background-color {
+        background-color: var(--hcl_background-color);
+      }
+      &.Hover-font-size {
+        font-size: var(--hcl_font-size);
+      }
+      &.Hover-line-height {
+        line-height: var(--hcl_line-height);
+      }
+      &.Hover-font-weight {
+        font-weight: var(--hcl_font-weight);
+      }
+      &.Hover-transform {
+        transform: var(--hcl_transform);
+      }
+    }
+  }
+}
