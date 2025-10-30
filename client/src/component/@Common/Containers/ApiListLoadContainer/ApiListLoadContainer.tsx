@@ -14,6 +14,7 @@ import NoData from '../../Feedbacks/NoData';
 export const ApiListLoadContainer = ToForwardRefExoticComponent(
   AutoTypeForwardRef(function <T = any, TListItem = any>(
     {
+      className,
       load,
       data: initData,
       limit,
@@ -187,19 +188,12 @@ export const ApiListLoadContainer = ToForwardRefExoticComponent(
     }, [error]);
 
     return (
-      <Flex className='ApiListLoadContainer' gap={gap} {...props}>
+      <Flex className={classnames(className, 'ApiListLoadContainer')} gap={gap} {...props}>
         {contains(['loading', 'empty_error'], loadStatus) ? null : loadStatus === 'error' ? (
           <ErrorRetry message={errorMessage} onRetry={() => doLoad(true)} />
         ) : apiData ? (
           <React.Fragment>
-            <Flex
-              className='ApiListLoadContainer__ListWrapper'
-              borderTopWidth={2}
-              borderTopColor='divider'
-              borderBottomWidth={2}
-              borderBottomColor='divider'
-              {...listWrapperProps}
-            >
+            <Flex className='ApiListLoadContainer__ListWrapper' {...listWrapperProps}>
               {apiData.list.length > 0 ? (
                 <>
                   {apiData.list.map((item, idx) => (
@@ -221,7 +215,7 @@ export const ApiListLoadContainer = ToForwardRefExoticComponent(
             </Flex>
 
             {apiData.paging && apiData.paging.last_page > 1 && (
-              <Flex center>
+              <Flex className='ApiListLoadContainer__PaginationWrapper' center>
                 <Pagination paging={apiData.paging} onPageChange={handlePageChange} />
               </Flex>
             )}
