@@ -1,11 +1,22 @@
 import React from 'react';
-import { FormEmailCommands, FormEmailProps as Props } from './FormEmail.types';
+import { FormTelCommands, FormTelProps as Props } from './FormTel.types';
 import { useForwardRef } from '@pdg/react-hook';
 import { FormText, FormTextCommands } from '../FormText';
-import { isEmail } from '@pdg/compare';
+import { isTelNo } from '@pdg/compare';
+import { formatTelNo } from '@pdg/formatting';
 
-export const FormEmail = React.forwardRef<FormEmailCommands, Props>(
-  ({ className, name, onValidate, invalidEmailErrorText = '올바른 이메일 형식을 입력해 주세요.', ...props }, ref) => {
+export const FormTel = React.forwardRef<FormTelCommands, Props>(
+  (
+    {
+      className,
+      name,
+      onValidate,
+      invalidTelErrorText = '올바른 전화번호 형식을 입력해 주세요.',
+      strictFormat,
+      ...props
+    },
+    ref
+  ) => {
     /********************************************************************************************************************
      * State
      * ******************************************************************************************************************/
@@ -16,7 +27,7 @@ export const FormEmail = React.forwardRef<FormEmailCommands, Props>(
      * Commands
      * ******************************************************************************************************************/
 
-    const commands = useMemo<FormEmailCommands | null>(() => (textCommands ? textCommands : null), [textCommands]);
+    const commands = useMemo<FormTelCommands | null>(() => (textCommands ? textCommands : null), [textCommands]);
 
     useForwardRef(ref, commands);
 
@@ -26,8 +37,12 @@ export const FormEmail = React.forwardRef<FormEmailCommands, Props>(
 
     const handleValidate = useCallback(
       (value: string) => {
-        if (notEmpty(value) && !isEmail(value)) {
-          return invalidEmailErrorText;
+        if (notEmpty(value)) {
+          if (strictFormat && !isTelNo(value)) {
+            return invalidTelErrorText;
+          } else if (value.length < 9) {
+            return invalidTelErrorText;
+          }
         }
 
         if (onValidate) {
@@ -36,8 +51,12 @@ export const FormEmail = React.forwardRef<FormEmailCommands, Props>(
           return false;
         }
       },
-      [invalidEmailErrorText, onValidate]
+      [invalidTelErrorText, onValidate, strictFormat]
     );
+
+    const handleFinalValue = useCallback((value: string) => {
+      return formatTelNo(value);
+    }, []);
 
     /********************************************************************************************************************
      * Render
@@ -46,19 +65,19 @@ export const FormEmail = React.forwardRef<FormEmailCommands, Props>(
     return (
       <FormText
         $custom
-        $type='email'
+        $type='tel'
         $commands={commands}
         type='text'
-        inputMode='email'
-        className={classnames(className, 'FormEmail')}
+        className={classnames(className, 'FormTel')}
         name={name}
         preventKeys={/[\s]/g}
         onCommands={setTextCommands}
         onValidate={handleValidate}
+        onFinalValue={handleFinalValue}
         {...props}
       />
     );
   }
 );
 
-export default FormEmail;
+export default FormTel;

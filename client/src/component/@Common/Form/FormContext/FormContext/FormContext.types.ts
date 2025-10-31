@@ -10,7 +10,8 @@ export type FormControlType =
   | 'radio_group'
   | 'select'
   | 'hidden'
-  | 'file';
+  | 'file'
+  | 'tel';
 
 export interface FormContextValue {
   titlePosition: 'top' | 'left';

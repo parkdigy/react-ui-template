@@ -55,6 +55,7 @@ export const Form = React.forwardRef<FormCommands, Props>(
               case 'password':
               case 'textarea':
               case 'hidden':
+              case 'tel':
                 value = (commands as FormTextCommands).getValue();
                 break;
               case 'file':
