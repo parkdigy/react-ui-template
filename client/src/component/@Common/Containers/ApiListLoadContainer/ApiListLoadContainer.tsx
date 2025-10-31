@@ -22,7 +22,7 @@ export const ApiListLoadContainer = ToForwardRefExoticComponent(
       retryDelay = 1000,
       toScrollRef,
       gap = 25,
-      noDataMessage,
+      noDataMessage: initNoDataMessage,
       noDataPaddingVertical = 200,
       divider,
       listWrapperProps,
@@ -72,6 +72,7 @@ export const ApiListLoadContainer = ToForwardRefExoticComponent(
     const [error, setError] = useState<any>();
     const [apiResultData, setApiResultData] = useState<ApiListLoadContainerFinalData<T>>();
     const [apiResult, setApiResult] = useState<ApiListLoadContainerLoadedData<TListItem>>();
+    const [apiResultNoDataMessage, setApiResultNoDataMessage] = useState<string>();
 
     /********************************************************************************************************************
      * Effect
@@ -114,6 +115,7 @@ export const ApiListLoadContainer = ToForwardRefExoticComponent(
                 setApiResultData(data);
                 setApiResult(result);
                 setLoadStatus('success');
+                setApiResultNoDataMessage(initNoDataMessage);
               })
               .catch((err) => {
                 setLoadStatus(err === undefined ? 'empty_error' : 'error');
@@ -130,7 +132,7 @@ export const ApiListLoadContainer = ToForwardRefExoticComponent(
           retry ? retryDelay : 0
         );
       },
-      [data, onLoad, retryDelay, setLoadTimeout]
+      [data, initNoDataMessage, onLoad, retryDelay, setLoadTimeout]
     );
 
     /********************************************************************************************************************
@@ -211,7 +213,7 @@ export const ApiListLoadContainer = ToForwardRefExoticComponent(
                   ))}
                 </>
               ) : (
-                <NoData message={noDataMessage} pv={noDataPaddingVertical} />
+                <NoData message={apiResultNoDataMessage} pv={noDataPaddingVertical} />
               )}
             </Flex>
 
