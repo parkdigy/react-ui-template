@@ -3,6 +3,7 @@ import {
   ApiListLoadContainerCommands,
   ApiListLoadContainerProps as Props,
   ApiListLoadContainerLoadedData,
+  ApiListLoadContainerFinalData,
 } from './ApiListLoadContainer.types';
 import { useForwardRef, useTimeoutRef } from '@pdg/react-hook';
 import app from '@app';
@@ -27,6 +28,7 @@ export const ApiListLoadContainer = ToForwardRefExoticComponent(
       listWrapperProps,
       onLoad,
       onRenderItem,
+      onRenderHeader,
       ...props
     }: Props<T, TListItem>,
     ref: React.ForwardedRef<ApiListLoadContainerCommands>
@@ -51,7 +53,10 @@ export const ApiListLoadContainer = ToForwardRefExoticComponent(
      * Memo
      * ******************************************************************************************************************/
 
-    const data = useMemo(() => ({ page, limit, ...initData }), [page, limit, initData]);
+    const data = useMemo(
+      () => ({ page, limit, ...initData }) as ApiListLoadContainerFinalData<T>,
+      [page, limit, initData]
+    );
 
     /********************************************************************************************************************
      * Timeout
@@ -65,7 +70,8 @@ export const ApiListLoadContainer = ToForwardRefExoticComponent(
 
     const [loadStatus, setLoadStatus] = useState<'loading' | 'success' | 'error' | 'empty_error'>('loading');
     const [error, setError] = useState<any>();
-    const [apiData, setApiData] = useState<ApiListLoadContainerLoadedData<TListItem>>();
+    const [apiResultData, setApiResultData] = useState<ApiListLoadContainerFinalData<T>>();
+    const [apiResult, setApiResult] = useState<ApiListLoadContainerLoadedData<TListItem>>();
 
     /********************************************************************************************************************
      * Effect
@@ -104,8 +110,9 @@ export const ApiListLoadContainer = ToForwardRefExoticComponent(
         setLoadTimeout(
           () => {
             onLoad(data as any)
-              .then((data) => {
-                setApiData(data);
+              .then((result) => {
+                setApiResultData(data);
+                setApiResult(result);
                 setLoadStatus('success');
               })
               .catch((err) => {
@@ -183,19 +190,20 @@ export const ApiListLoadContainer = ToForwardRefExoticComponent(
       <Flex ref={containerRef} className={classnames(className, 'ApiListLoadContainer')} gap={gap} {...props}>
         {contains(['loading', 'empty_error'], loadStatus) ? null : loadStatus === 'error' ? (
           <ErrorRetry message={errorMessage} onRetry={() => doLoad(true)} />
-        ) : apiData ? (
+        ) : apiResult ? (
           <React.Fragment>
+            {onRenderHeader && onRenderHeader(apiResultData, apiResult.list, apiResult.paging)}
             <Flex
               className='ApiListLoadContainer__ListWrapper'
-              borderTopWidth={2}
+              borderTopWidth={apiResult.list.length > 0 ? 2 : 1}
               borderTopColor='divider'
-              borderBottomWidth={2}
+              borderBottomWidth={apiResult.list.length > 0 ? 2 : 1}
               borderBottomColor='divider'
               {...listWrapperProps}
             >
-              {apiData.list.length > 0 ? (
+              {apiResult.list.length > 0 ? (
                 <>
-                  {apiData.list.map((item, idx) => (
+                  {apiResult.list.map((item, idx) => (
                     <React.Fragment key={idx}>
                       {idx > 0 && divider}
                       {onRenderItem(item, idx)}
@@ -203,19 +211,13 @@ export const ApiListLoadContainer = ToForwardRefExoticComponent(
                   ))}
                 </>
               ) : (
-                <NoData
-                  message={noDataMessage}
-                  borderTopWidth={2}
-                  pv={noDataPaddingVertical}
-                  borderTopColor='divider'
-                  borderBottomColor='divider'
-                />
+                <NoData message={noDataMessage} pv={noDataPaddingVertical} />
               )}
             </Flex>
 
-            {apiData.paging && apiData.paging.last_page > 1 && (
+            {apiResult.paging && apiResult.paging.last_page > 1 && (
               <Flex className='ApiListLoadContainer__PaginationWrapper' center>
-                <Pagination paging={apiData.paging} onPageChange={handlePageChange} />
+                <Pagination paging={apiResult.paging} onPageChange={handlePageChange} />
               </Flex>
             )}
           </React.Fragment>
