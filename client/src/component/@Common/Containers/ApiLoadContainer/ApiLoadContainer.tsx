@@ -1,6 +1,6 @@
 import React from 'react';
 import { ApiLoadContainerCommands, ApiLoadContainerProps as Props } from './ApiLoadContainer.types';
-import { useTimeoutRef } from '@pdg/react-hook';
+import { useForwardRef, useTimeoutRef } from '@pdg/react-hook';
 import app from '@app';
 import ErrorRetry from '../../Errors/ErrorRetry';
 
@@ -102,15 +102,7 @@ export const ApiLoadContainer = ToForwardRefExoticComponent(
       [doLoad]
     );
 
-    useEffect(() => {
-      if (ref) {
-        if (typeof ref === 'function') {
-          ref(commands);
-        } else {
-          ref.current = commands;
-        }
-      }
-    }, [commands, ref]);
+    useForwardRef(ref, commands);
 
     /********************************************************************************************************************
      * Render

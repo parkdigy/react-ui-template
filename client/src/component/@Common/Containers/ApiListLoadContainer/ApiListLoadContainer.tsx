@@ -4,7 +4,7 @@ import {
   ApiListLoadContainerProps as Props,
   ApiListLoadContainerLoadedData,
 } from './ApiListLoadContainer.types';
-import { useTimeoutRef } from '@pdg/react-hook';
+import { useForwardRef, useTimeoutRef } from '@pdg/react-hook';
 import app from '@app';
 import { useSearchParams } from 'react-router';
 import { ErrorRetry } from '../../Errors';
@@ -139,15 +139,7 @@ export const ApiListLoadContainer = ToForwardRefExoticComponent(
       [doLoad]
     );
 
-    useEffect(() => {
-      if (ref) {
-        if (typeof ref === 'function') {
-          ref(commands);
-        } else {
-          ref.current = commands;
-        }
-      }
-    }, [commands, ref]);
+    useForwardRef(ref, commands);
 
     /********************************************************************************************************************
      * Event Handler
@@ -193,7 +185,14 @@ export const ApiListLoadContainer = ToForwardRefExoticComponent(
           <ErrorRetry message={errorMessage} onRetry={() => doLoad(true)} />
         ) : apiData ? (
           <React.Fragment>
-            <Flex className='ApiListLoadContainer__ListWrapper' {...listWrapperProps}>
+            <Flex
+              className='ApiListLoadContainer__ListWrapper'
+              borderTopWidth={2}
+              borderTopColor='divider'
+              borderBottomWidth={2}
+              borderBottomColor='divider'
+              {...listWrapperProps}
+            >
               {apiData.list.length > 0 ? (
                 <>
                   {apiData.list.map((item, idx) => (
