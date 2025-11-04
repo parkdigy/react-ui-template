@@ -11,7 +11,8 @@ export type FormControlType =
   | 'select'
   | 'hidden'
   | 'file'
-  | 'tel';
+  | 'tel'
+  | 'number';
 
 export interface FormContextValue {
   titlePosition: 'top' | 'left';

@@ -1,5 +1,5 @@
 export interface FormRuleCheckProps {
-  title: string;
+  title: ReactNode;
   checked: boolean;
   error?: boolean;
 }

@@ -4,3 +4,4 @@ export * from './FormEmail';
 export * from './FormUrl';
 export * from './FormTextarea';
 export * from './FormTel';
+export * from './FormNumber';

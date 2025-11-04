@@ -58,6 +58,14 @@ export const Form = React.forwardRef<FormCommands, Props>(
               case 'tel':
                 value = (commands as FormTextCommands).getValue();
                 break;
+              case 'number':
+                value = (commands as FormTextCommands).getValue();
+                if (notEmpty(value)) {
+                  value = Number(value.replace(/,/g, ''));
+                } else {
+                  value = undefined;
+                }
+                break;
               case 'file':
                 value = (commands as FormFileCommands).getFile();
                 break;

@@ -15,6 +15,7 @@ import { FormInput } from './FormInput';
 
 const FunctionKeys = [
   'Backspace',
+  'Delete',
   'Enter',
   'Escape',
   'Tab',
