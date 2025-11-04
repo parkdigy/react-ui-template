@@ -4,7 +4,6 @@
 .ListItem {
   $font-size: size.$body-font-size;
   $line-height: size.$body-line-height;
-  $text-color: color.$text-lighten;
   $bullet-color: color.$opacity-30;
 
   display: flex;
@@ -13,7 +12,6 @@
   gap: 6px;
   font-size: $font-size;
   line-height: $line-height;
-  color: $text-color;
 
   .ListItem__Bullet_Container {
     display: flex;
@@ -25,7 +23,6 @@
       width: 4px;
       height: 4px;
       margin: 0 5px;
-      background-color: $bullet-color;
       border-radius: 50%;
     }
   }

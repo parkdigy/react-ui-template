@@ -8,7 +8,7 @@ const ListTitle = ({ type, content }: Props) => {
     <div className='ListTitle'>
       {type === 'info' && (
         <div className='ListTitle__IconWrapper'>
-          <Svg src={IconInfo} w={14} h={14} />
+          <Svg src={IconInfo} w={14} h={14} c='textLighten' />
         </div>
       )}
       {content}

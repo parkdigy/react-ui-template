@@ -8,4 +8,5 @@ export interface ListProps extends Omit<BoxProps, 'type' | 'title' | 'children'>
   items: ReactNode[];
   title?: string;
   gap?: number;
+  bulletColor?: BoxProps['backgroundColor'];
 }
