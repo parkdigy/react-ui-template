@@ -1,9 +1,11 @@
 ```scss
-@media (min-width: var(--screen-tablet-min)) { ... }
+@use '@sass/screen';
 
-@media (min-width: var(--screen-tablet-md-min)) { ... }
+@media (min-width: screen.$tablet-min) { ... }
 
-@media (max-width: var(--screen-tablet-max)) { ... }
+@media (min-width: screen.$tablet-md-min) { ... }
 
-@media (max-width: var(--screen-tablet-md-max)) { ... }
+@media (max-width: screen.$tablet-max) { ... }
+
+@media (max-width: screen.$tablet-md-max) { ... }
 ```

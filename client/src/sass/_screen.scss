@@ -1,0 +1,37 @@
+@charset "utf-8";
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// 화면 크기
+// ‼️‼️‼️ 변경 시 반드시 src/theme/@types/screen.ts 에 값을 변경해야 함 ‼️‼️‼️
+// ‼️‼️‼️ 변경 시 반드시 src/sass/theme-screen.scss 에 값을 변경해야 함 ‼️‼️‼️
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/* 모바일 (Mobile) */
+$mobile-min: 0px;
+$mobile-max: 767px;
+$mobile-sm-min: 0px;
+$mobile-sm-max: 479px;
+$mobile-md-min: 480px;
+$mobile-md-max: 599px;
+$mobile-lg-min: 600px;
+$mobile-lg-max: 767px;
+
+/* 태블릿 (Tablet) */
+$tablet-min: 767px;
+$tablet-max: 1199px;
+$tablet-sm-min: 768px;
+$tablet-sm-max: 959px;
+$tablet-md-min: 960px;
+$tablet-md-max: 1023px;
+$tablet-lg-min: 1024px;
+$tablet-lg-max: 1199px;
+
+/* PC (Desktop) */
+$desktop-min: 1200px;
+$desktop-max: 9999px;
+$desktop-sm-min: 1200px;
+$desktop-sm-max: 1439px;
+$desktop-md-min: 1440px;
+$desktop-md-max: 1919px;
+$desktop-lg-min: 1920px;
+$desktop-lg-max: 9999px;
