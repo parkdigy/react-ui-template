@@ -1,6 +1,6 @@
 import React from 'react';
-import config from '../config';
 import { api, ApiResult } from '../api';
+import config from '../config';
 import { useTimeoutRef } from '@pdg/react-hook';
 
 interface VersionApp extends ApiResult {
