@@ -1,4 +1,4 @@
-import { ApiPaging } from '@api';
+import { ApiPaging } from '@common';
 import { RefObject } from 'react';
 
 export interface ApiListLoadContainerCommands {

@@ -1,6 +1,6 @@
 import React from 'react';
-import { toast } from '@toast';
 import { Dev_Panel } from '../@Common';
+import { toast } from '@common';
 
 export const Dev_Toast = () => {
   return (

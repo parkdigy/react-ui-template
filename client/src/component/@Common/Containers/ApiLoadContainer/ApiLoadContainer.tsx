@@ -1,8 +1,8 @@
 import React from 'react';
 import { ApiLoadContainerCommands, ApiLoadContainerProps as Props } from './ApiLoadContainer.types';
 import { useForwardRef, useTimeoutRef } from '@pdg/react-hook';
-import app from '@app';
 import ErrorRetry from '../../Errors/ErrorRetry';
+import { app } from '@common';
 
 export const ApiLoadContainer = ToForwardRefExoticComponent(
   AutoTypeForwardRef(function <T = any, TApiData = any>(

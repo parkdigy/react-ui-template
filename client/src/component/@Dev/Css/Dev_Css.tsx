@@ -1,9 +1,8 @@
 import React from 'react';
 import { AllColors, getFriendlyNameOfSize, Sizes, Theme } from '@theme';
-import util from '@util';
-import app from '@app';
 import { Divider, Grid, Tabs } from '@ccomp';
 import { useLocation } from 'react-router';
+import { app, util } from '@common';
 
 const TabValue = ['size', 'color'] as const;
 type TabValue = (typeof TabValue)[number];

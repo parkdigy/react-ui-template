@@ -1,7 +1,7 @@
 import React from 'react';
 import { Dev_Panel, Dev_PanelItem } from '../@Common';
 import { FriendlyNameSizes } from '@theme';
-import util from '@util';
+import { util } from '@common';
 
 const Dev_T_Variant_Size_FontWeight = () => {
   return (

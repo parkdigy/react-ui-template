@@ -1,8 +1,7 @@
 import React from 'react';
 import { EtcColors, OpacityColors, OpacityReverseColors, TextColors, Theme } from '@theme';
-import app from '@app';
-import util from '@util';
 import { Grid } from '@ccomp';
+import { app, util } from '@common';
 
 const Colors: [keyof Theme['colors'], keyof Theme['colors']][] = [
   ['primary', 'onPrimary'],

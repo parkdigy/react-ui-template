@@ -10,8 +10,8 @@ import Dev_Form_ControlGroup from './ControlGroup';
 import Dev_Form_Textarea from './Textarea';
 import { Dev_Panel } from '../@Common';
 import { useLocation } from 'react-router';
-import app from '@app';
 import { Dev_Form_File } from './File';
+import { app } from '@common';
 
 const TabValue = [
   'text',

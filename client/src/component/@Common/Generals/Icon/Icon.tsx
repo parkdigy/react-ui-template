@@ -2,7 +2,7 @@ import React from 'react';
 import { IconHtmlProps, IconProps as Props } from './Icon.types';
 import { CustomComponent } from '../../CustomComponent';
 import { AllColors, AllSizes } from '@theme';
-import util from '@util';
+import { util } from '@common';
 import './Icon.scss';
 
 export const Icon = React.forwardRef<HTMLElement, Props>(

@@ -1,6 +1,6 @@
 import React from 'react';
 import { toast as _toast, ToastOptions } from 'react-toastify';
-import app from '@app';
+import app from '../app';
 import './toast.scss';
 
 export const toast = {

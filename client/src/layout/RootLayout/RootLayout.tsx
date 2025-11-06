@@ -7,12 +7,11 @@ import { Route, Routes } from 'react-router';
 import { AppContextProvider, AppContextValue, ScreenSizeContextProvider } from '@context';
 import { ErrorRetry, ToastContainer } from '@ccomp';
 import RootLayoutAppInitializer from './RootLayoutAppInitializer';
-import { config } from '@common';
+import { app, config } from '@common';
 import AuthLayout from '../AuthLayout';
 import DefaultLayout from '../DefaultLayout';
 import { AuthInfo } from '@const';
 import { ThemeProvider } from '@theme';
-import app from '@app';
 import DevButtons from './DevButtons';
 import { RootLoading } from './RootLoading';
 

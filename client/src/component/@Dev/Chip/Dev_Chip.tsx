@@ -4,7 +4,7 @@ import { Dev_FormOptions, Dev_FormOptionsData, Dev_Panel } from '../@Common';
 import { AllColors } from '@theme';
 import code from './Dev_Chip.code.md';
 import { Chip } from '@ccomp';
-import { toast } from '@toast';
+import { toast } from '@common';
 
 const _formOptions = [
   ['chipVariant', 'label'],

@@ -3,8 +3,8 @@ import { AllColors, ButtonColors } from '@theme';
 import Dev_Button_Button_Variant from './Dev_Button_Button_Variant';
 import { Dev_FormOptions, Dev_FormOptionsData, Dev_FormOptionsProps, Dev_Panel } from '../../@Common';
 import code from './Dev_Button_Button.code.md';
-import { toast } from '@toast';
 import { FlattenArray } from '@pdg/types';
+import { toast } from '@common';
 
 const _formOptions = [
   ['buttonVariant', 'buttonSize'],

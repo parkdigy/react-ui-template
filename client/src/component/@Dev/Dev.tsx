@@ -1,7 +1,6 @@
 import React from 'react';
 import { DevProps as Props } from './Dev.types';
 import { PageRootContainer, Tabs } from '@ccomp';
-import app from '@app';
 import { useLocation } from 'react-router';
 import { Dev_Color } from './Color';
 import { Dev_Css } from './Css';
@@ -23,6 +22,7 @@ import { Dev_Chip } from './Chip';
 import { Dev_Screen } from './Screen';
 import './Dev.scss';
 import { Dev_NoData } from './NoData';
+import { app } from '@common';
 
 const TabValue = [
   'color',

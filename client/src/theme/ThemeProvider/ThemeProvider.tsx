@@ -1,8 +1,7 @@
 import React, { createContext, useContext } from 'react';
 import { ThemeProviderProps as Props } from './ThemeProvider.types';
 import { Theme } from '../@types';
-import util from '@util';
-import app from '@app';
+import { app, util } from '@common';
 
 export const ThemeProvider = ({ children, colorScheme }: Props) => {
   /********************************************************************************************************************

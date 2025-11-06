@@ -1,5 +1,5 @@
 import Color from 'color';
-import app from '@app';
+import app from '../app';
 
 export const color = {
   /********************************************************************************************************************

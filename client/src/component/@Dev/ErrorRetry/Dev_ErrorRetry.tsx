@@ -5,7 +5,7 @@ import { Dev_FormOptions, Dev_FormOptionsData, Dev_Panel } from '../@Common';
 import { DefaultColors } from '@theme';
 import code from './Dev_ErrorRetry.code.md';
 import { ErrorRetry } from '@ccomp';
-import { toast } from '@toast';
+import { toast } from '@common';
 
 const _formOptions = ['color', '|', 'title', 'message', '|', 'onRetry'] as const;
 type _formOptions = Exclude<FlattenArray<typeof _formOptions>, '|' | null>;

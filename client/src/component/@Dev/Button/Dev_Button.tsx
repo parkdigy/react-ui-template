@@ -5,8 +5,8 @@ import Dev_Button_IconButton from './IconButton';
 import { Dev_Button_TextButton } from './TextButton';
 import { Dev_Button_FlexButton } from './FlexButton';
 import { useLocation } from 'react-router';
-import app from '@app';
 import { Dev_Button_BoxButton } from './BoxButton';
+import { app } from '@common';
 
 const TabValue = ['button', 'iconButton', 'textButton', 'stackButton', 'boxButton'] as const;
 type TabValue = (typeof TabValue)[number];

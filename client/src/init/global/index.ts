@@ -1,9 +1,9 @@
+import './pdg';
 import './forwardRef';
-import './theme';
 import './react';
 import './navigate';
 import './loading';
-import './pdg';
+import './theme';
 import './log';
 import './classnames';
 import './common-component-text';

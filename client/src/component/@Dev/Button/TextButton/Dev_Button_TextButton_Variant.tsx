@@ -1,7 +1,7 @@
 import React from 'react';
 import { Dev_Panel, Dev_PanelItem } from '../../@Common';
 import { AllSizes, ButtonColors } from '@theme';
-import { toast } from '@toast';
+import { toast } from '@common';
 
 const Dev_Button_Button_Variant = () => {
   return (

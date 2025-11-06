@@ -8,11 +8,10 @@ import {
   TabletScreenAliases,
 } from '@theme';
 import { Dev_Panel } from '../@Common';
-import util from '@util';
-import app from '@app';
 import Code from '../@Common/Code';
 import reactCode from './Dev_Screen.react.code.md';
 import scssCode from './Dev_Screen.scss.code.md';
+import { app, util } from '@common';
 
 interface Props {}
 

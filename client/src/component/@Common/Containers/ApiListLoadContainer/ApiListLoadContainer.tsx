@@ -6,11 +6,11 @@ import {
   ApiListLoadContainerFinalData,
 } from './ApiListLoadContainer.types';
 import { useForwardRef, useTimeoutRef } from '@pdg/react-hook';
-import app from '@app';
 import { useSearchParams } from 'react-router';
 import { ErrorRetry } from '../../Errors';
 import Pagination from '../../Navigations/Pagination';
 import NoData from '../../Feedbacks/NoData';
+import { app } from '@common';
 
 export const ApiListLoadContainer = ToForwardRefExoticComponent(
   AutoTypeForwardRef(function <T extends { [key in string]: any } = any, TListItem = any>(

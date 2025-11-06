@@ -4,7 +4,7 @@ import { Dev_FormOptions, Dev_FormOptionsData, Dev_Panel } from '../../@Common';
 import { FlattenArray } from '@pdg/types';
 import code from './Dev_Form_File.code.md';
 import Dev_Form_File_Variant from './Dev_Form_File_Variant';
-import { toast } from '@toast';
+import { toast } from '@common';
 
 const _formOptions = [
   ['title', 'placeholder'],

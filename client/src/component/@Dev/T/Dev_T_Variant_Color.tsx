@@ -1,7 +1,7 @@
 import React from 'react';
 import { Dev_Panel, Dev_PanelItem } from '../@Common';
 import { DefaultColors, OpacityColors, OpacityReverseColors, TextColors } from '@theme';
-import util from '@util';
+import { util } from '@common';
 
 const Dev_T_Variant_Color = () => {
   return (
