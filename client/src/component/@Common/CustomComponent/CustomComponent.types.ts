@@ -60,7 +60,7 @@ export type CustomComponentMarginStyles = CustomComponentMarginBaseStyles & Cust
  * Border
  * ******************************************************************************************************************/
 
-export const CustomComponentBorderStyles = [
+const CustomComponentBorderBaseStyles = [
   'border',
   'borderWidth',
   'borderStyle',
@@ -87,8 +87,8 @@ export const CustomComponentBorderStyles = [
   'borderBottomLeftRadius',
   'borderBottomRightRadius',
 ] as const;
-export type CustomComponentBorderStyles = Omit<
-  Pick<CSSProperties, (typeof CustomComponentBorderStyles)[number]>,
+type CustomComponentBorderBaseStyles = Omit<
+  Pick<CSSProperties, (typeof CustomComponentBorderBaseStyles)[number]>,
   'borderColor' | 'borderLeftColor' | 'borderRightColor' | 'borderTopColor' | 'borderBottomColor'
 > & {
   borderColor?: AllColors | CSSProperties['borderColor'];
@@ -96,8 +96,18 @@ export type CustomComponentBorderStyles = Omit<
   borderRightColor?: AllColors | CSSProperties['borderRightColor'];
   borderTopColor?: AllColors | CSSProperties['borderTopColor'];
   borderBottomColor?: AllColors | CSSProperties['borderBottomColor'];
-  radius?: CustomComponentBorderStyles['borderRadius'];
 };
+
+const CustomComponentBorderCustomStyles = ['radius'] as const;
+type CustomComponentBorderCustomStyles = {
+  radius?: CustomComponentBorderBaseStyles['borderRadius'];
+};
+
+export const CustomComponentBorderStyles = [
+  ...CustomComponentBorderBaseStyles,
+  ...CustomComponentBorderCustomStyles,
+] as const;
+export type CustomComponentBorderStyles = CustomComponentBorderBaseStyles & CustomComponentBorderCustomStyles;
 
 /********************************************************************************************************************
  * Flex
