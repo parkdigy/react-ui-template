@@ -9,6 +9,7 @@ export const Divider = ({ className, vertical, c, color, w, width, h, height }: 
       h={h}
       height={height}
       borderLeftColor={ifUndefined(color, c)}
+      borderLeftWidth={ifUndefined(width, w)}
     />
   ) : (
     <Box
@@ -16,6 +17,7 @@ export const Divider = ({ className, vertical, c, color, w, width, h, height }: 
       w={w}
       width={width}
       borderTopColor={ifUndefined(color, c)}
+      borderTopWidth={ifUndefined(height, h)}
     />
   );
 };
