@@ -6,6 +6,7 @@ export const CustomComponent = ToForwardRefExoticComponent(
   AutoTypeForwardRef(function <T>(
     {
       component: Component,
+      hidden,
       // display
       display,
       // padding
@@ -186,7 +187,8 @@ export const CustomComponent = ToForwardRefExoticComponent(
     const style: CSSProperties = { ...cssVars };
 
     // display
-    if (display !== undefined) style.display = display;
+    if (hidden) style.display = 'none';
+    else if (display !== undefined) style.display = display;
 
     // padding
     if (padding !== undefined) style.padding = padding;

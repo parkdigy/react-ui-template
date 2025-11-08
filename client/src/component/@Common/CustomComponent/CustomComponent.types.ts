@@ -354,8 +354,9 @@ export type CustomComponentAllStyles = CustomComponentPaddingStyles &
   CustomComponentEtcStyles &
   CustomComponentCustomStyles;
 
-export type CustomComponentProps<T> = Omit<T, keyof CustomComponentAllStyles> &
+export type CustomComponentProps<T> = Omit<T, 'hidden' | keyof CustomComponentAllStyles> &
   CustomComponentAllStyles & {
     component: React.ElementType;
     style?: never;
+    hidden?: boolean;
   };
