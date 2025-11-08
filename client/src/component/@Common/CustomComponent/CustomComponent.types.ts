@@ -306,7 +306,7 @@ export type CustomComponentEtcStyles = Pick<CSSProperties, (typeof CustomCompone
 
 export const CustomComponentCustomStyles = ['cssVars'] as const;
 export type CustomComponentCustomStyles = {
-  cssVars?: Dict<string | undefined>;
+  cssVars?: Dict<string | number | undefined>;
 };
 
 /********************************************************************************************************************

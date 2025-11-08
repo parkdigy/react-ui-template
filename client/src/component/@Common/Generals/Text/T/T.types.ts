@@ -10,4 +10,5 @@ export interface TProps extends Omit<BoxProps, 'display' | 'color'> {
   iconPosition?: 'start' | 'end';
   iconProps?: Omit<IconProps, 'children'>;
   ellipsis?: boolean;
+  ellipsisLines?: number;
 }

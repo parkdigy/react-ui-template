@@ -1,6 +1,6 @@
 import React from 'react';
 import { TProps as Props } from './T.types';
-import { Sizes, Theme } from '@theme';
+import { AllSizes, Theme } from '@theme';
 import './T.scss';
 
 export const T = React.forwardRef<HTMLDivElement, Props>(
@@ -9,14 +9,21 @@ export const T = React.forwardRef<HTMLDivElement, Props>(
       className,
       children,
       inline,
-      size,
-      c: initC,
-      color: initColor,
+      s: initS,
+      size: initSize,
+      fs: propsInitFs,
+      fontSize: propsInitFontSize,
+      lh: propsInitLh,
+      lineHeight: propsInitLineHeight,
+      c: propsInitC,
+      color: propsInitColor,
       icon,
       iconGap,
       iconPosition,
       iconProps,
       ellipsis,
+      ellipsisLines = 1,
+      cssVars: initCssVars,
       ...props
     },
     ref
@@ -31,8 +38,31 @@ export const T = React.forwardRef<HTMLDivElement, Props>(
      * Variable
      * ******************************************************************************************************************/
 
-    const isNamedSize = contains(Sizes, size);
-    const fontSize = isNamedSize ? theme.sizes[size as keyof Theme['sizes']]?.fontSize : undefined;
+    const initC = propsInitC;
+    const initColor = propsInitColor;
+    const initFontSize = ifUndefined(propsInitFontSize, propsInitFs);
+    const initLh = ifUndefined(propsInitLineHeight, propsInitLh);
+
+    const size = ifUndefined(initSize, initS);
+    const isNamedSize = size !== undefined && contains(AllSizes, size);
+    let fontSize: number | string | undefined = isNamedSize
+      ? theme.sizes[size as keyof Theme['sizes']]?.fontSize
+      : undefined;
+    let lineHeight: number | string | undefined = isNamedSize
+      ? theme.sizes[size as keyof Theme['sizes']]?.lineHeight
+      : undefined;
+
+    if (initFontSize !== undefined && typeof initFontSize === 'string' && contains(AllSizes, initFontSize)) {
+      fontSize = theme.sizes[initFontSize].fontSize;
+    } else if (initFontSize !== undefined) {
+      fontSize = initFontSize;
+    }
+
+    if (initLh !== undefined && typeof initLh === 'string' && contains(AllSizes, initLh)) {
+      lineHeight = theme.sizes[initLh].lineHeight;
+    } else if (initLh !== undefined) {
+      lineHeight = initLh;
+    }
 
     const finalInitColor = initC || initColor;
     const finalColor: BoxProps['color'] =
@@ -46,6 +76,33 @@ export const T = React.forwardRef<HTMLDivElement, Props>(
               ? 'textLighten'
               : finalInitColor;
 
+    let cssVars: Props['cssVars'];
+
+    if (icon || ellipsis) {
+      cssVars = { ...initCssVars };
+
+      const baseFontSize = fontSize === undefined ? theme.sizes.body.fontSize : fontSize;
+
+      if (icon) {
+        cssVars['--T-icon-gap-base-size'] = typeof baseFontSize === 'number' ? `${baseFontSize}px` : baseFontSize;
+      }
+
+      if (ellipsis) {
+        const ellipsisFontSize = baseFontSize;
+        const ellipsisLineHeight = lineHeight === undefined ? theme.sizes.body.lineHeight : lineHeight;
+
+        cssVars['--T-ellipsis-font-size'] = isNaN(Number(ellipsisLineHeight))
+          ? 1
+          : typeof ellipsisFontSize === 'number'
+            ? `${ellipsisFontSize}px`
+            : ellipsisFontSize;
+        cssVars['--T-ellipsis-line-height'] = ellipsisLineHeight;
+        cssVars['--T-ellipsis-lines'] = `${ifUndefined(ellipsisLines, 1)}`;
+      }
+    } else {
+      cssVars = initCssVars;
+    }
+
     /********************************************************************************************************************
      * Render
      * ******************************************************************************************************************/
@@ -53,12 +110,20 @@ export const T = React.forwardRef<HTMLDivElement, Props>(
     return icon ? (
       <Flex
         ref={ref}
-        className={classnames(className, 'T', ellipsis && 'T-ellipsis')}
+        className={classnames(
+          className,
+          'T',
+          'T-with-icon',
+          ellipsis && 'T-ellipsis',
+          ellipsisLines > 1 && 'T-ellipsis-multi'
+        )}
         center
         flexDirection={iconPosition === 'end' ? 'row-reverse' : 'row'}
-        size={size}
+        fontSize={fontSize}
+        lineHeight={lineHeight}
         color={finalColor}
-        gap={iconGap !== undefined ? iconGap : fontSize ? Math.ceil(fontSize * 0.4) : 5}
+        gap={iconGap}
+        cssVars={cssVars}
         {...props}
       >
         <Icon size={size} {...iconProps}>
@@ -70,9 +135,11 @@ export const T = React.forwardRef<HTMLDivElement, Props>(
       <Box
         ref={ref}
         component={inline ? 'span' : 'div'}
-        className={classnames(className, 'T', ellipsis && 'T-ellipsis')}
-        size={size}
+        className={classnames(className, 'T', ellipsis && 'T-ellipsis', ellipsisLines > 1 && 'T-ellipsis-multi')}
+        fontSize={fontSize}
+        lineHeight={lineHeight}
         color={finalColor}
+        cssVars={cssVars}
         {...props}
       >
         {children}

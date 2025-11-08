@@ -1,9 +1,23 @@
 .T {
+  &.T-with-icon {
+    gap: calc((var(--T-icon-gap-base-size) + 0px) * 0.4);
+  }
+
   &.T-ellipsis,
   &.T-ellipsis > .T__Text {
-    white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
+
+    &:not(.T-ellipsis-multi) {
+      white-space: nowrap;
+    }
+
+    &.T-ellipsis-multi {
+      max-height: calc(var(--T-ellipsis-font-size) * var(--T-ellipsis-line-height) * var(--T-ellipsis-lines));
+      display: -webkit-box;
+      -webkit-line-clamp: var(--T-ellipsis-lines);
+      -webkit-box-orient: vertical;
+    }
   }
 
   > .T {
