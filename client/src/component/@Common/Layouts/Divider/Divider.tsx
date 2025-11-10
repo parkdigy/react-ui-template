@@ -2,7 +2,7 @@ import React from 'react';
 import { DividerProps as Props } from './Divider.types';
 import './Divider.scss';
 
-export const Divider = ({ className, vertical, c, color, w, width, h, height }: Props) => {
+export const Divider = ({ className, vertical, c, color, w, width, h, height, ...props }: Props) => {
   return vertical ? (
     <Span
       className={classnames(className, 'Divider Divider-v')}
@@ -10,6 +10,7 @@ export const Divider = ({ className, vertical, c, color, w, width, h, height }: 
       height={height}
       borderLeftColor={ifUndefined(color, c)}
       borderLeftWidth={ifUndefined(width, w)}
+      {...props}
     />
   ) : (
     <Box
@@ -18,6 +19,7 @@ export const Divider = ({ className, vertical, c, color, w, width, h, height }: 
       width={width}
       borderTopColor={ifUndefined(color, c)}
       borderTopWidth={ifUndefined(height, h)}
+      {...props}
     />
   );
 };
