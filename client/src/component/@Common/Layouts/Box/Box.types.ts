@@ -6,7 +6,7 @@ export interface BoxStyleProps extends CustomComponentAllStyles {}
 export type BoxHtmlProps = React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
 
 export interface BoxProps
-  extends Omit<CustomComponentProps<BoxHtmlProps>, 'component' | 'style' | 'wrap' | keyof BoxStyleProps>,
+  extends Omit<CustomComponentProps<BoxHtmlProps>, 'component' | 'wrap' | keyof BoxStyleProps>,
     BoxStyleProps {
   component?: 'div' | 'span' | 'section' | 'article' | 'main' | 'aside' | 'header' | 'footer' | 'nav';
   center?: boolean;

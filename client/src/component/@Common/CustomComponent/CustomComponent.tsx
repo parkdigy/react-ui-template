@@ -6,6 +6,7 @@ export const CustomComponent = ToForwardRefExoticComponent(
   AutoTypeForwardRef(function <T>(
     {
       component: Component,
+      style: initStyle,
       hidden,
       // display
       display,
@@ -184,7 +185,7 @@ export const CustomComponent = ToForwardRefExoticComponent(
      * Variable
      * ******************************************************************************************************************/
 
-    const style: CSSProperties = { ...cssVars };
+    const style: CSSProperties = { ...cssVars, ...initStyle };
 
     // display
     if (hidden) style.display = 'none';
