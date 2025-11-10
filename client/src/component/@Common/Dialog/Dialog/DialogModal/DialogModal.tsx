@@ -1,6 +1,7 @@
 import React from 'react';
 import { DialogModalProps as Props } from './DialogModal.types';
 import Modal from 'react-modal';
+import './DialogModal.scss';
 
 export const DialogModal = ({ onCancelClick, onConfirmClick, onRequestClose, ...props }: Props) => {
   /********************************************************************************************************************
@@ -90,7 +91,7 @@ export const DialogModal = ({ onCancelClick, onConfirmClick, onRequestClose, ...
    * ******************************************************************************************************************/
 
   return (
-    <Modal isOpen={true} portalClassName='Dialog' onRequestClose={() => onRequestClose(props)}>
+    <Modal isOpen={true} className='DialogModal' portalClassName='Dialog' onRequestClose={() => onRequestClose(props)}>
       {type === undefined ? (
         <Flex center gap={ifUndefined(gap, 14)} minWidth={minWidth} maxWidth={maxWidth}>
           {title}
