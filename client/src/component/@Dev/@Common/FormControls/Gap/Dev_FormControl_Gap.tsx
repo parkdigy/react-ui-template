@@ -3,7 +3,7 @@ import { Dev_FormControl_GapProps as Props } from './Dev_FormControl_Gap.types';
 import { FormRadioGroup, FormSelect } from '@ccomp';
 import { Dev_PanelItem } from '../../Layout';
 
-export const Dev_FormControl_Gap = ({ variant, ...props }: Props) => {
+export const Dev_FormControl_Gap = ({ variant, value = '', ...props }: Props) => {
   /********************************************************************************************************************
    * Memo
    * ******************************************************************************************************************/
@@ -12,11 +12,7 @@ export const Dev_FormControl_Gap = ({ variant, ...props }: Props) => {
     return ([5, 10, 15, 20, 25, 30] as const).map((gap) => lv(`${gap}`, gap));
   }, []);
 
-  const radioItems = useMemo(() => {
-    const _items = [...selectItems];
-    _items.unshift(lv('미지정', undefined));
-    return _items;
-  }, [selectItems]);
+  const radioItems = useMemo(() => [lv('미지정', ''), ...selectItems], [selectItems]);
 
   /********************************************************************************************************************
    * Render
@@ -25,9 +21,9 @@ export const Dev_FormControl_Gap = ({ variant, ...props }: Props) => {
   return (
     <Dev_PanelItem icon='Expand' iconProps={{ rotate: 90 }} title='간격 (gap)' mt={-5}>
       {variant === 'select' ? (
-        <FormSelect name='gap' items={selectItems} placeholder='미지정' clearable {...props} />
+        <FormSelect name='gap' items={selectItems} placeholder='미지정' clearable value={value} {...props} />
       ) : (
-        <FormRadioGroup type='smallButton' name='gap' items={radioItems} {...props} />
+        <FormRadioGroup type='smallButton' name='gap' items={radioItems} value={value} {...props} />
       )}
     </Dev_PanelItem>
   );

@@ -1,10 +1,10 @@
 import React from 'react';
 import { FormProps, FormSelect } from '@ccomp';
 import { Dev_FormOptions, Dev_FormOptionsData, Dev_Panel } from '../../@Common';
-import { FlattenArray } from '@pdg/types';
 import code from './Dev_Form_Select.code.md';
 import { toast } from '@common';
 import Dev_Form_Select_Variant from './Dev_Form_Select_Variant';
+import { FlattenFormOptions } from '../../@types/FlattenFormOptions';
 
 const _formOptions = [
   'formSelectSize',
@@ -16,7 +16,7 @@ const _formOptions = [
   ['searchable', 'clearable', 'loading', 'required'],
   ['disabled', 'subControl', 'hideTitle', null],
 ] as const;
-type _formOptions = Exclude<FlattenArray<typeof _formOptions>, '|' | null>;
+type _formOptions = Exclude<FlattenFormOptions<typeof _formOptions>, '|' | null>;
 const _formOptionsDefaultData: Dev_FormOptionsData = {
   title: 'FormSelect',
   placeholder: '선택해 주세요',
@@ -38,7 +38,7 @@ export const Dev_Form_Select = ({ titlePosition }: Props) => {
   const { subControl, formSelectSize, title, placeholder, helperText, ...otherData } = _data;
 
   const data = {
-    size: formSelectSize,
+    size: ifEmpty(formSelectSize, undefined),
     title: ifEmpty(title, undefined),
     placeholder: ifEmpty(placeholder, undefined),
     helperText: ifEmpty(helperText, undefined),

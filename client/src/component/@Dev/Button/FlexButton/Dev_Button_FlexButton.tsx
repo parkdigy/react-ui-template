@@ -3,10 +3,10 @@ import { Dev_FormOptions, Dev_FormOptionsData, Dev_FormOptionsProps, Dev_Panel }
 import { AllColors } from '@theme';
 import code from './Dev_Button_FlexButton.code.md';
 import { toast } from '@common';
-import { FlattenArray } from '@pdg/types';
+import { FlattenFormOptions } from '../../@types/FlattenFormOptions';
 
 const _formOptions = [['color', 'backgroundColor'], '|', 'url', '|', ['disabled']] as const;
-type _formOptions = Exclude<FlattenArray<typeof _formOptions>, '|' | null>;
+type _formOptions = Exclude<FlattenFormOptions<typeof _formOptions>, '|' | null>;
 const _formOptionProps: Dev_FormOptionsProps['optionProps'] = {
   url: { helperText: 'URL을 입력하면, 클릭 시 자동으로 URL로 이동 (내부 URL은 / 로 시작)' },
 };
@@ -18,9 +18,14 @@ const Dev_Button_FlexButton = () => {
 
   const [_data, setData] = useState<Pick<Dev_FormOptionsData, _formOptions>>({});
 
-  const { url, ...otherData } = _data;
+  const { url, color, backgroundColor, ...otherData } = _data;
 
-  const data = { url: ifEmpty(url, undefined), ...otherData };
+  const data = {
+    url: ifEmpty(url, undefined),
+    color: ifEmpty(color, undefined),
+    backgroundColor: ifEmpty(backgroundColor, undefined),
+    ...otherData,
+  };
 
   /********************************************************************************************************************
    * Render

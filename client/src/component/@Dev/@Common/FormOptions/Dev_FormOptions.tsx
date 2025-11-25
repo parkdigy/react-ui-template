@@ -144,7 +144,7 @@ function Dev_FormOptions<TColors extends AllColors = AllColors, TBackgroundColor
         if (colsUseResponsive) {
           newData.cols = colsResponsiveCols;
         } else {
-          newData.cols = cols;
+          newData.cols = ifEmpty(cols, undefined);
         }
       } else if (allControlNames.includes(v)) {
         newData[v] = allControls[v] as any;

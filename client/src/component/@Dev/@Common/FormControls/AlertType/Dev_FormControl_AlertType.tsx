@@ -3,7 +3,7 @@ import { Dev_FormControl_AlertTypeProps as Props } from './Dev_FormControl_Alert
 import { AlertType, FormRadioGroup, FormSelect } from '@ccomp';
 import { Dev_PanelItem } from '../../Layout';
 
-export const Dev_FormControl_AlertType = ({ variant = 'select', ...props }: Props) => {
+export const Dev_FormControl_AlertType = ({ variant = 'select', value = '', ...props }: Props) => {
   /********************************************************************************************************************
    * Memo
    * ******************************************************************************************************************/
@@ -12,11 +12,7 @@ export const Dev_FormControl_AlertType = ({ variant = 'select', ...props }: Prop
     return AlertType.map((alertType) => lv(alertType, alertType));
   }, []);
 
-  const radioItems = useMemo(() => {
-    const _items = [...selectItems];
-    _items.unshift(lv('미지정', undefined));
-    return _items;
-  }, [selectItems]);
+  const radioItems = useMemo(() => [lv('미지정', ''), ...selectItems], [selectItems]);
 
   /********************************************************************************************************************
    * Render
@@ -25,9 +21,9 @@ export const Dev_FormControl_AlertType = ({ variant = 'select', ...props }: Prop
   return (
     <Dev_PanelItem icon='Category' title='유형 (type)' mt={-5}>
       {variant === 'select' ? (
-        <FormSelect name='alertType' items={selectItems} clearable placeholder='미지정' {...props} />
+        <FormSelect name='alertType' items={selectItems} clearable placeholder='미지정' value={value} {...props} />
       ) : (
-        <FormRadioGroup name='alertType' items={radioItems} {...props} />
+        <FormRadioGroup name='alertType' items={radioItems} value={value} {...props} />
       )}
     </Dev_PanelItem>
   );

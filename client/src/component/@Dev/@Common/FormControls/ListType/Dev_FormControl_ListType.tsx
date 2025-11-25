@@ -3,7 +3,7 @@ import { Dev_FormControl_ListTypeProps as Props } from './Dev_FormControl_ListTy
 import { FormRadioGroup, FormSelect } from '@ccomp';
 import { Dev_PanelItem } from '../../Layout';
 
-export const Dev_FormControl_ListType = ({ variant = 'select', value, disabled, onChange }: Props) => {
+export const Dev_FormControl_ListType = ({ variant = 'select', value = '', disabled, onChange }: Props) => {
   /********************************************************************************************************************
    * Memo
    * ******************************************************************************************************************/
@@ -12,11 +12,7 @@ export const Dev_FormControl_ListType = ({ variant = 'select', value, disabled, 
     return (['info'] as const).map((listType) => lv(listType, listType));
   }, []);
 
-  const radioItems = useMemo(() => {
-    const _items = [...selectItems];
-    _items.unshift(lv('미지정', undefined));
-    return _items;
-  }, [selectItems]);
+  const radioItems = useMemo(() => [lv('미지정', ''), ...selectItems], [selectItems]);
 
   /********************************************************************************************************************
    * Render

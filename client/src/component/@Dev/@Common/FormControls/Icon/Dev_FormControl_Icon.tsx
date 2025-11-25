@@ -5,18 +5,14 @@ import { Dev_PanelItem } from '../../Layout';
 
 const _icons = [lv('AccountCircle', 'AccountCircle'), lv('RocketLaunch', 'RocketLaunch')];
 
-export const Dev_FormControl_Icon = ({ variant = 'select', ...props }: Props) => {
+export const Dev_FormControl_Icon = ({ variant = 'select', value = '', ...props }: Props) => {
   /********************************************************************************************************************
    * Memo
    * ******************************************************************************************************************/
 
   const selectItems = useMemo(() => [..._icons], []);
 
-  const radioItems = useMemo(() => {
-    const _items = [..._icons];
-    _items.unshift(lv('미지정', undefined));
-    return _items;
-  }, []);
+  const radioItems = useMemo(() => [lv('미지정', ''), ..._icons], []);
 
   /********************************************************************************************************************
    * Render
@@ -25,9 +21,9 @@ export const Dev_FormControl_Icon = ({ variant = 'select', ...props }: Props) =>
   return (
     <Dev_PanelItem icon='Image' title='아이콘 (icon)' mt={-5}>
       {variant === 'select' ? (
-        <FormSelect name='icon' items={selectItems} placeholder='미지정' clearable {...props} />
+        <FormSelect name='icon' items={selectItems} placeholder='미지정' clearable value={value} {...props} />
       ) : (
-        <FormRadioGroup type='smallButton' name='icon' items={radioItems} {...props} />
+        <FormRadioGroup type='smallButton' name='icon' items={radioItems} value={value} {...props} />
       )}
     </Dev_PanelItem>
   );

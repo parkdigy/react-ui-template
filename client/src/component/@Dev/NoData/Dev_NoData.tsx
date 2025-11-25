@@ -1,12 +1,12 @@
 import React from 'react';
-import { FlattenArray } from '@pdg/types';
 import { Dev_FormOptions, Dev_FormOptionsData, Dev_Panel } from '../@Common';
 import { AllColors } from '@theme';
 import code from './Dev_NoData.code.md';
 import { NoData } from '@ccomp';
+import { FlattenFormOptions } from '../@types/FlattenFormOptions';
 
 const _formOptions = ['message'] as const;
-type _formOptions = Exclude<FlattenArray<typeof _formOptions>, '|' | null>;
+type _formOptions = Exclude<FlattenFormOptions<typeof _formOptions>, '|' | null>;
 const _formOptionsDefaultData: Dev_FormOptionsData = { label: 'NoData' };
 
 export const Dev_NoData = () => {

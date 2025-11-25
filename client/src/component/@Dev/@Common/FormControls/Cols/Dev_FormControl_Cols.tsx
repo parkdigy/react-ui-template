@@ -5,15 +5,17 @@ import { Dev_PanelItem } from '../../Layout';
 import { AllScreenAliases } from '@theme';
 import { useScreenSize } from '@context';
 
-const _selectColsItems: Lv<string, GridCols>[] = new Array(12).fill(0).map((_, i) => lv(`${i + 1}개`, i + 1));
+const _selectColsItems = new Array(12).fill(0).map((_, i) => lv(`${i + 1}개`, i + 1)) as Lv<string, GridCols>[];
 
-const _radioGroupColsItems: Lv<string, GridCols>[] = new Array(12).fill(0).map((_, i) => lv(`${i + 1}개`, i + 1));
-_radioGroupColsItems.unshift(lv('미지정(12개)', undefined));
+const _radioGroupColsItems = [
+  lv('미지정(12개)', ''),
+  ...new Array(12).fill(0).map((_, i) => lv(`${i + 1}개`, i + 1)),
+] as Lv<string, '' | GridCols>[];
 
 export const Dev_FormControl_Cols = ({
   disabled,
   useResponsive,
-  cols,
+  cols = '',
   responsiveCols,
   onChangeUseResponsive,
   onChangeCols,

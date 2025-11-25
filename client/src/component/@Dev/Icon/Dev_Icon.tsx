@@ -5,7 +5,7 @@ import code from './Dev_Icon.code.md';
 import { toast } from '@common';
 import Dev_Icon_Variant from './Dev_Icon_Variant';
 import Dev_Icon_MaterialIcons from './Dev_Icon_MaterialIcons';
-import { FlattenArray } from '@pdg/types';
+import { FlattenFormOptions } from '../@types/FlattenFormOptions';
 
 const _formOptions = [
   'size',
@@ -15,7 +15,7 @@ const _formOptions = [
     { option: 'rotate', cols: 3 },
   ],
 ] as const;
-type _formOptions = Exclude<FlattenArray<typeof _formOptions>, '|' | null>;
+type _formOptions = Exclude<FlattenFormOptions<typeof _formOptions>, '|' | null>;
 const _formDefaultData: Dev_FormOptionsData<ButtonColors> = { size: 'headline' };
 
 export const Dev_Icon = () => {
@@ -23,7 +23,16 @@ export const Dev_Icon = () => {
    * data
    * ******************************************************************************************************************/
 
-  const [data, setData] = useState<Pick<Dev_FormOptionsData, _formOptions>>({});
+  const [_data, setData] = useState<Pick<Dev_FormOptionsData, _formOptions>>({});
+
+  const { size, rotate, color, ...otherData } = _data;
+
+  const data = {
+    size: ifEmpty(size, undefined),
+    rotate: ifEmpty(rotate, undefined),
+    color: ifEmpty(color, undefined),
+    ...otherData,
+  };
 
   /********************************************************************************************************************
    * Render

@@ -2,11 +2,11 @@ import React from 'react';
 import { DefaultColors } from '@theme';
 import { Dev_FormOptions, Dev_FormOptionsData, Dev_Panel } from '../@Common';
 import Dev_Tooltip_Variant from './Dev_Tooltip_Variant';
-import { FlattenArray } from '@pdg/types';
 import code from './Dev_Tooltip.code.md';
+import { FlattenFormOptions } from '../@types/FlattenFormOptions';
 
 const _formOptions = ['tooltipPlace', '|', 'color'] as const;
-type _formOptions = Exclude<FlattenArray<typeof _formOptions>, '|' | null>;
+type _formOptions = Exclude<FlattenFormOptions<typeof _formOptions>, '|' | null>;
 const _formDefaultData: Dev_FormOptionsData<DefaultColors> = { size: 'headline' };
 
 export const Dev_Tooltip = () => {
@@ -16,9 +16,9 @@ export const Dev_Tooltip = () => {
 
   const [_data, setData] = useState<Pick<Dev_FormOptionsData<DefaultColors>, _formOptions>>({});
 
-  const { tooltipPlace, ...otherData } = _data;
+  const { tooltipPlace, color, ...otherData } = _data;
 
-  const data = { place: tooltipPlace, ...otherData };
+  const data = { place: ifEmpty(tooltipPlace, undefined), color: ifEmpty(color, undefined), ...otherData };
 
   /********************************************************************************************************************
    * Render

@@ -3,7 +3,7 @@ import { Dev_FormControl_FontWeightProps as Props } from './Dev_FormControl_Font
 import { FormRadioGroup, FormSelect } from '@ccomp';
 import { Dev_PanelItem } from '../../Layout';
 
-export const Dev_FormControl_FontWeight = ({ variant = 'select', ...props }: Props) => {
+export const Dev_FormControl_FontWeight = ({ variant = 'select', value = '', ...props }: Props) => {
   /********************************************************************************************************************
    * Memo
    * ******************************************************************************************************************/
@@ -16,11 +16,7 @@ export const Dev_FormControl_FontWeight = ({ variant = 'select', ...props }: Pro
     []
   );
 
-  const radioItems = useMemo(() => {
-    const _items = [...selectItems];
-    _items.unshift(lv('미지정', undefined));
-    return _items;
-  }, [selectItems]);
+  const radioItems = useMemo(() => [lv('미지정', ''), ...selectItems], [selectItems]);
 
   /********************************************************************************************************************
    * Render
@@ -29,9 +25,9 @@ export const Dev_FormControl_FontWeight = ({ variant = 'select', ...props }: Pro
   return (
     <Dev_PanelItem icon='LineWeight' title='굵기 (fontWeight)' mt={-5}>
       {variant === 'select' ? (
-        <FormSelect name='fontWeight' items={selectItems} placeholder='미지정' clearable {...props} />
+        <FormSelect name='fontWeight' items={selectItems} placeholder='미지정' clearable value={value} {...props} />
       ) : (
-        <FormRadioGroup type='smallButton' name='fontWeight' items={radioItems} {...props} />
+        <FormRadioGroup type='smallButton' name='fontWeight' items={radioItems} value={value} {...props} />
       )}
     </Dev_PanelItem>
   );

@@ -1,10 +1,10 @@
 import React from 'react';
 import code from './Dev_Grid.code.md';
 import { Dev_FormOptions, Dev_FormOptionsData, Dev_Panel } from '../@Common';
-import { FlattenArray } from '@pdg/types';
+import { FlattenFormOptions } from '../@types/FlattenFormOptions';
 
 const _formOptions = ['cols', '|', 'gap'] as const;
-type _formOptions = Exclude<FlattenArray<typeof _formOptions>, '|' | null>;
+type _formOptions = Exclude<FlattenFormOptions<typeof _formOptions>, '|' | null>;
 const _formOptionsDefaultData: Dev_FormOptionsData = { gap: 5 };
 
 export const Dev_Grid = () => {
@@ -12,7 +12,11 @@ export const Dev_Grid = () => {
    * data
    * ******************************************************************************************************************/
 
-  const [data, setData] = useState<Pick<Dev_FormOptionsData, _formOptions>>({});
+  const [_data, setData] = useState<Pick<Dev_FormOptionsData, _formOptions>>({});
+
+  const { cols, gap, ...otherData } = _data;
+
+  const data = { cols: ifEmpty(cols, undefined), gap: ifEmpty(gap, undefined), ...otherData };
 
   /********************************************************************************************************************
    * Render

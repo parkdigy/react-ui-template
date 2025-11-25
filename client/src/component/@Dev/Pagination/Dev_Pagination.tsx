@@ -1,11 +1,11 @@
 import React from 'react';
-import { FlattenArray } from '@pdg/types';
 import { Dev_FormOptions, Dev_FormOptionsData, Dev_Panel } from '../@Common';
 import code from './Dev_Pagination.code.md';
 import { Pagination } from '@ccomp';
+import { FlattenFormOptions } from '../@types/FlattenFormOptions';
 
 const _formOptions = ['currentPage', '|', 'lastPage'] as const;
-type _formOptions = Exclude<FlattenArray<typeof _formOptions>, '|' | null>;
+type _formOptions = Exclude<FlattenFormOptions<typeof _formOptions>, '|' | null>;
 const _formOptionsDefaultData: Dev_FormOptionsData = {
   currentPage: 1,
   lastPage: 100,

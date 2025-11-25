@@ -1,10 +1,10 @@
 import React from 'react';
 import { FormProps, FormFile } from '@ccomp';
 import { Dev_FormOptions, Dev_FormOptionsData, Dev_Panel } from '../../@Common';
-import { FlattenArray } from '@pdg/types';
 import code from './Dev_Form_File.code.md';
 import Dev_Form_File_Variant from './Dev_Form_File_Variant';
 import { toast } from '@common';
+import { FlattenFormOptions } from '../../@types/FlattenFormOptions';
 
 const _formOptions = [
   ['title', 'placeholder'],
@@ -14,7 +14,7 @@ const _formOptions = [
   '|',
   ['required', 'disabled', 'subControl', 'hideTitle'],
 ] as const;
-type _formOptions = Exclude<FlattenArray<typeof _formOptions>, '|' | null>;
+type _formOptions = Exclude<FlattenFormOptions<typeof _formOptions>, '|' | null>;
 const _formOptionsDefaultData: Dev_FormOptionsData = {
   title: 'FormFile',
   placeholder: '파일을 선택해 주세요.',

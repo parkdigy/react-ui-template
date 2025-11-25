@@ -3,7 +3,7 @@ import { Dev_FormControl_FormCheckboxTypeProps as Props } from './Dev_FormContro
 import { FormRadioGroup, FormSelect } from '@ccomp';
 import { Dev_PanelItem } from '../../Layout';
 
-export const Dev_FormControl_FormCheckboxType = ({ variant = 'select', ...props }: Props) => {
+export const Dev_FormControl_FormCheckboxType = ({ variant = 'select', value = '', ...props }: Props) => {
   /********************************************************************************************************************
    * Memo
    * ******************************************************************************************************************/
@@ -12,11 +12,7 @@ export const Dev_FormControl_FormCheckboxType = ({ variant = 'select', ...props 
     return (['checkbox', 'switch'] as const).map((formCheckboxType) => lv(formCheckboxType, formCheckboxType));
   }, []);
 
-  const radioItems = useMemo(() => {
-    const _items = [...selectItems];
-    _items.unshift(lv('미지정', undefined));
-    return _items;
-  }, [selectItems]);
+  const radioItems = useMemo(() => [lv('미지정', ''), ...selectItems], [selectItems]);
 
   /********************************************************************************************************************
    * Render
@@ -25,9 +21,16 @@ export const Dev_FormControl_FormCheckboxType = ({ variant = 'select', ...props 
   return (
     <Dev_PanelItem icon='Category' title='구분 (type)' mt={-5}>
       {variant === 'select' ? (
-        <FormSelect name='formCheckboxType' items={selectItems} clearable placeholder='미지정' {...props} />
+        <FormSelect
+          name='formCheckboxType'
+          items={selectItems}
+          clearable
+          placeholder='미지정'
+          value={value}
+          {...props}
+        />
       ) : (
-        <FormRadioGroup type='smallButton' name='formCheckboxType' items={radioItems} {...props} />
+        <FormRadioGroup type='smallButton' name='formCheckboxType' items={radioItems} value={value} {...props} />
       )}
     </Dev_PanelItem>
   );

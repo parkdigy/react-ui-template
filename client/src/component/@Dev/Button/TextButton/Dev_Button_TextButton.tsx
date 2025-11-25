@@ -5,7 +5,7 @@ import code from './Dev_Button_TextButton.code.md';
 import { toast } from '@common';
 import { TextButton } from '@ccomp';
 import Dev_Button_TextButton_Variant from './Dev_Button_TextButton_Variant';
-import { FlattenArray } from '@pdg/types';
+import { FlattenFormOptions } from '../../@types/FlattenFormOptions';
 
 const _formOptions = [
   ['color', 'size'],
@@ -16,7 +16,7 @@ const _formOptions = [
   '|',
   ['loading', 'disabled'],
 ] as const;
-type _formOptions = Exclude<FlattenArray<typeof _formOptions>, '|' | null>;
+type _formOptions = Exclude<FlattenFormOptions<typeof _formOptions>, '|' | null>;
 const _formOptionProps: Dev_FormOptionsProps['optionProps'] = {
   url: { helperText: 'URL을 입력하면, 클릭 시 자동으로 URL로 이동 (내부 URL은 / 로 시작)' },
 };
@@ -28,9 +28,17 @@ const Dev_Button_TextButton = () => {
 
   const [_data, setData] = useState<Pick<Dev_FormOptionsData, _formOptions>>({});
 
-  const { url, ...otherData } = _data;
+  const { color, size, url, icon, iconPosition, iconGap, ...otherData } = _data;
 
-  const data = { url: ifEmpty(url, undefined), ...otherData };
+  const data = {
+    color: ifEmpty(color, undefined),
+    size: ifEmpty(size, undefined),
+    url: ifEmpty(url, undefined),
+    icon: ifEmpty(icon, undefined),
+    iconPosition: ifEmpty(iconPosition, undefined),
+    iconGap: ifEmpty(iconGap, undefined),
+    ...otherData,
+  };
 
   /********************************************************************************************************************
    * Render

@@ -11,7 +11,7 @@ function Dev_FormControl_Color<TColors extends AllColors = AllColors>({
   colors,
   disabled,
   useCustomColor,
-  value,
+  value = '',
   onChange,
   ...props
 }: Props<TColors>) {
@@ -40,19 +40,20 @@ function Dev_FormControl_Color<TColors extends AllColors = AllColors>({
   const selectItems = useMemo(() => {
     const _items = colors.map((color) => lv(color, color));
     if (value?.startsWith('#')) {
-      _items.unshift(lv('지정 색상', value));
+      return [lv('지정 색상', value), ..._items];
     }
     return _items;
   }, [colors, value]);
 
-  const radioItems = useMemo(() => {
-    const _items = colors
-      .filter((color) => (!useExpand || expanded ? true : contains(DefaultColors, color as any)))
-      .map((color) => lv(color, color));
-
-    _items.unshift(lv('미지정', undefined));
-    return _items;
-  }, [colors, expanded, useExpand]);
+  const radioItems = useMemo(
+    () => [
+      lv('미지정', ''),
+      ...colors
+        .filter((color) => (!useExpand || expanded ? true : contains(DefaultColors, color as any)))
+        .map((color) => lv(color, color)),
+    ],
+    [colors, expanded, useExpand]
+  );
 
   /********************************************************************************************************************
    * Render

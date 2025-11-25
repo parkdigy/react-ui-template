@@ -3,7 +3,7 @@ import { Dev_FormControl_FormSelectSizeProps as Props } from './Dev_FormControl_
 import { FormRadioGroup, FormSelect } from '@ccomp';
 import { Dev_PanelItem } from '../../Layout';
 
-export const Dev_FormControl_FormSelectSize = ({ variant = 'select', ...props }: Props) => {
+export const Dev_FormControl_FormSelectSize = ({ variant = 'select', value = '', ...props }: Props) => {
   /********************************************************************************************************************
    * Memo
    * ******************************************************************************************************************/
@@ -12,11 +12,7 @@ export const Dev_FormControl_FormSelectSize = ({ variant = 'select', ...props }:
     return (['normal', 'small'] as const).map((formSelectSize) => lv(formSelectSize, formSelectSize));
   }, []);
 
-  const radioItems = useMemo(() => {
-    const _items = [...selectItems];
-    _items.unshift(lv('미지정', undefined));
-    return _items;
-  }, [selectItems]);
+  const radioItems = useMemo(() => [lv('미지정', ''), ...selectItems], [selectItems]);
 
   /********************************************************************************************************************
    * Render
@@ -25,9 +21,9 @@ export const Dev_FormControl_FormSelectSize = ({ variant = 'select', ...props }:
   return (
     <Dev_PanelItem icon='AspectRatio' title='크기 (size)' mt={-5}>
       {variant === 'select' ? (
-        <FormSelect name='formSelectSize' items={selectItems} clearable placeholder='미지정' {...props} />
+        <FormSelect name='formSelectSize' items={selectItems} clearable placeholder='미지정' value={value} {...props} />
       ) : (
-        <FormRadioGroup type='smallButton' name='formSelectSize' items={radioItems} {...props} />
+        <FormRadioGroup type='smallButton' name='formSelectSize' items={radioItems} value={value} {...props} />
       )}
     </Dev_PanelItem>
   );

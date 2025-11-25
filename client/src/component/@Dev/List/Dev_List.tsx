@@ -1,11 +1,11 @@
 import React from 'react';
 import { Dev_FormOptions, Dev_FormOptionsData, Dev_Panel } from '../@Common';
 import { List } from '@ccomp';
-import { FlattenArray } from '@pdg/types';
 import code from './Dev_List.code.md';
+import { FlattenFormOptions } from '../@types/FlattenFormOptions';
 
 const _formOptions = [['listType', 'listVariant'], '|', ['title', 'gap']] as const;
-type _formOptions = Exclude<FlattenArray<typeof _formOptions>, '|' | null>;
+type _formOptions = Exclude<FlattenFormOptions<typeof _formOptions>, '|' | null>;
 
 const Items = new Array(10).fill(0).map((_, i) => `아이템 ${i + 1}`);
 
@@ -16,9 +16,14 @@ const Dev_List = () => {
 
   const [_data, setData] = useState<Pick<Dev_FormOptionsData, _formOptions>>({});
 
-  const { listType, listVariant, ...otherData } = _data;
+  const { listType, listVariant, gap, ...otherData } = _data;
 
-  const data = { type: listType, variant: listVariant, ...otherData };
+  const data = {
+    type: ifEmpty(listType, undefined),
+    variant: ifEmpty(listVariant, undefined),
+    gap: ifEmpty(gap, undefined),
+    ...otherData,
+  };
 
   /********************************************************************************************************************
    * Render

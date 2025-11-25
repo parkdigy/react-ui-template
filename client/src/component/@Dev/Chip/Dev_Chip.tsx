@@ -1,10 +1,10 @@
 import React from 'react';
-import { FlattenArray } from '@pdg/types';
 import { Dev_FormOptions, Dev_FormOptionsData, Dev_Panel } from '../@Common';
 import { AllColors } from '@theme';
 import code from './Dev_Chip.code.md';
 import { Chip } from '@ccomp';
 import { toast } from '@common';
+import { FlattenFormOptions } from '../@types/FlattenFormOptions';
 
 const _formOptions = [
   ['chipVariant', 'label'],
@@ -15,7 +15,7 @@ const _formOptions = [
   '|',
   ['onClick', 'onRemoveClick'],
 ] as const;
-type _formOptions = Exclude<FlattenArray<typeof _formOptions>, '|' | null>;
+type _formOptions = Exclude<FlattenFormOptions<typeof _formOptions>, '|' | null>;
 const _formOptionsDefaultData: Dev_FormOptionsData = { label: 'Chip' };
 
 export const Dev_Chip = () => {
@@ -25,9 +25,16 @@ export const Dev_Chip = () => {
 
   const [_data, setData] = useState<Pick<Dev_FormOptionsData, _formOptions>>({});
 
-  const { chipVariant, label, onClick, onRemoveClick, ...otherData } = _data;
+  const { color, backgroundColor, size, chipVariant, label, onClick, onRemoveClick, ...otherData } = _data;
 
-  const data = { variant: chipVariant, label: ifUndefined(label, ''), ...otherData };
+  const data = {
+    color: ifEmpty(color, undefined),
+    backgroundColor: ifEmpty(backgroundColor, undefined),
+    size: ifEmpty(size, undefined),
+    variant: ifEmpty(chipVariant, undefined),
+    label: ifUndefined(label, ''),
+    ...otherData,
+  };
 
   /********************************************************************************************************************
    * Render

@@ -4,7 +4,7 @@ import { AllColors, ButtonColors } from '@theme';
 import code from './Dev_Button_IconButton.code.md';
 import { toast } from '@common';
 import Dev_Button_IconButton_Variant from './Dev_Button_IconButton_Variant';
-import { FlattenArray } from '@pdg/types';
+import { FlattenFormOptions } from '../../@types/FlattenFormOptions';
 
 const _formOptions = [
   'iconButtonVariant',
@@ -17,7 +17,7 @@ const _formOptions = [
   '|',
   'disabled',
 ] as const;
-type _formOptions = Exclude<FlattenArray<typeof _formOptions>, '|' | null>;
+type _formOptions = Exclude<FlattenFormOptions<typeof _formOptions>, '|' | null>;
 const _formDefaultData: Dev_FormOptionsData<ButtonColors> = { size: 'headline' };
 const _formOptionProps: Dev_FormOptionsProps['optionProps'] = {
   url: { helperText: 'URL을 입력하면, 클릭 시 자동으로 URL로 이동 (내부 URL은 / 로 시작)' },
@@ -30,9 +30,16 @@ const Dev_Button_IconButton = () => {
 
   const [_data, setData] = useState<Pick<Dev_FormOptionsData<ButtonColors>, _formOptions>>({});
 
-  const { iconButtonVariant: variant, url, ...otherData } = _data;
+  const { color, backgroundColor, size, iconButtonVariant, url, ...otherData } = _data;
 
-  const data = { variant, url: ifEmpty(url, undefined), ...otherData };
+  const data = {
+    color: ifEmpty(color, undefined),
+    backgroundColor: ifEmpty(backgroundColor, undefined),
+    size: ifEmpty(size, undefined),
+    variant: ifEmpty(iconButtonVariant, undefined),
+    url: ifEmpty(url, undefined),
+    ...otherData,
+  };
 
   /********************************************************************************************************************
    * Render

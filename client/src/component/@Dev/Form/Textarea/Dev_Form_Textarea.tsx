@@ -1,10 +1,10 @@
 import React from 'react';
 import { FormTextarea, FormProps } from '@ccomp';
 import { Dev_FormOptions, Dev_FormOptionsData, Dev_FormOptionsRadioGroupOption, Dev_Panel } from '../../@Common';
-import { FlattenArray } from '@pdg/types';
 import code from '../Password/Dev_Form_Password.code.md';
 import { toast } from '@common';
 import Dev_Form_Textarea_Variant from './Dev_Form_Textarea_Variant';
+import { FlattenFormOptions } from '../../@types/FlattenFormOptions';
 
 const _formOptions = [
   ['title', 'rows'],
@@ -13,7 +13,7 @@ const _formOptions = [
   '|',
   ['required', 'disabled', 'subControl', 'hideTitle'],
 ] as const;
-type _formOptions = Exclude<FlattenArray<typeof _formOptions>, '|' | null>;
+type _formOptions = Exclude<FlattenFormOptions<typeof _formOptions>, '|' | null>;
 const _formOptionsSelectControlOptions: Dev_FormOptionsRadioGroupOption[] = [];
 const _formOptionsDefaultData: Dev_FormOptionsData = {
   title: 'FormTextarea',
@@ -31,9 +31,10 @@ export const Dev_Form_Textarea = ({ titlePosition }: Props) => {
 
   const [_data, setData] = useState<Pick<Dev_FormOptionsData, _formOptions>>({});
 
-  const { subControl, title, placeholder, helperText, ...otherData } = _data;
+  const { rows, subControl, title, placeholder, helperText, ...otherData } = _data;
 
   const data = {
+    rows: ifEmpty(rows, undefined),
     title: ifEmpty(title, undefined),
     placeholder: ifEmpty(placeholder, undefined),
     helperText: ifEmpty(helperText, undefined),

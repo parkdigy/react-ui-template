@@ -1,13 +1,13 @@
 import React from 'react';
 import Dev_LoadingIndicator_Variant from './Dev_LoadingIndicator_Variant';
-import { FlattenArray } from '@pdg/types';
 import { Dev_FormOptions, Dev_FormOptionsData, Dev_Panel } from '../@Common';
 import { AllColors, ButtonColors } from '@theme';
 import code from '../Icon/Dev_Icon.code.md';
 import { LoadingIndicator } from '@ccomp';
+import { FlattenFormOptions } from '../@types/FlattenFormOptions';
 
 const _formOptions = [['color', 'size']] as const;
-type _formOptions = Exclude<FlattenArray<typeof _formOptions>, '|' | null>;
+type _formOptions = Exclude<FlattenFormOptions<typeof _formOptions>, '|' | null>;
 const _formDefaultData: Dev_FormOptionsData<ButtonColors> = { size: 'headline' };
 
 export const Dev_LoadingIndicator = () => {
@@ -15,7 +15,11 @@ export const Dev_LoadingIndicator = () => {
    * data
    * ******************************************************************************************************************/
 
-  const [data, setData] = useState<Pick<Dev_FormOptionsData, _formOptions>>({});
+  const [_data, setData] = useState<Pick<Dev_FormOptionsData, _formOptions>>({});
+
+  const { color, size, ...otherData } = _data;
+
+  const data = { color: ifEmpty(color, undefined), size: ifEmpty(size, undefined), ...otherData };
 
   /********************************************************************************************************************
    * Render

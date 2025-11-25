@@ -2,9 +2,9 @@ import React from 'react';
 import { FormCheckbox, FormProps } from '@ccomp';
 import { Dev_FormOptions, Dev_FormOptionsData, Dev_Panel } from '../../@Common';
 import Dev_Form_Checkbox_Variant from './Dev_Form_Checkbox_Variant';
-import { FlattenArray } from '@pdg/types';
 import code from './Dev_Form_Checkbox.code.md';
 import { toast } from '@common';
+import { FlattenFormOptions } from '../../@types/FlattenFormOptions';
 
 const _formOptions = [
   'formCheckboxType',
@@ -15,7 +15,7 @@ const _formOptions = [
   '|',
   ['required', 'disabled', 'subControl', 'hideTitle'],
 ] as const;
-type _formOptions = Exclude<FlattenArray<typeof _formOptions>, '|' | null>;
+type _formOptions = Exclude<FlattenFormOptions<typeof _formOptions>, '|' | null>;
 const _formOptionsDefaultData: Dev_FormOptionsData = {
   title: 'FormRadioGroup',
   label: '체크박스',
@@ -35,7 +35,7 @@ export const Dev_Form_Checkbox = ({ titlePosition }: Props) => {
   const { subControl, formCheckboxType, title, label, helperText, ...otherData } = _data;
 
   const data = {
-    type: formCheckboxType,
+    type: ifEmpty(formCheckboxType, undefined),
     title: ifEmpty(title, undefined),
     label: ifEmpty(label, undefined),
     helperText: ifEmpty(helperText, undefined),

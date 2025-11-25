@@ -1,9 +1,9 @@
 import React from 'react';
 import { FormProps, FormRadioGroup } from '@ccomp';
 import { Dev_FormOptions, Dev_FormOptionsData, Dev_Panel } from '../../@Common';
-import { FlattenArray } from '@pdg/types';
 import code from './Dev_Form_RadioGroup.code.md';
 import Dev_Form_RadioGroup_Variant from './Dev_Form_RadioGroup_Variant';
+import { FlattenFormOptions } from '../../@types/FlattenFormOptions';
 
 const _formOptions = [
   ['formRadioGroupType', 'gap'],
@@ -12,7 +12,7 @@ const _formOptions = [
   '|',
   ['required', 'disabled', 'hideTitle'],
 ] as const;
-type _formOptions = Exclude<FlattenArray<typeof _formOptions>, '|' | null>;
+type _formOptions = Exclude<FlattenFormOptions<typeof _formOptions>, '|' | null>;
 const _formOptionsDefaultData: Dev_FormOptionsData = {
   title: 'FormRadioGroup',
 };
@@ -30,12 +30,13 @@ export const Dev_Form_RadioGroup = ({ titlePosition }: Props) => {
 
   const [_data, setData] = useState<Pick<Dev_FormOptionsData, _formOptions>>({});
 
-  const { formRadioGroupType, title, helperText, ...otherData } = _data;
+  const { formRadioGroupType, title, helperText, gap, ...otherData } = _data;
 
   const data = {
-    type: formRadioGroupType,
+    type: ifEmpty(formRadioGroupType, undefined),
     title: ifEmpty(title, undefined),
     helperText: ifEmpty(helperText, undefined),
+    gap: ifEmpty(gap, undefined),
     ...otherData,
   };
 

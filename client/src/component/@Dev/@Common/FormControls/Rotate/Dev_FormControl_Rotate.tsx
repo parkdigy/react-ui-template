@@ -3,7 +3,7 @@ import { Dev_FormControl_RotateProps as Props } from './Dev_FormControl_Rotate.t
 import { FormRadioGroup, FormSelect } from '@ccomp';
 import { Dev_PanelItem } from '../../Layout';
 
-export const Dev_FormControl_Rotate = ({ variant = 'select', ...props }: Props) => {
+export const Dev_FormControl_Rotate = ({ variant = 'select', value = '', ...props }: Props) => {
   /********************************************************************************************************************
    * Memo
    * ******************************************************************************************************************/
@@ -12,11 +12,7 @@ export const Dev_FormControl_Rotate = ({ variant = 'select', ...props }: Props) 
     return ([90, 180, 270] as const).map((rotate) => lv(`${rotate}도`, rotate));
   }, []);
 
-  const radioItems = useMemo(() => {
-    const _items = [...selectItems];
-    _items.unshift(lv('미지정', undefined));
-    return _items;
-  }, [selectItems]);
+  const radioItems = useMemo(() => [lv('미지정', ''), ...selectItems], [selectItems]);
 
   /********************************************************************************************************************
    * Render
@@ -25,9 +21,9 @@ export const Dev_FormControl_Rotate = ({ variant = 'select', ...props }: Props) 
   return (
     <Dev_PanelItem icon='Refresh' title='회전 (rotate)' mt={-5}>
       {variant === 'select' ? (
-        <FormSelect name='rotate' items={selectItems} clearable placeholder='미지정' {...props} />
+        <FormSelect name='rotate' items={selectItems} clearable placeholder='미지정' value={value} {...props} />
       ) : (
-        <FormRadioGroup type='smallButton' name='rotate' items={radioItems} {...props} />
+        <FormRadioGroup type='smallButton' name='rotate' items={radioItems} value={value} {...props} />
       )}
     </Dev_PanelItem>
   );

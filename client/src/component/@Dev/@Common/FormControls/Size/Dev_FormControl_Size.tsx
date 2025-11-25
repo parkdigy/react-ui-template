@@ -4,7 +4,7 @@ import { FormRadioGroup, FormSelect } from '@ccomp';
 import { FriendlyNameSizes, getSizeOfFriendlyName } from '@theme';
 import { Dev_PanelItem } from '../../Layout';
 
-export const Dev_FormControl_Size = ({ variant = 'select', ...props }: Props) => {
+export const Dev_FormControl_Size = ({ variant = 'select', value = '', ...props }: Props) => {
   /********************************************************************************************************************
    * Memo
    * ******************************************************************************************************************/
@@ -15,19 +15,21 @@ export const Dev_FormControl_Size = ({ variant = 'select', ...props }: Props) =>
     });
   }, []);
 
-  const radioItems = useMemo(() => {
-    const _items = FriendlyNameSizes.map((size) => {
-      return lv(
-        <Flex row center gap={3}>
-          <T>{size}</T>
-          <T opacity={0.5}>({getSizeOfFriendlyName(size)})</T>
-        </Flex>,
-        size
-      );
-    });
-    _items.unshift(lv('미지정', undefined));
-    return _items;
-  }, []);
+  const radioItems = useMemo(
+    () => [
+      lv('미지정', ''),
+      ...FriendlyNameSizes.map((size) => {
+        return lv(
+          <Flex row center gap={3}>
+            <T>{size}</T>
+            <T opacity={0.5}>({getSizeOfFriendlyName(size)})</T>
+          </Flex>,
+          size
+        );
+      }),
+    ],
+    []
+  );
 
   /********************************************************************************************************************
    * Render
@@ -36,9 +38,9 @@ export const Dev_FormControl_Size = ({ variant = 'select', ...props }: Props) =>
   return (
     <Dev_PanelItem icon='AspectRatio' title='크기 (size)' mt={-5}>
       {variant === 'select' ? (
-        <FormSelect name='size' items={selectItems} placeholder='미지정' clearable {...props} />
+        <FormSelect name='size' items={selectItems} placeholder='미지정' clearable value={value} {...props} />
       ) : (
-        <FormRadioGroup type='smallButton' name='size' items={radioItems} {...props} />
+        <FormRadioGroup type='smallButton' name='size' items={radioItems} value={value} {...props} />
       )}
     </Dev_PanelItem>
   );

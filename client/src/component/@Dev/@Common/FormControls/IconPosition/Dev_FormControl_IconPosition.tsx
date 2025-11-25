@@ -3,15 +3,16 @@ import { Dev_FormControl_IconPositionProps as Props } from './Dev_FormControl_Ic
 import { FormRadioGroup, FormSelect } from '@ccomp';
 import { Dev_PanelItem } from '../../Layout';
 
-export const Dev_FormControl_IconPosition = ({ variant = 'select', ...props }: Props) => {
+export const Dev_FormControl_IconPosition = ({ variant = 'select', value = '', ...props }: Props) => {
   /********************************************************************************************************************
    * Memo
    * ******************************************************************************************************************/
 
   const selectItems = useMemo(() => [lv('start (왼쪽)', 'start' as const), lv('end (오른쪽)', 'end' as const)], []);
 
-  const radioItems = useMemo(() => {
-    const _items = [
+  const radioItems = useMemo(
+    () => [
+      lv('미지정', ''),
       lv(
         <Flex row center gap={3}>
           <T>start</T>
@@ -26,10 +27,9 @@ export const Dev_FormControl_IconPosition = ({ variant = 'select', ...props }: P
         </Flex>,
         'end' as const
       ),
-    ];
-    _items.unshift(lv('미지정', undefined));
-    return _items;
-  }, []);
+    ],
+    []
+  );
 
   /********************************************************************************************************************
    * Render
@@ -38,9 +38,9 @@ export const Dev_FormControl_IconPosition = ({ variant = 'select', ...props }: P
   return (
     <Dev_PanelItem icon='Start' title='아이콘 위치 (iconPosition)' mt={-5}>
       {variant === 'select' ? (
-        <FormSelect name='iconPosition' items={selectItems} placeholder='미지정' clearable {...props} />
+        <FormSelect name='iconPosition' items={selectItems} placeholder='미지정' clearable value={value} {...props} />
       ) : (
-        <FormRadioGroup type='smallButton' name='iconPosition' items={radioItems} {...props} />
+        <FormRadioGroup type='smallButton' name='iconPosition' items={radioItems} value={value} {...props} />
       )}
     </Dev_PanelItem>
   );

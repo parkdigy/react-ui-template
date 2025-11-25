@@ -1,10 +1,10 @@
 import React from 'react';
 import { FormPassword, FormProps } from '@ccomp';
 import { Dev_FormOptions, Dev_FormOptionsData, Dev_Panel } from '../../@Common';
-import { FlattenArray } from '@pdg/types';
 import code from './Dev_Form_Password.code.md';
 import { toast } from '@common';
 import Dev_Form_Password_Variant from './Dev_Form_Password_Variant';
+import { FlattenFormOptions } from '../../@types/FlattenFormOptions';
 
 const _formOptions = [
   ['title', 'placeholder'],
@@ -13,7 +13,7 @@ const _formOptions = [
   '|',
   ['rules', 'required', 'disabled', 'subControl', 'hideTitle'],
 ] as const;
-type _formOptions = Exclude<FlattenArray<typeof _formOptions>, '|' | null>;
+type _formOptions = Exclude<FlattenFormOptions<typeof _formOptions>, '|' | null>;
 const _formOptionsDefaultData: Dev_FormOptionsData = {
   title: 'FormPassword',
   placeholder: '입력해 주세요',
