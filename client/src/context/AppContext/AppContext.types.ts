@@ -1,5 +1,5 @@
 export interface AppContextValue {
-  showHtmlLoading(): void;
-  hideHtmlLoading(): void;
-  removeHtmlLoading(): void;
+  showHtmlLoading: () => void;
+  hideHtmlLoading: () => void;
+  removeHtmlLoading: () => void;
 }
