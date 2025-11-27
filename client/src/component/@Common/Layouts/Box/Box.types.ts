@@ -15,4 +15,6 @@ export interface BoxProps
   relative?: boolean;
   fixed?: boolean;
   underline?: boolean;
+  hoverStyle?: BoxStyleProps;
+  activeStyle?: BoxStyleProps;
 }
