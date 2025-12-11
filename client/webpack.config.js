@@ -190,7 +190,7 @@ const options = {
             cleanOnceBeforeBuildPatterns: ['*'],
           }),
           new BundleAnalyzerPlugin({
-            openAnalyzer: true,
+            openAnalyzer: false,
             analyzerMode: 'static',
             reportFilename: '../build/report.html',
           }),
