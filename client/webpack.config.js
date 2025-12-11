@@ -11,6 +11,7 @@ const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin'
 const CopyPlugin = require('copy-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const { SourceMapDevToolPlugin } = require('webpack');
+const TsConfigJson = require('./tsconfig.json');
 /* eslint-enable */
 
 /********************************************************************************************************************
@@ -55,15 +56,13 @@ class MyHtmlPlugin {
  * Alias
  * ******************************************************************************************************************/
 
-const alias = {
-  '@sass': path.resolve(__dirname, 'src/sass'),
-  '@types': path.resolve(__dirname, 'src/@types'),
-  '@common': path.resolve(__dirname, 'src/common'),
-  '@comp': path.resolve(__dirname, 'src/component'),
-  '@ccomp': path.resolve(__dirname, 'src/component/Common'),
-  '@const': path.resolve(__dirname, 'src/constant'),
-  '@context': path.resolve(__dirname, 'src/context'),
-};
+const alias = {};
+if (TsConfigJson.compilerOptions.paths) {
+  const paths = TsConfigJson.compilerOptions.paths;
+  Object.keys(paths).forEach((key) => {
+    alias[key] = path.resolve(__dirname, paths[key][0]);
+  });
+}
 
 /********************************************************************************************************************
  * Options
