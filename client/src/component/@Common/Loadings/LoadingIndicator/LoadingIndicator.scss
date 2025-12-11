@@ -9,8 +9,13 @@
   display: inline-block;
   user-select: none;
   border-radius: 50%;
+  border-width: 3px;
   border-style: solid;
   border-bottom-color: transparent;
+  border-top-color: var(--loading-indicator-color);
+  border-left-color: var(--loading-indicator-color);
+  border-right-color: var(--loading-indicator-color);
+  width: 100px;
+  height: 100px;
   animation: spin 1s linear infinite;
-  border-width: 3px;
 }

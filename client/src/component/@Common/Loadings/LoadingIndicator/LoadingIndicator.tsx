@@ -33,12 +33,10 @@ export const LoadingIndicator = React.forwardRef<HTMLDivElement, Props>(
         ref={ref}
         component='div'
         className={classnames(className, 'LoadingIndicator')}
+        cssVars={{ '--loading-indicator-color': color }}
         width={size}
         height={size}
         borderWidth={Math.ceil(size * 0.1)}
-        borderLeftColor={color}
-        borderRightColor={color}
-        borderTopColor={color}
         {...customComponentProps}
       />
     );
