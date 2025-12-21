@@ -5,22 +5,20 @@
 import React from 'react';
 import { ButtonProps as Props } from './Button.types';
 
-const Button = React.forwardRef<HTMLButtonElement, Props>(
-  ({ color, fullWidth, className: initClassName, size, ...props }, ref) => {
-    const className = useMemo(
-      () =>
-        classnames(
-          initClassName,
-          `Button_color_${color || 'primary'}`,
-          `Button_size_${size}`,
-          !!fullWidth && 'Button_full_width'
-        ),
-      [color, fullWidth, initClassName, size]
-    );
+const Button = ({ color, fullWidth, className: initClassName, size, ...props }: Props) => {
+  const className = useMemo(
+    () =>
+      classnames(
+        initClassName,
+        `Button_color_${color || 'primary'}`,
+        `Button_size_${size}`,
+        !!fullWidth && 'Button_full_width'
+      ),
+    [color, fullWidth, initClassName, size]
+  );
 
-    return <StyledButton ref={ref} className={className} {...props} />;
-  }
-);
+  return <StyledButton className={className} {...props} />;
+};
 
 export default Button;
 

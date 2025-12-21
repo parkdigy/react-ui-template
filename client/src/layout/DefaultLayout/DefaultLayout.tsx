@@ -15,8 +15,7 @@ const DefaultLayout = () => {
 
   useEffect(() => {
     removeHtmlLoading();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [removeHtmlLoading]);
 
   /********************************************************************************************************************
    * Render
