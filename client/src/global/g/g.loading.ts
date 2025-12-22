@@ -12,20 +12,20 @@ let _getLastHideLoadingTime: (() => number) | undefined;
  * ******************************************************************************************************************/
 
 function setLoading({
-  showLoading,
-  hideLoading,
-  isShowLoading,
-  getLastHideLoadingTime,
+  show,
+  hide,
+  isShow,
+  getLastHideTime,
 }: {
-  showLoading: () => void;
-  hideLoading: () => void;
-  isShowLoading: () => void;
-  getLastHideLoadingTime: () => number;
+  show: () => void;
+  hide: () => void;
+  isShow: () => void;
+  getLastHideTime: () => number;
 }) {
-  _showLoading = showLoading;
-  _hideLoading = hideLoading;
-  _isShowLoading = isShowLoading;
-  _getLastHideLoadingTime = getLastHideLoadingTime;
+  _showLoading = show;
+  _hideLoading = hide;
+  _isShowLoading = isShow;
+  _getLastHideLoadingTime = getLastHideTime;
 }
 
 function showLoading() {
@@ -49,23 +49,15 @@ function getLastHideLoadingTime() {
 }
 
 /********************************************************************************************************************
- * Global
+ * Exports
  * ******************************************************************************************************************/
 
-/* eslint-disable no-var */
-declare global {
-  var __setLoading: typeof setLoading;
-  var __showLoading: typeof showLoading;
-  var __hideLoading: typeof hideLoading;
-  var __isShowLoading: typeof isShowLoading;
-  var __getLastHideLoadingTime: typeof getLastHideLoadingTime;
-}
-/* eslint-enable no-var */
+const loading = {
+  set: setLoading,
+  show: showLoading,
+  hide: hideLoading,
+  isShow: isShowLoading,
+  getLastHideTime: getLastHideLoadingTime,
+};
 
-globalThis.__setLoading = setLoading;
-globalThis.__showLoading = showLoading;
-globalThis.__hideLoading = hideLoading;
-globalThis.__isShowLoading = isShowLoading;
-globalThis.__getLastHideLoadingTime = getLastHideLoadingTime;
-
-export {};
+export default loading;

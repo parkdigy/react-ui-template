@@ -10,21 +10,21 @@ const defaultOption: ApiOption = {
   async onRequest(config, baseUrl, path, requestData, requestOption) {
     if (!requestOption?.silent) {
       // 로딩 표시
-      __showLoading();
+      g.loading.show();
     }
     return config;
   },
   async onResponse(res, config, baseUrl, path, requestData, requestOption) {
     if (!requestOption?.silent) {
       // 로딩 숨김
-      __hideLoading();
+      g.loading.hide();
     }
     const responseData = res.data;
     if (!requestOption?.raw) {
       if (!responseData || !responseData?.result)
         throw new ApiError('예샹치 못한 오류가 발생했습니다.', 'API_ERR_NO_RESULT');
       if (responseData.result.r) {
-        __navigate(responseData.result.r);
+        g.nav.go(responseData.result.r);
       }
       if (responseData.result.ro) {
         window.open(responseData.result.ro);
@@ -43,7 +43,7 @@ const defaultOption: ApiOption = {
     const { silent } = err.requestOption || {};
     if (!silent) {
       // 로딩 숨김
-      __hideLoading();
+      g.loading.hide();
     }
 
     const data = err.response?.data;

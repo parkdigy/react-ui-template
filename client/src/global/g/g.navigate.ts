@@ -20,7 +20,7 @@ function setNavigate(navigate: NavigateFunction) {
   _navigate = navigate;
 }
 
-function navigate(path: string, replace = false, scrollTopPos = 0) {
+function go(path: string, replace = false, scrollTopPos = 0) {
   if (_navigate) {
     _navigateScrollTopPos = scrollTopPos;
     const currentPath = `${_location?.pathname}${_location?.search}${_location?.hash}`;
@@ -34,11 +34,11 @@ function navigate(path: string, replace = false, scrollTopPos = 0) {
   }
 }
 
-function setNavigateScrollTopPos(topPos: number) {
+function setScrollTopPos(topPos: number) {
   _navigateScrollTopPos = topPos;
 }
 
-function getNavigateScrollTopPos() {
+function getScrollTopPos() {
   return _navigateScrollTopPos;
 }
 
@@ -46,20 +46,12 @@ function getNavigateScrollTopPos() {
  * Global
  * ******************************************************************************************************************/
 
-/* eslint-disable no-var */
-declare global {
-  var __setLocation: typeof setLocation;
-  var __setNavigate: typeof setNavigate;
-  var __setNavigateScrollTopPos: typeof setNavigateScrollTopPos;
-  var __getNavigateScrollTopPos: typeof getNavigateScrollTopPos;
-  var __navigate: typeof navigate;
-}
-/* eslint-enable no-var */
+const nav = {
+  setLocation,
+  setNavigate,
+  setScrollTopPos,
+  getScrollTopPos,
+  go,
+};
 
-globalThis.__setLocation = setLocation;
-globalThis.__setNavigate = setNavigate;
-globalThis.__setNavigateScrollTopPos = setNavigateScrollTopPos;
-globalThis.__getNavigateScrollTopPos = getNavigateScrollTopPos;
-globalThis.__navigate = navigate;
-
-export {};
+export default nav;

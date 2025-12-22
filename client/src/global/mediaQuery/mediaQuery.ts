@@ -1,6 +1,6 @@
 import { useMediaQuery } from 'usehooks-ts';
 
-const _mediaQuery = {
+const mediaQuery = {
   minXsMin: '(min-width: 540px)',
   minXsMax: '(min-width: 575px)',
   maxXsMin: '(max-width: 540px)',
@@ -21,21 +21,16 @@ const _mediaQuery = {
   maxMax: '(max-width: 1301px)',
 } as const;
 
-const _useScreenSize = () => {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
+export default mediaQuery;
+
+export const useScreenSize = () => {
   const isXxs = useMediaQuery('(max-width: 360px)');
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   const isXs = useMediaQuery('(max-width: 540px)');
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   const isSm = useMediaQuery('(max-width: 620px)');
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   const isMd = useMediaQuery('(max-width: 992px)');
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   const isLg = useMediaQuery('(max-width: 1200px)');
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   const isMax = useMediaQuery('(min-width: 1301px)');
 
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   return useMemo(() => {
     function screenValue(xxs: any, xs?: any, sm?: any, md?: any, lg?: any, max?: any) {
       const resultXxs = xxs;
@@ -77,15 +72,4 @@ const _useScreenSize = () => {
     };
   }, [isXxs, isXs, isSm, isMd, isLg, isMax]);
 };
-
-/* eslint-disable no-var */
-declare global {
-  var mediaQuery: typeof _mediaQuery;
-  var useScreenSize: typeof _useScreenSize;
-}
-/* eslint-enable no-var */
-
-globalThis.mediaQuery = _mediaQuery;
-globalThis.useScreenSize = _useScreenSize;
-
-export {};
+export type UseScreenSize = typeof useScreenSize;

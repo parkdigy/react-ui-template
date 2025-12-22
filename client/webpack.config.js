@@ -12,6 +12,7 @@ const CopyPlugin = require('copy-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const { SourceMapDevToolPlugin } = require('webpack');
 const TsConfigJson = require('./tsconfig.json');
+const MyProvidePlugin = require('./webpack/ProvidePlugin');
 /* eslint-enable */
 
 /********************************************************************************************************************
@@ -38,8 +39,8 @@ class MyHtmlPlugin {
           <script>window.$$MyAppConfig = {version: '${new Date().getTime()}'}</script>
           <script>
             window.$$MyAppConfig = {
-              version: window.$$MyAppConfig.version,
               env: '${isProduction ? '<%= appEnv %>' : env.APP_ENV}',
+              title: '${isProduction ? '<%= title %>' : env.APP_NAME}',
             };
           </script>
         `;
@@ -144,6 +145,7 @@ const options = {
       : {},
   },
   plugins: [
+    new MyProvidePlugin(),
     new ForkTsCheckerWebpackPlugin(),
     new ESLintPlugin({
       extensions: ['js', 'jsx', 'ts', 'tsx'],

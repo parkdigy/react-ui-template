@@ -3,10 +3,13 @@
  * ******************************************************************************************************************/
 
 import React from 'react';
-import { PageRootContainer } from '@ccomp';
 
 const Home = () => {
-  return <PageRootContainer>Home</PageRootContainer>;
+  return (
+    <PageRootContainer>
+      <T>Home</T>
+    </PageRootContainer>
+  );
 };
 
 export default Home;

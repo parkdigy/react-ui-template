@@ -4,6 +4,7 @@ import tseslint from 'typescript-eslint';
 import typescriptEslintParser from '@typescript-eslint/parser';
 import pluginReact from 'eslint-plugin-react';
 import pluginReactHooks from 'eslint-plugin-react-hooks';
+import WebpackProviderPluginCommonComponent from './webpack/ProvidePlugin.common-component.js';
 
 export default defineConfig([
   ...tseslint.config(eslint.configs.recommended, tseslint.configs.recommended),
@@ -25,6 +26,12 @@ export default defineConfig([
         module: 'readonly',
         process: 'readonly',
         __dirname: 'readonly',
+        ...Object.keys(WebpackProviderPluginCommonComponent).reduce((acc, key) => {
+          if (!key.endsWith('Props')) {
+            acc[key] = 'readonly';
+          }
+          return acc;
+        }, {}),
       },
     },
     plugins: {},
@@ -48,6 +55,7 @@ export default defineConfig([
       'react/no-deprecated': 'error',
       'react-hooks/rules-of-hooks': 'error',
       'react-hooks/exhaustive-deps': 'error',
+      'react/jsx-no-undef': ['error', { allowGlobals: true }],
       'no-plusplus': 'error',
       'prefer-template': 'error',
       'jsx-quotes': ['error', 'prefer-single'],
