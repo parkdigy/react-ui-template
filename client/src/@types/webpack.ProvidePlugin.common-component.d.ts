@@ -21,7 +21,5 @@ declare type SpanProps = import('../component/Common/index.ts').SpanProps;
 declare const Stack: import('../component/Common/index.ts').TStack;
 declare type StackProps = import('../component/Common/index.ts').StackProps;
 // Texts
-// declare const T: import('../component/Common/index.ts').TT;
+declare const T: import('../component/Common/index.ts').TT;
 declare type TProps = import('../component/Common/index.ts').TProps;
-
-declare function T(props: TProps): import('react').JSX.Element;
