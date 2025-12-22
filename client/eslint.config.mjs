@@ -27,9 +27,7 @@ export default defineConfig([
         process: 'readonly',
         __dirname: 'readonly',
         ...Object.keys(WebpackProviderPluginCommonComponent).reduce((acc, key) => {
-          if (!key.endsWith('Props')) {
-            acc[key] = 'readonly';
-          }
+          acc[key] = 'readonly';
           return acc;
         }, {}),
       },
