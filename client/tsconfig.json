@@ -16,7 +16,7 @@
       "@sass": ["src/sass"],
       "@types": ["src/@types"],
       "@comp": ["src/component"],
-      "@ccomp": ["src/component/Common"],
+      "@ccomp": ["src/component/@Common"],
       "@const": ["src/constant"],
       "@context": ["src/context"]
     },
