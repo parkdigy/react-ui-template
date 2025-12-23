@@ -4,7 +4,5 @@ export default Icon;
 
 export { Icon };
 
-export type TIcon = typeof Icon;
-
 export * from './Icon';
 export * from './Icon.types';

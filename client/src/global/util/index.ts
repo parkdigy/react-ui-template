@@ -7,5 +7,3 @@ export const util = {
 };
 
 export default util;
-
-export type Util = typeof util;
