@@ -1,9 +1,6 @@
 import { Location as RouterLocation, SetURLSearchParams } from 'react-router';
 import _copyToClipboard from 'copy-to-clipboard';
 
-let _colorScheme: 'light' | 'dark' = 'light';
-let _theme: Theme = Theme;
-
 const app = {
   /********************************************************************************************************************
    * Browser ID
@@ -15,30 +12,6 @@ const app = {
       localStorage.setItem('browserId', id);
     }
     return id;
-  },
-
-  /********************************************************************************************************************
-   * Color Scheme
-   * ******************************************************************************************************************/
-
-  setColorScheme(colorScheme: 'light' | 'dark') {
-    _colorScheme = colorScheme;
-  },
-
-  getColorScheme() {
-    return _colorScheme;
-  },
-
-  /********************************************************************************************************************
-   * Theme
-   * ******************************************************************************************************************/
-
-  setTheme(theme: Theme) {
-    _theme = theme;
-  },
-
-  getTheme() {
-    return _theme;
   },
 
   /********************************************************************************************************************

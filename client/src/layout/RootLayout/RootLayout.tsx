@@ -131,7 +131,7 @@ const RootLayout = () => {
   }
 
   useEffect(() => {
-    app.setColorScheme(colorScheme);
+    g.theme.setColorScheme(colorScheme);
   }, [colorScheme]);
 
   useEffect(() => {

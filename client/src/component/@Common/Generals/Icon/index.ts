@@ -1,12 +1,8 @@
-import l from '@loadable/component';
-
-const Icon = l(
-  () => import(/* webpackChunkName: "common-icon" */ './Icon'),
-  loadable.options
-) as unknown as typeof import('./Icon').default;
-
-export { Icon };
+import Icon from './Icon';
 
 export default Icon;
 
+export { Icon };
+
+export * from './Icon';
 export * from './Icon.types';

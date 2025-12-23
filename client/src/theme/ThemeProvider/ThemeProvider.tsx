@@ -1,6 +1,5 @@
 import React from 'react';
 import { ThemeProviderProps as Props } from './ThemeProvider.types';
-import { Theme } from '../@types';
 import ThemeContext from './ThemeContext';
 
 export const ThemeProvider = ({ children, colorScheme }: Props) => {
@@ -15,12 +14,14 @@ export const ThemeProvider = ({ children, colorScheme }: Props) => {
    * Variable
    * ******************************************************************************************************************/
 
-  let theme = lastTheme;
+  ll(objectKeys, testKeys);
+
+  let finalTheme = lastTheme;
   if (useChanged(colorScheme, true)) {
     document.documentElement.setAttribute('data-color-scheme', colorScheme);
 
     const rootStyle = getComputedStyle(document.documentElement);
-    const newTheme = { ...lastTheme, dark: colorScheme === 'dark' };
+    const theme = { ...lastTheme, dark: colorScheme === 'dark' };
 
     // 컬러 설정
     for (const key of objectKeys(Theme.colors)) {
@@ -31,9 +32,9 @@ export const ThemeProvider = ({ children, colorScheme }: Props) => {
         throw new Error(`CSS variable ${varName} is not defined`);
       }
 
-      newTheme.colors[colorName] = rootStyle.getPropertyValue(varName);
-      newTheme.css.names.colors[colorName] = cssName;
-      newTheme.css.vars.colors[colorName] = `var(${varName})`;
+      theme.colors[colorName] = rootStyle.getPropertyValue(varName);
+      theme.css.names.colors[colorName] = cssName;
+      theme.css.vars.colors[colorName] = `var(${varName})`;
     }
 
     if (isFirstSet) {
@@ -53,13 +54,13 @@ export const ThemeProvider = ({ children, colorScheme }: Props) => {
           throw new Error(`CSS variable ${lineHeightVarName} is not defined`);
         }
 
-        const sizes = newTheme.sizes[sizeName]!;
+        const sizes = theme.sizes[sizeName]!;
         sizes.fontSize = Number(rootStyle.getPropertyValue(fontSizeVarName).replace('px', ''));
         sizes.lineHeight = Number(rootStyle.getPropertyValue(lineHeightVarName));
 
-        newTheme.css.names.sizes[sizeName] = cssName;
+        theme.css.names.sizes[sizeName] = cssName;
 
-        const cssVarSizes = newTheme.css.vars.sizes[sizeName];
+        const cssVarSizes = theme.css.vars.sizes[sizeName];
         cssVarSizes.fontSize = `var(${fontSizeVarName})`;
         cssVarSizes.lineHeight = `var(${lineHeightVarName})`;
       }
@@ -72,24 +73,24 @@ export const ThemeProvider = ({ children, colorScheme }: Props) => {
         if (empty(rootStyle.getPropertyValue(varName))) {
           throw new Error(`CSS variable ${varName} is not defined`);
         }
-        newTheme.screens[screenName] = Number(rootStyle.getPropertyValue(varName).replace('px', ''));
-        newTheme.css.names.screens[screenName] = cssName;
-        newTheme.css.vars.screens[screenName] = `var(${varName})`;
+        theme.screens[screenName] = Number(rootStyle.getPropertyValue(varName).replace('px', ''));
+        theme.css.names.screens[screenName] = cssName;
+        theme.css.vars.screens[screenName] = `var(${varName})`;
       }
     }
 
-    setLastTheme(newTheme);
+    setLastTheme(theme);
 
-    // app.setTheme(newTheme);
+    // g.theme.setTheme(theme);
 
-    theme = newTheme;
+    finalTheme = theme;
   }
 
   /********************************************************************************************************************
    * Render
    * ******************************************************************************************************************/
 
-  return <ThemeContext.Provider value={theme}>{children}</ThemeContext.Provider>;
+  return <ThemeContext.Provider value={finalTheme}>{children}</ThemeContext.Provider>;
 };
 
 export default ThemeProvider;

@@ -1,7 +1,6 @@
 import { AllSizes, SizeCssVarNameInfo, SizeInfo } from './size';
 import { AllScreens } from './screen';
 import { AllColors } from './color';
-import { copy } from '@pdg/data';
 
 /********************************************************************************************************************
  * Theme
