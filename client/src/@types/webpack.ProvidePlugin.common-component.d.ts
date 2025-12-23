@@ -1,12 +1,12 @@
 // Button
-declare const Button: import('../component/@Common/index.ts').TButton;
+declare const Button: typeof import('../component/@Common/index.ts').Button;
 declare type ButtonProps = import('../component/@Common/index.ts').ButtonProps;
 // Icon
-declare const Icon: typeof import('../component/Common/index.ts').Icon;
-declare type IconProps = import('../component/Common/index.ts').IconProps;
+declare const Icon: typeof import('../component/@Common/index.ts').Icon;
+declare type IconProps = import('../component/@Common/index.ts').IconProps;
 // Img
-declare const Img: typeof import('../component/Common/index.ts').Img;
-declare type ImgProps = import('../component/Common/index.ts').ImgProps;
+declare const Img: typeof import('../component/@Common/index.ts').Img;
+declare type ImgProps = import('../component/@Common/index.ts').ImgProps;
 // Layouts
 declare const Box: typeof import('../component/Common/index.ts').Box;
 declare type BoxProps = import('../component/Common/index.ts').BoxProps;
@@ -204,3 +204,4 @@ THeadlineLarge600 as _THeadlineLarge600,
 THeadlineLarge700 as _THeadlineLarge700,
 THeadlineLarge800 as _THeadlineLarge800,
 THeadlineLarge900 as _THeadlineLarge900,
+

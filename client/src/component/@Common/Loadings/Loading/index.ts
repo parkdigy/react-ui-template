@@ -1,13 +1,8 @@
-import l from '@loadable/component';
-import { loadable } from '@common';
-
-const Loading = l(
-  () => import(/* webpackChunkName: "common-loading" */ './Loading'),
-  loadable.options
-) as unknown as typeof import('./Loading').default;
-
-export { Loading };
+import Loading from './Loading';
 
 export default Loading;
 
+export { Loading };
+
+export * from './Loading';
 export * from './Loading.types';
