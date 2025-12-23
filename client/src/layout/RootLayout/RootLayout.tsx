@@ -4,7 +4,7 @@
 
 import '../../init';
 
-import React, { useState } from 'react';
+import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router';
 import { AppContextProvider } from '@context';
 import { ErrorRetry, Loading, LoadingCommands } from '@ccomp';
