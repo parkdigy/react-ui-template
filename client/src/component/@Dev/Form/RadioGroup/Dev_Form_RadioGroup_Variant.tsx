@@ -83,4 +83,4 @@ const Dev_Form_RadioGroup_Variant = ({ titlePosition }: Props) => {
   );
 };
 
-export default React.memo(Dev_Form_RadioGroup_Variant);
+export default Dev_Form_RadioGroup_Variant;

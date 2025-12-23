@@ -27,7 +27,7 @@ const Dev_T_Variant_Size_FontWeight = () => {
   );
 };
 
-export default React.memo(Dev_T_Variant_Size_FontWeight);
+export default Dev_T_Variant_Size_FontWeight;
 
 /********************************************************************************************************************
  * Item
@@ -40,7 +40,7 @@ const Item = ({
   size: FriendlyNameSizes;
   fontWeight?: 'bold' | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900;
 }) => {
-  const camelCase = util.css.toVariableName(size);
+  const camelCase = g.css.toVariableName(size);
   let componentName = `T${camelCase.charAt(0).toUpperCase() + camelCase.slice(1)}`;
   if (fontWeight) {
     componentName += fontWeight === 'bold' ? 'Bold' : fontWeight;

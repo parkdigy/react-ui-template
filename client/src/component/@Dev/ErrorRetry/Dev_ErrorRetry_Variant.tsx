@@ -25,4 +25,4 @@ const Dev_ErrorRetry_Variant = () => {
   );
 };
 
-export default React.memo(Dev_ErrorRetry_Variant);
+export default Dev_ErrorRetry_Variant;

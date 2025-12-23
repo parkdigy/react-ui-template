@@ -29,4 +29,4 @@ export const Dev_FormControl_Gap = ({ variant, value = '', ...props }: Props) =>
   );
 };
 
-export default React.memo(Dev_FormControl_Gap);
+export default Dev_FormControl_Gap;

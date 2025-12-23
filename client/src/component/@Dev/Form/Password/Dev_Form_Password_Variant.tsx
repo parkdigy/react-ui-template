@@ -41,4 +41,4 @@ const Dev_Form_Password_Variant = ({ titlePosition }: Props) => {
   );
 };
 
-export default React.memo(Dev_Form_Password_Variant);
+export default Dev_Form_Password_Variant;

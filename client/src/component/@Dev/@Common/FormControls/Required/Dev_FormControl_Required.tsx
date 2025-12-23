@@ -11,4 +11,4 @@ export const Dev_FormControl_Required = ({ value, ...props }: Props) => {
   );
 };
 
-export default React.memo(Dev_FormControl_Required);
+export default Dev_FormControl_Required;

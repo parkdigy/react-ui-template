@@ -78,4 +78,4 @@ export const Pagination = ({ ref, paging, onPageChange }: Props) => {
   );
 };
 
-export default React.memo(Pagination) as typeof Pagination;
+export default Pagination;

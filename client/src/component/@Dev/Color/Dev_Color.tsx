@@ -93,7 +93,7 @@ const Item = ({ color, onColor }: { color: keyof Theme['colors']; onColor?: keyo
   const theme = useTheme();
 
   const colorValue = theme.colors[color];
-  const onColorValue = ifUndefined(onColor, util.color.getOnColor(colorValue));
+  const onColorValue = ifUndefined(onColor, g.color.getOnColor(colorValue));
 
   return (
     <Box

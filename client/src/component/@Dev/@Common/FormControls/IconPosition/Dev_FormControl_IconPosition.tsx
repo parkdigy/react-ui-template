@@ -46,4 +46,4 @@ export const Dev_FormControl_IconPosition = ({ variant = 'select', value = '', .
   );
 };
 
-export default React.memo(Dev_FormControl_IconPosition);
+export default Dev_FormControl_IconPosition;

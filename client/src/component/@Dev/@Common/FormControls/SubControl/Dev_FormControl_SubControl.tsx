@@ -11,4 +11,4 @@ export const Dev_FormControl_SubControl = ({ value, ...props }: Props) => {
   );
 };
 
-export default React.memo(Dev_FormControl_SubControl);
+export default Dev_FormControl_SubControl;

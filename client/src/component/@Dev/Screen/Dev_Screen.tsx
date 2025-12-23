@@ -61,7 +61,7 @@ const Item = ({ type }: { type: 'mobile' | 'tablet' | 'desktop' }) => {
               <Dev_Panel>
                 <Flex gap={10} center>
                   <TTitleSmall600 color={contains(GeneralScreens, alias) ? 'success' : 'secondary'}>
-                    {util.css.toCssName(alias)}
+                    {g.css.toCssName(alias)}
                   </TTitleSmall600>
                   <T>
                     {theme.screens[minAlias]}px ~ {theme.screens[maxAlias]}px
@@ -69,8 +69,8 @@ const Item = ({ type }: { type: 'mobile' | 'tablet' | 'desktop' }) => {
                   <Divider />
 
                   <CopyButton name={`screenSize.is.${alias}`} />
-                  <CopyButton name={util.css.toCssVarName(minAlias, 'screen')} />
-                  <CopyButton name={util.css.toCssVarName(maxAlias, 'screen')} />
+                  <CopyButton name={g.css.toCssVarName(minAlias, 'screen')} />
+                  <CopyButton name={g.css.toCssVarName(maxAlias, 'screen')} />
                 </Flex>
               </Dev_Panel>
             </Col>

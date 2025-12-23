@@ -32,4 +32,4 @@ export const Dev_FormControl_CurrentPage = ({ variant = 'select', ...props }: Pr
   );
 };
 
-export default React.memo(Dev_FormControl_CurrentPage);
+export default Dev_FormControl_CurrentPage;

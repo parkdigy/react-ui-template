@@ -60,4 +60,4 @@ const Dev_LoadingIndicator_Variant = () => {
   );
 };
 
-export default React.memo(Dev_LoadingIndicator_Variant);
+export default Dev_LoadingIndicator_Variant;

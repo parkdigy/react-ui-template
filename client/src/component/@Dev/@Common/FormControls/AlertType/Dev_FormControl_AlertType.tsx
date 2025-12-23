@@ -29,4 +29,4 @@ export const Dev_FormControl_AlertType = ({ variant = 'select', value = '', ...p
   );
 };
 
-export default React.memo(Dev_FormControl_AlertType);
+export default Dev_FormControl_AlertType;

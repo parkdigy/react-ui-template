@@ -11,4 +11,4 @@ export const Dev_FormControl_HelperText = ({ ...props }: Props) => {
   );
 };
 
-export default React.memo(Dev_FormControl_HelperText);
+export default Dev_FormControl_HelperText;

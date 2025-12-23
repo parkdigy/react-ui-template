@@ -54,4 +54,4 @@ const Dev_Button_BoxButton = () => {
   );
 };
 
-export default React.memo(Dev_Button_BoxButton);
+export default Dev_Button_BoxButton;

@@ -82,4 +82,4 @@ const Dev_Tooltip_Variant = () => {
   );
 };
 
-export default React.memo(Dev_Tooltip_Variant);
+export default Dev_Tooltip_Variant;

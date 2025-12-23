@@ -68,4 +68,4 @@ export const Dev_Alert_Variant = () => {
   );
 };
 
-export default React.memo(Dev_Alert_Variant);
+export default Dev_Alert_Variant;

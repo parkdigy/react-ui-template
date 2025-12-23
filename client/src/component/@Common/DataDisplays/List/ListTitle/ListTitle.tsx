@@ -16,4 +16,4 @@ const ListTitle = ({ type, content }: Props) => {
   );
 };
 
-export default React.memo(ListTitle);
+export default ListTitle;

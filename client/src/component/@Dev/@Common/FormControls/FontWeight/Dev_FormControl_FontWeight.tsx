@@ -33,4 +33,4 @@ export const Dev_FormControl_FontWeight = ({ variant = 'select', value = '', ...
   );
 };
 
-export default React.memo(Dev_FormControl_FontWeight);
+export default Dev_FormControl_FontWeight;

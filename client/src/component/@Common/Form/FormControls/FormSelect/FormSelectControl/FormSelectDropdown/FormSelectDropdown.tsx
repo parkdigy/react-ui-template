@@ -281,4 +281,4 @@ function FormSelectDropdown<T extends string | number>({
   ) : null;
 }
 
-export default React.memo(FormSelectDropdown) as typeof FormSelectDropdown;
+export default FormSelectDropdown;

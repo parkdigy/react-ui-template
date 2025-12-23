@@ -11,4 +11,4 @@ export const Dev_FormControl_Message = ({ ...props }: Props) => {
   );
 };
 
-export default React.memo(Dev_FormControl_Message);
+export default Dev_FormControl_Message;

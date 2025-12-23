@@ -40,4 +40,4 @@ const Dev_Icon_Variant = () => {
   );
 };
 
-export default React.memo(Dev_Icon_Variant);
+export default Dev_Icon_Variant;

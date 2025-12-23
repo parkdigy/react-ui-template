@@ -21,7 +21,7 @@ export const DevButtons = ({}: Props) => {
   return (
     <Flex className='DevButtons' row center gap={10}>
       <T color='success' size='caption' absolute nowrap right={0} top={-20}>
-        {util.css.toCssName(screen.sizes[screen.sizes.length - 1])}
+        {g.css.toCssName(screen.sizes[screen.sizes.length - 1])}
       </T>
       {location.pathname !== '/dev/controls' && (
         <DevButton icon='Extension' onClick={() => g.nav.go('/dev/controls')} />

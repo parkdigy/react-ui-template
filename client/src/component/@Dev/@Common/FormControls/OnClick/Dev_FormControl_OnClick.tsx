@@ -11,4 +11,4 @@ export const Dev_FormControl_OnClick = ({ value, ...props }: Props) => {
   );
 };
 
-export default React.memo(Dev_FormControl_OnClick);
+export default Dev_FormControl_OnClick;

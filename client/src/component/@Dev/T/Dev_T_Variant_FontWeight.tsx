@@ -20,7 +20,7 @@ const Dev_T_Variant_FontWeight = () => {
   );
 };
 
-export default React.memo(Dev_T_Variant_FontWeight);
+export default Dev_T_Variant_FontWeight;
 
 /********************************************************************************************************************
  * Item

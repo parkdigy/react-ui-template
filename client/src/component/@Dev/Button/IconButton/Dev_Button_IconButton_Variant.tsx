@@ -90,4 +90,4 @@ const Dev_Button_IconButton_Variant = () => {
   );
 };
 
-export default React.memo(Dev_Button_IconButton_Variant);
+export default Dev_Button_IconButton_Variant;

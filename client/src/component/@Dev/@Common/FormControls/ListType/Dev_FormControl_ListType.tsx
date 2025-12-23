@@ -44,4 +44,4 @@ export const Dev_FormControl_ListType = ({ variant = 'select', value = '', disab
   );
 };
 
-export default React.memo(Dev_FormControl_ListType);
+export default Dev_FormControl_ListType;

@@ -11,4 +11,4 @@ export const Dev_FormControl_Placeholder = ({ ...props }: Props) => {
   );
 };
 
-export default React.memo(Dev_FormControl_Placeholder);
+export default Dev_FormControl_Placeholder;

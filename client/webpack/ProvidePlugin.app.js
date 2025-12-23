@@ -34,8 +34,8 @@ module.exports = {
   LiveMaterialIconTypes: [path.resolve(__dirname, '../src/global/materialIcons/index.ts'), 'LiveMaterialIconTypes'],
 
   // theme
-  Theme: [path.resolve(__dirname, '../src/theme/index.ts'), 'Theme'],
-  useTheme: [path.resolve(__dirname, '../src/theme/index.ts'), 'useTheme'],
+  Theme: [path.resolve(__dirname, '../src/theme/@types/theme.ts'), 'Theme'],
+  useTheme: [path.resolve(__dirname, '../src/theme/ThemeProvider/useTheme.ts'), 'default'],
 
   // toast
   toast: [path.resolve(__dirname, '../src/global/toast/index.ts'), 'default'],

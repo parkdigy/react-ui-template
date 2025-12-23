@@ -11,4 +11,4 @@ export const Dev_FormControl_HideTitle = ({ value, ...props }: Props) => {
   );
 };
 
-export default React.memo(Dev_FormControl_HideTitle);
+export default Dev_FormControl_HideTitle;

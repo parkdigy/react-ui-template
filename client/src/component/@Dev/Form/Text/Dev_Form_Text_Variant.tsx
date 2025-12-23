@@ -31,4 +31,4 @@ const Dev_Form_Text_Variant = ({ titlePosition }: Props) => {
   );
 };
 
-export default React.memo(Dev_Form_Text_Variant);
+export default Dev_Form_Text_Variant;

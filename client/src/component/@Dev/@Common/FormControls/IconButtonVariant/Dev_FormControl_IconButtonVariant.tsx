@@ -36,4 +36,4 @@ export const Dev_FormControl_IconButtonVariant = ({ variant = 'select', value = 
   );
 };
 
-export default React.memo(Dev_FormControl_IconButtonVariant);
+export default Dev_FormControl_IconButtonVariant;

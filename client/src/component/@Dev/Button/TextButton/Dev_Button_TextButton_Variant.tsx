@@ -40,4 +40,4 @@ const Dev_Button_Button_Variant = () => {
   );
 };
 
-export default React.memo(Dev_Button_Button_Variant);
+export default Dev_Button_Button_Variant;

@@ -44,4 +44,4 @@ export function FormSelectDropdownItem<T extends string | number>({
   );
 }
 
-export default React.memo(FormSelectDropdownItem) as typeof FormSelectDropdownItem;
+export default FormSelectDropdownItem;

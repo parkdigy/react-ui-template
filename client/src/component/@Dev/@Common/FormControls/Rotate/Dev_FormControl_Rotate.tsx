@@ -29,4 +29,4 @@ export const Dev_FormControl_Rotate = ({ variant = 'select', value = '', ...prop
   );
 };
 
-export default React.memo(Dev_FormControl_Rotate);
+export default Dev_FormControl_Rotate;

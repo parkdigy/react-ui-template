@@ -21,4 +21,4 @@ const ListItem = ({ content, bulletColor }: Props) => {
   );
 };
 
-export default React.memo(ListItem);
+export default ListItem;

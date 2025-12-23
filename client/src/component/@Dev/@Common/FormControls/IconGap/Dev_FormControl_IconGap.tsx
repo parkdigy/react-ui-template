@@ -27,4 +27,4 @@ export const Dev_FormControl_IconGap = ({ variant = 'select', value = '', ...pro
   );
 };
 
-export default React.memo(Dev_FormControl_IconGap);
+export default Dev_FormControl_IconGap;

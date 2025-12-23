@@ -82,4 +82,4 @@ const Dev_Button_Button = () => {
   );
 };
 
-export default React.memo(Dev_Button_Button);
+export default Dev_Button_Button;

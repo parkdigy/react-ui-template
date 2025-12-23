@@ -111,4 +111,4 @@ export const Dev_FormControl_Cols = ({
   );
 };
 
-export default React.memo(Dev_FormControl_Cols);
+export default Dev_FormControl_Cols;

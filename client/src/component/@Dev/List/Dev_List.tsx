@@ -51,4 +51,4 @@ const Dev_List = () => {
   );
 };
 
-export default React.memo(Dev_List);
+export default Dev_List;

@@ -62,4 +62,4 @@ const Dev_Button_FlexButton = () => {
   );
 };
 
-export default React.memo(Dev_Button_FlexButton);
+export default Dev_Button_FlexButton;

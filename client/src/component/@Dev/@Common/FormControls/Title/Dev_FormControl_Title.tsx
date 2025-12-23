@@ -11,4 +11,4 @@ export const Dev_FormControl_Title = ({ ...props }: Props) => {
   );
 };
 
-export default React.memo(Dev_FormControl_Title);
+export default Dev_FormControl_Title;

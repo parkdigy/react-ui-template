@@ -33,4 +33,4 @@ export const Dev_FormControl_LastPage = ({ variant = 'select', ...props }: Props
   );
 };
 
-export default React.memo(Dev_FormControl_LastPage);
+export default Dev_FormControl_LastPage;

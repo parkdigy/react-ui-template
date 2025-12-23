@@ -29,4 +29,4 @@ export const Dev_FormControl_FormSelectSize = ({ variant = 'select', value = '',
   );
 };
 
-export default React.memo(Dev_FormControl_FormSelectSize);
+export default Dev_FormControl_FormSelectSize;

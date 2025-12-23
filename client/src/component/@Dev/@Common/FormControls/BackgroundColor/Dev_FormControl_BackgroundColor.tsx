@@ -110,4 +110,4 @@ function Dev_FormControl_BackgroundColor<TColors extends AllColors = AllColors>(
   );
 }
 
-export default React.memo(Dev_FormControl_BackgroundColor) as typeof Dev_FormControl_BackgroundColor;
+export default Dev_FormControl_BackgroundColor;

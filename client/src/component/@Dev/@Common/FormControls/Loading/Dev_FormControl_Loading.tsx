@@ -11,4 +11,4 @@ export const Dev_FormControl_Loading = ({ value, ...props }: Props) => {
   );
 };
 
-export default React.memo(Dev_FormControl_Loading);
+export default Dev_FormControl_Loading;

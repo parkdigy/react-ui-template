@@ -19,14 +19,14 @@ const Dev_T_Variant_Color = () => {
   );
 };
 
-export default React.memo(Dev_T_Variant_Color);
+export default Dev_T_Variant_Color;
 
 /********************************************************************************************************************
  * Item
  * ******************************************************************************************************************/
 
 const Item = ({ color }: { color: string }) => {
-  let componentName = util.text.snakeToCamelCase(color);
+  let componentName = g.text.snakeToCamelCase(color);
   componentName = `T${componentName.substring(0, 1).toUpperCase()}${componentName.substring(1)}`;
   if (componentName.startsWith('TText')) {
     componentName = componentName.replace('TText', 'T');

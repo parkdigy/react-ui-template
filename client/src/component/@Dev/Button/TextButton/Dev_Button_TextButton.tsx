@@ -67,4 +67,4 @@ const Dev_Button_TextButton = () => {
   );
 };
 
-export default React.memo(Dev_Button_TextButton);
+export default Dev_Button_TextButton;

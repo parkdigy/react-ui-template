@@ -27,4 +27,4 @@ export const Dev_FormControl_Rows = ({ variant = 'select', value = '', ...props 
   );
 };
 
-export default React.memo(Dev_FormControl_Rows);
+export default Dev_FormControl_Rows;

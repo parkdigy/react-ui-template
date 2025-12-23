@@ -25,4 +25,4 @@ const Dev_T_Colors = () => {
   );
 };
 
-export default React.memo(Dev_T_Colors);
+export default Dev_T_Colors;

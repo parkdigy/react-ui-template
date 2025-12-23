@@ -126,4 +126,4 @@ export function FormRadioGroupItem<T extends string | number | boolean>({
   );
 }
 
-export default React.memo(FormRadioGroupItem) as typeof FormRadioGroupItem;
+export default FormRadioGroupItem;

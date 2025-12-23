@@ -62,4 +62,4 @@ export const FormInput = ({
   );
 };
 
-export default React.memo(FormInput) as typeof FormInput;
+export default FormInput;

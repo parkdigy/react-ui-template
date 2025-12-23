@@ -11,4 +11,4 @@ export const Dev_FormControl_Label = ({ ...props }: Props) => {
   );
 };
 
-export default React.memo(Dev_FormControl_Label);
+export default Dev_FormControl_Label;

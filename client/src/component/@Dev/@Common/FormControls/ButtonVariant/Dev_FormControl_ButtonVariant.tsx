@@ -44,4 +44,4 @@ export const Dev_FormControl_ButtonVariant = ({ variant = 'select', value = '', 
   );
 };
 
-export default React.memo(Dev_FormControl_ButtonVariant);
+export default Dev_FormControl_ButtonVariant;

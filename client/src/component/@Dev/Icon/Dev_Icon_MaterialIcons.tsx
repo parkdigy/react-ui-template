@@ -57,4 +57,4 @@ const Dev_Icon_MaterialIcons = () => {
   );
 };
 
-export default React.memo(Dev_Icon_MaterialIcons);
+export default Dev_Icon_MaterialIcons;

@@ -161,4 +161,4 @@ const FormSelectInput = ({
   );
 };
 
-export default React.memo(FormSelectInput) as typeof FormSelectInput;
+export default FormSelectInput;

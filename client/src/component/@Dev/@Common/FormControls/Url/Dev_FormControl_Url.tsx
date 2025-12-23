@@ -11,4 +11,4 @@ export const Dev_FormControl_Url = ({ ...props }: Props) => {
   );
 };
 
-export default React.memo(Dev_FormControl_Url);
+export default Dev_FormControl_Url;

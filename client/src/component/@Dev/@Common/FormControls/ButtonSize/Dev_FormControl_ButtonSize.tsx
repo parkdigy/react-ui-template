@@ -31,4 +31,4 @@ export const Dev_FormControl_ButtonSize = ({ variant = 'select', value = '', ...
   );
 };
 
-export default React.memo(Dev_FormControl_ButtonSize);
+export default Dev_FormControl_ButtonSize;

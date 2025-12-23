@@ -44,4 +44,4 @@ export const Dev_FormControl_ChipVariant = ({ variant = 'select', value = '', di
   );
 };
 
-export default React.memo(Dev_FormControl_ChipVariant);
+export default Dev_FormControl_ChipVariant;

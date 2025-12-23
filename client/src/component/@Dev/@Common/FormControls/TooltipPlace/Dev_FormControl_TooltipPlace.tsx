@@ -46,4 +46,4 @@ export const Dev_FormControl_TooltipPlace = ({ variant = 'select', value = '', .
   );
 };
 
-export default React.memo(Dev_FormControl_TooltipPlace);
+export default Dev_FormControl_TooltipPlace;
