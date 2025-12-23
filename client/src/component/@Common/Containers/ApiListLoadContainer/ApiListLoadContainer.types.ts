@@ -1,6 +1,3 @@
-import { ApiPaging } from '@common';
-import { RefObject } from 'react';
-
 export interface ApiListLoadContainerCommands {
   load: () => void;
 }
@@ -15,8 +12,11 @@ export type ApiListLoadContainerFinalData<T extends { [key in string]: any }> = 
   limit?: number;
 };
 
-export interface ApiListLoadContainerProps<T extends { [key in string]: any }, TListItem>
-  extends Omit<BoxProps, 'ref' | 'children' | 'onLoad'> {
+export interface ApiListLoadContainerProps<T extends { [key in string]: any }, TListItem> extends Omit<
+  BoxProps,
+  'ref' | 'children' | 'onLoad'
+> {
+  ref?: Ref<ApiListLoadContainerCommands>;
   load?: boolean;
   data?: T;
   retryDelay?: number;

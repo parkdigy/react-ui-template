@@ -1,5 +1,4 @@
 import { AllColors } from '@theme';
-import { CSSProperties } from 'react';
 
 export interface BadgeProps {
   children?: ReactNode;

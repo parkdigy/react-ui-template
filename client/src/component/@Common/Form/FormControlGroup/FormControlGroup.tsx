@@ -73,7 +73,7 @@ export const FormControlGroup = ({
   const isError = useMemo(() => {
     if (error === false) {
       return (
-        keys(controlsError).find((controlName) => {
+        objectKeys(controlsError).find((controlName) => {
           if (controlNames.includes(controlName)) {
             return controlsError[controlName] !== false;
           } else {
@@ -112,7 +112,7 @@ export const FormControlGroup = ({
           )}
           {isError &&
             showControlError &&
-            keys(controlsError).map((controlName, idx) => {
+            objectKeys(controlsError).map((controlName, idx) => {
               if (controlNames.includes(controlName)) {
                 const controlError = controlsError[controlName];
                 if (typeof controlError === 'string' && notEmpty(controlError)) {

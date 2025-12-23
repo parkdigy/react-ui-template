@@ -14,6 +14,7 @@ export interface FormSelectItem<T extends string | number> {
 }
 
 export interface FormSelectProps<T extends string | number> extends FormControlCommonProps<T | undefined> {
+  ref?: Ref<FormSelectCommands<T>>;
   // 사이즈
   size?: FormSelectSize;
   // 아이템 목록

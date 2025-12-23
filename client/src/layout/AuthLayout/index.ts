@@ -1,5 +1,4 @@
 import l from '@loadable/component';
-import { loadable } from '@common';
 
 const AuthLayout = l(
   () => import(/* webpackChunkName: "auth-layout" */ './AuthLayout'),

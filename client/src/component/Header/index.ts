@@ -1,5 +1,4 @@
 import l from '@loadable/component';
-import { loadable } from '@common';
 
 const Header = l(
   () => import(/* webpackChunkName: "header" */ './Header'),

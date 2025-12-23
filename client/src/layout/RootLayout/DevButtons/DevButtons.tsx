@@ -3,7 +3,6 @@ import { DevButtonsProps as Props } from './DevButtons.types';
 import DevButton from './DevButton';
 import { useAppState, useScreenSize } from '@context';
 import { useLocation } from 'react-router';
-import { util } from '@common';
 import './DevButtons.scss';
 
 export const DevButtons = ({}: Props) => {
@@ -25,7 +24,7 @@ export const DevButtons = ({}: Props) => {
         {util.css.toCssName(screen.sizes[screen.sizes.length - 1])}
       </T>
       {location.pathname !== '/dev/controls' && (
-        <DevButton icon='Extension' onClick={() => __navigate('/dev/controls')} />
+        <DevButton icon='Extension' onClick={() => g.nav.go('/dev/controls')} />
       )}
       <DevButton icon={colorScheme === 'light' ? 'DarkMode' : 'LightMode'} onClick={toggleColorScheme} />
     </Flex>

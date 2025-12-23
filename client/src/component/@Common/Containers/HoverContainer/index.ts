@@ -1,5 +1,4 @@
 import l from '@loadable/component';
-import { loadable } from '@common';
 
 const HoverContainer = l(
   () => import(/* webpackChunkName: "common-hover-container" */ './HoverContainer'),

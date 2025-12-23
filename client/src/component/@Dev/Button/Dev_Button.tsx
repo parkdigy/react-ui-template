@@ -6,7 +6,6 @@ import { Dev_Button_TextButton } from './TextButton';
 import { Dev_Button_FlexButton } from './FlexButton';
 import { useLocation } from 'react-router';
 import { Dev_Button_BoxButton } from './BoxButton';
-import { app } from '@common';
 
 const TabValue = ['button', 'iconButton', 'textButton', 'stackButton', 'boxButton'] as const;
 type TabValue = (typeof TabValue)[number];
@@ -35,14 +34,14 @@ export const Dev_Button = () => {
    * Effect
    * ******************************************************************************************************************/
 
-  useEffect(() => {
+  if (useChanged(location, true)) {
     const hash = app.deHash(location);
     if (hash.sm && TabValue.includes(hash.sm as TabValue)) {
       setActiveTab(hash.sm as TabValue);
     } else {
       setActiveTab('button');
     }
-  }, [location]);
+  }
 
   /********************************************************************************************************************
    * Render
@@ -56,7 +55,7 @@ export const Dev_Button = () => {
         items={TabItems}
         value={activeTab}
         onChange={(v) => {
-          v !== activeTab && __navigate(`#m=button&sm=${v}`);
+          v !== activeTab && g.nav.go(`#m=button&sm=${v}`);
         }}
       />
 

@@ -3,10 +3,66 @@ const path = require('path');
 /* eslint-enable */
 
 module.exports = {
-  // Default
+  // Container
+  PageRootContainer: [path.resolve(__dirname, '../src/component/@Common/index.ts'), 'PageRootContainer'],
+
+  // Layout
+  Box: [path.resolve(__dirname, '../src/component/@Common/index.ts'), 'Box'],
+  BoxProps: [path.resolve(__dirname, '../src/component/@Common/index.ts'), 'BoxProps'],
+  Span: [path.resolve(__dirname, '../src/component/@Common/index.ts'), 'Span'],
+  SpanProps: [path.resolve(__dirname, '../src/component/@Common/index.ts'), 'SpanProps'],
+  Flex: [path.resolve(__dirname, '../src/component/@Common/index.ts'), 'Flex'],
+  FlexProps: [path.resolve(__dirname, '../src/component/@Common/index.ts'), 'FlexProps'],
+  Divider: [path.resolve(__dirname, '../src/component/@Common/index.ts'), 'Divider'],
+  DividerProps: [path.resolve(__dirname, '../src/component/@Common/index.ts'), 'DividerProps'],
+  Panel: [path.resolve(__dirname, '../src/component/@Common/index.ts'), 'Panel'],
+  PanelProps: [path.resolve(__dirname, '../src/component/@Common/index.ts'), 'PanelProps'],
+  Grid: [path.resolve(__dirname, '../src/component/@Common/index.ts'), 'Grid'],
+  GridProps: [path.resolve(__dirname, '../src/component/@Common/index.ts'), 'GridProps'],
+  Row: [path.resolve(__dirname, '../src/component/@Common/index.ts'), 'Row'],
+  RowProps: [path.resolve(__dirname, '../src/component/@Common/index.ts'), 'RowProps'],
+  Col: [path.resolve(__dirname, '../src/component/@Common/index.ts'), 'Col'],
+  ColProps: [path.resolve(__dirname, '../src/component/@Common/index.ts'), 'ColProps'],
+
+  // Image
+  Img: [path.resolve(__dirname, '../src/component/@Common/index.ts'), 'Img'],
+  ImgProps: [path.resolve(__dirname, '../src/component/@Common/index.ts'), 'ImgProps'],
+  Svg: [path.resolve(__dirname, '../src/component/@Common/index.ts'), 'Svg'],
+  SvgProps: [path.resolve(__dirname, '../src/component/@Common/index.ts'), 'SvgProps'],
+
+  // Icon
+  Icon: [path.resolve(__dirname, '../src/component/@Common/index.ts'), 'Icon'],
+  IconProps: [path.resolve(__dirname, '../src/component/@Common/index.ts'), 'IconProps'],
+
+  // Button
+  Button: [path.resolve(__dirname, '../src/component/@Common/index.ts'), 'Button'],
+  ButtonProps: [path.resolve(__dirname, '../src/component/@Common/index.ts'), 'ButtonProps'],
+  TextButton: [path.resolve(__dirname, '../src/component/@Common/index.ts'), 'TextButton'],
+  TextButtonProps: [path.resolve(__dirname, '../src/component/@Common/index.ts'), 'TextButtonProps'],
+  IconButton: [path.resolve(__dirname, '../src/component/@Common/index.ts'), 'IconButton'],
+  IconButtonProps: [path.resolve(__dirname, '../src/component/@Common/index.ts'), 'IconButtonProps'],
+  FlexButton: [path.resolve(__dirname, '../src/component/@Common/index.ts'), 'FlexButton'],
+  FlexButtonProps: [path.resolve(__dirname, '../src/component/@Common/index.ts'), 'FlexButtonProps'],
+  BoxButton: [path.resolve(__dirname, '../src/component/@Common/index.ts'), 'BoxButton'],
+  BoxButtonProps: [path.resolve(__dirname, '../src/component/@Common/index.ts'), 'BoxButtonProps'],
+
+  // Dialog
+  Dialog: [path.resolve(__dirname, '../src/component/@Common/index.ts'), 'Dialog'],
+  DialogProps: [path.resolve(__dirname, '../src/component/@Common/index.ts'), 'DialogProps'],
+  DialogCommands: [path.resolve(__dirname, '../src/component/@Common/index.ts'), 'DialogCommands'],
+
+  // Alert
+  Alert: [path.resolve(__dirname, '../src/component/@Common/index.ts'), 'Alert'],
+  AlertProps: [path.resolve(__dirname, '../src/component/@Common/index.ts'), 'AlertProps'],
+
+  // Tooltip
+  Tooltip: [path.resolve(__dirname, '../src/component/@Common/index.ts'), 'Tooltip'],
+  TooltipProps: [path.resolve(__dirname, '../src/component/@Common/index.ts'), 'TooltipProps'],
+
+  // T - Default
   T: [path.resolve(__dirname, '../src/component/@Common/index.ts'), 'T'],
 
-  // FontWeight
+  // T - FontWeight
   TBold: [path.resolve(__dirname, '../src/component/@Common/index.ts'), 'TBold'],
   T100: [path.resolve(__dirname, '../src/component/@Common/index.ts'), 'T100'],
   T200: [path.resolve(__dirname, '../src/component/@Common/index.ts'), 'T200'],
@@ -18,7 +74,7 @@ module.exports = {
   T800: [path.resolve(__dirname, '../src/component/@Common/index.ts'), 'T800'],
   T900: [path.resolve(__dirname, '../src/component/@Common/index.ts'), 'T900'],
 
-  // Color
+  // T - Color
   TPrimary: [path.resolve(__dirname, '../src/component/@Common/index.ts'), 'TPrimary'],
   TOnPrimary: [path.resolve(__dirname, '../src/component/@Common/index.ts'), 'TOnPrimary'],
   TSecondary: [path.resolve(__dirname, '../src/component/@Common/index.ts'), 'TSecondary'],
@@ -88,7 +144,7 @@ module.exports = {
   TOpacityReverse90: [path.resolve(__dirname, '../src/component/@Common/index.ts'), 'TOpacityReverse90'],
   TOpacityReverse95: [path.resolve(__dirname, '../src/component/@Common/index.ts'), 'TOpacityReverse95'],
 
-  // Size
+  // T - Size
   TCaption: [path.resolve(__dirname, '../src/component/@Common/index.ts'), 'TCaption'],
   TCaptionBold: [path.resolve(__dirname, '../src/component/@Common/index.ts'), 'TCaptionBold'],
   TCaption100: [path.resolve(__dirname, '../src/component/@Common/index.ts'), 'TCaption100'],

@@ -1,5 +1,4 @@
 import l from '@loadable/component';
-import { loadable } from '@common';
 
 const Dialog = l(
   () => import(/* webpackChunkName: "common-dialog" */ './Dialog'),

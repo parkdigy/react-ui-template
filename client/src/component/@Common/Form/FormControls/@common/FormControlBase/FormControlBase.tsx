@@ -56,18 +56,20 @@ export const FormControlBase = ({
    * Effect
    * ******************************************************************************************************************/
 
-  useEffect(() => {
-    if (name) {
-      addControl(type, name, commands);
-      controlGroupState && controlGroupState.addControl(name);
+  {
+    const effectEvent = useEffectEvent(() => {
+      if (name) {
+        addControl(type, name, commands);
+        controlGroupState?.addControl(name);
 
-      return () => {
-        removeControl(name);
-        controlGroupState && controlGroupState.removeControl(name);
-      };
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [name, commands]);
+        return () => {
+          removeControl(name);
+          controlGroupState?.removeControl(name);
+        };
+      }
+    });
+    useEffect(() => effectEvent(), [name, commands]);
+  }
 
   /********************************************************************************************************************
    * Render

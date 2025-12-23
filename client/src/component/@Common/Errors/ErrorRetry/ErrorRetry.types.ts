@@ -1,6 +1,7 @@
 import { DefaultColors } from '@theme';
 
 export interface ErrorRetryProps {
+  ref?: Ref<HTMLDivElement>;
   className?: string;
   title?: string;
   message?: ReactNode;

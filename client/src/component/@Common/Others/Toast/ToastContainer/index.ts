@@ -1,5 +1,4 @@
 import l from '@loadable/component';
-import { loadable } from '@common';
 
 const ToastContainer = l(
   () => import(/* webpackChunkName: "common-toast-container" */ './ToastContainer'),

@@ -5,82 +5,80 @@ import { GridContextProvider, GridContextValue } from '../Context';
 import { AllScreenAliases, GeneralScreens } from '@theme';
 import { useScreenSize } from '@context';
 
-export const Grid = React.forwardRef<HTMLDivElement, Props>(
-  ({ children, className, cols = 12, gap = 0, ...props }, ref) => {
-    /********************************************************************************************************************
-     * Use
-     * ******************************************************************************************************************/
+export const Grid = ({ children, className, cols = 12, gap = 0, ...props }: Props) => {
+  /********************************************************************************************************************
+   * Use
+   * ******************************************************************************************************************/
 
-    const screen = useScreenSize();
+  const screen = useScreenSize();
 
-    /********************************************************************************************************************
-     * Ref
-     * ******************************************************************************************************************/
+  /********************************************************************************************************************
+   * Ref
+   * ******************************************************************************************************************/
 
-    const rowNumber = useRef(0);
-    const rowNumberMap = useRef<Dict<number>>({});
+  const rowNumber = useRef(0);
+  const rowNumberMap = useRef<Dict<number>>({});
 
-    /********************************************************************************************************************
-     * Memo
-     * ******************************************************************************************************************/
+  /********************************************************************************************************************
+   * Memo
+   * ******************************************************************************************************************/
 
-    const finalCols = useMemo(() => {
-      if (typeof cols === 'number') {
-        return cols;
-      } else {
-        let currentCols = 1;
-        let newFinalCols = currentCols;
-        keys(AllScreenAliases).find((alias) => {
-          if (cols[alias]) currentCols = cols[alias];
-          if (!contains(GeneralScreens, alias) && screen.is[alias]) {
-            newFinalCols = currentCols;
-            return true;
-          }
-        });
-        return newFinalCols;
-      }
-    }, [cols, screen.is]);
+  const finalCols = useMemo(() => {
+    if (typeof cols === 'number') {
+      return cols;
+    } else {
+      let currentCols = 1;
+      let newFinalCols = currentCols;
+      objectKeys(AllScreenAliases).find((alias) => {
+        if (cols[alias]) currentCols = cols[alias];
+        if (!contains(GeneralScreens, alias) && screen.is[alias]) {
+          newFinalCols = currentCols;
+          return true;
+        }
+      });
+      return newFinalCols;
+    }
+  }, [cols, screen.is]);
 
-    /********************************************************************************************************************
-     * Context Value
-     * ******************************************************************************************************************/
+  /********************************************************************************************************************
+   * Context Value
+   * ******************************************************************************************************************/
 
-    const contextValue = useMemo<GridContextValue>(
-      () => ({
-        cols: finalCols,
-        getRowNumber(id: string) {
-          if (rowNumberMap.current[id]) {
-            return rowNumberMap.current[id];
-          }
-          rowNumber.current += 1;
-          rowNumberMap.current[id] = rowNumber.current;
+  const contextValue = useMemo<GridContextValue>(
+    () => ({
+      cols: finalCols,
+      getRowNumber(id: string) {
+        if (rowNumberMap.current[id]) {
           return rowNumberMap.current[id];
-        },
-      }),
-      [finalCols]
-    );
+        }
+        rowNumber.current += 1;
+        rowNumberMap.current[id] = rowNumber.current;
+        return rowNumberMap.current[id];
+      },
+    }),
+    [finalCols]
+  );
 
-    /********************************************************************************************************************
-     * Style
-     * ******************************************************************************************************************/
+  /********************************************************************************************************************
+   * Style
+   * ******************************************************************************************************************/
 
-    const style = {
-      '--grid-cols': `${finalCols}`,
-      '--grid-gap': typeof gap === 'number' ? `${gap}px` : gap,
-    };
+  const style = {
+    '--grid-cols': `${finalCols}`,
+    '--grid-gap': typeof gap === 'number' ? `${gap}px` : gap,
+  };
 
-    /********************************************************************************************************************
-     * Render
-     * ******************************************************************************************************************/
+  /********************************************************************************************************************
+   * Render
+   * ******************************************************************************************************************/
 
-    return (
-      <GridContextProvider value={contextValue}>
-        <Box ref={ref} className={classnames(className, 'Grid')} cssVars={style} {...props}>
-          {children}
-        </Box>
-      </GridContextProvider>
-    );
-  }
-);
+  return (
+    <GridContextProvider value={contextValue}>
+      <Box className={classnames(className, 'Grid')} cssVars={style} {...props}>
+        {children}
+      </Box>
+    </GridContextProvider>
+  );
+};
 
 export default Grid;

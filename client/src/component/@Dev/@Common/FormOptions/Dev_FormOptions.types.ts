@@ -45,7 +45,6 @@ import { Dev_CodeProps } from '../Code';
 import { AllColors } from '@theme';
 import { FormControlCommonProps, FormProps, GridProps } from '@ccomp';
 import { Dev_FormControl_LabelProps } from '../FormControls/Label';
-import { CSSProperties } from 'react';
 import { Dev_FormControl_SearchableProps } from '../FormControls/Searchable';
 
 export type Dev_FormOptionsOption =
@@ -177,8 +176,10 @@ export interface Dev_FormOptionsData<
   cols?: GridProps['cols'];
 }
 
-export interface Dev_FormOptionsControlCommonProps
-  extends Pick<FormControlCommonProps<any>, 'disabled' | 'helperText'> {}
+export interface Dev_FormOptionsControlCommonProps extends Pick<
+  FormControlCommonProps<any>,
+  'disabled' | 'helperText'
+> {}
 
 export interface Dev_FormOptionsControlPropsMap {
   /** Multi Option Controls */

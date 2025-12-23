@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { FormSelectControlCommands, FormSelectControlProps as Props } from './FormSelectControl.types';
 import { FormSelectInput, FormSelectInputCommands } from './FormSelectInput';
-import { useFirstSkipEffect, useRefState, useTimeoutRef } from '@pdg/react-hook';
+import { useTimeoutRef } from '@pdg/react-hook';
 import { FormSelectItem } from '../FormSelect.types';
 import { FormSelectDropdown, FormSelectDropdownCommands } from './FormSelectDropdown';
 import { FormSelectRight } from './FormSelectRight';
@@ -52,19 +52,10 @@ function FormSelectControl<T extends string | number>({
 
   const [isShowInput, setIsShowInput] = useState(false);
   const [isFocused, _setIsFocused] = useState(false);
-  const [isOpenDropdownRef, isOpenDropdown, setIsOpenDropdown] = useRefState(false);
 
-  /********************************************************************************************************************
-   * Effect
-   * ******************************************************************************************************************/
-
-  useFirstSkipEffect(() => {
-    if (isFocused) {
-      onFocus?.();
-    } else {
-      onBlur?.();
-    }
-  }, [isFocused]);
+  /** isOpenDropdown */
+  const [isOpenDropdown, setIsOpenDropdown] = useState(false);
+  const isOpenDropdownRef = useAutoUpdateRef(isOpenDropdown);
 
   /********************************************************************************************************************
    * Commands
@@ -81,10 +72,33 @@ function FormSelectControl<T extends string | number>({
     [setFocusTimeout]
   );
 
-  useEffect(() => {
-    onCommands(commands);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [commands]);
+  /********************************************************************************************************************
+   * Effect
+   * ******************************************************************************************************************/
+
+  {
+    const effectEvent = useEffectEvent(() => {
+      if (isFocused) {
+        onFocus?.();
+      } else {
+        onBlur?.();
+      }
+    });
+    const firstSkipRef = useRef(true);
+    useEffect(() => {
+      if (firstSkipRef.current) firstSkipRef.current = false;
+      else return effectEvent();
+    }, [isFocused]);
+  }
+
+  {
+    const effectEvent = useEffectEvent(() => {
+      onCommands(commands);
+    });
+    useEffect(() => {
+      return effectEvent();
+    }, [commands]);
+  }
 
   /********************************************************************************************************************
    * Function

@@ -16,7 +16,7 @@ import {
   ScreenSizeInfoSmallerThanOrEqualKey,
 } from '@theme';
 
-const ScreenSizeContextProvider: React.FC<Props> = ({ children }) => {
+const ScreenSizeContextProvider = ({ children }: Props) => {
   /********************************************************************************************************************
    * Use
    * ******************************************************************************************************************/
@@ -25,92 +25,83 @@ const ScreenSizeContextProvider: React.FC<Props> = ({ children }) => {
   const { width: windowWidth } = useWindowSize();
 
   /********************************************************************************************************************
-   * Ref
+   * screenSizeInfo
    * ******************************************************************************************************************/
 
-  const lastWindowWidthRef = useRef<number>(undefined);
-  const lastInfoRef = useRef<ScreenSizeInfo>({} as ScreenSizeInfo);
-  const lastScreenAliasesValueRef = useRef<string>(undefined);
+  const [lastScreenAliasValue, setLastScreenAliasValue] = useState<string>();
+  const [screenSizeInfo, setScreenSizeInfo] = useState<ScreenSizeInfo>();
 
-  /********************************************************************************************************************
-   * 계산
-   * ******************************************************************************************************************/
+  if (useChanged(windowWidth, true)) {
+    const screenAliases = objectKeys(AllScreenAliases).filter((screen) => {
+      const [min] = AllScreenAliases[screen];
+      if (theme.screens[min] <= windowWidth) {
+        return true;
+      }
+    });
 
-  const screenSizeInfo = useMemo(() => {
-    if (lastWindowWidthRef.current !== windowWidth) {
-      lastWindowWidthRef.current = windowWidth;
+    const screenAliasesValue = screenAliases!.join(',');
+    if (lastScreenAliasValue !== screenAliasesValue) {
+      setLastScreenAliasValue(screenAliasesValue);
 
-      const screenAliases = keys(AllScreenAliases).filter((screen) => {
-        const [min] = AllScreenAliases[screen];
-        if (theme.screens[min] <= windowWidth) {
-          return true;
-        }
+      const is: Record<ScreenSizeInfoIsKey, boolean> = {} as Record<ScreenSizeInfoIsKey, boolean>;
+      const smallerThan: Record<ScreenSizeInfoSmallerThanKey, boolean> = {} as Record<
+        ScreenSizeInfoSmallerThanKey,
+        boolean
+      >;
+      const smallerThanOrEqual: Record<ScreenSizeInfoSmallerThanOrEqualKey, boolean> = {} as Record<
+        ScreenSizeInfoSmallerThanOrEqualKey,
+        boolean
+      >;
+      const largerThan: Record<ScreenSizeInfoLargerThanKey, boolean> = {} as Record<
+        ScreenSizeInfoLargerThanKey,
+        boolean
+      >;
+      const largerThanOrEqual: Record<ScreenSizeInfoLargerThanOrEqualKey, boolean> = {} as Record<
+        ScreenSizeInfoLargerThanOrEqualKey,
+        boolean
+      >;
+
+      objectKeys(AllScreenAliases).forEach((screen) => {
+        is[screen] = screenAliases[screenAliases.length - 1] === screen;
+        smallerThan[screen] = !screenAliases.includes(screen);
+        smallerThanOrEqual[screen] = !screenAliases.includes(screen) || is[screen];
+        largerThan[screen] = screenAliases.includes(screen) && !is[screen];
+        largerThanOrEqual[screen] = screenAliases.includes(screen);
       });
 
-      const screenAliasesValue = screenAliases!.join(',');
-      if (lastScreenAliasesValueRef.current !== screenAliasesValue) {
-        lastScreenAliasesValueRef.current = screenAliasesValue;
+      is.mobile = is.mobileSm || is.mobileMd || is.mobileLg;
+      is.tablet = is.tabletSm || is.tabletMd || is.tabletLg;
+      is.desktop = is.desktopSm || is.desktopMd || is.desktopLg;
 
-        const is: Record<ScreenSizeInfoIsKey, boolean> = {} as Record<ScreenSizeInfoIsKey, boolean>;
-        const smallerThan: Record<ScreenSizeInfoSmallerThanKey, boolean> = {} as Record<
-          ScreenSizeInfoSmallerThanKey,
-          boolean
-        >;
-        const smallerThanOrEqual: Record<ScreenSizeInfoSmallerThanOrEqualKey, boolean> = {} as Record<
-          ScreenSizeInfoSmallerThanOrEqualKey,
-          boolean
-        >;
-        const largerThan: Record<ScreenSizeInfoLargerThanKey, boolean> = {} as Record<
-          ScreenSizeInfoLargerThanKey,
-          boolean
-        >;
-        const largerThanOrEqual: Record<ScreenSizeInfoLargerThanOrEqualKey, boolean> = {} as Record<
-          ScreenSizeInfoLargerThanOrEqualKey,
-          boolean
-        >;
+      smallerThan.tablet = is.mobile;
+      smallerThan.desktop = is.mobile || is.tablet;
+      smallerThanOrEqual.mobile = is.mobile;
+      smallerThanOrEqual.tablet = is.mobile || is.tablet;
+      smallerThanOrEqual.desktop = is.mobile || is.tablet || is.desktop;
+      largerThan.mobile = is.tablet || is.desktop;
+      largerThan.tablet = is.desktop;
+      largerThanOrEqual.mobile = is.mobile || is.tablet || is.desktop;
+      largerThanOrEqual.tablet = is.tablet || is.desktop;
+      largerThanOrEqual.desktop = is.desktop;
 
-        keys(AllScreenAliases).forEach((screen) => {
-          is[screen] = screenAliases[screenAliases.length - 1] === screen;
-          smallerThan[screen] = !screenAliases.includes(screen);
-          smallerThanOrEqual[screen] = !screenAliases.includes(screen) || is[screen];
-          largerThan[screen] = screenAliases.includes(screen) && !is[screen];
-          largerThanOrEqual[screen] = screenAliases.includes(screen);
-        });
-
-        is.mobile = is.mobileSm || is.mobileMd || is.mobileLg;
-        is.tablet = is.tabletSm || is.tabletMd || is.tabletLg;
-        is.desktop = is.desktopSm || is.desktopMd || is.desktopLg;
-
-        smallerThan.tablet = is.mobile;
-        smallerThan.desktop = is.mobile || is.tablet;
-        smallerThanOrEqual.mobile = is.mobile;
-        smallerThanOrEqual.tablet = is.mobile || is.tablet;
-        smallerThanOrEqual.desktop = is.mobile || is.tablet || is.desktop;
-        largerThan.mobile = is.tablet || is.desktop;
-        largerThan.tablet = is.desktop;
-        largerThanOrEqual.mobile = is.mobile || is.tablet || is.desktop;
-        largerThanOrEqual.tablet = is.tablet || is.desktop;
-        largerThanOrEqual.desktop = is.desktop;
-
-        lastInfoRef.current = {
-          sizes: screenAliases,
-          is,
-          smallerThan,
-          smallerThanOrEqual,
-          largerThan,
-          largerThanOrEqual,
-        };
-      }
+      setScreenSizeInfo({
+        sizes: screenAliases,
+        is,
+        smallerThan,
+        smallerThanOrEqual,
+        largerThan,
+        largerThanOrEqual,
+      });
     }
-
-    return lastInfoRef.current;
-  }, [theme.screens, windowWidth]);
+  }
 
   /********************************************************************************************************************
    * Return
    * ******************************************************************************************************************/
 
-  return <ScreenSizeContext.Provider value={screenSizeInfo}>{children}</ScreenSizeContext.Provider>;
+  return screenSizeInfo ? (
+    <ScreenSizeContext.Provider value={screenSizeInfo}>{children}</ScreenSizeContext.Provider>
+  ) : null;
 };
 
 export default ScreenSizeContextProvider;

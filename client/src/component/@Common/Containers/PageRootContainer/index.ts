@@ -1,5 +1,4 @@
 import l from '@loadable/component';
-import { loadable } from '@common';
 
 const PageRootContainer = l(
   () => import(/* webpackChunkName: "common-page-root-container" */ './PageRootContainer'),

@@ -1,5 +1,4 @@
 import l from '@loadable/component';
-import { loadable } from '@common';
 
 const TinyMCEViewer = l(
   () => import(/* webpackChunkName: "common-tiny-mce-viewer" */ './TinyMCEViewer'),

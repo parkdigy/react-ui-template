@@ -1,28 +1,29 @@
-import React, { createContext, useContext } from 'react';
+import React from 'react';
 import { ThemeProviderProps as Props } from './ThemeProvider.types';
 import { Theme } from '../@types';
-import { app, util } from '@common';
+import ThemeContext from './ThemeContext';
 
 export const ThemeProvider = ({ children, colorScheme }: Props) => {
   /********************************************************************************************************************
-   * Ref
+   * State
    * ******************************************************************************************************************/
 
-  const isFirstSet = useRef(true);
-  const lastThemeRef = useRef<Theme>(Theme);
+  const [isFirstSet, setIsFirstSet] = useState(true);
+  const [lastTheme, setLastTheme] = useState(Theme);
 
   /********************************************************************************************************************
-   * Effect
+   * Variable
    * ******************************************************************************************************************/
 
-  const theme = useMemo(() => {
+  let theme = lastTheme;
+  if (useChanged(colorScheme, true)) {
     document.documentElement.setAttribute('data-color-scheme', colorScheme);
 
     const rootStyle = getComputedStyle(document.documentElement);
-    const newTheme = { ...lastThemeRef.current, dark: colorScheme === 'dark' };
+    const newTheme = { ...lastTheme, dark: colorScheme === 'dark' };
 
     // 컬러 설정
-    for (const key of keys(Theme.colors)) {
+    for (const key of objectKeys(Theme.colors)) {
       const colorName = key as keyof Theme['colors'];
       const cssName = util.css.toCssName(colorName);
       const varName = `--color-${cssName}`;
@@ -35,11 +36,11 @@ export const ThemeProvider = ({ children, colorScheme }: Props) => {
       newTheme.css.vars.colors[colorName] = `var(${varName})`;
     }
 
-    if (isFirstSet.current) {
-      isFirstSet.current = false;
+    if (isFirstSet) {
+      setIsFirstSet(false);
 
       // 사이즈 설정
-      for (const key of keys(Theme.sizes)) {
+      for (const key of objectKeys(Theme.sizes)) {
         const sizeName = key as keyof Theme['sizes'];
         const cssName = util.css.toCssName(sizeName);
         const baseVarName = `--size-${cssName}`;
@@ -64,7 +65,7 @@ export const ThemeProvider = ({ children, colorScheme }: Props) => {
       }
 
       // 화면 크기 설정
-      for (const key of keys(Theme.screens)) {
+      for (const key of objectKeys(Theme.screens)) {
         const screenName = key as keyof Theme['screens'];
         const cssName = util.css.toCssName(screenName);
         const varName = `--screen-${cssName}`;
@@ -77,24 +78,18 @@ export const ThemeProvider = ({ children, colorScheme }: Props) => {
       }
     }
 
-    lastThemeRef.current = newTheme;
+    setLastTheme(newTheme);
 
     app.setTheme(newTheme);
 
-    return newTheme;
-  }, [colorScheme]);
+    theme = newTheme;
+  }
 
   /********************************************************************************************************************
    * Render
    * ******************************************************************************************************************/
 
   return <ThemeContext.Provider value={theme}>{children}</ThemeContext.Provider>;
-};
-
-const ThemeContext = createContext<Theme>({} as Theme);
-
-export const useTheme = () => {
-  return useContext(ThemeContext);
 };
 
 export default ThemeProvider;

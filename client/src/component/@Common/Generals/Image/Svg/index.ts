@@ -1,5 +1,4 @@
 import l from '@loadable/component';
-import { loadable } from '@common';
 
 const Svg = l(
   () => import(/* webpackChunkName: "common-svg" */ './Svg'),

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Dev_Panel, Dev_PanelItem } from '../../@Common';
 import { ButtonColors } from '@theme';
-import { toast } from '@common';
 import { ButtonSizes } from '@ccomp';
 
 const Dev_Button_Button_Variant = () => {
@@ -32,7 +31,7 @@ const Dev_Button_Button_Variant = () => {
           <Divider />
 
           <Flex row center gap={10} wrap mt={5}>
-            {keys(ButtonSizes).map((size, idx) => (
+            {objectKeys(ButtonSizes).map((size, idx) => (
               <Tooltip key={idx} place='top-start' content={`<Button size="${size}">...</Button>`}>
                 <Button size={size} onClick={() => toast.info('클릭')}>
                   {size}
@@ -64,7 +63,7 @@ const Dev_Button_Button_Variant = () => {
           <Divider />
 
           <Flex row center gap={10} wrap mt={5}>
-            {keys(ButtonSizes).map((size, idx) => (
+            {objectKeys(ButtonSizes).map((size, idx) => (
               <Tooltip key={idx} place='top-start' content={`<Button variant='outlined' size="${size}">...</Button>`}>
                 <Button variant='outlined' size={size} onClick={() => toast.info('클릭')}>
                   {size}
@@ -96,7 +95,7 @@ const Dev_Button_Button_Variant = () => {
           <Divider />
 
           <Flex row center gap={10} wrap mt={5}>
-            {keys(ButtonSizes).map((size, idx) => (
+            {objectKeys(ButtonSizes).map((size, idx) => (
               <Tooltip key={idx} place='top-start' content={`<Button variant='text' size="${size}">...</Button>`}>
                 <Button variant='text' size={size} onClick={() => toast.info('클릭')}>
                   {size}

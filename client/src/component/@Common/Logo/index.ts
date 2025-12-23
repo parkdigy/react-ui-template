@@ -1,5 +1,4 @@
 import l from '@loadable/component';
-import { loadable } from '@common';
 
 const Logo = l(
   () => import(/* webpackChunkName: "common-logo" */ './Logo'),

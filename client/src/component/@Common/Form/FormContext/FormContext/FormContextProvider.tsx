@@ -2,7 +2,7 @@ import React from 'react';
 import { FormContextProviderProps as Props } from './FormContextProvider.types';
 import FormContext from './FormContext';
 
-const FormContextProvider: React.FC<Props> = ({ children, value }) => {
+const FormContextProvider = ({ children, value }: Props) => {
   return <FormContext.Provider value={value}>{children}</FormContext.Provider>;
 };
 

@@ -1,6 +1,7 @@
 import { BoxProps } from '@ccomp';
 
 export interface FlexProps extends Omit<BoxProps, 'display'> {
+  ref?: Ref<HTMLDivElement>;
   // display
   inline?: boolean;
   // flexDirection

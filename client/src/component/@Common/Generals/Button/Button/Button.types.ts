@@ -1,4 +1,4 @@
-import React, { CSSProperties } from 'react';
+import React from 'react';
 import {
   CustomComponentBackgroundStyles,
   CustomComponentBorderStyles,
@@ -52,20 +52,20 @@ export type ButtonSizes = keyof typeof ButtonSizes;
 
 export type ButtonHtmlProps = React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>;
 
-export interface ButtonProps
-  extends Omit<
-    CustomComponentProps<ButtonHtmlProps>,
-    | 'component'
-    | 'style'
-    | 'c'
-    | 'color'
-    | 's'
-    | 'size'
-    | 'fs'
-    | 'fontSize'
-    | keyof CustomComponentBackgroundStyles
-    | keyof CustomComponentBorderStyles
-  > {
+export interface ButtonProps extends Omit<
+  CustomComponentProps<ButtonHtmlProps>,
+  | 'component'
+  | 'style'
+  | 'c'
+  | 'color'
+  | 's'
+  | 'size'
+  | 'fs'
+  | 'fontSize'
+  | keyof CustomComponentBackgroundStyles
+  | keyof CustomComponentBorderStyles
+> {
+  ref?: Ref<HTMLButtonElement>;
   // 스타일 (contained: 채워진 버튼, outlined: 테두리만 있는 버튼, text: 텍스트 버튼)
   variant?: 'contained' | 'outlined' | 'text';
   // 색상

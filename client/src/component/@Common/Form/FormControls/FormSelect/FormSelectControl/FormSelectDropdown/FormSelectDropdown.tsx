@@ -2,7 +2,7 @@ import React from 'react';
 import SimpleBar from 'simplebar-react';
 import { FormSelectDropdownCommands, FormSelectDropdownProps as Props } from './FormSelectDropdown.types';
 import { FormSelectItem } from '../../FormSelect.types';
-import { useAutoUpdateRef, useRefState } from '@pdg/react-hook';
+import { useAutoUpdateRef } from '@pdg/react-hook';
 import { FormSelectDropdownItem } from './FormSelectDropdownItem';
 import { useResizeDetector } from 'react-resize-detector';
 import './FormSelectDropdown.scss';
@@ -31,23 +31,28 @@ function FormSelectDropdown<T extends string | number>({
 
   const { ref: containerRef, height: containerHeight } = useResizeDetector<HTMLDivElement>({ handleWidth: false });
 
-  useEffect(() => {
-    if (containerRef.current && containerHeight) {
-      const { bottom } = containerRef.current.getBoundingClientRect();
-      if (window.scrollY + bottom > window.scrollY + window.innerHeight) {
-        window.scrollTo({ left: 0, top: window.scrollY + bottom - window.innerHeight, behavior: 'smooth' });
+  {
+    const effectEvent = useEffectEvent(() => {
+      if (containerRef.current && containerHeight) {
+        const { bottom } = containerRef.current.getBoundingClientRect();
+        if (window.scrollY + bottom > window.scrollY + window.innerHeight) {
+          window.scrollTo({ left: 0, top: window.scrollY + bottom - window.innerHeight, behavior: 'smooth' });
+        }
       }
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [containerHeight]);
+    });
+    useEffect(() => effectEvent(), [containerHeight]);
+  }
 
   /********************************************************************************************************************
    * State
    * ******************************************************************************************************************/
 
-  const [tempActiveItemRef, tempActiveItem, setTempActiveItem] = useRefState<FormSelectItem<T>>();
   const [isSetSimpleBarRef, setIsSetSimpleBarRef] = useState(false);
   const [searchKeyword, setSearchKeyword] = useState<string>();
+
+  /** tempActiveItem */
+  const [tempActiveItem, setTempActiveItem] = useState<FormSelectItem<T>>();
+  const tempActiveItemRef = useAutoUpdateRef(tempActiveItem);
 
   /********************************************************************************************************************
    * Memo
@@ -68,42 +73,6 @@ function FormSelectDropdown<T extends string | number>({
   const itemsRef = useAutoUpdateRef(items);
 
   /********************************************************************************************************************
-   * Effect
-   * ******************************************************************************************************************/
-
-  useEffect(() => {
-    if (isOpen) {
-      setTempActiveItem(activeItem ? activeItem : getFirstEnabledItem());
-    } else {
-      setTempActiveItem(undefined);
-      setIsSetSimpleBarRef(false);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isOpen]);
-
-  useEffect(() => {
-    if (isOpen && searchable) {
-      let found = false;
-
-      if (tempActiveItem) {
-        found = items?.find((item) => item.value === tempActiveItem.value) !== undefined;
-      }
-
-      if (!found && activeItem) {
-        found = items?.find((item) => item.value === activeItem.value) !== undefined;
-        if (found) {
-          setTempActiveItem(activeItem);
-        }
-      }
-
-      if (!found) {
-        setTempActiveItem(getFirstEnabledItem());
-      }
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isOpen, items]);
-
-  /********************************************************************************************************************
    * Function
    * ******************************************************************************************************************/
 
@@ -122,6 +91,50 @@ function FormSelectDropdown<T extends string | number>({
     },
     [itemsRef]
   );
+
+  /********************************************************************************************************************
+   * Effect
+   * ******************************************************************************************************************/
+
+  {
+    const effectEvent = useEffectEvent(() => {
+      if (isOpen) {
+        setTempActiveItem(activeItem ? activeItem : getFirstEnabledItem());
+      } else {
+        setTempActiveItem(undefined);
+        setIsSetSimpleBarRef(false);
+      }
+    });
+    useEffect(() => {
+      return effectEvent();
+    }, [isOpen]);
+  }
+
+  {
+    const effectEvent = useEffectEvent(() => {
+      if (isOpen && searchable) {
+        let found = false;
+
+        if (tempActiveItem) {
+          found = items?.find((item) => item.value === tempActiveItem.value) !== undefined;
+        }
+
+        if (!found && activeItem) {
+          found = items?.find((item) => item.value === activeItem.value) !== undefined;
+          if (found) {
+            setTempActiveItem(activeItem);
+          }
+        }
+
+        if (!found) {
+          setTempActiveItem(getFirstEnabledItem());
+        }
+      }
+    });
+    useEffect(() => {
+      return effectEvent();
+    }, [isOpen, items]);
+  }
 
   /********************************************************************************************************************
    * Commands
@@ -179,10 +192,12 @@ function FormSelectDropdown<T extends string | number>({
     [getFirstEnabledItem, itemsRef, setTempActiveItem, tempActiveItemRef]
   );
 
-  useEffect(() => {
-    onCommands(commands);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [commands]);
+  {
+    const effectEvent = useEffectEvent(() => {
+      onCommands(commands);
+    });
+    useEffect(() => effectEvent(), [commands]);
+  }
 
   /********************************************************************************************************************
    * Event Handler

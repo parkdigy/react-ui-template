@@ -3,7 +3,6 @@ import { FormProps, FormText } from '@ccomp';
 import { Dev_FormOptions, Dev_FormOptionsData, Dev_Panel } from '../../@Common';
 import code from './Dev_Form_Text.code.md';
 import Dev_Form_Text_Variant from './Dev_Form_Text_Variant';
-import { toast } from '@common';
 import { FlattenFormOptions } from '../../@types/FlattenFormOptions';
 
 const _formOptions = [

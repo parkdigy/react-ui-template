@@ -1,5 +1,4 @@
 import { BoxProps } from '@ccomp';
-import { CSSProperties } from 'react';
 
 export interface TProps extends Omit<BoxProps, 'display' | 'color'> {
   ref?: Ref<HTMLDivElement>;

@@ -3,12 +3,20 @@ import { CustomComponentProps, CustomComponentAllStyles } from '../../CustomComp
 
 export interface BoxStyleProps extends CustomComponentAllStyles {}
 
-export type BoxHtmlProps = React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
+export type BoxHtmlProps<E extends HTMLDivElement | HTMLSpanElement = HTMLDivElement> = React.DetailedHTMLProps<
+  React.HTMLAttributes<E>,
+  E
+>;
 
-export interface BoxProps
-  extends Omit<CustomComponentProps<BoxHtmlProps>, 'component' | 'wrap' | keyof BoxStyleProps>,
-    BoxStyleProps {
-  component?: 'div' | 'span' | 'section' | 'article' | 'main' | 'aside' | 'header' | 'footer' | 'nav';
+export type BoxComponent = 'div' | 'span' | 'section' | 'article' | 'main' | 'aside' | 'header' | 'footer' | 'nav';
+
+export interface BoxProps<
+  C extends BoxComponent = 'div',
+  E extends HTMLDivElement | HTMLSpanElement = C extends 'span' ? HTMLSpanElement : HTMLDivElement,
+>
+  extends Omit<CustomComponentProps<BoxHtmlProps<E>>, 'component' | 'wrap' | keyof BoxStyleProps>, BoxStyleProps {
+  ref?: Ref<E>;
+  component?: C;
   center?: boolean;
   nowrap?: boolean;
   absolute?: boolean;

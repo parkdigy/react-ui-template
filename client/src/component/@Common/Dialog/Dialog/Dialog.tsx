@@ -41,6 +41,10 @@ const Dialog = () => {
    * Effect
    * ******************************************************************************************************************/
 
+  if (useChanged(location, true)) {
+    setDialogs([]);
+  }
+
   useEffect(() => {
     const outer = document.createElement('div');
     outer.style.visibility = 'hidden';
@@ -52,10 +56,6 @@ const Dialog = () => {
     document.body.removeChild(outer);
     document.documentElement.style.setProperty('--sb-width', `${width}px`);
   }, []);
-
-  useEffect(() => {
-    setDialogs([]);
-  }, [location]);
 
   /********************************************************************************************************************
    * Commands

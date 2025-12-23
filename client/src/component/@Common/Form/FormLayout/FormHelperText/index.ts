@@ -1,5 +1,4 @@
 import l from '@loadable/component';
-import { loadable } from '@common';
 
 const FormHelperText = l(
   () => import(/* webpackChunkName: "common-form-helper-text" */ './FormHelperText'),

@@ -5,18 +5,16 @@ import {
   CustomComponentFlexStyles,
   CustomComponentFontStyles,
 } from '../../../CustomComponent';
-import { CSSProperties } from 'react';
 
-export interface IconButtonProps
-  extends Omit<
-    BoxProps,
-    | 'size'
-    | 'center'
-    | 'centerJustify'
-    | keyof CustomComponentFlexStyles
-    | keyof CustomComponentFontStyles
-    | keyof CustomComponentBackgroundStyles
-  > {
+export interface IconButtonProps extends Omit<
+  BoxProps,
+  | 'size'
+  | 'center'
+  | 'centerJustify'
+  | keyof CustomComponentFlexStyles
+  | keyof CustomComponentFontStyles
+  | keyof CustomComponentBackgroundStyles
+> {
   // 아이콘 이름 (Material Icons 이름 사용)
   children: IconProps['children'];
   // 스타일 (default: 기본(아이콘), rounded: 둥근)

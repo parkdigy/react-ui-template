@@ -7,87 +7,83 @@ import { getDefaultOnColor } from '@theme';
 import { ErrorRetryProps as Props } from './ErrorRetry.types';
 import './ErrorRetry.scss';
 
-const ErrorRetry = React.forwardRef<HTMLDivElement, Props>(
-  (
-    {
-      className,
-      title,
-      message,
-      color,
-      fullScreen,
-      fullSize,
-      retryLabel = '재시도',
-      retryButtonProps,
-      onRetry,
-      // Tooltip 지원
-      ...props
-    },
-    ref
-  ) => {
-    /********************************************************************************************************************
-     * Use
-     * ******************************************************************************************************************/
+const ErrorRetry = ({
+  ref,
+  className,
+  title,
+  message,
+  color,
+  fullScreen,
+  fullSize,
+  retryLabel = '재시도',
+  retryButtonProps,
+  onRetry,
+  // Tooltip 지원
+  ...props
+}: Props) => {
+  /********************************************************************************************************************
+   * Use
+   * ******************************************************************************************************************/
 
-    const theme = useTheme();
+  const theme = useTheme();
 
-    /********************************************************************************************************************
-     * Render
-     * ******************************************************************************************************************/
+  /********************************************************************************************************************
+   * Render
+   * ******************************************************************************************************************/
 
-    return (
-      <div
-        ref={ref}
-        className={classnames(
-          className,
-          'ErrorRetry',
-          fullScreen && 'ErrorRetry-full-screen',
-          fullSize && 'ErrorRetry-full-size'
-        )}
+  return (
+    <div
+      ref={ref}
+      className={classnames(
+        className,
+        'ErrorRetry',
+        fullScreen && 'ErrorRetry-full-screen',
+        fullSize && 'ErrorRetry-full-size'
+      )}
+    >
+      <Box
+        className='ErrorRetry__Content'
+        color={color ? theme.css.vars.colors[getDefaultOnColor(color)] : undefined}
+        backgroundColor={color ? theme.css.vars.colors[color] : undefined}
+        {...props}
       >
-        <Box
-          className='ErrorRetry__Content'
-          color={color ? theme.css.vars.colors[getDefaultOnColor(color)] : undefined}
-          backgroundColor={color ? theme.css.vars.colors[color] : undefined}
-          {...props}
-        >
-          <Icon color={color ? undefined : 'opacity50'} size={32}>
-            error
-          </Icon>
-          <div>
-            {title && <div className='ErrorRetry__Content__Title'>{title}</div>}
-            {message ? (
-              <>
-                <div>{typeof message === 'string' ? <T whiteSpace='pre-wrap'>{message}</T> : message}</div>
-                {onRetry && <div>잠시 후 {retryLabel} 해주세요.</div>}
-              </>
-            ) : (
-              <Box>
-                문제가 발생했습니다.
-                {onRetry && (
-                  <>
-                    <br />
-                    잠시 후 {retryLabel} 해주세요.
-                  </>
-                )}
-              </Box>
-            )}
-          </div>
-          {onRetry && (
-            <Button
-              className='ErrorRetry__Content__RetryButton'
-              color={ifUndefined(color, 'opacity15')}
-              reverse={!!color}
-              mt={5}
-              onClick={onRetry}
-              {...retryButtonProps}
-            >
-              {retryLabel}
-            </Button>
+        <Icon color={color ? undefined : 'opacity50'} size={32}>
+          error
+        </Icon>
+        <div>
+          {title && <div className='ErrorRetry__Content__Title'>{title}</div>}
+          {message ? (
+            <>
+              <div>{typeof message === 'string' ? <T whiteSpace='pre-wrap'>{message}</T> : message}</div>
+              {onRetry && <div>잠시 후 {retryLabel} 해주세요.</div>}
+            </>
+          ) : (
+            <Box>
+              문제가 발생했습니다.
+              {onRetry && (
+                <>
+                  <br />
+                  잠시 후 {retryLabel} 해주세요.
+                </>
+              )}
+            </Box>
           )}
-        </Box>
-      </div>
-    );
-  }
-);
+        </div>
+        {onRetry && (
+          <Button
+            className='ErrorRetry__Content__RetryButton'
+            color={ifUndefined(color, 'opacity15')}
+            reverse={!!color}
+            mt={5}
+            onClick={onRetry}
+            {...retryButtonProps}
+          >
+            {retryLabel}
+          </Button>
+        )}
+      </Box>
+    </div>
+  );
+};
 
 export default ErrorRetry;

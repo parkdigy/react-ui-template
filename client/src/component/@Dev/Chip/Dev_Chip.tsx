@@ -3,7 +3,6 @@ import { Dev_FormOptions, Dev_FormOptionsData, Dev_Panel } from '../@Common';
 import { AllColors } from '@theme';
 import code from './Dev_Chip.code.md';
 import { Chip } from '@ccomp';
-import { toast } from '@common';
 import { FlattenFormOptions } from '../@types/FlattenFormOptions';
 
 const _formOptions = [

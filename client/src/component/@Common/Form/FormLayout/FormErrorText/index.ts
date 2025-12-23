@@ -1,5 +1,4 @@
 import l from '@loadable/component';
-import { loadable } from '@common';
 
 const FormErrorText = l(
   () => import(/* webpackChunkName: "common-form-error-text" */ './FormErrorText'),

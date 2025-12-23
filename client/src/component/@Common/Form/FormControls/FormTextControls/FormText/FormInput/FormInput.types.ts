@@ -1,26 +1,26 @@
 import { HTMLProps } from 'react';
 
-export interface FormInputProps
-  extends Pick<
-    HTMLProps<HTMLInputElement>,
-    | 'type'
-    | 'name'
-    | 'disabled'
-    | 'value'
-    | 'placeholder'
-    | 'formNoValidate'
-    | 'maxLength'
-    | 'inputMode'
-    | 'autoComplete'
-    | 'autoCapitalize'
-    | 'autoCorrect'
-    | 'onChange'
-    | 'onFocus'
-    | 'onBlur'
-    | 'onKeyUp'
-    | 'onKeyDown'
-    | 'onPaste'
-  > {
+export interface FormInputProps extends Pick<
+  HTMLProps<HTMLInputElement>,
+  | 'type'
+  | 'name'
+  | 'disabled'
+  | 'value'
+  | 'placeholder'
+  | 'formNoValidate'
+  | 'maxLength'
+  | 'inputMode'
+  | 'autoComplete'
+  | 'autoCapitalize'
+  | 'autoCorrect'
+  | 'onChange'
+  | 'onFocus'
+  | 'onBlur'
+  | 'onKeyUp'
+  | 'onKeyDown'
+  | 'onPaste'
+> {
+  ref?: Ref<HTMLInputElement>;
   error: boolean;
   clear?: boolean;
   endAdornment?: ReactNode;

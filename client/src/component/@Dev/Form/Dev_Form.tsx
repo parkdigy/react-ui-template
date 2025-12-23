@@ -11,7 +11,6 @@ import Dev_Form_Textarea from './Textarea';
 import { Dev_Panel } from '../@Common';
 import { useLocation } from 'react-router';
 import { Dev_Form_File } from './File';
-import { app } from '@common';
 
 const TabValue = [
   'text',
@@ -55,14 +54,19 @@ export const Dev_Form = () => {
    * Effect
    * ******************************************************************************************************************/
 
-  useEffect(() => {
-    const hash = app.deHash(location);
-    if (hash.sm && TabValue.includes(hash.sm as TabValue)) {
-      setActiveTab(hash.sm as TabValue);
-    } else {
-      setActiveTab('text');
-    }
-  }, [location]);
+  {
+    const effectEvent = useEffectEvent(() => {
+      const hash = app.deHash(location);
+      if (hash.sm && TabValue.includes(hash.sm as TabValue)) {
+        setActiveTab(hash.sm as TabValue);
+      } else {
+        setActiveTab('text');
+      }
+    });
+    useEffect(() => {
+      return effectEvent();
+    }, [location]);
+  }
 
   /********************************************************************************************************************
    * Render
@@ -88,7 +92,7 @@ export const Dev_Form = () => {
         items={TabItems}
         value={activeTab}
         onChange={(v) => {
-          v !== activeTab && __navigate(`#m=form&sm=${v}`);
+          v !== activeTab && g.nav.go(`#m=form&sm=${v}`);
         }}
       />
 

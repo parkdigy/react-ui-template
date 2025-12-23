@@ -1,6 +1,5 @@
 import { Props as ReactSvgProps } from 'react-svg';
 import { AllColors } from '@theme';
-import { CSSProperties } from 'react';
 
 export interface SvgProps extends Omit<ReactSvgProps, 'ref'> {
   w?: ReactSvgProps['width'];

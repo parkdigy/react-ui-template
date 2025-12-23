@@ -3,55 +3,63 @@ import { FormInputProps as Props } from './FormInput.types';
 import { ClearButton } from './ClearButton';
 import './FormInput.scss';
 
-export const FormInput = React.forwardRef<HTMLInputElement, Props>(
-  ({ error, onFocus, onBlur, endAdornment, clear, disabled, onClearClick, ...inputProps }, ref) => {
-    /********************************************************************************************************************
-     * State
-     * ******************************************************************************************************************/
+export const FormInput = ({
+  ref,
+  error,
+  onFocus,
+  onBlur,
+  endAdornment,
+  clear,
+  disabled,
+  onClearClick,
+  ...inputProps
+}: Props) => {
+  /********************************************************************************************************************
+   * State
+   * ******************************************************************************************************************/
 
-    const [isFocus, setIsFocus] = useState(false);
+  const [isFocus, setIsFocus] = useState(false);
 
-    /********************************************************************************************************************
-     * Event Handler
-     * ******************************************************************************************************************/
+  /********************************************************************************************************************
+   * Event Handler
+   * ******************************************************************************************************************/
 
-    const handleFocus = useCallback(
-      (e: React.FocusEvent<HTMLInputElement>) => {
-        setIsFocus(true);
-        onFocus?.(e);
-      },
-      [onFocus]
-    );
+  const handleFocus = useCallback(
+    (e: React.FocusEvent<HTMLInputElement>) => {
+      setIsFocus(true);
+      onFocus?.(e);
+    },
+    [onFocus]
+  );
 
-    const handleBlur = useCallback(
-      (e: React.FocusEvent<HTMLInputElement>) => {
-        setIsFocus(false);
-        onBlur?.(e);
-      },
-      [onBlur]
-    );
+  const handleBlur = useCallback(
+    (e: React.FocusEvent<HTMLInputElement>) => {
+      setIsFocus(false);
+      onBlur?.(e);
+    },
+    [onBlur]
+  );
 
-    /********************************************************************************************************************
-     * Render
-     * ******************************************************************************************************************/
+  /********************************************************************************************************************
+   * Render
+   * ******************************************************************************************************************/
 
-    return (
-      <div
-        className={classnames(
-          'FormInput',
-          disabled && 'FormInput-disabled',
-          error && 'FormInput-error',
-          isFocus && 'FormInput-focused'
-        )}
-      >
-        <input ref={ref} disabled={disabled} onFocus={handleFocus} onBlur={handleBlur} {...inputProps} />
-        <Flex className='FormInput__Right' row center>
-          {clear && !disabled && <ClearButton onClick={onClearClick} />}
-          {endAdornment}
-        </Flex>
-      </div>
-    );
-  }
-);
+  return (
+    <div
+      className={classnames(
+        'FormInput',
+        disabled && 'FormInput-disabled',
+        error && 'FormInput-error',
+        isFocus && 'FormInput-focused'
+      )}
+    >
+      <input ref={ref} disabled={disabled} onFocus={handleFocus} onBlur={handleBlur} {...inputProps} />
+      <Flex className='FormInput__Right' row center>
+        {clear && !disabled && <ClearButton onClick={onClearClick} />}
+        {endAdornment}
+      </Flex>
+    </div>
+  );
+};
 
 export default React.memo(FormInput) as typeof FormInput;

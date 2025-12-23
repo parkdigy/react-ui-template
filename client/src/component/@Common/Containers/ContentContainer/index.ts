@@ -1,5 +1,4 @@
 import l from '@loadable/component';
-import { loadable } from '@common';
 
 const ContentContainer = l(
   () => import(/* webpackChunkName: "common-content-container" */ './ContentContainer'),

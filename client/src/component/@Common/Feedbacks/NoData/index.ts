@@ -1,5 +1,4 @@
 import l from '@loadable/component';
-import { loadable } from '@common';
 
 const NoData = l(
   () => import(/* webpackChunkName: "common-no-data" */ './NoData'),

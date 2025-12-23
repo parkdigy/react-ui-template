@@ -3,6 +3,7 @@ export interface ApiLoadContainerCommands {
 }
 
 export interface ApiLoadContainerProps<T, TApiData> extends Omit<BoxProps, 'ref' | 'children' | 'onLoad'> {
+  ref?: Ref<ApiLoadContainerCommands>;
   children?: ReactNode | ((apiData: TApiData) => ReactNode);
   load?: boolean;
   data?: T;

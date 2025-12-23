@@ -1,5 +1,4 @@
 import l from '@loadable/component';
-import { loadable } from '@common';
 
 const Tooltip = l(
   () => import(/* webpackChunkName: "common-tooltip" */ './Tooltip'),

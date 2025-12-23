@@ -1,50 +1,58 @@
-import React, { CSSProperties } from 'react';
+import React from 'react';
 import { ColorPickerProps as Props } from './ColorPicker.types';
 import { HexAlphaColorPicker } from 'react-colorful';
-import './ColorPicker.scss';
-import { useRefState } from '@pdg/react-hook';
 import { useWindowSize } from 'usehooks-ts';
+import './ColorPicker.scss';
 
-export const ColorPicker = React.forwardRef<HTMLDivElement, Props>(
-  ({ className, defaultColor, color: initColor, onChange }, ref) => {
-    /********************************************************************************************************************
-     * Use
-     * ******************************************************************************************************************/
+export const ColorPicker = ({ ref, className, defaultColor, color: initColor, onChange }: Props) => {
+  /********************************************************************************************************************
+   * Use
+   * ******************************************************************************************************************/
 
-    const id = useId();
-    const { width: windowWidth } = useWindowSize();
+  const id = useId();
+  const { width: windowWidth } = useWindowSize();
 
-    /********************************************************************************************************************
-     * Ref
-     * ******************************************************************************************************************/
+  /********************************************************************************************************************
+   * Ref
+   * ******************************************************************************************************************/
 
-    const swatchRef = useRef<HTMLDivElement>(null);
-    const popoverRef = useRef<HTMLDivElement>(null);
+  const popoverRef = useRef<HTMLDivElement>(null);
 
-    /********************************************************************************************************************
-     * State
-     * ******************************************************************************************************************/
+  /********************************************************************************************************************
+   * State
+   * ******************************************************************************************************************/
 
-    const [isOpenRef, isOpen, setIsOpen] = useRefState(false);
-    const [color, _setColor] = useState(ifUndefined(initColor, defaultColor));
+  const [swatchBoundingClientRect, setSwatchBoundingClientRect] = useState<DOMRect>();
 
-    /********************************************************************************************************************
-     * Effect
-     * ******************************************************************************************************************/
+  /** color */
+  const [color, _setColor] = useState(initColor ?? defaultColor);
 
-    useEffect(() => {
+  /** isOpen */
+  const [isOpen, setIsOpen] = useState(false);
+  const isOpenRef = useAutoUpdateRef(isOpen);
+
+  /********************************************************************************************************************
+   * Effect
+   * ******************************************************************************************************************/
+
+  {
+    const effectEvent = useEffectEvent(() => {
       if (!isOpen) {
         _setColor(initColor);
       }
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [initColor]);
-
-    /** 외부 영역 클릭 시 팝오버 닫기 */
+    });
     useEffect(() => {
+      return effectEvent();
+    }, [initColor]);
+  }
+
+  /** 외부 영역 클릭 시 팝오버 닫기 */
+  {
+    const effectEvent = useEffectEvent(() => {
       let startedInside = false;
       let startedWhenMounted = false;
 
-      const clickHandler = (event: PointerEvent) => {
+      const clickHandler = (event: MouseEvent) => {
         if (!isOpenRef.current) return;
         if (event.target && (event.target as HTMLElement).className.includes(`ColorPicker__Swatch-${id}`)) return;
         if (startedInside || !startedWhenMounted) return;
@@ -69,80 +77,84 @@ export const ColorPicker = React.forwardRef<HTMLDivElement, Props>(
         document.removeEventListener('touchstart', validateEventStart);
         document.removeEventListener('click', clickHandler);
       };
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [popoverRef]);
+    });
+    useEffect(() => effectEvent(), []);
+  }
 
-    /********************************************************************************************************************
-     * Function
-     * ******************************************************************************************************************/
+  /********************************************************************************************************************
+   * Function
+   * ******************************************************************************************************************/
 
-    const setColor = useCallback(
-      (newColor: string) => {
-        _setColor(newColor);
-        onChange?.(newColor);
-      },
-      [_setColor, onChange]
-    );
+  const setColor = useCallback(
+    (newColor: string) => {
+      _setColor(newColor);
+      onChange?.(newColor);
+    },
+    [_setColor, onChange]
+  );
 
-    const toggle = useCallback(() => {
-      setIsOpen(!isOpen);
-    }, [isOpen, setIsOpen]);
+  const toggle = useCallback(() => {
+    setIsOpen(!isOpen);
+  }, [isOpen, setIsOpen]);
 
-    /********************************************************************************************************************
-     * Variable
-     * ******************************************************************************************************************/
+  /********************************************************************************************************************
+   * Variable
+   * ******************************************************************************************************************/
 
-    let popoverStyle: CSSProperties | undefined;
+  const popoverStyle = useMemo(() => {
+    let style: CSSProperties | undefined;
 
-    if (isOpen && swatchRef.current) {
-      popoverStyle = {};
-      const { left, width } = swatchRef.current.getBoundingClientRect();
+    if (isOpen && swatchBoundingClientRect) {
+      style = {};
+      const { left, width } = swatchBoundingClientRect;
       const center = left + width / 2;
 
       if (center + 110 > windowWidth) {
-        popoverStyle.right = 0;
+        style.right = 0;
       } else if (center - 110 < 0) {
-        popoverStyle.left = 0;
+        style.left = 0;
       } else {
-        popoverStyle.left = '50%';
-        popoverStyle.transform = 'translate(-50%, 0)';
+        style.left = '50%';
+        style.transform = 'translate(-50%, 0)';
       }
     }
 
-    /********************************************************************************************************************
-     * Render
-     * ******************************************************************************************************************/
+    return style;
+  }, [isOpen, swatchBoundingClientRect, windowWidth]);
 
-    return (
-      <div ref={ref} className={classnames(className, 'ColorPicker')}>
+  /********************************************************************************************************************
+   * Render
+   * ******************************************************************************************************************/
+
+  return (
+    <div ref={ref} className={classnames(className, 'ColorPicker')}>
+      <div
+        ref={(v) => setSwatchBoundingClientRect(v?.getBoundingClientRect())}
+        className={classnames('ColorPicker__Swatch', `ColorPicker__Swatch-${id}`)}
+        style={{ backgroundColor: color }}
+        onClick={(e) => {
+          if ((e.target as HTMLElement).className.includes(`ColorPicker__Swatch-${id}`)) {
+            toggle();
+          }
+        }}
+      >
         <div
-          ref={swatchRef}
-          className={classnames('ColorPicker__Swatch', `ColorPicker__Swatch-${id}`)}
-          style={{ backgroundColor: color }}
-          onClick={(e) => {
-            if ((e.target as HTMLElement).className.includes(`ColorPicker__Swatch-${id}`)) {
-              toggle();
-            }
-          }}
+          className={classnames('ColorPicker__Popover', isOpen && 'ColorPicker__Popover-open')}
+          style={popoverStyle}
+          ref={popoverRef}
         >
-          <div
-            className={classnames('ColorPicker__Popover', isOpen && 'ColorPicker__Popover-open')}
-            style={popoverStyle}
-            ref={popoverRef}
-          >
-            {isOpen && (
-              <>
-                <HexAlphaColorPicker color={color} onChange={setColor} />
-                <div className='ColorPicker__CloseButton' onClick={toggle}>
-                  닫기
-                </div>
-              </>
-            )}
-          </div>
+          {isOpen && (
+            <>
+              <HexAlphaColorPicker color={color} onChange={setColor} />
+              <div className='ColorPicker__CloseButton' onClick={toggle}>
+                닫기
+              </div>
+            </>
+          )}
         </div>
       </div>
-    );
-  }
-);
+    </div>
+  );
+};
 
 export default ColorPicker;

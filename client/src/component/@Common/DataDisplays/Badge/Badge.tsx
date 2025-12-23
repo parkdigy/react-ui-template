@@ -1,4 +1,4 @@
-import React, { CSSProperties } from 'react';
+import React from 'react';
 import { BadgeProps as Props } from './Badge.types';
 import './Badge.scss';
 import { AllColors, ButtonColors, DefaultColors, getDefaultOnColor } from '@theme';

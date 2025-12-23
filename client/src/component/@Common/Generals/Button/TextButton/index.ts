@@ -1,5 +1,4 @@
 import l from '@loadable/component';
-import { loadable } from '@common';
 
 const TextButton = l(
   () => import(/* webpackChunkName: "common-text-button" */ './TextButton'),

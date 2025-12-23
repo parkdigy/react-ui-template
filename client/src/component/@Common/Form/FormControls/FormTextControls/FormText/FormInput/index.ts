@@ -1,5 +1,4 @@
 import l from '@loadable/component';
-import { loadable } from '@common';
 
 const FormInput = l(
   () => import(/* webpackChunkName: "common-form-input" */ './FormInput'),

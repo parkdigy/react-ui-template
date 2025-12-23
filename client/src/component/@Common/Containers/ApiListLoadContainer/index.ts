@@ -1,5 +1,4 @@
 import l from '@loadable/component';
-import { loadable } from '@common';
 
 const ApiListLoadContainer = l(
   () => import(/* webpackChunkName: "common-api-list-load-container" */ './ApiListLoadContainer'),

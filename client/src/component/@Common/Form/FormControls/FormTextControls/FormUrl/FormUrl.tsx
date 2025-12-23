@@ -4,7 +4,7 @@ import { useForwardRef } from '@pdg/react-hook';
 import { FormText, FormTextCommands } from '../FormText';
 import { isUrl } from '@pdg/compare';
 
-export const FormUrl = React.forwardRef<FormUrlCommands, Props>(({ className, name, onValidate, ...props }, ref) => {
+export const FormUrl = ({ ref, className, name, onValidate, ...props }: Props) => {
   /********************************************************************************************************************
    * State
    * ******************************************************************************************************************/
@@ -57,6 +57,6 @@ export const FormUrl = React.forwardRef<FormUrlCommands, Props>(({ className, na
       {...props}
     />
   );
-});
+};
 
 export default FormUrl;

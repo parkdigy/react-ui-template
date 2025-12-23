@@ -36,30 +36,6 @@ const RootLayout = () => {
   const [isWindowActive, setIsWindowActive] = useState(true);
 
   /********************************************************************************************************************
-   * Effect
-   * ******************************************************************************************************************/
-
-  useEffect(() => {
-    loadAuth();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
-    app.setColorScheme(colorScheme);
-  }, [colorScheme]);
-
-  useEffect(() => {
-    const handleVisibilityChange = () => {
-      setIsWindowActive(document.visibilityState === 'visible');
-    };
-
-    document.addEventListener('visibilitychange', handleVisibilityChange);
-    return () => {
-      document.removeEventListener('visibilitychange', handleVisibilityChange);
-    };
-  }, []);
-
-  /********************************************************************************************************************
    * Function
    * ******************************************************************************************************************/
 
@@ -142,6 +118,32 @@ const RootLayout = () => {
     },
     [hideHtmlLoading, showHtmlLoading]
   );
+
+  /********************************************************************************************************************
+   * Effect
+   * ******************************************************************************************************************/
+
+  {
+    const effectEvent = useEffectEvent(() => {
+      loadAuth();
+    });
+    useEffect(() => effectEvent(), []);
+  }
+
+  useEffect(() => {
+    app.setColorScheme(colorScheme);
+  }, [colorScheme]);
+
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      setIsWindowActive(document.visibilityState === 'visible');
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
+  }, []);
 
   /********************************************************************************************************************
    * Context Value

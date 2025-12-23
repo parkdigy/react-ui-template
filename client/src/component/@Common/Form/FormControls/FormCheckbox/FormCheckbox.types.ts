@@ -7,6 +7,7 @@ export interface FormCheckboxCommands extends FormControlCommands {
 }
 
 export interface FormCheckboxProps extends Omit<FormControlCommonProps<boolean>, 'value' | 'onChange'> {
+  ref?: Ref<FormCheckboxCommands>;
   type?: 'checkbox' | 'switch';
   label?: ReactNode;
   labelColor?: TProps['color'];

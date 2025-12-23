@@ -1,207 +1,242 @@
-// Button
-declare const Button: typeof import('../component/@Common/index.ts').Button;
-declare type ButtonProps = import('../component/@Common/index.ts').ButtonProps;
+// Container
+declare const PageRootContainer: typeof import('../component/@Common/index.ts').PageRootContainer;
+
+// Layout
+declare const Box: typeof import('../component/@Common/index.ts').Box;
+declare type BoxProps = import('../component/@Common/index.ts').BoxProps;
+declare const Span: typeof import('../component/@Common/index.ts').Span;
+declare type SpanProps = import('../component/@Common/index.ts').SpanProps;
+declare const Flex: typeof import('../component/@Common/index.ts').Flex;
+declare type FlexProps = import('../component/@Common/index.ts').FlexProps;
+declare const Divider: typeof import('../component/@Common/index.ts').Divider;
+declare type DividerProps = import('../component/@Common/index.ts').DividerProps;
+declare const Panel: typeof import('../component/@Common/index.ts').Panel;
+declare type PanelProps = import('../component/@Common/index.ts').PanelProps;
+declare const Grid: typeof import('../component/@Common/index.ts').Grid;
+declare type GridProps = import('../component/@Common/index.ts').GridProps;
+declare const Row: typeof import('../component/@Common/index.ts').Row;
+declare type RowProps = import('../component/@Common/index.ts').RowProps;
+declare const Col: typeof import('../component/@Common/index.ts').Col;
+declare type ColProps = import('../component/@Common/index.ts').ColProps;
+
+// Image
+declare const Img: typeof import('../component/@Common/index.ts').Img;
+declare type ImgProps = import('../component/@Common/index.ts').ImgProps;
+declare const Svg: typeof import('../component/@Common/index.ts').Svg;
+declare type SvgProps = import('../component/@Common/index.ts').SvgProps;
+
 // Icon
 declare const Icon: typeof import('../component/@Common/index.ts').Icon;
 declare type IconProps = import('../component/@Common/index.ts').IconProps;
-// Img
-declare const Img: typeof import('../component/@Common/index.ts').Img;
-declare type ImgProps = import('../component/@Common/index.ts').ImgProps;
-// Layouts
-declare const Box: typeof import('../component/Common/index.ts').Box;
-declare type BoxProps = import('../component/Common/index.ts').BoxProps;
-declare const Div: typeof import('../component/Common/index.ts').Div;
-declare type DivProps = import('../component/Common/index.ts').DivProps;
-declare const Flex: typeof import('../component/Common/index.ts').Flex;
-declare type FlexProps = import('../component/Common/index.ts').FlexProps;
-declare const PageRootContainer: typeof import('../component/Common/index.ts').PageRootContainer;
-declare type PageRootContainerProps = import('../component/Common/index.ts').PageRootContainerProps;
-declare const Span: typeof import('../component/Common/index.ts').Span;
-declare type SpanProps = import('../component/Common/index.ts').SpanProps;
-declare const Stack: typeof import('../component/Common/index.ts').Stack;
-declare type StackProps = import('../component/Common/index.ts').StackProps;
 
-// Default
-T as _T,
-  TProps as _TProps,
-  // FontWeight
-  TBold as _TBold,
-  T100 as _T100,
-  T200 as _T200,
-  T300 as _T300,
-  T400 as _T400,
-  T500 as _T500,
-  T600 as _T600,
-  T700 as _T700,
-  T800 as _T800,
-  T900 as _T900,
-  // Color
-  TPrimary as _TPrimary,
-  TOnPrimary as _TOnPrimary,
-  TSecondary as _TSecondary,
-  TOnSecondary as _TOnSecondary,
-  TSuccess as _TSuccess,
-  TOnSuccess as _TOnSuccess,
-  TWarning as _TWarning,
-  TOnWarning as _TOnWarning,
-  TError as _TError,
-  TOnError as _TOnError,
-  TAccent as _TAccent,
-  TBlurry as _TBlurry,
-  TLighten as _TLighten,
-  TBackground as _TBackground,
-  TOpacity01 as _TOpacity01,
-  TOpacity02 as _TOpacity02,
-  TOpacity03 as _TOpacity03,
-  TOpacity04 as _TOpacity04,
-  TOpacity05 as _TOpacity05,
-  TOpacity06 as _TOpacity06,
-  TOpacity07 as _TOpacity07,
-  TOpacity08 as _TOpacity08,
-  TOpacity09 as _TOpacity09,
-  TOpacity10 as _TOpacity10,
-  TOpacity15 as _TOpacity15,
-  TOpacity20 as _TOpacity20,
-  TOpacity25 as _TOpacity25,
-  TOpacity30 as _TOpacity30,
-  TOpacity35 as _TOpacity35,
-  TOpacity40 as _TOpacity40,
-  TOpacity45 as _TOpacity45,
-  TOpacity50 as _TOpacity50,
-  TOpacity55 as _TOpacity55,
-  TOpacity60 as _TOpacity60,
-  TOpacity65 as _TOpacity65,
-  TOpacity70 as _TOpacity70,
-  TOpacity75 as _TOpacity75,
-  TOpacity80 as _TOpacity80,
-  TOpacity85 as _TOpacity85,
-  TOpacity90 as _TOpacity90,
-  TOpacity95 as _TOpacity95,
-  TOpacityReverse01 as _TOpacityReverse01,
-  TOpacityReverse02 as _TOpacityReverse02,
-  TOpacityReverse03 as _TOpacityReverse03,
-  TOpacityReverse04 as _TOpacityReverse04,
-  TOpacityReverse05 as _TOpacityReverse05,
-  TOpacityReverse06 as _TOpacityReverse06,
-  TOpacityReverse07 as _TOpacityReverse07,
-  TOpacityReverse08 as _TOpacityReverse08,
-  TOpacityReverse09 as _TOpacityReverse09,
-  TOpacityReverse10 as _TOpacityReverse10,
-  TOpacityReverse15 as _TOpacityReverse15,
-  TOpacityReverse20 as _TOpacityReverse20,
-  TOpacityReverse25 as _TOpacityReverse25,
-  TOpacityReverse30 as _TOpacityReverse30,
-  TOpacityReverse35 as _TOpacityReverse35,
-  TOpacityReverse40 as _TOpacityReverse40,
-  TOpacityReverse45 as _TOpacityReverse45,
-  TOpacityReverse50 as _TOpacityReverse50,
-  TOpacityReverse55 as _TOpacityReverse55,
-  TOpacityReverse60 as _TOpacityReverse60,
-  TOpacityReverse65 as _TOpacityReverse65,
-  TOpacityReverse70 as _TOpacityReverse70,
-  TOpacityReverse75 as _TOpacityReverse75,
-  TOpacityReverse80 as _TOpacityReverse80,
-  TOpacityReverse85 as _TOpacityReverse85,
-  TOpacityReverse90 as _TOpacityReverse90,
-  TOpacityReverse95 as _TOpacityReverse95,
-  // Size
-  TCaption as _TCaption,
-  TCaptionBold as _TCaptionBold,
-  TCaption100 as _TCaption100,
-  TCaption200 as _TCaption200,
-  TCaption300 as _TCaption300,
-  TCaption400 as _TCaption400,
-  TCaption500 as _TCaption500,
-  TCaption600 as _TCaption600,
-  TCaption700 as _TCaption700,
-  TCaption800 as _TCaption800,
-  TCaption900 as _TCaption900,
-  TBodySmall as _TBodySmall,
-  TBodySmallBold as _TBodySmallBold,
-  TBodySmall100 as _TBodySmall100,
-  TBodySmall200 as _TBodySmall200,
-  TBodySmall300 as _TBodySmall300,
-  TBodySmall400 as _TBodySmall400,
-  TBodySmall500 as _TBodySmall500,
-  TBodySmall600 as _TBodySmall600,
-  TBodySmall700 as _TBodySmall700,
-  TBodySmall800 as _TBodySmall800,
-TBodySmall900 as _TBodySmall900,
-TBody as _TBody,
-TBodyBold as _TBodyBold,
-TBody100 as _TBody100,
-TBody200 as _TBody200,
-TBody300 as _TBody300,
-TBody400 as _TBody400,
-TBody500 as _TBody500,
-TBody600 as _TBody600,
-TBody700 as _TBody700,
-TBody800 as _TBody800,
-TBody900 as _TBody900,
-TBodyLarge as _TBodyLarge,
-TBodyLargeBold as _TBodyLargeBold,
-TBodyLarge100 as _TBodyLarge100,
-TBodyLarge200 as _TBodyLarge200,
-TBodyLarge300 as _TBodyLarge300,
-TBodyLarge400 as _TBodyLarge400,
-TBodyLarge500 as _TBodyLarge500,
-TBodyLarge600 as _TBodyLarge600,
-TBodyLarge700 as _TBodyLarge700,
-TBodyLarge800 as _TBodyLarge800,
-TBodyLarge900 as _TBodyLarge900,
-TTitleSmall as _TTitleSmall,
-TTitleSmallBold as _TTitleSmallBold,
-TTitleSmall100 as _TTitleSmall100,
-TTitleSmall200 as _TTitleSmall200,
-TTitleSmall300 as _TTitleSmall300,
-TTitleSmall400 as _TTitleSmall400,
-TTitleSmall500 as _TTitleSmall500,
-TTitleSmall600 as _TTitleSmall600,
-TTitleSmall700 as _TTitleSmall700,
-TTitleSmall800 as _TTitleSmall800,
-TTitleSmall900 as _TTitleSmall900,
-TTitle as _TTitle,
-TTitleBold as _TTitleBold,
-TTitle100 as _TTitle100,
-TTitle200 as _TTitle200,
-TTitle300 as _TTitle300,
-TTitle400 as _TTitle400,
-TTitle500 as _TTitle500,
-TTitle600 as _TTitle600,
-TTitle700 as _TTitle700,
-TTitle800 as _TTitle800,
-TTitle900 as _TTitle900,
-TTitleLarge as _TTitleLarge,
-TTitleLargeBold as _TTitleLargeBold,
-TTitleLarge100 as _TTitleLarge100,
-TTitleLarge200 as _TTitleLarge200,
-TTitleLarge300 as _TTitleLarge300,
-TTitleLarge400 as _TTitleLarge400,
-TTitleLarge500 as _TTitleLarge500,
-TTitleLarge600 as _TTitleLarge600,
-TTitleLarge700 as _TTitleLarge700,
-TTitleLarge800 as _TTitleLarge800,
-TTitleLarge900 as _TTitleLarge900,
-THeadline as _THeadline,
-THeadlineBold as _THeadlineBold,
-THeadline100 as _THeadline100,
-THeadline200 as _THeadline200,
-THeadline300 as _THeadline300,
-THeadline400 as _THeadline400,
-THeadline500 as _THeadline500,
-THeadline600 as _THeadline600,
-THeadline700 as _THeadline700,
-THeadline800 as _THeadline800,
-THeadline900 as _THeadline900,
-THeadlineLarge as _THeadlineLarge,
-THeadlineLargeBold as _THeadlineLargeBold,
-THeadlineLarge100 as _THeadlineLarge100,
-THeadlineLarge200 as _THeadlineLarge200,
-THeadlineLarge300 as _THeadlineLarge300,
-THeadlineLarge400 as _THeadlineLarge400,
-THeadlineLarge500 as _THeadlineLarge500,
-THeadlineLarge600 as _THeadlineLarge600,
-THeadlineLarge700 as _THeadlineLarge700,
-THeadlineLarge800 as _THeadlineLarge800,
-THeadlineLarge900 as _THeadlineLarge900,
+// Button
+declare const Button: typeof import('../component/@Common/index.ts').Button;
+declare type ButtonProps = import('../component/@Common/index.ts').ButtonProps;
+declare const TextButton: typeof import('../component/@Common/index.ts').TextButton;
+declare type TextButtonProps = import('../component/@Common/index.ts').TextButtonProps;
+declare const IconButton: typeof import('../component/@Common/index.ts').IconButton;
+declare type IconButtonProps = import('../component/@Common/index.ts').IconButtonProps;
+declare const FlexButton: typeof import('../component/@Common/index.ts').FlexButton;
+declare type FlexButtonProps = import('../component/@Common/index.ts').FlexButtonProps;
+declare const BoxButton: typeof import('../component/@Common/index.ts').BoxButton;
+declare type BoxButtonProps = import('../component/@Common/index.ts').BoxButtonProps;
 
+// Dialog
+declare const Dialog: typeof import('../component/@Common/index.ts').Dialog;
+declare type DialogProps = import('../component/@Common/index.ts').DialogProps;
+declare type DialogCommands = import('../component/@Common/index.ts').DialogCommands;
+
+// Alert
+declare const Alert: typeof import('../component/@Common/index.ts').Alert;
+declare type AlertProps = import('../component/@Common/index.ts').AlertProps;
+
+// Tooltip
+declare const Tooltip: typeof import('../component/@Common/index.ts').Tooltip;
+declare type TooltipProps = import('../component/@Common/index.ts').TooltipProps;
+
+// T - Default
+declare const T: typeof import('../component/@Common/index.ts').T;
+declare type TProps = import('../component/@Common/index.ts').TProps;
+
+// T - FontWeight
+declare const TBold: typeof import('../component/@Common/index.ts').TBold;
+declare const T100: typeof import('../component/@Common/index.ts').T100;
+declare const T200: typeof import('../component/@Common/index.ts').T200;
+declare const T300: typeof import('../component/@Common/index.ts').T300;
+declare const T400: typeof import('../component/@Common/index.ts').T400;
+declare const T500: typeof import('../component/@Common/index.ts').T500;
+declare const T600: typeof import('../component/@Common/index.ts').T600;
+declare const T700: typeof import('../component/@Common/index.ts').T700;
+declare const T800: typeof import('../component/@Common/index.ts').T800;
+declare const T900: typeof import('../component/@Common/index.ts').T900;
+
+// T - Color
+declare const TPrimary: typeof import('../component/@Common/index.ts').TPrimary;
+declare const TOnPrimary: typeof import('../component/@Common/index.ts').TOnPrimary;
+declare const TSecondary: typeof import('../component/@Common/index.ts').TSecondary;
+declare const TOnSecondary: typeof import('../component/@Common/index.ts').TOnSecondary;
+declare const TSuccess: typeof import('../component/@Common/index.ts').TSuccess;
+declare const TOnSuccess: typeof import('../component/@Common/index.ts').TOnSuccess;
+declare const TWarning: typeof import('../component/@Common/index.ts').TWarning;
+declare const TOnWarning: typeof import('../component/@Common/index.ts').TOnWarning;
+declare const TError: typeof import('../component/@Common/index.ts').TError;
+declare const TOnError: typeof import('../component/@Common/index.ts').TOnError;
+declare const TAccent: typeof import('../component/@Common/index.ts').TAccent;
+declare const TBlurry: typeof import('../component/@Common/index.ts').TBlurry;
+declare const TLighten: typeof import('../component/@Common/index.ts').TLighten;
+declare const TBackground: typeof import('../component/@Common/index.ts').TBackground;
+declare const TOpacity01: typeof import('../component/@Common/index.ts').TOpacity01;
+declare const TOpacity02: typeof import('../component/@Common/index.ts').TOpacity02;
+declare const TOpacity03: typeof import('../component/@Common/index.ts').TOpacity03;
+declare const TOpacity04: typeof import('../component/@Common/index.ts').TOpacity04;
+declare const TOpacity05: typeof import('../component/@Common/index.ts').TOpacity05;
+declare const TOpacity06: typeof import('../component/@Common/index.ts').TOpacity06;
+declare const TOpacity07: typeof import('../component/@Common/index.ts').TOpacity07;
+declare const TOpacity08: typeof import('../component/@Common/index.ts').TOpacity08;
+declare const TOpacity09: typeof import('../component/@Common/index.ts').TOpacity09;
+declare const TOpacity10: typeof import('../component/@Common/index.ts').TOpacity10;
+declare const TOpacity15: typeof import('../component/@Common/index.ts').TOpacity15;
+declare const TOpacity20: typeof import('../component/@Common/index.ts').TOpacity20;
+declare const TOpacity25: typeof import('../component/@Common/index.ts').TOpacity25;
+declare const TOpacity30: typeof import('../component/@Common/index.ts').TOpacity30;
+declare const TOpacity35: typeof import('../component/@Common/index.ts').TOpacity35;
+declare const TOpacity40: typeof import('../component/@Common/index.ts').TOpacity40;
+declare const TOpacity45: typeof import('../component/@Common/index.ts').TOpacity45;
+declare const TOpacity50: typeof import('../component/@Common/index.ts').TOpacity50;
+declare const TOpacity55: typeof import('../component/@Common/index.ts').TOpacity55;
+declare const TOpacity60: typeof import('../component/@Common/index.ts').TOpacity60;
+declare const TOpacity65: typeof import('../component/@Common/index.ts').TOpacity65;
+declare const TOpacity70: typeof import('../component/@Common/index.ts').TOpacity70;
+declare const TOpacity75: typeof import('../component/@Common/index.ts').TOpacity75;
+declare const TOpacity80: typeof import('../component/@Common/index.ts').TOpacity80;
+declare const TOpacity85: typeof import('../component/@Common/index.ts').TOpacity85;
+declare const TOpacity90: typeof import('../component/@Common/index.ts').TOpacity90;
+declare const TOpacity95: typeof import('../component/@Common/index.ts').TOpacity95;
+declare const TOpacityReverse01: typeof import('../component/@Common/index.ts').TOpacityReverse01;
+declare const TOpacityReverse02: typeof import('../component/@Common/index.ts').TOpacityReverse02;
+declare const TOpacityReverse03: typeof import('../component/@Common/index.ts').TOpacityReverse03;
+declare const TOpacityReverse04: typeof import('../component/@Common/index.ts').TOpacityReverse04;
+declare const TOpacityReverse05: typeof import('../component/@Common/index.ts').TOpacityReverse05;
+declare const TOpacityReverse06: typeof import('../component/@Common/index.ts').TOpacityReverse06;
+declare const TOpacityReverse07: typeof import('../component/@Common/index.ts').TOpacityReverse07;
+declare const TOpacityReverse08: typeof import('../component/@Common/index.ts').TOpacityReverse08;
+declare const TOpacityReverse09: typeof import('../component/@Common/index.ts').TOpacityReverse09;
+declare const TOpacityReverse10: typeof import('../component/@Common/index.ts').TOpacityReverse10;
+declare const TOpacityReverse15: typeof import('../component/@Common/index.ts').TOpacityReverse15;
+declare const TOpacityReverse20: typeof import('../component/@Common/index.ts').TOpacityReverse20;
+declare const TOpacityReverse25: typeof import('../component/@Common/index.ts').TOpacityReverse25;
+declare const TOpacityReverse30: typeof import('../component/@Common/index.ts').TOpacityReverse30;
+declare const TOpacityReverse35: typeof import('../component/@Common/index.ts').TOpacityReverse35;
+declare const TOpacityReverse40: typeof import('../component/@Common/index.ts').TOpacityReverse40;
+declare const TOpacityReverse45: typeof import('../component/@Common/index.ts').TOpacityReverse45;
+declare const TOpacityReverse50: typeof import('../component/@Common/index.ts').TOpacityReverse50;
+declare const TOpacityReverse55: typeof import('../component/@Common/index.ts').TOpacityReverse55;
+declare const TOpacityReverse60: typeof import('../component/@Common/index.ts').TOpacityReverse60;
+declare const TOpacityReverse65: typeof import('../component/@Common/index.ts').TOpacityReverse65;
+declare const TOpacityReverse70: typeof import('../component/@Common/index.ts').TOpacityReverse70;
+declare const TOpacityReverse75: typeof import('../component/@Common/index.ts').TOpacityReverse75;
+declare const TOpacityReverse80: typeof import('../component/@Common/index.ts').TOpacityReverse80;
+declare const TOpacityReverse85: typeof import('../component/@Common/index.ts').TOpacityReverse85;
+declare const TOpacityReverse90: typeof import('../component/@Common/index.ts').TOpacityReverse90;
+declare const TOpacityReverse95: typeof import('../component/@Common/index.ts').TOpacityReverse95;
+
+// T - Size
+declare const TCaption: typeof import('../component/@Common/index.ts').TCaption;
+declare const TCaptionBold: typeof import('../component/@Common/index.ts').TCaptionBold;
+declare const TCaption100: typeof import('../component/@Common/index.ts').TCaption100;
+declare const TCaption200: typeof import('../component/@Common/index.ts').TCaption200;
+declare const TCaption300: typeof import('../component/@Common/index.ts').TCaption300;
+declare const TCaption400: typeof import('../component/@Common/index.ts').TCaption400;
+declare const TCaption500: typeof import('../component/@Common/index.ts').TCaption500;
+declare const TCaption600: typeof import('../component/@Common/index.ts').TCaption600;
+declare const TCaption700: typeof import('../component/@Common/index.ts').TCaption700;
+declare const TCaption800: typeof import('../component/@Common/index.ts').TCaption800;
+declare const TCaption900: typeof import('../component/@Common/index.ts').TCaption900;
+declare const TBodySmall: typeof import('../component/@Common/index.ts').TBodySmall;
+declare const TBodySmallBold: typeof import('../component/@Common/index.ts').TBodySmallBold;
+declare const TBodySmall100: typeof import('../component/@Common/index.ts').TBodySmall100;
+declare const TBodySmall200: typeof import('../component/@Common/index.ts').TBodySmall200;
+declare const TBodySmall300: typeof import('../component/@Common/index.ts').TBodySmall300;
+declare const TBodySmall400: typeof import('../component/@Common/index.ts').TBodySmall400;
+declare const TBodySmall500: typeof import('../component/@Common/index.ts').TBodySmall500;
+declare const TBodySmall600: typeof import('../component/@Common/index.ts').TBodySmall600;
+declare const TBodySmall700: typeof import('../component/@Common/index.ts').TBodySmall700;
+declare const TBodySmall800: typeof import('../component/@Common/index.ts').TBodySmall800;
+declare const TBodySmall900: typeof import('../component/@Common/index.ts').TBodySmall900;
+declare const TBody: typeof import('../component/@Common/index.ts').TBody;
+declare const TBodyBold: typeof import('../component/@Common/index.ts').TBodyBold;
+declare const TBody100: typeof import('../component/@Common/index.ts').TBody100;
+declare const TBody200: typeof import('../component/@Common/index.ts').TBody200;
+declare const TBody300: typeof import('../component/@Common/index.ts').TBody300;
+declare const TBody400: typeof import('../component/@Common/index.ts').TBody400;
+declare const TBody500: typeof import('../component/@Common/index.ts').TBody500;
+declare const TBody600: typeof import('../component/@Common/index.ts').TBody600;
+declare const TBody700: typeof import('../component/@Common/index.ts').TBody700;
+declare const TBody800: typeof import('../component/@Common/index.ts').TBody800;
+declare const TBody900: typeof import('../component/@Common/index.ts').TBody900;
+declare const TBodyLarge: typeof import('../component/@Common/index.ts').TBodyLarge;
+declare const TBodyLargeBold: typeof import('../component/@Common/index.ts').TBodyLargeBold;
+declare const TBodyLarge100: typeof import('../component/@Common/index.ts').TBodyLarge100;
+declare const TBodyLarge200: typeof import('../component/@Common/index.ts').TBodyLarge200;
+declare const TBodyLarge300: typeof import('../component/@Common/index.ts').TBodyLarge300;
+declare const TBodyLarge400: typeof import('../component/@Common/index.ts').TBodyLarge400;
+declare const TBodyLarge500: typeof import('../component/@Common/index.ts').TBodyLarge500;
+declare const TBodyLarge600: typeof import('../component/@Common/index.ts').TBodyLarge600;
+declare const TBodyLarge700: typeof import('../component/@Common/index.ts').TBodyLarge700;
+declare const TBodyLarge800: typeof import('../component/@Common/index.ts').TBodyLarge800;
+declare const TBodyLarge900: typeof import('../component/@Common/index.ts').TBodyLarge900;
+declare const TTitleSmall: typeof import('../component/@Common/index.ts').TTitleSmall;
+declare const TTitleSmallBold: typeof import('../component/@Common/index.ts').TTitleSmallBold;
+declare const TTitleSmall100: typeof import('../component/@Common/index.ts').TTitleSmall100;
+declare const TTitleSmall200: typeof import('../component/@Common/index.ts').TTitleSmall200;
+declare const TTitleSmall300: typeof import('../component/@Common/index.ts').TTitleSmall300;
+declare const TTitleSmall400: typeof import('../component/@Common/index.ts').TTitleSmall400;
+declare const TTitleSmall500: typeof import('../component/@Common/index.ts').TTitleSmall500;
+declare const TTitleSmall600: typeof import('../component/@Common/index.ts').TTitleSmall600;
+declare const TTitleSmall700: typeof import('../component/@Common/index.ts').TTitleSmall700;
+declare const TTitleSmall800: typeof import('../component/@Common/index.ts').TTitleSmall800;
+declare const TTitleSmall900: typeof import('../component/@Common/index.ts').TTitleSmall900;
+declare const TTitle: typeof import('../component/@Common/index.ts').TTitle;
+declare const TTitleBold: typeof import('../component/@Common/index.ts').TTitleBold;
+declare const TTitle100: typeof import('../component/@Common/index.ts').TTitle100;
+declare const TTitle200: typeof import('../component/@Common/index.ts').TTitle200;
+declare const TTitle300: typeof import('../component/@Common/index.ts').TTitle300;
+declare const TTitle400: typeof import('../component/@Common/index.ts').TTitle400;
+declare const TTitle500: typeof import('../component/@Common/index.ts').TTitle500;
+declare const TTitle600: typeof import('../component/@Common/index.ts').TTitle600;
+declare const TTitle700: typeof import('../component/@Common/index.ts').TTitle700;
+declare const TTitle800: typeof import('../component/@Common/index.ts').TTitle800;
+declare const TTitle900: typeof import('../component/@Common/index.ts').TTitle900;
+declare const TTitleLarge: typeof import('../component/@Common/index.ts').TTitleLarge;
+declare const TTitleLargeBold: typeof import('../component/@Common/index.ts').TTitleLargeBold;
+declare const TTitleLarge100: typeof import('../component/@Common/index.ts').TTitleLarge100;
+declare const TTitleLarge200: typeof import('../component/@Common/index.ts').TTitleLarge200;
+declare const TTitleLarge300: typeof import('../component/@Common/index.ts').TTitleLarge300;
+declare const TTitleLarge400: typeof import('../component/@Common/index.ts').TTitleLarge400;
+declare const TTitleLarge500: typeof import('../component/@Common/index.ts').TTitleLarge500;
+declare const TTitleLarge600: typeof import('../component/@Common/index.ts').TTitleLarge600;
+declare const TTitleLarge700: typeof import('../component/@Common/index.ts').TTitleLarge700;
+declare const TTitleLarge800: typeof import('../component/@Common/index.ts').TTitleLarge800;
+declare const TTitleLarge900: typeof import('../component/@Common/index.ts').TTitleLarge900;
+declare const THeadline: typeof import('../component/@Common/index.ts').THeadline;
+declare const THeadlineBold: typeof import('../component/@Common/index.ts').THeadlineBold;
+declare const THeadline100: typeof import('../component/@Common/index.ts').THeadline100;
+declare const THeadline200: typeof import('../component/@Common/index.ts').THeadline200;
+declare const THeadline300: typeof import('../component/@Common/index.ts').THeadline300;
+declare const THeadline400: typeof import('../component/@Common/index.ts').THeadline400;
+declare const THeadline500: typeof import('../component/@Common/index.ts').THeadline500;
+declare const THeadline600: typeof import('../component/@Common/index.ts').THeadline600;
+declare const THeadline700: typeof import('../component/@Common/index.ts').THeadline700;
+declare const THeadline800: typeof import('../component/@Common/index.ts').THeadline800;
+declare const THeadline900: typeof import('../component/@Common/index.ts').THeadline900;
+declare const THeadlineLarge: typeof import('../component/@Common/index.ts').THeadlineLarge;
+declare const THeadlineLargeBold: typeof import('../component/@Common/index.ts').THeadlineLargeBold;
+declare const THeadlineLarge100: typeof import('../component/@Common/index.ts').THeadlineLarge100;
+declare const THeadlineLarge200: typeof import('../component/@Common/index.ts').THeadlineLarge200;
+declare const THeadlineLarge300: typeof import('../component/@Common/index.ts').THeadlineLarge300;
+declare const THeadlineLarge400: typeof import('../component/@Common/index.ts').THeadlineLarge400;
+declare const THeadlineLarge500: typeof import('../component/@Common/index.ts').THeadlineLarge500;
+declare const THeadlineLarge600: typeof import('../component/@Common/index.ts').THeadlineLarge600;
+declare const THeadlineLarge700: typeof import('../component/@Common/index.ts').THeadlineLarge700;
+declare const THeadlineLarge800: typeof import('../component/@Common/index.ts').THeadlineLarge800;
+declare const THeadlineLarge900: typeof import('../component/@Common/index.ts').THeadlineLarge900;

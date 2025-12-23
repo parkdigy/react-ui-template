@@ -5,7 +5,7 @@ import './Pagination.scss';
 const PAGE_LIMIT = 5;
 const SIDE_PAGES = Math.floor(PAGE_LIMIT / 2);
 
-export const Pagination = React.forwardRef<HTMLDivElement, Props>(({ paging, onPageChange }, ref) => {
+export const Pagination = ({ ref, paging, onPageChange }: Props) => {
   /********************************************************************************************************************
    * Variable
    * ******************************************************************************************************************/
@@ -76,6 +76,6 @@ export const Pagination = React.forwardRef<HTMLDivElement, Props>(({ paging, onP
       </div>
     </div>
   );
-});
+};
 
 export default React.memo(Pagination) as typeof Pagination;

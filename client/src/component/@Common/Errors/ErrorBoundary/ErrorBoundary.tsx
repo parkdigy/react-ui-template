@@ -6,10 +6,8 @@
 import React from 'react';
 import { ErrorBoundaryProps as Props } from './ErrorBoundary.types';
 import { ErrorBoundary as ReactErrorBoundary, FallbackProps } from 'react-error-boundary';
-import { config, loadable } from '@common';
 import { Loading, LoadingCommands } from '../../Loadings';
 import { useLocation } from 'react-router';
-import { useFirstSkipEffect } from '@pdg/react-hook';
 
 const FallbackRender = ({ error, resetErrorBoundary, root }: FallbackProps & { root?: boolean }) => {
   /********************************************************************************************************************
@@ -45,9 +43,16 @@ const FallbackRender = ({ error, resetErrorBoundary, root }: FallbackProps & { r
     }, 300);
   }
 
-  useFirstSkipEffect(() => {
-    resetErrorBoundary();
-  }, [location]);
+  {
+    const effectEvent = useEffectEvent(() => {
+      resetErrorBoundary();
+    });
+    const firstSkipRef = useRef(true);
+    useEffect(() => {
+      if (firstSkipRef.current) firstSkipRef.current = false;
+      else return effectEvent();
+    }, [location]);
+  }
 
   /********************************************************************************************************************
    * Render
@@ -91,7 +96,7 @@ const FallbackRender = ({ error, resetErrorBoundary, root }: FallbackProps & { r
             <i className={iconClassName} style={{ fontSize: 40 }}>
               error
             </i>
-            {config.isLocal && (
+            {env.isLocal && (
               <div style={{ textAlign: 'center' }}>
                 {error.stack && typeof error.stack === 'string' ? (
                   <div
@@ -145,7 +150,7 @@ const ErrorCatcher = ({ children, root }: { children: React.ReactNode; root?: bo
   );
 };
 
-const ErrorBoundary: React.FC<Props> = ({ children, root }) => {
+const ErrorBoundary = ({ children, root }: Props) => {
   return <ErrorCatcher root={root}>{children}</ErrorCatcher>;
 };
 

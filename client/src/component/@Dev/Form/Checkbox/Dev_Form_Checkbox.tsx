@@ -3,7 +3,6 @@ import { FormCheckbox, FormProps } from '@ccomp';
 import { Dev_FormOptions, Dev_FormOptionsData, Dev_Panel } from '../../@Common';
 import Dev_Form_Checkbox_Variant from './Dev_Form_Checkbox_Variant';
 import code from './Dev_Form_Checkbox.code.md';
-import { toast } from '@common';
 import { FlattenFormOptions } from '../../@types/FlattenFormOptions';
 
 const _formOptions = [

@@ -2,7 +2,7 @@ import React from 'react';
 import { FormControlGroupContextProviderProps as Props } from './FormControlGroupContextProvider.types';
 import FormControlGroupContext from './FormControlGroupContext';
 
-const FormControlGroupContextProvider: React.FC<Props> = ({ children, value }) => {
+const FormControlGroupContextProvider = ({ children, value }: Props) => {
   return <FormControlGroupContext.Provider value={value}>{children}</FormControlGroupContext.Provider>;
 };
 

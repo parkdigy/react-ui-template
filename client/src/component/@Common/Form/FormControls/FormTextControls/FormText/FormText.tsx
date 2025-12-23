@@ -1,14 +1,7 @@
 import React from 'react';
 import { FormTextCommands, FormTextProps as Props } from './FormText.types';
 import { FormControlBase } from '../../@common';
-import {
-  useAutoUpdateRef,
-  useAutoUpdateRefState,
-  useAutoUpdateState,
-  useFirstSkipEffect,
-  useForwardRef,
-  useTimeoutRef,
-} from '@pdg/react-hook';
+import { useAutoUpdateRef, useForwardRef, useTimeoutRef } from '@pdg/react-hook';
 import { koreanAppendRul } from '@pdg/korean';
 import { useFormControlGroupState, useFormState } from '../../../FormContext';
 import { FormInput } from './FormInput';
@@ -31,354 +24,363 @@ const FunctionKeys = [
   'End',
 ];
 
-export const FormText = React.forwardRef<FormTextCommands, Props>(
-  (
-    {
-      // FormTextProps
-      $custom,
-      $type,
-      $commands,
-      $controlHelperText,
-      placeholder,
-      hideRequiredErrorText,
-      requiredErrorText,
-      preventKeys: initPreventKeys,
-      onCommands,
-      onFinalValue,
-      // FormInputProps
-      type = 'text',
-      clear: initClear = true,
-      maxLength,
-      inputMode,
-      autoComplete,
-      autoCapitalize,
-      autoCorrect,
-      endAdornment,
-      onFocus,
-      onBlur,
-      onKeyUp,
-      onKeyDown,
-      // FormControlCommonProps
-      className,
-      name,
-      title,
-      required,
-      disabled: initDisabled,
-      error: initError = false,
-      value: initValue = '',
-      onChange,
-      onErrorChange,
-      onValidate,
-      // FormControlBaseProps
-      ...formControlBaseProps
-    },
-    ref
-  ) => {
-    /********************************************************************************************************************
-     * Use
-     * ******************************************************************************************************************/
+export const FormText = ({
+  ref,
+  // FormTextProps
+  $custom,
+  $type,
+  $commands,
+  $controlHelperText,
+  placeholder,
+  hideRequiredErrorText,
+  requiredErrorText,
+  preventKeys: initPreventKeys,
+  onCommands,
+  onFinalValue,
+  // FormInputProps
+  type = 'text',
+  clear: initClear = true,
+  maxLength,
+  inputMode,
+  autoComplete,
+  autoCapitalize,
+  autoCorrect,
+  endAdornment,
+  onFocus,
+  onBlur,
+  onKeyUp,
+  onKeyDown,
+  // FormControlCommonProps
+  className,
+  name,
+  title,
+  required,
+  disabled: initDisabled,
+  error: initError = false,
+  value: initValue = '',
+  onChange,
+  onErrorChange,
+  onValidate,
+  // FormControlBaseProps
+  ...formControlBaseProps
+}: Props) => {
+  /********************************************************************************************************************
+   * Use
+   * ******************************************************************************************************************/
 
-    const { disabled: formDisabled } = useFormState();
-    const controlGroupState = useFormControlGroupState();
+  const { disabled: formDisabled } = useFormState();
+  const controlGroupState = useFormControlGroupState();
 
-    /********************************************************************************************************************
-     * Timeout
-     * ******************************************************************************************************************/
+  /********************************************************************************************************************
+   * Timeout
+   * ******************************************************************************************************************/
 
-    const [, setValidateTimeout] = useTimeoutRef();
+  const [, setValidateTimeout] = useTimeoutRef();
 
-    /********************************************************************************************************************
-     * Ref
-     * ******************************************************************************************************************/
+  /********************************************************************************************************************
+   * Ref
+   * ******************************************************************************************************************/
 
-    const innerRef = useRef<HTMLInputElement>(null);
-    const lastPreventKeysRef = useRef<RegExp>(undefined);
-    const onFinalValueRef = useAutoUpdateRef(onFinalValue);
+  const innerRef = useRef<HTMLInputElement>(null);
 
-    /********************************************************************************************************************
-     * Memo
-     * ******************************************************************************************************************/
+  /********************************************************************************************************************
+   * State
+   * ******************************************************************************************************************/
 
-    const preventKeys = useMemo(() => {
-      if (initPreventKeys) {
-        const finalPreventKeys = initPreventKeys.global
-          ? initPreventKeys
-          : new RegExp(initPreventKeys.source, `${initPreventKeys.flags}g`);
+  const [preventKeys, setPreventKeys] = useState<RegExp>();
+  if (useChanged(initPreventKeys, true)) {
+    if (initPreventKeys) {
+      const finalPreventKeys = initPreventKeys.global
+        ? initPreventKeys
+        : new RegExp(initPreventKeys.source, `${initPreventKeys.flags}g`);
 
-        if (
-          lastPreventKeysRef.current &&
-          finalPreventKeys.source === lastPreventKeysRef.current.source &&
-          finalPreventKeys.flags === lastPreventKeysRef.current.flags
-        ) {
-          return lastPreventKeysRef.current;
-        } else {
-          lastPreventKeysRef.current = finalPreventKeys;
-          return finalPreventKeys;
+      if (
+        preventKeys &&
+        finalPreventKeys.source === preventKeys.source &&
+        finalPreventKeys.flags === preventKeys.flags
+      ) {
+        //
+      } else {
+        setPreventKeys(finalPreventKeys);
+      }
+    } else {
+      setPreventKeys(undefined);
+    }
+  }
+
+  /********************************************************************************************************************
+   * Function
+   * ******************************************************************************************************************/
+
+  const getFinalValue = useCallback(
+    (newValue: string | undefined) => {
+      if (newValue) {
+        if (preventKeys) {
+          newValue = newValue.replace(preventKeys, '');
+        }
+        if (onFinalValue) {
+          newValue = onFinalValue(newValue);
         }
       } else {
-        lastPreventKeysRef.current = undefined;
-        return undefined;
+        newValue = '';
       }
-    }, [initPreventKeys]);
+      return newValue ?? '';
+    },
+    [onFinalValue, preventKeys]
+  );
 
-    /********************************************************************************************************************
-     * Function
-     * ******************************************************************************************************************/
+  /********************************************************************************************************************
+   * State
+   * ******************************************************************************************************************/
 
-    const getFinalValue = useCallback(
-      (newValue: string | undefined) => {
-        if (newValue) {
-          if (preventKeys) {
-            newValue = newValue.replace(preventKeys, '');
-          }
-          if (onFinalValueRef.current) {
-            newValue = onFinalValueRef.current(newValue);
-          }
-        } else {
-          newValue = '';
-        }
-        return newValue ?? '';
-      },
-      [onFinalValueRef, preventKeys]
-    );
+  const [isRequiredError, setIsRequiredError] = useState(false);
+  const [isFocus, setIsFocus] = useState(false);
 
-    /********************************************************************************************************************
-     * State
-     * ******************************************************************************************************************/
+  /** error */
+  const [error, setError] = useState(initError);
+  useChanged(initError) && setError(initError);
 
-    const [error, setError] = useAutoUpdateState(initError);
-    const [isRequiredError, setIsRequiredError] = useState(false);
-    const [isFocus, setIsFocus] = useState(false);
-    const [valueRef, value, _setValue] = useAutoUpdateRefState(initValue, getFinalValue);
+  /** value */
+  const [value, _setValue] = useState(getFinalValue(initValue));
+  useChanged(initValue) && _setValue(getFinalValue(initValue));
+  const valueRef = useAutoUpdateRef(value);
 
-    /********************************************************************************************************************
-     * Variable
-     * ******************************************************************************************************************/
+  /********************************************************************************************************************
+   * Variable
+   * ******************************************************************************************************************/
 
-    const disabled = initDisabled || formDisabled;
+  const disabled = initDisabled || formDisabled;
 
-    /********************************************************************************************************************
-     * Effect
-     * ******************************************************************************************************************/
+  /********************************************************************************************************************
+   * Effect
+   * ******************************************************************************************************************/
 
-    useFirstSkipEffect(() => {
+  {
+    const effectEvent = useEffectEvent(() => {
       onErrorChange?.(error);
       controlGroupState && controlGroupState.onErrorChange(name, error);
-    }, [error]);
-
-    /********************************************************************************************************************
-     * Function
-     * ******************************************************************************************************************/
-
-    const focus = useCallback(() => {
-      innerRef.current?.focus();
-    }, []);
-
-    const validate = useCallback(() => {
-      const currentValue = ifUndefined(valueRef.current, '');
-      let error: string | boolean = false;
-      let isRequiredError = false;
-
-      if (required && empty(currentValue)) {
-        isRequiredError = true;
-        if (hideRequiredErrorText) {
-          error = true;
-        } else {
-          if (requiredErrorText !== undefined) {
-            error = requiredErrorText;
-          } else {
-            if (notEmpty(title)) {
-              error = `${koreanAppendRul(title)} 입력해 주세요.`;
-            } else {
-              error = '필수 입력 항목입니다.';
-            }
-          }
-        }
-      }
-      if (error === false && onValidate) {
-        error = onValidate(currentValue);
-      }
-
-      if (error === false) {
-        setError(false);
-        setIsRequiredError(false);
-        return true;
-      } else {
-        setError(error);
-        setIsRequiredError(isRequiredError);
-        return false;
-      }
-    }, [hideRequiredErrorText, onValidate, required, requiredErrorText, setError, title, valueRef]);
-
-    const getValue = useCallback(() => {
-      return ifNullOrUndefined(valueRef.current, '');
-    }, [valueRef]);
-
-    const setValue = useCallback(
-      (newValue: string) => {
-        newValue = getFinalValue(newValue);
-        _setValue(newValue);
-        onChange?.(newValue);
-        if (error) {
-          validate();
-        }
-      },
-      [_setValue, error, getFinalValue, onChange, validate]
-    );
-
-    const clear = useCallback(() => {
-      _setValue('');
-      onChange?.('');
-    }, [_setValue, onChange]);
-
-    /********************************************************************************************************************
-     * Commands
-     * ******************************************************************************************************************/
-
-    const commands = useMemo<FormTextCommands>(
-      () => ({ focus, validate, setError, getValue, setValue, clear }),
-      [clear, focus, getValue, setError, setValue, validate]
-    );
-
-    useForwardRef(ref, commands);
-
+    });
+    const firstSkipRef = useRef(true);
     useEffect(() => {
-      onCommands?.(commands);
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [commands]);
+      if (firstSkipRef.current) firstSkipRef.current = false;
+      else return effectEvent();
+    }, [error]);
+  }
 
-    /********************************************************************************************************************
-     * Event Handler
-     * ******************************************************************************************************************/
+  /********************************************************************************************************************
+   * Function
+   * ******************************************************************************************************************/
 
-    const handleChange = useCallback(
-      (e: React.ChangeEvent<HTMLInputElement>) => {
-        const newValue = getFinalValue(e.currentTarget.value);
-        setValue(newValue);
+  const focus = useCallback(() => {
+    innerRef.current?.focus();
+  }, []);
 
-        if (error !== false) {
-          if (isRequiredError && notEmpty(newValue)) {
-            setError(false);
-            setIsRequiredError(false);
+  const validate = useCallback(() => {
+    const currentValue = ifUndefined(valueRef.current, '');
+    let error: string | boolean = false;
+    let isRequiredError = false;
+
+    if (required && empty(currentValue)) {
+      isRequiredError = true;
+      if (hideRequiredErrorText) {
+        error = true;
+      } else {
+        if (requiredErrorText !== undefined) {
+          error = requiredErrorText;
+        } else {
+          if (notEmpty(title)) {
+            error = `${koreanAppendRul(title)} 입력해 주세요.`;
           } else {
-            setValidateTimeout(() => {
-              validate();
-            }, 500);
+            error = '필수 입력 항목입니다.';
           }
         }
+      }
+    }
+    if (error === false && onValidate) {
+      error = onValidate(currentValue);
+    }
 
-        onChange?.(newValue);
-      },
-      [error, getFinalValue, isRequiredError, onChange, setError, setValidateTimeout, setValue, validate]
-    );
+    if (error === false) {
+      setError(false);
+      setIsRequiredError(false);
+      return true;
+    } else {
+      setError(error);
+      setIsRequiredError(isRequiredError);
+      return false;
+    }
+  }, [hideRequiredErrorText, onValidate, required, requiredErrorText, setError, title, valueRef]);
 
-    const handleClearClick = useCallback(() => {
-      setValue('');
-      focus();
-    }, [focus, setValue]);
+  const getValue = useCallback(() => {
+    return ifNullOrUndefined(valueRef.current, '');
+  }, [valueRef]);
 
-    const handleFocus = useCallback(
-      (e: React.FocusEvent<HTMLInputElement>) => {
-        setIsFocus(true);
-        onFocus?.(e);
-      },
-      [onFocus]
-    );
+  const setValue = useCallback(
+    (newValue: string) => {
+      newValue = getFinalValue(newValue);
+      _setValue(newValue);
 
-    const handleBlur = useCallback(
-      (e: React.FocusEvent<HTMLInputElement>) => {
-        setIsFocus(false);
-        onBlur?.(e);
-        if (error) {
-          validate();
-        }
-      },
-      [error, onBlur, validate]
-    );
+      valueRef.current = newValue;
+      onChange?.(newValue);
+      if (error) validate();
+    },
+    [error, getFinalValue, onChange, validate, valueRef]
+  );
 
-    const handleKeyDown = useCallback(
-      (e: React.KeyboardEvent<HTMLInputElement>) => {
-        if (
-          preventKeys &&
-          !e.ctrlKey &&
-          !e.metaKey &&
-          !FunctionKeys.includes(e.key) &&
-          new RegExp(preventKeys).test(e.key)
-        ) {
-          e.preventDefault();
-        }
-        onKeyDown?.(e);
-      },
-      [onKeyDown, preventKeys]
-    );
+  const clear = useCallback(() => {
+    _setValue('');
+    onChange?.('');
+  }, [_setValue, onChange]);
 
-    const handlePaste = useCallback(
-      (e: React.ClipboardEvent<HTMLInputElement>) => {
-        e.preventDefault();
+  /********************************************************************************************************************
+   * Commands
+   * ******************************************************************************************************************/
 
-        const pastedText = e.clipboardData.getData('text');
-        let cleanText = preventKeys ? pastedText.replace(new RegExp(preventKeys), '') : pastedText;
-        if (maxLength) {
-          cleanText = cleanText.substring(0, maxLength);
-        }
-        const target = e.currentTarget;
-        const start = ifNull(target.selectionStart, 0);
-        const end = ifNull(target.selectionEnd, 0);
-        const newValue = value.substring(0, start) + cleanText + value.substring(end);
+  const commands = useMemo<FormTextCommands>(
+    () => ({ focus, validate, setError, getValue, setValue, clear }),
+    [clear, focus, getValue, setError, setValue, validate]
+  );
 
-        setValue(newValue);
+  useForwardRef(ref, commands);
 
-        target.selectionStart = target.selectionEnd = start + cleanText.length;
-      },
-      [maxLength, preventKeys, setValue, value]
-    );
-
-    /********************************************************************************************************************
-     * Render
-     * ******************************************************************************************************************/
-
-    return (
-      <FormControlBase
-        className={classnames(className, 'FormText')}
-        type={$custom && $type ? $type : 'text'}
-        name={name}
-        commands={$custom ? ifUndefined($commands, null) : commands}
-        title={title}
-        error={error}
-        required={required}
-        disabled={disabled}
-        gap={8}
-        focused={isFocus}
-        controlHelperText={$controlHelperText}
-        {...formControlBaseProps}
-      >
-        <FormInput
-          ref={innerRef}
-          type={type}
-          formNoValidate={true}
-          name={name}
-          disabled={disabled}
-          value={value}
-          placeholder={placeholder}
-          maxLength={maxLength}
-          inputMode={inputMode}
-          autoComplete={autoComplete}
-          autoCapitalize={autoCapitalize}
-          autoCorrect={autoCorrect}
-          error={error !== false}
-          endAdornment={endAdornment}
-          clear={initClear && notEmpty(value)}
-          onClearClick={handleClearClick}
-          onFocus={handleFocus}
-          onBlur={handleBlur}
-          onKeyUp={onKeyUp}
-          onKeyDown={handleKeyDown}
-          onChange={handleChange}
-          onPaste={handlePaste}
-        />
-      </FormControlBase>
-    );
+  {
+    const effectEvent = useEffectEvent(() => {
+      onCommands?.(commands);
+    });
+    useEffect(() => effectEvent(), [commands]);
   }
-);
+
+  /********************************************************************************************************************
+   * Event Handler
+   * ******************************************************************************************************************/
+
+  const handleChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const newValue = getFinalValue(e.currentTarget.value);
+      setValue(newValue);
+
+      if (error !== false) {
+        if (isRequiredError && notEmpty(newValue)) {
+          setError(false);
+          setIsRequiredError(false);
+        } else {
+          setValidateTimeout(() => {
+            validate();
+          }, 500);
+        }
+      }
+
+      onChange?.(newValue);
+    },
+    [error, getFinalValue, isRequiredError, onChange, setError, setValidateTimeout, setValue, validate]
+  );
+
+  const handleClearClick = useCallback(() => {
+    setValue('');
+    focus();
+  }, [focus, setValue]);
+
+  const handleFocus = useCallback(
+    (e: React.FocusEvent<HTMLInputElement>) => {
+      setIsFocus(true);
+      onFocus?.(e);
+    },
+    [onFocus]
+  );
+
+  const handleBlur = useCallback(
+    (e: React.FocusEvent<HTMLInputElement>) => {
+      setIsFocus(false);
+      onBlur?.(e);
+      if (error) {
+        validate();
+      }
+    },
+    [error, onBlur, validate]
+  );
+
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent<HTMLInputElement>) => {
+      if (
+        preventKeys &&
+        !e.ctrlKey &&
+        !e.metaKey &&
+        !FunctionKeys.includes(e.key) &&
+        new RegExp(preventKeys).test(e.key)
+      ) {
+        e.preventDefault();
+      }
+      onKeyDown?.(e);
+    },
+    [onKeyDown, preventKeys]
+  );
+
+  const handlePaste = useCallback(
+    (e: React.ClipboardEvent<HTMLInputElement>) => {
+      e.preventDefault();
+
+      const pastedText = e.clipboardData.getData('text');
+      let cleanText = preventKeys ? pastedText.replace(new RegExp(preventKeys), '') : pastedText;
+      if (maxLength) {
+        cleanText = cleanText.substring(0, maxLength);
+      }
+      const target = e.currentTarget;
+      const start = ifNull(target.selectionStart, 0);
+      const end = ifNull(target.selectionEnd, 0);
+      const newValue = value.substring(0, start) + cleanText + value.substring(end);
+
+      setValue(newValue);
+
+      target.selectionStart = target.selectionEnd = start + cleanText.length;
+    },
+    [maxLength, preventKeys, setValue, value]
+  );
+
+  /********************************************************************************************************************
+   * Render
+   * ******************************************************************************************************************/
+
+  return (
+    <FormControlBase
+      className={classnames(className, 'FormText')}
+      type={$custom && $type ? $type : 'text'}
+      name={name}
+      commands={$custom ? ifUndefined($commands, null) : commands}
+      title={title}
+      error={error}
+      required={required}
+      disabled={disabled}
+      gap={8}
+      focused={isFocus}
+      controlHelperText={$controlHelperText}
+      {...formControlBaseProps}
+    >
+      <FormInput
+        ref={innerRef}
+        type={type}
+        formNoValidate={true}
+        name={name}
+        disabled={disabled}
+        value={value}
+        placeholder={placeholder}
+        maxLength={maxLength}
+        inputMode={inputMode}
+        autoComplete={autoComplete}
+        autoCapitalize={autoCapitalize}
+        autoCorrect={autoCorrect}
+        error={error !== false}
+        endAdornment={endAdornment}
+        clear={initClear && notEmpty(value)}
+        onClearClick={handleClearClick}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+        onKeyUp={onKeyUp}
+        onKeyDown={handleKeyDown}
+        onChange={handleChange}
+        onPaste={handlePaste}
+      />
+    </FormControlBase>
+  );
+};
 
 export default FormText;

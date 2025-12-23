@@ -1,111 +1,108 @@
 import React from 'react';
-import { BoxHtmlProps, BoxProps as Props } from './Box.types';
+import { BoxComponent, BoxHtmlProps, BoxProps as Props } from './Box.types';
 import { CustomComponent } from '../../CustomComponent';
 import './Box.scss';
 
-export const Box = React.forwardRef<HTMLDivElement, Props>(
-  (
-    {
-      component = 'div',
-      className,
-      center,
-      nowrap,
-      absolute,
-      relative,
-      fixed,
-      underline,
-      textDecoration,
-      onMouseEnter,
-      onMouseLeave,
-      onMouseDown,
-      hoverStyle,
-      activeStyle,
-      ...props
+export const Box = <
+  C extends BoxComponent = 'div',
+  E extends HTMLDivElement | HTMLSpanElement = C extends 'span' ? HTMLSpanElement : HTMLDivElement,
+>({
+  component,
+  className,
+  center,
+  nowrap,
+  absolute,
+  relative,
+  fixed,
+  underline,
+  textDecoration,
+  onMouseEnter,
+  onMouseLeave,
+  onMouseDown,
+  hoverStyle,
+  activeStyle,
+  ...props
+}: Props<C, E>) => {
+  /********************************************************************************************************************
+   * State
+   * ******************************************************************************************************************/
+
+  const [isMouseEnter, setIsMouseEnter] = useState(false);
+  const [isActive, setIsActive] = useState(false);
+
+  /********************************************************************************************************************
+   * Event Handler
+   * ******************************************************************************************************************/
+
+  const handleMouseEnter = useCallback(
+    (e: React.MouseEvent<E>) => {
+      setIsMouseEnter(true);
+      onMouseEnter?.(e);
     },
-    ref
-  ) => {
-    /********************************************************************************************************************
-     * State
-     * ******************************************************************************************************************/
+    [onMouseEnter]
+  );
 
-    const [isMouseEnter, setIsMouseEnter] = useState(false);
-    const [isActive, setIsActive] = useState(false);
+  const handleMouseLeave = useCallback(
+    (e: React.MouseEvent<E>) => {
+      setIsMouseEnter(false);
+      onMouseLeave?.(e);
+    },
+    [onMouseLeave]
+  );
 
-    /********************************************************************************************************************
-     * Event Handler
-     * ******************************************************************************************************************/
+  const handleMouseDown = useCallback(
+    (e: React.MouseEvent<E>) => {
+      setIsActive(true);
+      onMouseDown?.(e);
+    },
+    [onMouseDown]
+  );
 
-    const handleMouseEnter = useCallback(
-      (e: React.MouseEvent<HTMLDivElement>) => {
-        setIsMouseEnter(true);
-        onMouseEnter?.(e);
-      },
-      [onMouseEnter]
-    );
+  const handleGlobalMouseUp = useCallback(() => {
+    setIsActive(false);
+  }, []);
 
-    const handleMouseLeave = useCallback(
-      (e: React.MouseEvent<HTMLDivElement>) => {
-        setIsMouseEnter(false);
-        onMouseLeave?.(e);
-      },
-      [onMouseLeave]
-    );
+  /********************************************************************************************************************
+   * Effect
+   * ******************************************************************************************************************/
 
-    const handleMouseDown = useCallback(
-      (e: React.MouseEvent<HTMLDivElement>) => {
-        setIsActive(true);
-        onMouseDown?.(e);
-      },
-      [onMouseDown]
-    );
-
-    const handleGlobalMouseUp = useCallback(() => {
-      setIsActive(false);
-    }, []);
-
-    /********************************************************************************************************************
-     * Effect
-     * ******************************************************************************************************************/
-
-    useEffect(() => {
-      if (activeStyle) {
-        if (isActive) {
-          window.addEventListener('mouseup', handleGlobalMouseUp);
-        }
-
-        return () => {
-          window.removeEventListener('mouseup', handleGlobalMouseUp);
-        };
+  useEffect(() => {
+    if (activeStyle) {
+      if (isActive) {
+        window.addEventListener('mouseup', handleGlobalMouseUp);
       }
-    }, [activeStyle, handleGlobalMouseUp, isActive]);
 
-    /********************************************************************************************************************
-     * Render
-     * ******************************************************************************************************************/
+      return () => {
+        window.removeEventListener('mouseup', handleGlobalMouseUp);
+      };
+    }
+  }, [activeStyle, handleGlobalMouseUp, isActive]);
 
-    return (
-      <CustomComponent<BoxHtmlProps>
-        component={component}
-        ref={ref}
-        className={classnames(
-          className,
-          'Box',
-          center && 'Box-center',
-          nowrap && 'Box-nowrap',
-          absolute && 'Box-absolute',
-          relative && 'Box-relative',
-          fixed && 'Box-fixed'
-        )}
-        textDecoration={textDecoration !== undefined ? textDecoration : underline ? 'underline' : undefined}
-        onMouseEnter={hoverStyle ? handleMouseEnter : onMouseEnter}
-        onMouseLeave={hoverStyle ? handleMouseLeave : onMouseLeave}
-        onMouseDown={activeStyle ? handleMouseDown : onMouseDown}
-        {...props}
-        {...(hoverStyle && isMouseEnter ? hoverStyle : undefined)}
-        {...(activeStyle && isActive ? activeStyle : undefined)}
-      />
-    );
-  }
-);
+  /********************************************************************************************************************
+   * Render
+   * ******************************************************************************************************************/
+
+  return (
+    <CustomComponent<BoxHtmlProps<E>>
+      component={component ?? 'div'}
+      className={classnames(
+        className,
+        'Box',
+        center && 'Box-center',
+        nowrap && 'Box-nowrap',
+        absolute && 'Box-absolute',
+        relative && 'Box-relative',
+        fixed && 'Box-fixed'
+      )}
+      textDecoration={textDecoration !== undefined ? textDecoration : underline ? 'underline' : undefined}
+      onMouseEnter={hoverStyle ? handleMouseEnter : onMouseEnter}
+      onMouseLeave={hoverStyle ? handleMouseLeave : onMouseLeave}
+      onMouseDown={activeStyle ? handleMouseDown : onMouseDown}
+      {...props}
+      {...(hoverStyle && isMouseEnter ? hoverStyle : undefined)}
+      {...(activeStyle && isActive ? activeStyle : undefined)}
+    />
+  );
+};
 
 export default Box;

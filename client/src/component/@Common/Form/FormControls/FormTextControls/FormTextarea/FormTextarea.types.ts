@@ -8,8 +8,10 @@ export interface FormTextareaCommands extends FormControlCommands {
 }
 
 export interface FormTextareaProps
-  extends FormControlCommonProps<string>,
+  extends
+    FormControlCommonProps<string>,
     Pick<HTMLProps<HTMLTextAreaElement>, 'maxLength' | 'rows' | 'onFocus' | 'onBlur' | 'onKeyUp' | 'onKeyDown'> {
+  ref?: Ref<FormTextareaCommands>;
   placeholder?: string;
   hideEmptyErrorText?: boolean;
   onFinalValue?: (value: string) => string;

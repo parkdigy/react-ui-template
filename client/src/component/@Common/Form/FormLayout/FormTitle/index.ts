@@ -1,5 +1,4 @@
 import l from '@loadable/component';
-import { loadable } from '@common';
 
 const FormTitle = l(
   () => import(/* webpackChunkName: "common-form-title" */ './FormTitle'),

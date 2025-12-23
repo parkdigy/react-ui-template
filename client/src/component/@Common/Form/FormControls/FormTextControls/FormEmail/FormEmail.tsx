@@ -4,61 +4,66 @@ import { useForwardRef } from '@pdg/react-hook';
 import { FormText, FormTextCommands } from '../FormText';
 import { isEmail } from '@pdg/compare';
 
-export const FormEmail = React.forwardRef<FormEmailCommands, Props>(
-  ({ className, name, onValidate, invalidEmailErrorText = '올바른 이메일 형식을 입력해 주세요.', ...props }, ref) => {
-    /********************************************************************************************************************
-     * State
-     * ******************************************************************************************************************/
+export const FormEmail = ({
+  ref,
+  className,
+  name,
+  onValidate,
+  invalidEmailErrorText = '올바른 이메일 형식을 입력해 주세요.',
+  ...props
+}: Props) => {
+  /********************************************************************************************************************
+   * State
+   * ******************************************************************************************************************/
 
-    const [textCommands, setTextCommands] = useState<FormTextCommands>();
+  const [textCommands, setTextCommands] = useState<FormTextCommands>();
 
-    /********************************************************************************************************************
-     * Commands
-     * ******************************************************************************************************************/
+  /********************************************************************************************************************
+   * Commands
+   * ******************************************************************************************************************/
 
-    const commands = useMemo<FormEmailCommands | null>(() => (textCommands ? textCommands : null), [textCommands]);
+  const commands = useMemo<FormEmailCommands | null>(() => (textCommands ? textCommands : null), [textCommands]);
 
-    useForwardRef(ref, commands);
+  useForwardRef(ref, commands);
 
-    /********************************************************************************************************************
-     * Event Handler
-     * ******************************************************************************************************************/
+  /********************************************************************************************************************
+   * Event Handler
+   * ******************************************************************************************************************/
 
-    const handleValidate = useCallback(
-      (value: string) => {
-        if (notEmpty(value) && !isEmail(value)) {
-          return invalidEmailErrorText;
-        }
+  const handleValidate = useCallback(
+    (value: string) => {
+      if (notEmpty(value) && !isEmail(value)) {
+        return invalidEmailErrorText;
+      }
 
-        if (onValidate) {
-          return onValidate(value);
-        } else {
-          return false;
-        }
-      },
-      [invalidEmailErrorText, onValidate]
-    );
+      if (onValidate) {
+        return onValidate(value);
+      } else {
+        return false;
+      }
+    },
+    [invalidEmailErrorText, onValidate]
+  );
 
-    /********************************************************************************************************************
-     * Render
-     * ******************************************************************************************************************/
+  /********************************************************************************************************************
+   * Render
+   * ******************************************************************************************************************/
 
-    return (
-      <FormText
-        $custom
-        $type='email'
-        $commands={commands}
-        type='text'
-        inputMode='email'
-        className={classnames(className, 'FormEmail')}
-        name={name}
-        preventKeys={/[\s]/g}
-        onCommands={setTextCommands}
-        onValidate={handleValidate}
-        {...props}
-      />
-    );
-  }
-);
+  return (
+    <FormText
+      $custom
+      $type='email'
+      $commands={commands}
+      type='text'
+      inputMode='email'
+      className={classnames(className, 'FormEmail')}
+      name={name}
+      preventKeys={/[\s]/g}
+      onCommands={setTextCommands}
+      onValidate={handleValidate}
+      {...props}
+    />
+  );
+};
 
 export default FormEmail;

@@ -1,5 +1,4 @@
 import l from '@loadable/component';
-import { loadable } from '@common';
 
 const Footer = l(
   () => import(/* webpackChunkName: "footer" */ './Footer'),

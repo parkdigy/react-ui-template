@@ -1,5 +1,4 @@
 import l from '@loadable/component';
-import { loadable } from '@common';
 
 const ColorPicker = l(
   () => import(/* webpackChunkName: "common-color-picker" */ './ColorPicker'),

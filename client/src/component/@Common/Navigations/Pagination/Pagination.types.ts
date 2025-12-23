@@ -4,6 +4,7 @@ export interface PaginationPaging {
 }
 
 export interface PaginationProps {
+  ref?: Ref<HTMLDivElement>;
   paging: PaginationPaging;
   onPageChange?: (page: number) => void;
 }

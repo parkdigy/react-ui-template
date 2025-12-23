@@ -1,5 +1,4 @@
 import React from 'react';
-import { CSSProperties } from 'react';
 import { AllColors, AllSizes } from '@theme';
 
 /********************************************************************************************************************

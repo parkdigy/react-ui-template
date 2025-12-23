@@ -9,7 +9,8 @@ export interface FormTextCommands extends FormControlCommands {
 }
 
 export interface FormTextProps
-  extends FormControlCommonProps<string>,
+  extends
+    FormControlCommonProps<string>,
     Pick<
       FormInputProps,
       | 'type'
@@ -29,6 +30,7 @@ export interface FormTextProps
   $type?: FormControlType;
   $commands?: FormControlCommands | null;
   $controlHelperText?: ReactNode;
+  ref?: Ref<FormTextCommands>;
   placeholder?: string;
   hideRequiredErrorText?: boolean;
   requiredErrorText?: string;

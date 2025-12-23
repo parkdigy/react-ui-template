@@ -1,5 +1,4 @@
 import l from '@loadable/component';
-import { loadable } from '@common';
 
 const ListItem = l(
   () => import(/* webpackChunkName: "common-list-item" */ './ListItem'),

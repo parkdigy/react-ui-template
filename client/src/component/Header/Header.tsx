@@ -18,7 +18,7 @@ export const Header = ({ layout }: Props) => {
   return (
     <ContentContainer className='Header' pv={20} containerProps={{ backgroundColor: 'opacity05' }}>
       <Flex row center spaceBetweenJustify height={30}>
-        <Logo onClick={location.pathname === '/' ? undefined : () => __navigate('/')} />
+        <Logo onClick={location.pathname === '/' ? undefined : () => g.nav.go('/')} />
         {layout !== 'auth' && (
           <Flex row center gap={5}>
             <Button

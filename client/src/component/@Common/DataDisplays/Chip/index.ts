@@ -1,5 +1,4 @@
 import l from '@loadable/component';
-import { loadable } from '@common';
 
 const Chip = l(
   () => import(/* webpackChunkName: "common-chip" */ './Chip'),

@@ -2,4 +2,6 @@ import { FormTextCommands, FormTextProps } from '../FormText';
 
 export interface FormUrlCommands extends FormTextCommands {}
 
-export interface FormUrlProps extends Omit<FormTextProps, 'ref' | 'type' | 'clear' | 'onCommands'> {}
+export interface FormUrlProps extends Omit<FormTextProps, 'ref' | 'type' | 'clear' | 'onCommands'> {
+  ref?: Ref<FormUrlCommands>;
+}

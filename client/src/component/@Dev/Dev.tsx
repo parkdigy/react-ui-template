@@ -22,7 +22,6 @@ import { Dev_Chip } from './Chip';
 import { Dev_Screen } from './Screen';
 import './Dev.scss';
 import { Dev_NoData } from './NoData';
-import { app } from '@common';
 
 const TabValue = [
   'color',
@@ -85,14 +84,14 @@ export const Dev = ({}: Props) => {
    * Effect
    * ******************************************************************************************************************/
 
-  useEffect(() => {
+  if (useChanged(location, true)) {
     const hash = app.deHash(location);
     if (hash.m && TabValue.includes(hash.m as any)) {
       setActiveTab(hash.m as TabValue);
     } else {
       setActiveTab('color');
     }
-  }, [location]);
+  }
 
   /********************************************************************************************************************
    * Render
@@ -104,7 +103,7 @@ export const Dev = ({}: Props) => {
         items={TabItems}
         value={activeTab}
         onChange={(v) => {
-          v !== activeTab && __navigate(`#m=${v}`);
+          v !== activeTab && g.nav.go(`#m=${v}`);
         }}
       />
 

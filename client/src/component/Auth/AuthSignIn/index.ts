@@ -1,5 +1,4 @@
 import l from '@loadable/component';
-import { loadable } from '@common';
 
 const AuthSignIn = l(
   () => import(/* webpackChunkName: "auth-sign-in" */ './AuthSignIn'),

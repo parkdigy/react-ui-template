@@ -1,5 +1,4 @@
 import l from '@loadable/component';
-import { loadable } from '@common';
 
 const DevButtons = l(
   () => import(/* webpackChunkName: "dev-buttons" */ './DevButtons'),

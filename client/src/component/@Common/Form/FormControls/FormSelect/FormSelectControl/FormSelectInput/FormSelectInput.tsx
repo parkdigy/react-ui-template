@@ -40,10 +40,12 @@ const FormSelectInput = ({
    * Effect
    * ******************************************************************************************************************/
 
-  useEffect(() => {
-    onChangeValue(value);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [value]);
+  {
+    const effectEvent = useEffectEvent(() => {
+      onChangeValue(value);
+    });
+    useEffect(() => effectEvent(), [value]);
+  }
 
   /********************************************************************************************************************
    * Commands
@@ -61,10 +63,12 @@ const FormSelectInput = ({
     []
   );
 
-  useEffect(() => {
-    onCommands(commands);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [commands]);
+  {
+    const effectEvent = useEffectEvent(() => {
+      onCommands(commands);
+    });
+    useEffect(() => effectEvent(), [commands]);
+  }
 
   /********************************************************************************************************************
    * Event Handler

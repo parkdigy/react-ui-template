@@ -2,7 +2,7 @@ import React from 'react';
 import { GridContextProviderProps as Props } from './GridContextProvider.types';
 import GridContext from './GridContext';
 
-export const GridContextProvider: React.FC<Props> = ({ children, value }) => {
+export const GridContextProvider = ({ children, value }: Props) => {
   return <GridContext.Provider value={value}>{children}</GridContext.Provider>;
 };
 

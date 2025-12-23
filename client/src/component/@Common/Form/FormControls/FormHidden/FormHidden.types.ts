@@ -5,5 +5,9 @@ export interface FormHiddenCommands extends Omit<FormControlCommands, 'setError'
   setValue: (value: string | undefined) => void;
 }
 
-export interface FormHiddenProps
-  extends Pick<FormControlCommonProps<string>, 'className' | 'name' | 'value' | 'onChange' | 'disabled'> {}
+export interface FormHiddenProps extends Pick<
+  FormControlCommonProps<string>,
+  'className' | 'name' | 'value' | 'onChange' | 'disabled'
+> {
+  ref?: Ref<FormHiddenCommands>;
+}

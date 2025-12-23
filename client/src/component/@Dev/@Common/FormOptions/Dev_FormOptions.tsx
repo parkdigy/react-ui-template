@@ -4,7 +4,7 @@ import { Form } from '@ccomp';
 import { Dev_FormControl_Cols, Dev_FormControl_ColsProps } from '../FormControls';
 import { Dev_Code } from '../Code';
 import { Dev_Panel } from '../Layout';
-import { useAutoUpdateRef, useRefState } from '@pdg/react-hook';
+import { useAutoUpdateRef } from '@pdg/react-hook';
 import { equal } from '@pdg/compare';
 import { AllColors } from '@theme';
 import { useScreenSize } from '@context';
@@ -15,7 +15,7 @@ import { useDevFormOptionBooleanControls } from './useDevFormOptionBooleanContro
 
 let _showCode = false;
 
-function Dev_FormOptions<TColors extends AllColors = AllColors, TBackgroundColors extends AllColors = AllColors>({
+const Dev_FormOptions = <TColors extends AllColors = AllColors, TBackgroundColors extends AllColors = AllColors>({
   options,
   optionProps,
   disabledOptions = [],
@@ -33,7 +33,7 @@ function Dev_FormOptions<TColors extends AllColors = AllColors, TBackgroundColor
   testBackgroundColor,
   onChange,
   onGetTest,
-}: Props<TColors, TBackgroundColors>) {
+}: Props<TColors, TBackgroundColors>) => {
   /********************************************************************************************************************
    * Use
    * ******************************************************************************************************************/
@@ -81,7 +81,18 @@ function Dev_FormOptions<TColors extends AllColors = AllColors, TBackgroundColor
    * ******************************************************************************************************************/
 
   const [showCode, setShowCode] = useState(_showCode);
-  const [dataRef, data, setData] = useRefState<Dev_FormOptionsData<TColors, TBackgroundColors>>({});
+  // const [dataRef, data, setData] = useRefState<Dev_FormOptionsData<TColors, TBackgroundColors>>({});
+
+  /** data */
+  const [data, _setData] = useState<Dev_FormOptionsData<TColors, TBackgroundColors>>({});
+  const dataRef = useAutoUpdateRef(data);
+  const setData = useCallback(
+    (v: Dev_FormOptionsData<TColors, TBackgroundColors>) => {
+      _setData(v);
+      dataRef.current = v;
+    },
+    [dataRef]
+  );
 
   /** Multi Option Controls */
   const multiOptionControls = useDevFormOptionMultiOptionControls({
@@ -130,43 +141,37 @@ function Dev_FormOptions<TColors extends AllColors = AllColors, TBackgroundColor
     [booleanControls, multiOptionControls, textControls]
   );
 
-  const allControlNames = useMemo(() => keys(allControls), [allControls]);
+  const allControlNames = useMemo(() => objectKeys(allControls), [allControls]);
 
   /********************************************************************************************************************
    * Effect
    * ******************************************************************************************************************/
 
-  useEffect(() => {
-    const newData: Dev_FormOptionsData<TColors, TBackgroundColors> = {};
+  {
+    const effectEvent = useEffectEvent(() => {
+      const newData: Dev_FormOptionsData<TColors, TBackgroundColors> = {};
 
-    flatOptions.forEach((v) => {
-      if (v === 'cols') {
-        if (colsUseResponsive) {
-          newData.cols = colsResponsiveCols;
-        } else {
-          newData.cols = ifEmpty(cols, undefined);
+      flatOptions.forEach((v) => {
+        if (v === 'cols') {
+          if (colsUseResponsive) {
+            newData.cols = colsResponsiveCols;
+          } else {
+            newData.cols = ifEmpty(cols, undefined);
+          }
+        } else if (allControlNames.includes(v)) {
+          newData[v] = allControls[v] as any;
         }
-      } else if (allControlNames.includes(v)) {
-        newData[v] = allControls[v] as any;
+      });
+
+      if (!equal(newData, dataRef.current)) {
+        setData(newData);
+        onChangeRef.current(newData);
       }
     });
-
-    if (!equal(newData, dataRef.current)) {
-      setData(newData);
-      onChangeRef.current(newData);
-    }
-  }, [
-    options,
-    dataRef,
-    setData,
-    onChangeRef,
-    colsUseResponsive,
-    colsResponsiveCols,
-    cols,
-    flatOptions,
-    allControls,
-    allControlNames,
-  ]);
+    useEffect(() => {
+      return effectEvent();
+    }, [cols, flatOptions, allControls, allControlNames]);
+  }
 
   /********************************************************************************************************************
    * Memo - Controls
@@ -301,6 +306,6 @@ function Dev_FormOptions<TColors extends AllColors = AllColors, TBackgroundColor
       {testPosition === 'bottom' && testControl}
     </Form>
   );
-}
+};
 
 export default React.memo(Dev_FormOptions) as typeof Dev_FormOptions;

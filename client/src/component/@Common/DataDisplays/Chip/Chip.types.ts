@@ -1,11 +1,12 @@
 import { AllColors, AllSizes } from '@theme';
 import { CustomComponentBorderStyles } from '../../CustomComponent';
-import { CSSProperties } from 'react';
 
 export type ChipVariant = 'contained' | 'outlined';
 
-export interface ChipProps
-  extends Omit<FlexProps, 'children' | 'label' | 'fontSize' | 'fs' | 's' | keyof CustomComponentBorderStyles> {
+export interface ChipProps extends Omit<
+  FlexProps,
+  'children' | 'label' | 'fontSize' | 'fs' | 's' | keyof CustomComponentBorderStyles
+> {
   // 유형
   variant?: ChipVariant;
   // 내용

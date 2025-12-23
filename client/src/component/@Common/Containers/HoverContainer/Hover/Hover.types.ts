@@ -1,5 +1,4 @@
 import { AllColors, AllSizes } from '@theme';
-import { CSSProperties } from 'react';
 
 export interface HoverProps {
   className?: string;

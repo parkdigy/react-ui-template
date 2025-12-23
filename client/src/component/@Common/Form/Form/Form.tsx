@@ -1,178 +1,174 @@
 import React, { FormEvent } from 'react';
 import { FormCommands, FormProps as Props } from './Form.types';
 import { FormContextProvider, FormContextValue, FormControlType } from '../FormContext';
-import { FormControlCommands } from '../FormControls/@common';
+import { FormControlCommands } from '../FormControls';
 import { FormCheckboxCommands, FormFileCommands, FormTextCommands } from '../FormControls';
 import { useForwardRef } from '@pdg/react-hook';
-import { FormRadioGroupCommands } from '../FormControls/FormRadioGroup';
-import { FormSelectCommands } from '../FormControls/FormSelect';
+import { FormRadioGroupCommands } from '../FormControls';
+import { FormSelectCommands } from '../FormControls';
 import './Form.scss';
 
-export const Form = React.forwardRef<FormCommands, Props>(
-  (
-    {
-      titlePosition = 'top',
-      titleWidth = 100,
-      hideTitle = false,
-      disabled = false,
-      focusName,
-      onSubmit,
-      // FlexProps
-      className,
-      children,
-      ...stackProps
-    },
-    ref
-  ) => {
-    /********************************************************************************************************************
-     * Ref
-     * ******************************************************************************************************************/
+export const Form = ({
+  ref,
+  titlePosition = 'top',
+  titleWidth = 100,
+  hideTitle = false,
+  disabled = false,
+  focusName,
+  onSubmit,
+  // FlexProps
+  className,
+  children,
+  ...stackProps
+}: Props) => {
+  /********************************************************************************************************************
+   * Ref
+   * ******************************************************************************************************************/
 
-    const innerRef = useRef<HTMLFormElement>(null);
-    const formControls = useRef<Dict<{ type: FormControlType; commands: FormControlCommands | null; active: boolean }>>(
-      {}
-    );
+  const innerRef = useRef<HTMLFormElement>(null);
+  const formControls = useRef<Dict<{ type: FormControlType; commands: FormControlCommands | null; active: boolean }>>(
+    {}
+  );
 
-    /********************************************************************************************************************
-     * Function
-     * ******************************************************************************************************************/
+  /********************************************************************************************************************
+   * Function
+   * ******************************************************************************************************************/
 
-    const submit = useCallback(() => {
-      const finalValues: Dict<string | number | undefined | boolean | File> = {};
-      let isAllValid = true;
+  const submit = useCallback(() => {
+    const finalValues: Dict<string | number | undefined | boolean | File> = {};
+    let isAllValid = true;
 
-      for (const name of keys(formControls.current)) {
-        const { active, type, commands } = formControls.current[name];
+    for (const name of objectKeys(formControls.current)) {
+      const { active, type, commands } = formControls.current[name];
 
-        if (active && commands) {
-          if (commands.validate()) {
-            let value: string | number | boolean | File | undefined;
+      if (active && commands) {
+        if (commands.validate()) {
+          let value: string | number | boolean | File | undefined;
 
-            switch (type) {
-              case 'text':
-              case 'email':
-              case 'url':
-              case 'password':
-              case 'textarea':
-              case 'hidden':
-              case 'tel':
-                value = (commands as FormTextCommands).getValue();
-                break;
-              case 'number':
-                value = (commands as FormTextCommands).getValue();
-                if (notEmpty(value)) {
-                  value = Number(value.replace(/,/g, ''));
-                } else {
-                  value = undefined;
-                }
-                break;
-              case 'file':
-                value = (commands as FormFileCommands).getFile();
-                break;
-              case 'checkbox':
-                value = (commands as FormCheckboxCommands).getChecked();
-                break;
-              case 'radio_group':
-                value = (commands as FormRadioGroupCommands<any>).getValue();
-                break;
-              case 'select':
-                value = (commands as FormSelectCommands<any>).getValue();
-                break;
-              default:
-                throw new Error('Unknown form control type');
-            }
+          switch (type) {
+            case 'text':
+            case 'email':
+            case 'url':
+            case 'password':
+            case 'textarea':
+            case 'hidden':
+            case 'tel':
+              value = (commands as FormTextCommands).getValue();
+              break;
+            case 'number':
+              value = (commands as FormTextCommands).getValue();
+              if (notEmpty(value)) {
+                value = Number(value.replace(/,/g, ''));
+              } else {
+                value = undefined;
+              }
+              break;
+            case 'file':
+              value = (commands as FormFileCommands).getFile();
+              break;
+            case 'checkbox':
+              value = (commands as FormCheckboxCommands).getChecked();
+              break;
+            case 'radio_group':
+              value = (commands as FormRadioGroupCommands<any>).getValue();
+              break;
+            case 'select':
+              value = (commands as FormSelectCommands<any>).getValue();
+              break;
+            default:
+              throw new Error('Unknown form control type');
+          }
 
-            finalValues[name] = value;
-          } else {
-            if (isAllValid) {
-              commands.focus();
-              isAllValid = false;
-            }
+          finalValues[name] = value;
+        } else {
+          if (isAllValid) {
+            commands.focus();
+            isAllValid = false;
           }
         }
       }
+    }
 
-      if (isAllValid) {
-        onSubmit?.(finalValues, innerRef.current!);
-      }
-    }, [onSubmit]);
+    if (isAllValid) {
+      onSubmit?.(finalValues, innerRef.current!);
+    }
+  }, [onSubmit]);
 
-    /********************************************************************************************************************
-     * Event Handler
-     * ******************************************************************************************************************/
+  /********************************************************************************************************************
+   * Event Handler
+   * ******************************************************************************************************************/
 
-    const handleSubmit = useCallback(
-      (e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
+  const handleSubmit = useCallback(
+    (e: FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
 
-        submit();
-      },
-      [submit]
-    );
+      submit();
+    },
+    [submit]
+  );
 
-    const getControlCommands = useCallback(function <T extends FormControlCommands>(name: string) {
-      return ifNull(formControls.current[name]?.commands, undefined) as T | undefined;
-    }, []);
+  const getControlCommands = useCallback(function <T extends FormControlCommands>(name: string) {
+    return ifNull(formControls.current[name]?.commands, undefined) as T | undefined;
+  }, []);
 
-    /********************************************************************************************************************
-     * Commands
-     * ******************************************************************************************************************/
+  /********************************************************************************************************************
+   * Commands
+   * ******************************************************************************************************************/
 
-    useForwardRef(
-      ref,
-      useMemo<FormCommands>(
-        () => ({
-          submit,
-          focus(name: string) {
-            getControlCommands(name)?.focus();
-          },
-          getControlCommands,
-        }),
-        [getControlCommands, submit]
-      )
-    );
-    /********************************************************************************************************************
-     * Context
-     * ******************************************************************************************************************/
-
-    const contextValue = useMemo<FormContextValue>(
+  useForwardRef(
+    ref,
+    useMemo<FormCommands>(
       () => ({
-        titlePosition,
-        titleWidth,
-        hideTitle,
-        disabled,
-        addControl(type: FormControlType, name: string, commands: FormControlCommands | null) {
-          if (commands && !formControls.current[name]?.commands) {
-            if (name === focusName) {
-              nextTick(() => {
-                commands.focus();
-              });
-            }
-          }
-          formControls.current[name] = { type, commands, active: true };
-        },
-        removeControl(name: string) {
-          if (formControls.current[name]) {
-            formControls.current[name].active = false;
-          }
+        submit,
+        focus(name: string) {
+          getControlCommands(name)?.focus();
         },
         getControlCommands,
       }),
-      [disabled, focusName, getControlCommands, hideTitle, titlePosition, titleWidth]
-    );
+      [getControlCommands, submit]
+    )
+  );
+  /********************************************************************************************************************
+   * Context
+   * ******************************************************************************************************************/
 
-    /********************************************************************************************************************
-     * Render
-     * ******************************************************************************************************************/
+  const contextValue = useMemo<FormContextValue>(
+    () => ({
+      titlePosition,
+      titleWidth,
+      hideTitle,
+      disabled,
+      addControl(type: FormControlType, name: string, commands: FormControlCommands | null) {
+        if (commands && !formControls.current[name]?.commands) {
+          if (name === focusName) {
+            nextTick(() => {
+              commands.focus();
+            });
+          }
+        }
+        formControls.current[name] = { type, commands, active: true };
+      },
+      removeControl(name: string) {
+        if (formControls.current[name]) {
+          formControls.current[name].active = false;
+        }
+      },
+      getControlCommands,
+    }),
+    [disabled, focusName, getControlCommands, hideTitle, titlePosition, titleWidth]
+  );
 
-    return (
-      <FormContextProvider value={contextValue}>
-        <form className={classnames(className, 'Form')} ref={innerRef} method='post' noValidate onSubmit={handleSubmit}>
-          <Flex {...stackProps}>{children}</Flex>
-        </form>
-      </FormContextProvider>
-    );
-  }
-);
+  /********************************************************************************************************************
+   * Render
+   * ******************************************************************************************************************/
+
+  return (
+    <FormContextProvider value={contextValue}>
+      <form className={classnames(className, 'Form')} ref={innerRef} method='post' noValidate onSubmit={handleSubmit}>
+        <Flex {...stackProps}>{children}</Flex>
+      </form>
+    </FormContextProvider>
+  );
+};
 
 export default Form;

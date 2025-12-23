@@ -1,5 +1,4 @@
 import l from '@loadable/component';
-import { loadable } from '@common';
 
 const Dev = l(
   () => import(/* webpackChunkName: "dev-controls" */ './Dev'),

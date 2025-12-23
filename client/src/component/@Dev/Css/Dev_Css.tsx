@@ -2,7 +2,6 @@ import React from 'react';
 import { AllColors, getFriendlyNameOfSize, Sizes, Theme } from '@theme';
 import { Divider, Grid, Tabs } from '@ccomp';
 import { useLocation } from 'react-router';
-import { app, util } from '@common';
 
 const TabValue = ['size', 'color'] as const;
 type TabValue = (typeof TabValue)[number];
@@ -35,14 +34,14 @@ export const Dev_Css = () => {
    * Effect
    * ******************************************************************************************************************/
 
-  useEffect(() => {
+  if (useChanged(location, true)) {
     const hash = app.deHash(location);
     if (hash.sm && TabValue.includes(hash.sm as TabValue)) {
       setActiveTab(hash.sm as TabValue);
     } else {
       setActiveTab('size');
     }
-  }, [location]);
+  }
 
   /********************************************************************************************************************
    * Render
@@ -56,7 +55,7 @@ export const Dev_Css = () => {
         items={TabItems}
         value={activeTab}
         onChange={(v) => {
-          v !== activeTab && __navigate(`#m=css&sm=${v}`);
+          v !== activeTab && g.nav.go(`#m=css&sm=${v}`);
         }}
       />
 

@@ -7,6 +7,7 @@ export interface FormFileCommands extends FormControlCommands {
 }
 
 export interface FormFileProps extends Omit<FormControlCommonProps<string>, 'value' | 'onChange' | 'onValidate'> {
+  ref?: Ref<FormFileCommands>;
   placeholder?: string;
   hideEmptyErrorText?: boolean;
   maxFileSize?: number;

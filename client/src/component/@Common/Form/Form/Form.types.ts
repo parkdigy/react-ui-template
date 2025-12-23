@@ -7,6 +7,7 @@ export interface FormCommands {
 }
 
 export interface FormProps extends Omit<FlexProps, 'ref' | 'onSubmit'> {
+  ref?: Ref<FormCommands>;
   titlePosition?: 'top' | 'left';
   titleWidth?: number;
   hideTitle?: boolean;

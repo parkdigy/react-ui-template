@@ -1,5 +1,4 @@
 import l from '@loadable/component';
-import { loadable } from '@common';
 
 const Alert = l(
   () => import(/* webpackChunkName: "common-alert" */ './Alert'),

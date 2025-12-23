@@ -2,7 +2,6 @@ import React from 'react';
 import { FormPassword, FormProps } from '@ccomp';
 import { Dev_FormOptions, Dev_FormOptionsData, Dev_Panel } from '../../@Common';
 import code from './Dev_Form_Password.code.md';
-import { toast } from '@common';
 import Dev_Form_Password_Variant from './Dev_Form_Password_Variant';
 import { FlattenFormOptions } from '../../@types/FlattenFormOptions';
 

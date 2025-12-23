@@ -1,5 +1,5 @@
-import React, { CSSProperties } from 'react';
-import { FormRadioGroupItemProps as Props } from './FormRadioGroupItem.types';
+import React from 'react';
+import { FormRadioGroupItemCommands, FormRadioGroupItemProps as Props } from './FormRadioGroupItem.types';
 import { useResizeDetector } from 'react-resize-detector';
 import { ReactComponent as IconDefault } from './icon_default.svg';
 import { ReactComponent as IconActive } from './icon_active.svg';
@@ -40,27 +40,36 @@ export function FormRadioGroupItem<T extends string | number | boolean>({
    * Effect
    * ******************************************************************************************************************/
 
-  useEffect(() => {
-    if (labelWidth && !buttonFullWidth) {
-      onChangeWidth?.(
-        contains(['button', 'smallButton'], type) ? labelWidth : labelWidth + _radioItemIconSize + _radioItemGap + 1
-      ); // 1:오차 보정
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [type, labelWidth, itemsKey]);
+  {
+    const effectEvent = useEffectEvent(() => {
+      if (labelWidth && !buttonFullWidth) {
+        onChangeWidth?.(
+          contains(['button', 'smallButton'], type) ? labelWidth : labelWidth + _radioItemIconSize + _radioItemGap + 1
+        ); // 1:오차 보정
+      }
+    });
+    useEffect(() => effectEvent(), [type, labelWidth, itemsKey]);
+  }
 
   /********************************************************************************************************************
    * Commands
    * ******************************************************************************************************************/
 
-  useEffect(() => {
-    onCommands?.({
+  const commands = useMemo(
+    (): FormRadioGroupItemCommands => ({
       focus() {
         containerRef.current?.focus();
       },
+    }),
+    []
+  );
+
+  {
+    const effectEvent = useEffectEvent(() => {
+      onCommands?.(commands);
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    useEffect(() => effectEvent(), [commands]);
+  }
 
   /********************************************************************************************************************
    * Render

@@ -1,4 +1,4 @@
-import React, { CSSProperties } from 'react';
+import React from 'react';
 import { FormControlContentContainerProps as Props } from './FormControlContentContainer.types';
 import './FormControlContentContainer.scss';
 

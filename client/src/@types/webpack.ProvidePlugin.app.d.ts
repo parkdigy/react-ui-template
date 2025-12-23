@@ -18,6 +18,16 @@ declare type ApiResult = import('../global/api/index.ts').apiResult;
 declare type ApiPaging = import('../global/api/index.ts').apiPaging;
 declare type ApiPageLimitRequestData = import('../global/api/index.ts').apiPageLimitRequestData;
 
-// mediaQuery
-declare const mediaQuery: typeof import('../global/mediaQuery/index.ts').mediaQuery;
-declare const useScreenSize: typeof import('../global/mediaQuery/index.ts').useScreenSize;
+// materialIcons
+declare const MaterialIconTypes: typeof import('../global/materialIcons/index.ts').MaterialIconTypes;
+declare type MaterialIconTypes = import('../global/materialIcons/index.ts').MaterialIconTypes;
+declare const DevMaterialIconTypes: typeof import('../global/materialIcons/index.ts').DevMaterialIconTypes;
+declare type DevMaterialIconTypes = import('../global/materialIcons/index.ts').DevMaterialIconTypes;
+declare const LiveMaterialIconTypes: typeof import('../global/materialIcons/index.ts').LiveMaterialIconTypes;
+declare type LiveMaterialIconTypes = import('../global/materialIcons/index.ts').LiveMaterialIconTypes;
+
+// object
+declare const objectKeys: typeof import('../global/object/index.ts').objectKeys;
+
+// theme
+declare const useTheme: typeof import('../theme/index.ts').useTheme;

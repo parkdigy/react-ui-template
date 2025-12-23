@@ -1,5 +1,4 @@
 import l from '@loadable/component';
-import { loadable } from '@common';
 
 const IconButton = l(
   () => import(/* webpackChunkName: "common-icon-button" */ './IconButton'),

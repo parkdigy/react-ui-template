@@ -1,6 +1,5 @@
 import React from 'react';
 import { Dev_Panel } from '../@Common';
-import { toast } from '@common';
 
 export const Dev_Toast = () => {
   return (

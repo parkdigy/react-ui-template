@@ -31,7 +31,34 @@ export const Dev_FormControl_Cols = ({
    * Render
    * ******************************************************************************************************************/
 
-  let colsOfSize: GridCols = 1;
+  const colList = useMemo(() => {
+    if (useResponsive) {
+      let colsOfSize: GridCols = 1;
+
+      return objectKeys(AllScreenAliases).map((screen, idx) => {
+        if (responsiveCols[screen] !== undefined) {
+          colsOfSize = responsiveCols[screen];
+        }
+        return (
+          <Col key={idx}>
+            <FormSelect
+              size='small'
+              title={`${screen}`}
+              placeholder={`${colsOfSize}개`}
+              name={screen}
+              items={_selectColsItems}
+              clearable
+              disabled={disabled}
+              value={responsiveCols[screen]}
+              onChange={(v) => onChangeResponsiveCols({ ...responsiveCols, [screen]: v })}
+            />
+          </Col>
+        );
+      });
+    } else {
+      return null;
+    }
+  }, [disabled, onChangeResponsiveCols, responsiveCols, useResponsive]);
 
   return (
     <Dev_PanelItem icon='ViewColumn' title='컬럼 수 (cols)' mt={-5}>
@@ -58,26 +85,7 @@ export const Dev_FormControl_Cols = ({
           }}
           gap={10}
         >
-          {keys(AllScreenAliases).map((screen, idx) => {
-            if (responsiveCols[screen] !== undefined) {
-              colsOfSize = responsiveCols[screen];
-            }
-            return (
-              <Col key={idx}>
-                <FormSelect
-                  size='small'
-                  title={`${screen}`}
-                  placeholder={`${colsOfSize}개`}
-                  name={screen}
-                  items={_selectColsItems}
-                  clearable
-                  disabled={disabled}
-                  value={responsiveCols[screen]}
-                  onChange={(v) => onChangeResponsiveCols({ ...responsiveCols, [screen]: v })}
-                />
-              </Col>
-            );
-          })}
+          {colList}
         </Grid>
       ) : screen.smallerThanOrEqual.tabletSm ? (
         <FormSelect

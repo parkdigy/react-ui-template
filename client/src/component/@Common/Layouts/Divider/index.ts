@@ -1,5 +1,4 @@
 import l from '@loadable/component';
-import { loadable } from '@common';
 
 const Divider = l(
   () => import(/* webpackChunkName: "common-divider" */ './Divider'),
