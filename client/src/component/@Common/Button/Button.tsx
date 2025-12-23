@@ -49,117 +49,117 @@ const StyledButton = styled('button')`
   }
 
   &.Button_color_primary {
-    background-color: ${color.primary};
+    background-color: ${g.color.primary};
     color: #fff;
 
     &:hover:not([disabled]) {
-      background-color: ${color.primaryDark};
+      background-color: ${g.color.primaryDark};
     }
     &:focus:not([disabled]) {
-      background-color: ${color.primaryDark};
+      background-color: ${g.color.primaryDark};
     }
     &:active:not([disabled]) {
-      background-color: ${color.primaryLight};
+      background-color: ${g.color.primaryLight};
     }
   }
 
   &.Button_color_secondary {
-    background-color: ${color.secondary};
+    background-color: ${g.color.secondary};
     color: #fff;
 
     &:hover:not([disabled]) {
-      background-color: ${color.secondaryDark};
+      background-color: ${g.color.secondaryDark};
     }
     &:focus:not([disabled]) {
-      background-color: ${color.secondaryDark};
+      background-color: ${g.color.secondaryDark};
     }
     &:active:not([disabled]) {
-      background-color: ${color.secondaryLight};
+      background-color: ${g.color.secondaryLight};
     }
   }
 
   &.Button_color_error {
-    background-color: ${color.error};
+    background-color: ${g.color.error};
     color: #fff;
 
     &:hover:not([disabled]) {
-      background-color: ${color.errorDark};
+      background-color: ${g.color.errorDark};
     }
     &:focus:not([disabled]) {
-      background-color: ${color.errorDark};
+      background-color: ${g.color.errorDark};
     }
     &:active:not([disabled]) {
-      background-color: ${color.errorLight};
+      background-color: ${g.color.errorLight};
     }
   }
 
   &.Button_color_success {
-    background-color: ${color.success};
+    background-color: ${g.color.success};
     color: #fff;
     &:hover:not([disabled]) {
-      background-color: ${color.successDark};
+      background-color: ${g.color.successDark};
     }
     &:focus:not([disabled]) {
-      background-color: ${color.successDark};
+      background-color: ${g.color.successDark};
     }
     &:active:not([disabled]) {
-      background-color: ${color.successLight};
+      background-color: ${g.color.successLight};
     }
   }
 
   &.Button_color_warning {
-    background-color: ${color.warning};
+    background-color: ${g.color.warning};
     color: #fff;
     &:hover:not([disabled]) {
-      background-color: ${color.warningDark};
+      background-color: ${g.color.warningDark};
     }
     &:focus:not([disabled]) {
-      background-color: ${color.warningDark};
+      background-color: ${g.color.warningDark};
     }
     &:active:not([disabled]) {
-      background-color: ${color.warningLight};
+      background-color: ${g.color.warningLight};
     }
   }
 
   &.Button_color_info {
-    background-color: ${color.info};
+    background-color: ${g.color.info};
     color: #fff;
     &:hover:not([disabled]) {
-      background-color: ${color.info};
+      background-color: ${g.color.info};
     }
     &:focus:not([disabled]) {
-      background-color: ${color.infoDark};
+      background-color: ${g.color.infoDark};
     }
     &:active:not([disabled]) {
-      background-color: ${color.infoLight};
+      background-color: ${g.color.infoLight};
     }
   }
 
   &.Button_color_gray {
-    background-color: ${color.gray};
+    background-color: ${g.color.gray};
     color: #fff;
     &:hover:not([disabled]) {
-      background-color: ${color.gray};
+      background-color: ${g.color.gray};
     }
     &:focus:not([disabled]) {
-      background-color: ${color.gray600};
+      background-color: ${g.color.gray600};
     }
     &:active:not([disabled]) {
-      background-color: ${color.gray600};
+      background-color: ${g.color.gray600};
     }
   }
 
   &.Button_color_light {
-    background-color: ${color.gray300};
+    background-color: ${g.color.gray300};
     color: #333;
     &:hover:not([disabled]) {
-      background-color: ${color.gray300};
+      background-color: ${g.color.gray300};
     }
     &:focus:not([disabled]) {
-      background-color: ${color.gray400};
+      background-color: ${g.color.gray400};
     }
     &:active:not([disabled]) {
-      background-color: ${color.gray400};
+      background-color: ${g.color.gray400};
     }
   }
 `;
