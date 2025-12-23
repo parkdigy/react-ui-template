@@ -1,0 +1,23 @@
+declare const env: import('../global/env/index.ts').Env;
+declare const ll: import('../global/ll/index.ts').Ll;
+declare const g: import('../global/g/index.ts').G;
+declare const color: import('../global/color/index.ts').Color;
+declare const util: import('../global/util/index.ts').Util;
+declare const loadable: import('../global/loadable/index.ts').Loadable;
+declare const toast: import('../global/toast/index.ts').Toast;
+
+// delay
+declare const nextTick: import('../global/delay/index.ts').NextTick;
+
+// app
+declare const app: import('../global/app/index.ts').App;
+
+// api
+declare const api: import('../global/api/index.ts').Api;
+declare type ApiResult = import('../global/api/index.ts').ApiResult;
+declare type ApiPaging = import('../global/api/index.ts').ApiPaging;
+declare type ApiPageLimitRequestData = import('../global/api/index.ts').ApiPageLimitRequestData;
+
+// mediaQuery
+declare const mediaQuery: import('../global/mediaQuery/index.ts').MediaQuery;
+declare const useScreenSize: import('../global/mediaQuery/index.ts').UseScreenSize;

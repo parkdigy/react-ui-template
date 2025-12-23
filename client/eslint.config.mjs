@@ -4,9 +4,12 @@ import tseslint from 'typescript-eslint';
 import typescriptEslintParser from '@typescript-eslint/parser';
 import pluginReact from 'eslint-plugin-react';
 import pluginReactHooks from 'eslint-plugin-react-hooks';
+import WebpackProviderPluginCommonComponent from './webpack/ProvidePlugin.common-component.js';
 
 export default defineConfig([
   ...tseslint.config(eslint.configs.recommended, tseslint.configs.recommended),
+  pluginReact.configs.flat.recommended,
+  pluginReactHooks.configs.flat.recommended,
   {
     ignores: ['node_modules/', 'dist/'],
     files: ['**/*.{js,jsx,ts,tsx}'],
@@ -23,12 +26,13 @@ export default defineConfig([
         module: 'readonly',
         process: 'readonly',
         __dirname: 'readonly',
+        ...Object.keys(WebpackProviderPluginCommonComponent).reduce((acc, key) => {
+          acc[key] = 'readonly';
+          return acc;
+        }, {}),
       },
     },
-    plugins: {
-      react: pluginReact,
-      'react-hooks': pluginReactHooks,
-    },
+    plugins: {},
     settings: {
       react: {
         version: 'detect', // Auto-detect React version
@@ -41,16 +45,17 @@ export default defineConfig([
       '@typescript-eslint/no-explicit-any': 'off',
       '@typescript-eslint/no-empty-object-type': 'off',
       '@typescript-eslint/no-unused-expressions': 'off',
-      '@typescript-eslint/no-unused-vars': ['warn'],
+      '@typescript-eslint/no-unused-vars': 'warn',
       'no-empty-pattern': 'off',
-      'no-useless-constructor': ['warn'],
-      'react/no-unused-state': ['warn'],
+      'no-useless-constructor': 'warn',
+      'react/no-unused-state': 'warn',
       'react/state-in-constructor': ['error', 'always'],
-      'react/no-deprecated': ['error'],
+      'react/no-deprecated': 'error',
       'react-hooks/rules-of-hooks': 'error',
       'react-hooks/exhaustive-deps': 'error',
-      'no-plusplus': ['error'],
-      'prefer-template': ['error'],
+      'react/jsx-no-undef': ['error', { allowGlobals: true }],
+      'no-plusplus': 'error',
+      'prefer-template': 'error',
       'jsx-quotes': ['error', 'prefer-single'],
       'react/prop-types': [
         'error',

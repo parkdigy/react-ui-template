@@ -17,7 +17,6 @@
       "@assets": ["src/@assets"],
       "@sass": ["src/sass"],
       "@theme": ["src/theme"],
-      "@common": ["src/common"],
       "@comp": ["src/component"],
       "@ccomp": ["src/component/@Common"],
       "@const": ["src/constant"],

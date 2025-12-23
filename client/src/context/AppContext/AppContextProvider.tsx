@@ -7,7 +7,7 @@ import React from 'react';
 import { AppContextProviderProps as Props } from './AppContextProvider.types';
 import AppContext from './AppContext';
 
-const AppContextProvider: React.FC<Props> = ({ children, value }) => {
+const AppContextProvider = ({ children, value }: Props) => {
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };
 

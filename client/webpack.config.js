@@ -14,6 +14,7 @@ const { SourceMapDevToolPlugin } = require('webpack');
 const TsConfigJson = require('./tsconfig.json');
 const SyntaxHighlighter = require('react-syntax-highlighter');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const MyProvidePlugin = require('./webpack/ProvidePlugin');
 /* eslint-enable */
 
 /********************************************************************************************************************
@@ -40,7 +41,6 @@ class MyHtmlPlugin {
           <script>window.$$MyAppConfig = {version: '${new Date().getTime()}'}</script>
           <script>
             window.$$MyAppConfig = {
-              version: window.$$MyAppConfig.version,
               env: '${isProduction ? '<%= appEnv %>' : env.APP_ENV}',
               title: '${isProduction ? '<%= title %>' : env.APP_NAME}',
             };
@@ -157,6 +157,7 @@ const options = {
       : {},
   },
   plugins: [
+    new MyProvidePlugin(),
     new ForkTsCheckerWebpackPlugin(),
     new ESLintPlugin({
       extensions: ['js', 'jsx', 'ts', 'tsx'],
@@ -219,13 +220,6 @@ const options = {
         use: [
           {
             loader: 'babel-loader',
-          },
-          {
-            loader: 'ts-loader',
-            options: {
-              transpileOnly: true,
-              experimentalWatchApi: true,
-            },
           },
         ],
       },

@@ -7,7 +7,6 @@ import { Route, Routes } from 'react-router';
 import { AppContextProvider, AppContextValue, ScreenSizeContextProvider } from '@context';
 import { ErrorRetry, ToastContainer } from '@ccomp';
 import RootLayoutAppInitializer from './RootLayoutAppInitializer';
-import { app, config } from '@common';
 import AuthLayout from '../AuthLayout';
 import DefaultLayout from '../DefaultLayout';
 import { AuthInfo } from '@const';
@@ -172,6 +171,14 @@ const RootLayout = () => {
   );
 
   /********************************************************************************************************************
+   * Effect
+   * ******************************************************************************************************************/
+
+  useEffect(() => {
+    hideHtmlLoading();
+  }, [hideHtmlLoading]);
+
+  /********************************************************************************************************************
    * Render
    * ******************************************************************************************************************/
 
@@ -198,7 +205,7 @@ const RootLayout = () => {
                   <Route path='/auth/*' element={<AuthLayout />} />
                   <Route path='/*' element={<DefaultLayout />} />
                 </Routes>
-                {config.isLocal && <DevButtons />}
+                {env.isLocal && <DevButtons />}
                 <Dialog />
                 <ToastContainer />
               </>

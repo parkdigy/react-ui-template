@@ -1,5 +1,4 @@
 import l from '@loadable/component';
-import { loadable } from '@common';
 
 const Button = l(
   () => import(/* webpackChunkName: "common-button" */ './Button'),
@@ -9,5 +8,7 @@ const Button = l(
 export { Button };
 
 export default Button;
+
+export type TButton = typeof Button;
 
 export * from './Button.types';

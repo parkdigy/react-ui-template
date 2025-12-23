@@ -5,4 +5,6 @@ export interface LoadingCommands {
   getLastHideTime: () => number;
 }
 
-export interface LoadingProps {}
+export interface LoadingProps {
+  ref?: Ref<LoadingCommands>;
+}

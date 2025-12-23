@@ -1,13 +1,14 @@
 import l from '@loadable/component';
-import { loadable } from '@common';
 
 const HoverButton = l(
-  () => import(/* webpackChunkName: "common-text-button" */ './HoverButton'),
+  () => import(/* webpackChunkName: "common-hover-button" */ './HoverButton'),
   loadable.options
 ) as unknown as typeof import('./HoverButton').default;
 
 export { HoverButton };
 
 export default HoverButton;
+
+export type THoverButton = typeof HoverButton;
 
 export * from './HoverButton.types';
