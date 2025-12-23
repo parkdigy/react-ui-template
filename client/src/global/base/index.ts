@@ -1,1 +1,2 @@
-export * from './test';
+export * from './delay';
+export * from './object';

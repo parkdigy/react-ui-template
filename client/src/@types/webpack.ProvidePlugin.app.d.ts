@@ -1,13 +1,18 @@
-declare const env: typeof import('../global/env/index.ts').env;
-declare const ll: typeof import('../global/ll/index.ts').ll;
-declare const g: typeof import('../global/g/index.ts').g;
-declare const color: typeof import('../global/color/index.ts').color;
-declare const util: typeof import('../global/util/index.ts').util;
-declare const loadable: typeof import('../global/loadable/index.ts').loadable;
-declare const toast: typeof import('../global/toast/index.ts').toast;
+// base
+declare const objectKeys: typeof import('../global/base/index.ts').objectKeys;
+declare const nextTick: typeof import('../global/base/index.ts').nextTick;
 
-// delay
-declare const nextTick: typeof import('../global/delay/index.ts').nextTick;
+// env
+declare const env: typeof import('../global/env/index.ts').env;
+
+// ll
+declare const ll: typeof import('../global/ll/index.ts').ll;
+
+// g
+declare const g: typeof import('../global/g/index.ts').g;
+
+// loadable
+declare const loadable: typeof import('../global/loadable/index.ts').loadable;
 
 // app
 declare const app: typeof import('../global/app/index.ts').app;
@@ -26,10 +31,10 @@ declare type DevMaterialIconTypes = import('../global/materialIcons/index.ts').D
 declare const LiveMaterialIconTypes: typeof import('../global/materialIcons/index.ts').LiveMaterialIconTypes;
 declare type LiveMaterialIconTypes = import('../global/materialIcons/index.ts').LiveMaterialIconTypes;
 
-// object
-declare const objectKeys: typeof import('../global/object/index.ts').objectKeys;
-
 // theme
 declare const Theme: typeof import('../theme/index.ts').Theme;
 declare type Theme = import('../theme/index.ts').Theme;
 declare const useTheme: typeof import('../theme/index.ts').useTheme;
+
+// toast
+declare const toast: typeof import('../global/toast/index.ts').toast;
