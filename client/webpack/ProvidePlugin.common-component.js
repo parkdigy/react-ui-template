@@ -31,7 +31,7 @@ module.exports = {
   SvgProps: [path.resolve(__dirname, '../src/component/@Common/index.ts'), 'SvgProps'],
 
   // Icon
-  Icon: [path.resolve(__dirname, '../src/component/@Common/index.ts'), 'Icon'],
+  Icon: [path.resolve(__dirname, '../src/component/@Common/index.ts'), 'default'],
   IconProps: [path.resolve(__dirname, '../src/component/@Common/index.ts'), 'IconProps'],
 
   // Button

@@ -80,7 +80,7 @@ export const ThemeProvider = ({ children, colorScheme }: Props) => {
 
     setLastTheme(newTheme);
 
-    app.setTheme(newTheme);
+    // app.setTheme(newTheme);
 
     theme = newTheme;
   }

@@ -30,4 +30,6 @@ declare type LiveMaterialIconTypes = import('../global/materialIcons/index.ts').
 declare const objectKeys: typeof import('../global/object/index.ts').objectKeys;
 
 // theme
+declare const Theme: typeof import('../theme/index.ts').Theme;
+declare type Theme = import('../theme/index.ts').Theme;
 declare const useTheme: typeof import('../theme/index.ts').useTheme;

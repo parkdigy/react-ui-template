@@ -32,5 +32,6 @@ module.exports = {
   objectKeys: [path.resolve(__dirname, '../src/global/object/index.ts'), ' objectKeys'],
 
   // theme
+  Theme: [path.resolve(__dirname, '../src/theme/index.ts'), 'Theme'],
   useTheme: [path.resolve(__dirname, '../src/theme/index.ts'), 'useTheme'],
 };
