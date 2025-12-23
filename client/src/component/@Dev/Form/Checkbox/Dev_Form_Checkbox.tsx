@@ -69,7 +69,7 @@ export const Dev_Form_Checkbox = ({ titlePosition }: Props) => {
                 }
                 {...data}
               />
-              <Button>Submit</Button>
+              <Button type='submit'>Submit</Button>
             </Flex>
           )}
         />

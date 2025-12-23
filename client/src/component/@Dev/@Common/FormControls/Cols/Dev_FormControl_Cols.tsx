@@ -31,7 +31,7 @@ export const Dev_FormControl_Cols = ({
    * Render
    * ******************************************************************************************************************/
 
-  const colList = useMemo(() => {
+  const responsiveColList = useMemo(() => {
     if (useResponsive) {
       let colsOfSize: GridCols = 1;
 
@@ -85,7 +85,7 @@ export const Dev_FormControl_Cols = ({
           }}
           gap={10}
         >
-          {colList}
+          {responsiveColList}
         </Grid>
       ) : screen.smallerThanOrEqual.tabletSm ? (
         <FormSelect

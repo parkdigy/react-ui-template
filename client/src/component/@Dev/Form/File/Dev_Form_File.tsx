@@ -67,7 +67,7 @@ export const Dev_Form_File = ({ titlePosition }: Props) => {
                 }
                 {...data}
               />
-              <Button>Submit</Button>
+              <Button type='submit'>Submit</Button>
             </Flex>
           )}
         />

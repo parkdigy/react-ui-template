@@ -68,7 +68,7 @@ export const Dev_Form_Textarea = ({ titlePosition }: Props) => {
                 }
                 {...data}
               />
-              <Button>Submit</Button>
+              <Button type='submit'>Submit</Button>
             </Flex>
           )}
         />

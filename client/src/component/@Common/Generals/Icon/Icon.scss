@@ -2,6 +2,6 @@
 
 .Icon {
   cursor: default;
-  font-size: var(--font-size);
+  font-size: var(--font-size) !important;
   user-select: none;
 }

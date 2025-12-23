@@ -57,7 +57,7 @@ export const Dev_Form_RadioGroup = ({ titlePosition }: Props) => {
           onGetTest={() => (
             <Flex gap={20} fullWidth>
               <FormRadioGroup name='FormRadioGroup' titleWidth={120} items={Items} {...data} />
-              <Button>Submit</Button>
+              <Button type='submit'>Submit</Button>
             </Flex>
           )}
         />

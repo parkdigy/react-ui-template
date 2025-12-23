@@ -66,7 +66,7 @@ export const Dev_Form_Email = ({ titlePosition }: Props) => {
                 }
                 {...data}
               />
-              <Button>Submit</Button>
+              <Button type='submit'>Submit</Button>
             </Flex>
           )}
         />

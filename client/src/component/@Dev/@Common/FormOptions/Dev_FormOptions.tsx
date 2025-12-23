@@ -147,41 +147,29 @@ const Dev_FormOptions = <TColors extends AllColors = AllColors, TBackgroundColor
    * ******************************************************************************************************************/
 
   {
-    const effectEvent = useEffectEvent(
-      useCallback(() => {
-        const newData: Dev_FormOptionsData<TColors, TBackgroundColors> = {};
+    const effectEvent = useEffectEvent(() => {
+      const newData: Dev_FormOptionsData<TColors, TBackgroundColors> = {};
 
-        flatOptions.forEach((v) => {
-          if (v === 'cols') {
-            if (colsUseResponsive) {
-              newData.cols = colsResponsiveCols;
-            } else {
-              newData.cols = ifEmpty(cols, undefined);
-            }
-          } else if (allControlNames.includes(v)) {
-            newData[v] = allControls[v] as any;
+      flatOptions.forEach((v) => {
+        if (v === 'cols') {
+          if (colsUseResponsive) {
+            newData.cols = colsResponsiveCols;
+          } else {
+            newData.cols = ifEmpty(cols, undefined);
           }
-        });
-
-        if (!equal(newData, dataRef.current)) {
-          setData(newData);
-          onChangeRef.current(newData);
+        } else if (allControlNames.includes(v)) {
+          newData[v] = allControls[v] as any;
         }
-      }, [
-        allControlNames,
-        allControls,
-        cols,
-        colsResponsiveCols,
-        colsUseResponsive,
-        dataRef,
-        flatOptions,
-        onChangeRef,
-        setData,
-      ])
-    );
+      });
+
+      if (!equal(newData, dataRef.current)) {
+        setData(newData);
+        onChangeRef.current(newData);
+      }
+    });
     useEffect(() => {
       return effectEvent();
-    }, [cols, flatOptions, allControls, allControlNames]);
+    }, [cols, colsUseResponsive, colsResponsiveCols, flatOptions, allControls, allControlNames]);
   }
 
   /********************************************************************************************************************

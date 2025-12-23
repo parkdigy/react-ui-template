@@ -73,7 +73,7 @@ export const Dev_Form_Select = ({ titlePosition }: Props) => {
                 }
                 {...data}
               />
-              <Button>Submit</Button>
+              <Button type='submit'>Submit</Button>
             </Flex>
           )}
         />
