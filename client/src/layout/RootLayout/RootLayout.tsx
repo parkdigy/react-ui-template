@@ -10,7 +10,6 @@ import { AppContextProvider } from '@context';
 import { ErrorRetry, Loading, LoadingCommands } from '@ccomp';
 import RootLayoutAppInitializer from './RootLayoutAppInitializer';
 import { useErrorBoundary, withErrorBoundary } from 'react-use-error-boundary';
-import { loadable } from '@common';
 import DefaultLayout from '../DefaultLayout';
 import { RootLoading } from './RootLoading';
 import '../../sass/index.scss';

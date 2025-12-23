@@ -15,7 +15,6 @@
     "paths": {
       "@sass": ["src/sass"],
       "@types": ["src/@types"],
-      "@common": ["src/common"],
       "@comp": ["src/component"],
       "@ccomp": ["src/component/Common"],
       "@const": ["src/constant"],
