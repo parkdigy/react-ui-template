@@ -22,7 +22,7 @@ const location = {
    * ******************************************************************************************************************/
   deHash(location?: Location | RouterLocation) {
     const values: Dict<string> = {};
-    const hash = ifUndefined(location, window.location).hash.substring(1);
+    const hash = (location ?? window.location).hash.substring(1);
     hash.replace(/([^=&]+)=([^&]*)/g, (substring, key, value) => {
       values[decodeURIComponent(key)] = decodeURIComponent(value);
       return substring;

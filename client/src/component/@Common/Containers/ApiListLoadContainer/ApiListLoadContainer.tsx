@@ -159,12 +159,12 @@ function ApiListLoadContainer<T extends { [key in string]: any } = any, TListIte
           ? toScrollRef.current?.getBoundingClientRect().y
           : containerRef.current?.getBoundingClientRect().y;
       if (scrollY !== undefined && scrollY < 0) {
-        g.nav.setScrollTopPos(app.getScrollTop() + scrollY - 20);
+        g.nav.setScrollTopPos(g.browser.getScrollTop() + scrollY - 20);
       } else {
-        g.nav.setScrollTopPos(app.getScrollTop());
+        g.nav.setScrollTopPos(g.browser.getScrollTop());
       }
 
-      app.updateSearchParams(setSearchParams, { p: page.toString() });
+      g.location.updateSearchParams(setSearchParams, { p: page.toString() });
     },
     [setSearchParams, toScrollRef]
   );
@@ -175,7 +175,7 @@ function ApiListLoadContainer<T extends { [key in string]: any } = any, TListIte
 
   const errorMessage = useMemo(() => {
     if (error) {
-      const apiErrorCode = g.axios.getAxiosApiErrorResultCode(error);
+      const apiErrorCode = api.error.getResultCode(error);
       if (apiErrorCode !== undefined) {
         return `(A-${apiErrorCode})\n문제가 발생했습니다.`;
       } else if (error.status) {

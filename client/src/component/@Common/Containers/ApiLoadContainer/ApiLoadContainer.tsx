@@ -115,7 +115,7 @@ export const ApiLoadContainer = <T = any, TApiData = any>({
 
   const errorMessage = useMemo(() => {
     if (error) {
-      const apiErrorCode = app.getAxiosApiErrorResultCode(error);
+      const apiErrorCode = api.error.getResultCode(error);
       if (apiErrorCode !== undefined) {
         return `(A-${apiErrorCode})\n문제가 발생했습니다.`;
       } else if (error.status) {
