@@ -5,7 +5,6 @@
 import React from 'react';
 import { ScreenSizeContextProviderProps as Props } from './ScreenSizeContextProvider.types';
 import ScreenSizeContext from './ScreenSizeContext';
-import { useWindowSize } from 'usehooks-ts';
 import {
   AllScreenAliases,
   ScreenSizeInfo,

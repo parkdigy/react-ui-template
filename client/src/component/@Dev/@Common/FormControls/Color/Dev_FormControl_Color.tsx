@@ -4,7 +4,6 @@ import { ColorPicker, FormRadioGroup, FormSelect } from '@ccomp';
 import { AllColors, DefaultColors } from '@theme';
 import { Dev_PanelItem } from '../../Layout';
 import Color from 'color';
-import { equal } from '@pdg/compare';
 
 function Dev_FormControl_Color<TColors extends AllColors = AllColors>({
   variant = 'select',

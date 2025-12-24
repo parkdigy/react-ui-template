@@ -2,7 +2,6 @@ import React from 'react';
 import { FormTelCommands, FormTelProps as Props } from './FormTel.types';
 import { useForwardRef } from '@pdg/react-hook';
 import { FormText, FormTextCommands } from '../FormText';
-import { isTelNo } from '@pdg/compare';
 import { formatTelNo } from '@pdg/formatting';
 
 export const FormTel = ({

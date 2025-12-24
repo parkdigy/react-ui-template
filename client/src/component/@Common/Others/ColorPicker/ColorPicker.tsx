@@ -1,7 +1,6 @@
 import React from 'react';
 import { ColorPickerProps as Props } from './ColorPicker.types';
 import { HexAlphaColorPicker } from 'react-colorful';
-import { useWindowSize } from 'usehooks-ts';
 import './ColorPicker.scss';
 
 export const ColorPicker = ({ ref, className, defaultColor, color: initColor, onChange }: Props) => {

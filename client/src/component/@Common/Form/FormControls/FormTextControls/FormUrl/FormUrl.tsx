@@ -2,7 +2,6 @@ import React from 'react';
 import { FormUrlCommands, FormUrlProps as Props } from './FormUrl.types';
 import { useForwardRef } from '@pdg/react-hook';
 import { FormText, FormTextCommands } from '../FormText';
-import { isUrl } from '@pdg/compare';
 
 export const FormUrl = ({ ref, className, name, onValidate, ...props }: Props) => {
   /********************************************************************************************************************

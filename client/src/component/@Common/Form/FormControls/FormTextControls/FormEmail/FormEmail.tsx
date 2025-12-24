@@ -2,7 +2,6 @@ import React from 'react';
 import { FormEmailCommands, FormEmailProps as Props } from './FormEmail.types';
 import { useForwardRef } from '@pdg/react-hook';
 import { FormText, FormTextCommands } from '../FormText';
-import { isEmail } from '@pdg/compare';
 
 export const FormEmail = ({
   ref,

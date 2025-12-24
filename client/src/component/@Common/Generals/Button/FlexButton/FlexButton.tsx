@@ -1,7 +1,6 @@
 import React from 'react';
 import { FlexButtonProps as Props } from './FlexButton.types';
 import './FlexButton.scss';
-import { isUrl } from '@pdg/compare';
 
 export const FlexButton = ({ className, disabled, url, externalUrlOpenInThisTab, onClick, ...props }: Props) => {
   /********************************************************************************************************************

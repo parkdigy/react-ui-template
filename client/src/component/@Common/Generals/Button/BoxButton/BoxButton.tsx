@@ -1,7 +1,6 @@
 import React from 'react';
 import { BoxButtonProps as Props } from './BoxButton.types';
 import './BoxButton.scss';
-import { isUrl } from '@pdg/compare';
 
 export const BoxButton = ({ className, disabled, url, externalUrlOpenInThisTab, onClick, ...props }: Props) => {
   /********************************************************************************************************************

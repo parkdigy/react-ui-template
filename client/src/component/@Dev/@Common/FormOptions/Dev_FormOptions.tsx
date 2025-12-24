@@ -5,7 +5,6 @@ import { Dev_FormControl_Cols, Dev_FormControl_ColsProps } from '../FormControls
 import { Dev_Code } from '../Code';
 import { Dev_Panel } from '../Layout';
 import { useAutoUpdateRef } from '@pdg/react-hook';
-import { equal } from '@pdg/compare';
 import { AllColors } from '@theme';
 import { useScreenSize } from '@context';
 import './Dev_FormOptions.scss';

@@ -1,7 +1,6 @@
 import schedule from './schedule';
 import { AppReloadJob } from './Jobs';
 import { Scheduler } from './scheduler.types';
-import { ifEmpty } from '@pdg/compare';
 
 const scheduler: Scheduler = {
   $jobs: [],
