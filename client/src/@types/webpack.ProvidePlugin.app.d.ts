@@ -14,9 +14,6 @@ declare const g: typeof import('../global/g/index.ts').g;
 // loadable
 declare const loadable: typeof import('../global/loadable/index.ts').loadable;
 
-// app
-declare const app: typeof import('../global/app/index.ts').app;
-
 // api
 declare const api: typeof import('../global/api/index.ts').api;
 declare type ApiResult = import('../global/api/index.ts').apiResult;
