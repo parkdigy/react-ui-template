@@ -1,12 +1,8 @@
-import l from '@loadable/component';
-
-const TextButton = l(
-  () => import(/* webpackChunkName: "common-text-button" */ './TextButton'),
-  loadable.options
-) as unknown as typeof import('./TextButton').default;
-
-export { TextButton };
+import TextButton from './TextButton';
 
 export default TextButton;
 
+export { TextButton };
+
+export * from './TextButton';
 export * from './TextButton.types';

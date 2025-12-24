@@ -1,14 +1,8 @@
-import l from '@loadable/component';
-
-const Button = l(
-  () => import(/* webpackChunkName: "common-button" */ './Button'),
-  loadable.options
-) as unknown as typeof import('./Button').default;
-
-export { Button };
+import Button from './Button';
 
 export default Button;
 
-export type TButton = typeof Button;
+export { Button };
 
+export * from './Button';
 export * from './Button.types';

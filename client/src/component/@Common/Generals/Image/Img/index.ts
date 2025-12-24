@@ -1,12 +1,8 @@
-import l from '@loadable/component';
-
-const Img = l(
-  () => import(/* webpackChunkName: "common-img" */ './Img'),
-  loadable.options
-) as unknown as typeof import('./Img').default;
-
-export { Img };
+import Img from './Img';
 
 export default Img;
 
+export { Img };
+
+export * from './Img';
 export * from './Img.types';

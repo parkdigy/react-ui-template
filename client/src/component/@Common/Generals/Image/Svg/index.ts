@@ -1,12 +1,8 @@
-import l from '@loadable/component';
-
-const Svg = l(
-  () => import(/* webpackChunkName: "common-svg" */ './Svg'),
-  loadable.options
-) as unknown as typeof import('./Svg').default;
-
-export { Svg };
+import Svg from './Svg';
 
 export default Svg;
 
+export { Svg };
+
+export * from './Svg';
 export * from './Svg.types';

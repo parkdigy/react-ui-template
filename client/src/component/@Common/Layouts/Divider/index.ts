@@ -1,12 +1,8 @@
-import l from '@loadable/component';
-
-const Divider = l(
-  () => import(/* webpackChunkName: "common-divider" */ './Divider'),
-  loadable.options
-) as unknown as typeof import('./Divider').default;
-
-export { Divider };
+import Divider from './Divider';
 
 export default Divider;
 
+export { Divider };
+
+export * from './Divider';
 export * from './Divider.types';
