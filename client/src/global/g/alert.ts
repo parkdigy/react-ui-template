@@ -1,14 +1,17 @@
 const _alert = {
-  show(msg: string) {
+  show(msg: string, callback?: () => void) {
     alert(msg);
+    callback?.();
   },
 
-  showSuccess(msg: string) {
+  showSuccess(msg: string, callback?: () => void) {
     alert(msg);
+    callback?.();
   },
 
-  showError(msg: string) {
+  showError(msg: string, callback?: () => void) {
     alert(msg);
+    callback?.();
   },
 };
 
