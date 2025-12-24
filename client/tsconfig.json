@@ -15,6 +15,7 @@
     "paths": {
       "@sass": ["src/sass"],
       "@types": ["src/@types"],
+      "@gg": ["src/global/g"],
       "@comp": ["src/component"],
       "@ccomp": ["src/component/@Common"],
       "@const": ["src/constant"],

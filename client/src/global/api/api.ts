@@ -32,7 +32,7 @@ const defaultOption: ApiOption = {
         throw new ApiError(responseData.result.m, `${responseData.result.c}`);
       } else {
         if (!requestOption?.silent && notEmpty(responseData.result.m)) {
-          app.showSuccessAlert(responseData.result.m);
+          g.alert.showSuccess(responseData.result.m);
         }
       }
     }
@@ -50,12 +50,12 @@ const defaultOption: ApiOption = {
       if (data.result.c === 99997) {
         window.location.href = '/auth/signin';
       } else if (!silent) {
-        app.showErrorAlert(
+        g.alert.showError(
           `(${data.result.c}) ${notEmpty(data.result.m) ? data.result.m : '예상치 못한 오류가 발생했습니다.'}`
         );
       }
     } else if (!silent) {
-      app.showErrorAlert(`(${err.code}) ${err.message}`);
+      g.alert.showError(`(${err.code}) ${err.message}`);
     }
   },
 };
