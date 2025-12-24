@@ -13,10 +13,11 @@
     "preserveSymlinks": true,
     "baseUrl": "./",
     "paths": {
+      "@sass": ["src/sass"],
+      "@sass/*": ["src/sass/*"],
       "@types": ["src/@types"],
       "@gg": ["src/global/g"],
       "@assets": ["src/@assets"],
-      "@sass": ["src/sass"],
       "@theme": ["src/theme"],
       "@comp": ["src/component"],
       "@ccomp": ["src/component/@Common"],
