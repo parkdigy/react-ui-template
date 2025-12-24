@@ -8,6 +8,7 @@ import date from './date';
 import loading from './loading';
 import location from './location';
 import nav from './nav';
+import clipboard from './clipboard';
 import css from './css';
 import react from './react';
 import text from './text';
@@ -24,6 +25,7 @@ const g = {
   loading,
   location,
   nav,
+  clipboard,
   css,
   react,
   text,

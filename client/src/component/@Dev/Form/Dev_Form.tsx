@@ -56,7 +56,7 @@ export const Dev_Form = () => {
 
   {
     const effectEvent = useEffectEvent(() => {
-      const hash = app.deHash(location);
+      const hash = g.location.deHash(location);
       if (hash.sm && TabValue.includes(hash.sm as TabValue)) {
         setActiveTab(hash.sm as TabValue);
       } else {

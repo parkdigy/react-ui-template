@@ -103,7 +103,7 @@ const Item = ({ color, onColor }: { color: keyof Theme['colors']; onColor?: keyo
       borderRadius={4}
       center
       cursor='pointer'
-      onClick={() => app.copyToClipboard(colorValue, `'${colorValue}' 컬러 코드가 복사되었습니다.`)}
+      onClick={() => g.clipboard.copy(colorValue, `'${colorValue}' 컬러 코드가 복사되었습니다.`)}
     >
       <T opacity={0.7}>{color}</T>
       <T>{colorValue}</T>

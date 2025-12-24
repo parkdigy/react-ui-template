@@ -175,7 +175,7 @@ function ApiListLoadContainer<T extends { [key in string]: any } = any, TListIte
 
   const errorMessage = useMemo(() => {
     if (error) {
-      const apiErrorCode = app.getAxiosApiErrorResultCode(error);
+      const apiErrorCode = g.axios.getAxiosApiErrorResultCode(error);
       if (apiErrorCode !== undefined) {
         return `(A-${apiErrorCode})\n문제가 발생했습니다.`;
       } else if (error.status) {

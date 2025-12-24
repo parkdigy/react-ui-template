@@ -100,7 +100,7 @@ const CopyButton = ({ name }: { name: string }) => {
       backgroundColor={
         isVar ? 'rgba(from var(--color-primary) r g b / 0.1)' : 'rgba(from var(--color-success) r g b / 0.1)'
       }
-      onClick={() => app.copyToClipboard(name, `'${name}' ${isVar ? '변수명' : '클래스명'}이 복사되었습니다.`)}
+      onClick={() => g.clipboard.copy(name, `'${name}' ${isVar ? '변수명' : '클래스명'}이 복사되었습니다.`)}
     >
       <T>{name}</T>
     </Box>

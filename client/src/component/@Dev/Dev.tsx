@@ -85,7 +85,7 @@ export const Dev = ({}: Props) => {
    * ******************************************************************************************************************/
 
   if (useChanged(location, true)) {
-    const hash = app.deHash(location);
+    const hash = g.location.deHash(location);
     if (hash.m && TabValue.includes(hash.m as any)) {
       setActiveTab(hash.m as TabValue);
     } else {
