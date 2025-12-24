@@ -19,9 +19,6 @@ module.exports = {
   // loadable
   loadable: [path.resolve(__dirname, '../src/global/loadable/index.ts'), 'default'],
 
-  // app
-  app: [path.resolve(__dirname, '../src/global/app/index.ts'), 'default'],
-
   // api
   api: [path.resolve(__dirname, '../src/global/api/index.ts'), 'default'],
   ApiResult: [path.resolve(__dirname, '../src/global/api/index.ts'), 'ApiResult'],

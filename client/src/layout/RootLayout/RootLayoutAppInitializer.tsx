@@ -13,7 +13,7 @@ export const RootLayoutAppInitializer = () => {
    * ******************************************************************************************************************/
 
   useLayoutEffect(() => {
-    g.nav.setNavigate(navigate);
+    g.nav.set(navigate);
   }, [navigate]);
 
   /********************************************************************************************************************
@@ -21,11 +21,11 @@ export const RootLayoutAppInitializer = () => {
    * ******************************************************************************************************************/
 
   useEffect(() => {
-    g.nav.setLocation(location);
+    g.location.set(location);
   }, [location]);
 
   useEffect(() => {
-    app.scrollToTop(g.nav.getScrollTopPos());
+    g.browser.scrollToTop(g.nav.getScrollTopPos());
     g.nav.setScrollTopPos(0);
   }, [location.pathname, location.search, location.hash]);
 
