@@ -13,7 +13,7 @@ export const RootLayoutAppInitializer = () => {
    * ******************************************************************************************************************/
 
   useLayoutEffect(() => {
-    g.nav.setNavigate(navigate);
+    g.nav.set(navigate);
   }, [navigate]);
 
   /********************************************************************************************************************
@@ -21,7 +21,7 @@ export const RootLayoutAppInitializer = () => {
    * ******************************************************************************************************************/
 
   useEffect(() => {
-    g.nav.setLocation(location);
+    g.location.set(location);
   }, [location]);
 
   useEffect(() => {
