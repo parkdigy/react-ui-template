@@ -49,6 +49,18 @@ const nav = {
       console.log('!Not set navigate.');
     }
   },
+
+  /********************************************************************************************************************
+   * back
+   * ******************************************************************************************************************/
+  back(path: string) {
+    const pathname = path.split('?')[0].split('#')[0];
+    if (location.get()?.state === pathname) {
+      window.history.back();
+    } else {
+      this.go(path);
+    }
+  },
 };
 
 export default nav;
