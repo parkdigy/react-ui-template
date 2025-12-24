@@ -1,5 +1,4 @@
 import Color from 'color';
-import theme from './theme';
 
 export const color = {
   /********************************************************************************************************************
@@ -9,7 +8,7 @@ export const color = {
     const alpha = Color(color).alpha();
     const isDark = Color(color).isDark();
 
-    if (theme.getColorScheme() === 'dark') {
+    if (gTheme.getColorScheme() === 'dark') {
       if (isDark) {
         return whiteColor;
       } else if (alpha < 0.5) {
