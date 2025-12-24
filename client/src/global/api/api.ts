@@ -2,6 +2,7 @@ import fileDownload from 'js-file-download';
 import { AxiosResponse } from 'axios';
 import { ApiOption, Api, ApiError, ApiRequestData, ApiRequestOption } from '@pdg/api';
 import { ApiResult } from './api.types';
+import error from './error';
 
 const defaultOption: ApiOption = {
   baseUrl: '/api',
@@ -61,6 +62,8 @@ const defaultOption: ApiOption = {
 };
 
 export default {
+  error,
+
   /**
    * GET 요청
    * @param path API 경로
