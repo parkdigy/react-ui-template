@@ -6,7 +6,6 @@ import color from './color';
 import loading from './loading';
 import location from './location';
 import nav from './nav';
-import scroll from './scroll';
 
 const g = {
   format,
@@ -17,7 +16,6 @@ const g = {
   loading,
   location,
   nav,
-  scroll,
 };
 
 export default g;
