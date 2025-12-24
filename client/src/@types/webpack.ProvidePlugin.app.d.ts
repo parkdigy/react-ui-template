@@ -10,6 +10,13 @@ declare const ll: typeof import('../global/ll/index.ts').default;
 
 // g
 declare const g: typeof import('../global/g/index.ts').default;
+declare const gAlert: typeof import('../global/g/alert.ts').default;
+declare const gBrowser: typeof import('../global/g/browser.ts').default;
+declare const gColor: typeof import('../global/g/color.ts').default;
+declare const gDate: typeof import('../global/g/date.ts').default;
+declare const gLoading: typeof import('../global/g/loading.ts').default;
+declare const gLocation: typeof import('../global/g/location.ts').default;
+declare const gNav: typeof import('../global/g/nav.ts').default;
 
 // loadable
 declare const loadable: typeof import('../global/loadable/index.ts').default;

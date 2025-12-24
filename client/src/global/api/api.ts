@@ -10,21 +10,21 @@ const defaultOption: ApiOption = {
   async onRequest(config, baseUrl, path, requestData, requestOption) {
     if (!requestOption?.silent) {
       // 로딩 표시
-      g.loading.show();
+      gLoading.show();
     }
     return config;
   },
   async onResponse(res, config, baseUrl, path, requestData, requestOption) {
     if (!requestOption?.silent) {
       // 로딩 숨김
-      g.loading.hide();
+      gLoading.hide();
     }
     const responseData = res.data;
     if (!requestOption?.raw) {
       if (!responseData || !responseData?.result)
         throw new ApiError('예샹치 못한 오류가 발생했습니다.', 'API_ERR_NO_RESULT');
       if (responseData.result.r) {
-        g.nav.go(responseData.result.r);
+        gNav.go(responseData.result.r);
       }
       if (responseData.result.ro) {
         window.open(responseData.result.ro);
@@ -33,7 +33,7 @@ const defaultOption: ApiOption = {
         throw new ApiError(responseData.result.m, `${responseData.result.c}`);
       } else {
         if (!requestOption?.silent && notEmpty(responseData.result.m)) {
-          g.alert.showSuccess(responseData.result.m);
+          gAlert.showSuccess(responseData.result.m);
         }
       }
     }
@@ -43,7 +43,7 @@ const defaultOption: ApiOption = {
     const { silent } = err.requestOption || {};
     if (!silent) {
       // 로딩 숨김
-      g.loading.hide();
+      gLoading.hide();
     }
 
     const data = err.response?.data;
@@ -51,12 +51,12 @@ const defaultOption: ApiOption = {
       if (data.result.c === 99997) {
         window.location.href = '/auth/signin';
       } else if (!silent) {
-        g.alert.showError(
+        gAlert.showError(
           `(${data.result.c}) ${notEmpty(data.result.m) ? data.result.m : '예상치 못한 오류가 발생했습니다.'}`
         );
       }
     } else if (!silent) {
-      g.alert.showError(`(${err.code}) ${err.message}`);
+      gAlert.showError(`(${err.code}) ${err.message}`);
     }
   },
 };
