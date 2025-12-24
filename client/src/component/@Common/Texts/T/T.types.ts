@@ -1,5 +1,3 @@
-import { BoxProps } from '@ccomp';
-
 export interface TProps extends Omit<BoxProps, 'display' | 'fontSize' | 'fontWeight' | 'lineHeight' | 'color'> {
   inline?: boolean;
   center?: boolean;
