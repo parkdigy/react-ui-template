@@ -15,6 +15,13 @@ module.exports = {
 
   // g
   g: [path.resolve(__dirname, '../src/global/g/index.ts'), 'default'],
+  gAlert: [path.resolve(__dirname, '../src/global/g/alert.ts'), 'default'],
+  gBrowser: [path.resolve(__dirname, '../src/global/g/browser.ts'), 'default'],
+  gColor: [path.resolve(__dirname, '../src/global/g/color.ts'), 'default'],
+  gDate: [path.resolve(__dirname, '../src/global/g/date.ts'), 'default'],
+  gLoading: [path.resolve(__dirname, '../src/global/g/loading.ts'), 'default'],
+  gLocation: [path.resolve(__dirname, '../src/global/g/location.ts'), 'default'],
+  gNav: [path.resolve(__dirname, '../src/global/g/nav.ts'), 'default'],
 
   // loadable
   loadable: [path.resolve(__dirname, '../src/global/loadable/index.ts'), 'default'],
