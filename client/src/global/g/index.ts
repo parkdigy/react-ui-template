@@ -1,7 +1,7 @@
 import format from '@pdg/formatting';
 import korean from '@pdg/korean';
 import alert from './alert';
-import axios from './axios';
+import error from './error';
 import browser from './browser';
 import color from './color';
 import date from './date';
@@ -18,7 +18,7 @@ const g = {
   format,
   korean,
   alert,
-  axios,
+  error,
   browser,
   color,
   date,
