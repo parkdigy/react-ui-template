@@ -7,7 +7,7 @@ export const toast = {
    * 기본 토스트
    * ******************************************************************************************************************/
   default(msg: ReactNode, options?: ToastOptions) {
-    const theme = g.theme.getTheme();
+    const theme = gTheme.getTheme();
     const type = ifUndefined(options?.type, 'default');
 
     let backgroundColor: string;

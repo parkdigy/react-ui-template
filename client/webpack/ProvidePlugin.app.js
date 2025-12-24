@@ -22,6 +22,11 @@ module.exports = {
   gLoading: [path.resolve(__dirname, '../src/global/g/loading.ts'), 'default'],
   gLocation: [path.resolve(__dirname, '../src/global/g/location.ts'), 'default'],
   gNav: [path.resolve(__dirname, '../src/global/g/nav.ts'), 'default'],
+  gClipboard: [path.resolve(__dirname, '../src/global/g/clipboard.ts'), 'default'],
+  gCss: [path.resolve(__dirname, '../src/global/g/css.ts'), 'default'],
+  gReact: [path.resolve(__dirname, '../src/global/g/react.ts'), 'default'],
+  gText: [path.resolve(__dirname, '../src/global/g/text.ts'), 'default'],
+  gTheme: [path.resolve(__dirname, '../src/global/g/theme.ts'), 'default'],
 
   // loadable
   loadable: [path.resolve(__dirname, '../src/global/loadable/index.ts'), 'default'],

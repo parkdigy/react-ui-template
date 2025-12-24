@@ -79,7 +79,7 @@ function ApiListLoadContainer<T extends { [key in string]: any } = any, TListIte
       if (isLoadingRef.current) return;
       isLoadingRef.current = true;
 
-      g.loading.show();
+      gLoading.show();
       isShowLoadingRef.current = true;
 
       setLoadStatus((prev) => (prev === 'error' ? 'loading' : prev));
@@ -99,7 +99,7 @@ function ApiListLoadContainer<T extends { [key in string]: any } = any, TListIte
             })
             .finally(() => {
               if (isShowLoadingRef.current) {
-                g.loading.hide();
+                gLoading.hide();
                 isShowLoadingRef.current = false;
                 isLoadingRef.current = false;
               }
@@ -118,7 +118,7 @@ function ApiListLoadContainer<T extends { [key in string]: any } = any, TListIte
   useEffect(() => {
     return () => {
       if (isShowLoadingRef.current) {
-        g.loading.hide();
+        gLoading.hide();
         isShowLoadingRef.current = false;
       }
     };
@@ -159,12 +159,12 @@ function ApiListLoadContainer<T extends { [key in string]: any } = any, TListIte
           ? toScrollRef.current?.getBoundingClientRect().y
           : containerRef.current?.getBoundingClientRect().y;
       if (scrollY !== undefined && scrollY < 0) {
-        g.nav.setScrollTopPos(g.browser.getScrollTop() + scrollY - 20);
+        gNav.setScrollTopPos(gBrowser.getScrollTop() + scrollY - 20);
       } else {
-        g.nav.setScrollTopPos(g.browser.getScrollTop());
+        gNav.setScrollTopPos(gBrowser.getScrollTop());
       }
 
-      g.location.updateSearchParams(setSearchParams, { p: page.toString() });
+      gLocation.updateSearchParams(setSearchParams, { p: page.toString() });
     },
     [setSearchParams, toScrollRef]
   );

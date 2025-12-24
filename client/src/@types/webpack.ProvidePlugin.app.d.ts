@@ -17,6 +17,11 @@ declare const gDate: typeof import('../global/g/date.ts').default;
 declare const gLoading: typeof import('../global/g/loading.ts').default;
 declare const gLocation: typeof import('../global/g/location.ts').default;
 declare const gNav: typeof import('../global/g/nav.ts').default;
+declare const gClipboard: typeof import('../global/g/clipboard.ts').default;
+declare const gCss: typeof import('../global/g/css.ts').default;
+declare const gReact: typeof import('../global/g/react.ts').default;
+declare const gText: typeof import('../global/g/text.ts').default;
+declare const gTheme: typeof import('../global/g/theme.ts').default;
 
 // loadable
 declare const loadable: typeof import('../global/loadable/index.ts').default;

@@ -12,7 +12,7 @@ export const Row = ({ children }: Props) => {
 
   React.Children.forEach(children, (element) => {
     if (React.isValidElement(element)) {
-      const el = g.react.removeReactFragment(element);
+      const el = gReact.removeReactFragment(element);
       const els = Array.isArray(el) ? el.flat(Infinity) : [el];
       React.Children.map(els, (child) => {
         if (isElementName(child, 'Col')) {

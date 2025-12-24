@@ -29,7 +29,7 @@ export const Icon = ({
   const size = ifUndefined(ifUndefined(initSize, initS), 'md');
   const color = ifUndefined(initColor, initC);
 
-  const children = g.text.camelToSnakeCase(initChildren);
+  const children = gText.camelToSnakeCase(initChildren);
   const type = MaterialIconTypes.includes(initType as any) ? initType : LiveMaterialIconTypes[0];
   const isNamedColor = color !== undefined && contains(AllColors, color);
   const isNamedSize = contains(AllSizes, size);

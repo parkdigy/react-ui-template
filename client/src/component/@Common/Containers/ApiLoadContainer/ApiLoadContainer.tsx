@@ -42,7 +42,7 @@ export const ApiLoadContainer = <T = any, TApiData = any>({
       if (isLoadingRef.current) return;
       isLoadingRef.current = true;
 
-      g.loading.show();
+      gLoading.show();
       isShowLoadingRef.current = true;
 
       setLoadStatus((prev) => (prev === 'error' ? 'loading' : prev));
@@ -60,7 +60,7 @@ export const ApiLoadContainer = <T = any, TApiData = any>({
             })
             .finally(() => {
               if (isShowLoadingRef.current) {
-                g.loading.hide();
+                gLoading.hide();
                 isShowLoadingRef.current = false;
                 isLoadingRef.current = false;
               }
@@ -79,7 +79,7 @@ export const ApiLoadContainer = <T = any, TApiData = any>({
   useEffect(() => {
     return () => {
       if (isShowLoadingRef.current) {
-        g.loading.hide();
+        gLoading.hide();
         isShowLoadingRef.current = false;
       }
     };

@@ -24,7 +24,7 @@ export const ThemeProvider = ({ children, colorScheme }: Props) => {
     // 컬러 설정
     for (const key of objectKeys(Theme.colors)) {
       const colorName = key as keyof Theme['colors'];
-      const cssName = g.css.toCssName(colorName);
+      const cssName = gCss.toCssName(colorName);
       const varName = `--color-${cssName}`;
       if (empty(rootStyle.getPropertyValue(varName))) {
         throw new Error(`CSS variable ${varName} is not defined`);
@@ -41,7 +41,7 @@ export const ThemeProvider = ({ children, colorScheme }: Props) => {
       // 사이즈 설정
       for (const key of objectKeys(Theme.sizes)) {
         const sizeName = key as keyof Theme['sizes'];
-        const cssName = g.css.toCssName(sizeName);
+        const cssName = gCss.toCssName(sizeName);
         const baseVarName = `--size-${cssName}`;
         const fontSizeVarName = `${baseVarName}-font-size`;
         const lineHeightVarName = `${baseVarName}-line-height`;
@@ -66,7 +66,7 @@ export const ThemeProvider = ({ children, colorScheme }: Props) => {
       // 화면 크기 설정
       for (const key of objectKeys(Theme.screens)) {
         const screenName = key as keyof Theme['screens'];
-        const cssName = g.css.toCssName(screenName);
+        const cssName = gCss.toCssName(screenName);
         const varName = `--screen-${cssName}`;
         if (empty(rootStyle.getPropertyValue(varName))) {
           throw new Error(`CSS variable ${varName} is not defined`);
@@ -79,7 +79,7 @@ export const ThemeProvider = ({ children, colorScheme }: Props) => {
 
     setLastTheme(theme);
 
-    g.theme.setTheme(theme);
+    gTheme.setTheme(theme);
 
     finalTheme = theme;
   }

@@ -21,7 +21,7 @@ export const BoxButton = ({ className, disabled, url, externalUrlOpenInThisTab, 
           }
         } else {
           // 내부 URL
-          g.nav.go(url);
+          gNav.go(url);
         }
       }
 
