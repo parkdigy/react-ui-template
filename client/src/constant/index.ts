@@ -7,3 +7,5 @@ export const Const = {
   Error,
   Auth,
 };
+
+export default Const;

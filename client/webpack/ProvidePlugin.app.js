@@ -37,6 +37,13 @@ module.exports = {
   ApiPaging: [path.resolve(__dirname, '../src/global/api/index.ts'), 'ApiPaging'],
   ApiPageLimitRequestData: [path.resolve(__dirname, '../src/global/api/index.ts'), 'ApiPageLimitRequestData'],
 
+  // Const
+  Const: [path.resolve(__dirname, '../src/constant/index.ts'), 'default'],
+
+  // mediaQuery
+  mediaQuery: [path.resolve(__dirname, '../src/global/mediaQuery/index.ts'), 'default'],
+  useScreenSize: [path.resolve(__dirname, '../src/global/mediaQuery/index.ts'), 'useScreenSize'],
+
   // materialIcons
   MaterialIconTypes: [path.resolve(__dirname, '../src/global/materialIcons/index.ts'), 'MaterialIconTypes'],
   DevMaterialIconTypes: [path.resolve(__dirname, '../src/global/materialIcons/index.ts'), 'DevMaterialIconTypes'],
