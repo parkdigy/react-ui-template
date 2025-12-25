@@ -230,9 +230,27 @@ const options = {
         ],
       },
       {
-        test: /\.(eot|woff|woff2|ttf|svg|png|jpe?g|gif)(\?\S*)?$/,
+        test: /\.(png|jpe?g|gif)(\?\S*)?$/,
         type: 'asset',
-        parser: { dataUrlCondition: { maxSize: 100 * 1024 } },
+        parser: {
+          dataUrlCondition: { maxSize: 100 * 1024 },
+        },
+        generator: {
+          filename: 'assets/[name].[contenthash][ext]',
+        },
+      },
+      {
+        test: /\.svg$/i,
+        issuer: /\.[jt]sx?$/,
+        use: ['@svgr/webpack', 'url-loader?limit=100000&name=[name].[ext]'],
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/i,
+        type: 'asset/resource',
+      },
+      {
+        test: /\.(txt|md)$/i,
+        type: 'asset/resource',
       },
     ],
   },
