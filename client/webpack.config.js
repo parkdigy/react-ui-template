@@ -1,4 +1,3 @@
-/* eslint-disable */
 const path = require('path');
 const webpack = require('webpack');
 const env = require('dotenv').config({ path: path.resolve(__dirname, './../.env') }).parsed;
@@ -14,7 +13,6 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const { SourceMapDevToolPlugin } = require('webpack');
 const TsConfigJson = require('./tsconfig.json');
 const MyProvidePlugin = require('./webpack/ProvidePlugin');
-/* eslint-enable */
 
 /********************************************************************************************************************
  * Variables
@@ -235,7 +233,6 @@ const options = {
           {
             loader: 'sass-loader',
             options: {
-              // eslint-disable-next-line @typescript-eslint/no-require-imports,no-undef
               implementation: require('sass'),
             },
           },

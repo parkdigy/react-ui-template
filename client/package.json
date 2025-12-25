@@ -25,7 +25,8 @@
     "pub:dev": "cd .. && npm run pub:dev",
     "pub:staging": "cd .. && npm run pub:staging",
     "pub:prod": "cd .. && npm run pub:prod",
-    "pub:all": "cd .. && npm run pub:all"
+    "pub:all": "cd .. && npm run pub:all",
+    "postinstall": "patch-package"
   },
   "devDependencies": {
     "@babel/core": "^7.27.4",
@@ -75,7 +76,9 @@
     "html-loader": "^5.1.0",
     "html-webpack-plugin": "^5.6.3",
     "js-file-download": "^0.4.12",
+    "patch-package": "^8.0.1",
     "path": "^0.12.7",
+    "postinstall-postinstall": "^2.1.0",
     "prettier": "^3.5.3",
     "react-router": "^7.6.1",
     "react-use-error-boundary": "^3.0.0",
