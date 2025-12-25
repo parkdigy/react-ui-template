@@ -1,11 +1,9 @@
-/* eslint-disable */
 const path = require('path');
 const webpack = require('webpack');
 const env = require('dotenv').config({ path: path.resolve(__dirname, './../.env') }).parsed;
 const ESLintPlugin = require('eslint-webpack-plugin');
 const FriendlyErrorsWebpackPlugin = require('@soda/friendly-errors-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CircularDependencyPlugin = require('circular-dependency-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
@@ -16,7 +14,6 @@ const TsConfigJson = require('./tsconfig.json');
 const SyntaxHighlighter = require('react-syntax-highlighter');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const MyProvidePlugin = require('./webpack/ProvidePlugin');
-/* eslint-enable */
 
 /********************************************************************************************************************
  * Variables
@@ -95,6 +92,7 @@ const options = {
   output: {
     path: outputPath,
     publicPath: '/',
+    clean: true,
     filename: '[name].[chunkhash].js',
     chunkFilename: 'chunks/[name].[chunkhash].js',
   },
@@ -191,9 +189,6 @@ const options = {
           new MiniCssExtractPlugin({
             filename: 'css/[name].[contenthash].css', // 추출된 CSS 파일명 설정
           }),
-          new CleanWebpackPlugin.CleanWebpackPlugin({
-            cleanOnceBeforeBuildPatterns: ['*'],
-          }),
           new BundleAnalyzerPlugin({
             openAnalyzer: false,
             analyzerMode: 'static',
@@ -246,26 +241,31 @@ const options = {
         },
       },
       {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
-      },
-      {
-        test: /\.(sa|sc)ss$/,
-        exclude: /node_modules/,
-        use: [isProduction ? MiniCssExtractPlugin.loader : 'style-loader', 'css-loader', 'sass-loader'],
-      },
-      {
-        test: /\.(woff|woff2|eot|ttf|otf)$/i,
-        type: 'asset/resource',
+        test: /\.(sa|sc|c)ss$/,
+        use: [
+          isProduction ? { loader: MiniCssExtractPlugin.loader, options: { publicPath: '../' } } : 'style-loader',
+          'css-loader',
+          'sass-loader',
+        ],
       },
       {
         test: /\.(png|jpe?g|gif)(\?\S*)?$/,
-        use: 'url-loader?limit=100000&name=[name].[ext]',
+        type: 'asset',
+        parser: {
+          dataUrlCondition: { maxSize: 100 * 1024 },
+        },
+        generator: {
+          filename: 'assets/[name].[contenthash][ext]',
+        },
       },
       {
         test: /\.svg$/i,
         issuer: /\.[jt]sx?$/,
         use: ['@svgr/webpack', 'url-loader?limit=100000&name=[name].[ext]'],
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/i,
+        type: 'asset/resource',
       },
       {
         test: /\.(txt|md)$/i,

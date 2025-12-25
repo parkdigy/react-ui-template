@@ -25,7 +25,8 @@
     "pub:dev": "cd .. && npm run pub:dev",
     "pub:staging": "cd .. && npm run pub:staging",
     "pub:prod": "cd .. && npm run pub:prod",
-    "pub:all": "cd .. && npm run pub:all"
+    "pub:all": "cd .. && npm run pub:all",
+    "postinstall": "patch-package"
   },
   "devDependencies": {
     "@babel/core": "^7.27.4",
@@ -60,7 +61,6 @@
     "browserslist-config-baseline": "^0.5.0",
     "circular-dependency-plugin": "^5.2.2",
     "classnames": "^2.5.1",
-    "clean-webpack-plugin": "^4.0.0",
     "color": "^5.0.0",
     "copy-to-clipboard": "^3.3.3",
     "copy-webpack-plugin": "^13.0.0",
@@ -84,7 +84,9 @@
     "js-file-download": "^0.4.12",
     "material-icons": "^1.13.14",
     "mini-css-extract-plugin": "^2.9.4",
+    "patch-package": "^8.0.1",
     "path": "^0.12.7",
+    "postinstall-postinstall": "^2.1.0",
     "prettier": "^3.5.3",
     "react-colorful": "^5.6.1",
     "react-error-boundary": "^6.0.0",
