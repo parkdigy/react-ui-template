@@ -3,7 +3,6 @@ import { Dev_FormControl_ColsProps as Props } from './Dev_FormControl_Cols.types
 import { FormCheckbox, FormRadioGroup, FormSelect, GridCols } from '@ccomp';
 import { Dev_PanelItem } from '../../Layout';
 import { AllScreenAliases } from '@theme';
-import { useScreenSize } from '@context';
 
 const _selectColsItems = new Array(12).fill(0).map((_, i) => lv(`${i + 1}개`, i + 1)) as Lv<string, GridCols>[];
 

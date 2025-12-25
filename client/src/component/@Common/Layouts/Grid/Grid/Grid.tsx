@@ -3,7 +3,6 @@ import { GridProps as Props } from './Grid.types';
 import './Grid.scss';
 import { GridContextProvider, GridContextValue } from '../Context';
 import { AllScreenAliases, GeneralScreens } from '@theme';
-import { useScreenSize } from '@context';
 
 export const Grid = ({ children, className, cols = 12, gap = 0, ...props }: Props) => {
   /********************************************************************************************************************

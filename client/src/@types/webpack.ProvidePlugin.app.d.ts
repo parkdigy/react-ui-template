@@ -38,8 +38,7 @@ declare type ApiPageLimitRequestData = import('../global/api/index.ts').ApiPageL
 declare const Const: typeof import('../constant/index').default;
 
 // mediaQuery
-declare const mediaQuery: typeof import('../global/mediaQuery/index.ts').default;
-declare const useScreenSize: typeof import('../global/mediaQuery/index.ts').useScreenSize;
+declare const useScreenSize: typeof import('../context/ScreenSizeContext/useScreenSize.ts').default;
 
 // materialIcons
 declare const MaterialIconTypes: typeof import('../global/materialIcons/index.ts').MaterialIconTypes;
