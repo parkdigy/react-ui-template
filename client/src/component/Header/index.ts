@@ -1,9 +1,6 @@
 import l from '@loadable/component';
 
-const Header = l(
-  () => import(/* webpackChunkName: "header" */ './Header'),
-  loadable.options
-) as unknown as typeof import('./Header').default;
+const Header = l(() => import('./Header'), loadable.options) as unknown as typeof import('./Header').default;
 
 export { Header };
 

@@ -1,7 +1,7 @@
 import l from '@loadable/component';
 
 const FormErrorText = l(
-  () => import(/* webpackChunkName: "common-form-error-text" */ './FormErrorText'),
+  () => import('./FormErrorText'),
   loadable.options
 ) as unknown as typeof import('./FormErrorText').default;
 

@@ -1,7 +1,7 @@
 import l from '@loadable/component';
 
 const HoverContainer = l(
-  () => import(/* webpackChunkName: "common-hover-container" */ './HoverContainer'),
+  () => import('./HoverContainer'),
   loadable.options
 ) as unknown as typeof import('./HoverContainer').default;
 

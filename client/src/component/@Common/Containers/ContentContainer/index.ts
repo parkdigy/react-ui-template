@@ -1,7 +1,7 @@
 import l from '@loadable/component';
 
 const ContentContainer = l(
-  () => import(/* webpackChunkName: "common-content-container" */ './ContentContainer'),
+  () => import('./ContentContainer'),
   loadable.options
 ) as unknown as typeof import('./ContentContainer').default;
 

@@ -1,9 +1,6 @@
 import l from '@loadable/component';
 
-const Chip = l(
-  () => import(/* webpackChunkName: "common-chip" */ './Chip'),
-  loadable.options
-) as unknown as typeof import('./Chip').default;
+const Chip = l(() => import('./Chip'), loadable.options) as unknown as typeof import('./Chip').default;
 
 export { Chip };
 

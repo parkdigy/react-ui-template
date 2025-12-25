@@ -3,7 +3,7 @@ import { DialogModalProps as Props } from './DialogModal.types';
 import Modal from 'react-modal';
 import './DialogModal.scss';
 
-export const DialogModal = ({ onCancelClick, onConfirmClick, onRequestClose, ...props }: Props) => {
+export const DialogModal = ({ onCancelClick, onConfirmClick, onRequestClose, newDialogComponent, ...props }: Props) => {
   /********************************************************************************************************************
    * Props
    * ******************************************************************************************************************/
@@ -136,7 +136,7 @@ export const DialogModal = ({ onCancelClick, onConfirmClick, onRequestClose, ...
         </Flex>
       )}
 
-      <Dialog />
+      {newDialogComponent}
     </Modal>
   );
 };

@@ -1,7 +1,7 @@
 import l from '@loadable/component';
 
 const DevButtons = l(
-  () => import(/* webpackChunkName: "dev-buttons" */ './DevButtons'),
+  () => import('./DevButtons'),
   loadable.options
 ) as unknown as typeof import('./DevButtons').default;
 

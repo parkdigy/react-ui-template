@@ -1,7 +1,7 @@
 import l from '@loadable/component';
 
 const ApiLoadContainer = l(
-  () => import(/* webpackChunkName: "common-api-load-container" */ './ApiLoadContainer'),
+  () => import('./ApiLoadContainer'),
   loadable.options
 ) as unknown as typeof import('./ApiLoadContainer').default;
 

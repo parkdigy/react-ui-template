@@ -1,7 +1,7 @@
 import l from '@loadable/component';
 
 const AuthLayout = l(
-  () => import(/* webpackChunkName: "auth-layout" */ './AuthLayout'),
+  () => import('./AuthLayout'),
   loadable.options
 ) as unknown as typeof import('./AuthLayout').default;
 

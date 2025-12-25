@@ -1,9 +1,6 @@
 import l from '@loadable/component';
 
-const FormTitle = l(
-  () => import(/* webpackChunkName: "common-form-title" */ './FormTitle'),
-  loadable.options
-) as unknown as typeof import('./FormTitle').default;
+const FormTitle = l(() => import('./FormTitle'), loadable.options) as unknown as typeof import('./FormTitle').default;
 
 export { FormTitle };
 

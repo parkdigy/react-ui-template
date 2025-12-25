@@ -274,6 +274,7 @@ const Dialog = () => {
           <DialogModal
             key={index}
             {...dialogProps}
+            newDialogComponent={<Dialog />}
             onCancelClick={handleCancelClick}
             onConfirmClick={handleConfirmClick}
             onRequestClose={() => {

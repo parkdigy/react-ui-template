@@ -1,9 +1,6 @@
 import l from '@loadable/component';
 
-const Logo = l(
-  () => import(/* webpackChunkName: "common-logo" */ './Logo'),
-  loadable.options
-) as unknown as typeof import('./Logo').default;
+const Logo = l(() => import('./Logo'), loadable.options) as unknown as typeof import('./Logo').default;
 
 export { Logo };
 

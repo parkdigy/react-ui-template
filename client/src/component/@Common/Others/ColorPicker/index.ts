@@ -1,7 +1,7 @@
 import l from '@loadable/component';
 
 const ColorPicker = l(
-  () => import(/* webpackChunkName: "common-color-picker" */ './ColorPicker'),
+  () => import('./ColorPicker'),
   loadable.options
 ) as unknown as typeof import('./ColorPicker').default;
 

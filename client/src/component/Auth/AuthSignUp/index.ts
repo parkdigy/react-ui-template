@@ -1,6 +1,6 @@
 import l from '@loadable/component';
 
-const AuthSignUp = l(() => import(/* webpackChunkName: "auth-sign-up" */ './AuthSignUp'), loadable.options);
+const AuthSignUp = l(() => import('./AuthSignUp'), loadable.options);
 
 export { AuthSignUp };
 

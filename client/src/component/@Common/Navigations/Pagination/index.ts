@@ -1,7 +1,7 @@
 import l from '@loadable/component';
 
 const Pagination = l(
-  () => import(/* webpackChunkName: "common-pagination" */ './Pagination'),
+  () => import('./Pagination'),
   loadable.options
 ) as unknown as typeof import('./Pagination').default;
 

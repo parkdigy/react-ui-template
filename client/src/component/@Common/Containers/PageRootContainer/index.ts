@@ -1,7 +1,7 @@
 import l from '@loadable/component';
 
 const PageRootContainer = l(
-  () => import(/* webpackChunkName: "common-page-root-container" */ './PageRootContainer'),
+  () => import('./PageRootContainer'),
   loadable.options
 ) as unknown as typeof import('./PageRootContainer').default;
 

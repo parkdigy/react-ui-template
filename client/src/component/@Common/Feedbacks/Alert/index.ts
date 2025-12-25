@@ -1,9 +1,6 @@
 import l from '@loadable/component';
 
-const Alert = l(
-  () => import(/* webpackChunkName: "common-alert" */ './Alert'),
-  loadable.options
-) as unknown as typeof import('./Alert').default;
+const Alert = l(() => import('./Alert'), loadable.options) as unknown as typeof import('./Alert').default;
 
 export { Alert };
 

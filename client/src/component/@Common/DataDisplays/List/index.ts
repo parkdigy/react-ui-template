@@ -1,9 +1,6 @@
 import l from '@loadable/component';
 
-const List = l(
-  () => import(/* webpackChunkName: "common-list" */ './List'),
-  loadable.options
-) as unknown as typeof import('./List').default;
+const List = l(() => import('./List'), loadable.options) as unknown as typeof import('./List').default;
 
 export { List };
 
