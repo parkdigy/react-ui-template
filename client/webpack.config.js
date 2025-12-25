@@ -269,7 +269,7 @@ const options = {
       },
       {
         test: /\.(txt|md)$/i,
-        use: 'raw-loader',
+        type: 'asset/resource',
       },
     ],
   },
