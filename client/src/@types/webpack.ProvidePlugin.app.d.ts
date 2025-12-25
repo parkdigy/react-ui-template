@@ -29,6 +29,9 @@ declare type ApiResult = import('../global/api/index.ts').apiResult;
 declare type ApiPaging = import('../global/api/index.ts').apiPaging;
 declare type ApiPageLimitRequestData = import('../global/api/index.ts').apiPageLimitRequestData;
 
+// Const
+declare const Const: typeof import('../constant/index').default;
+
 // mediaQuery
 declare const mediaQuery: typeof import('../global/mediaQuery/index.ts').default;
 declare const useScreenSize: typeof import('../global/mediaQuery/index.ts').useScreenSize;
