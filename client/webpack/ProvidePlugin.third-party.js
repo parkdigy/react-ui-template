@@ -6,6 +6,7 @@ module.exports = {
   classnames: ['classnames', 'default'],
 
   // react-router
+  useNavigate: ['react-router', 'useNavigate'],
   useLocation: ['react-router', 'useLocation'],
   useSearchParams: ['react-router', 'useSearchParams'],
 

@@ -5,6 +5,7 @@ declare const styled: typeof import('styled-components').default;
 declare const classnames: typeof import('classnames').default;
 
 // react-router
+declare const useNavigate: typeof import('react-router').useNavigate;
 declare const useLocation: typeof import('react-router').useLocation;
 declare const useSearchParams: typeof import('react-router').useSearchParams;
 
