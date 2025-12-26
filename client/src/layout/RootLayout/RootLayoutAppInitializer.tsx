@@ -1,5 +1,3 @@
-import { useLocation, useNavigate } from 'react-router';
-
 export const RootLayoutAppInitializer = () => {
   /********************************************************************************************************************
    * Use
