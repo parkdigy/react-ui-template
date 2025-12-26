@@ -1,6 +1,5 @@
 import React from 'react';
 import { Dev_Panel, Dev_PanelItem } from '../@Common';
-import { ErrorRetry } from '@ccomp';
 import { DefaultColors } from '@theme';
 
 const Dev_ErrorRetry_Variant = () => {

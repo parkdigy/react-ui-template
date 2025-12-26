@@ -3,7 +3,6 @@ import Dev_LoadingIndicator_Variant from './Dev_LoadingIndicator_Variant';
 import { Dev_FormOptions, Dev_FormOptionsData, Dev_Panel } from '../@Common';
 import { AllColors, ButtonColors } from '@theme';
 import code from '../Icon/Dev_Icon.code.md';
-import { LoadingIndicator } from '@ccomp';
 import { FlattenFormOptions } from '../@types/FlattenFormOptions';
 
 const _formOptions = [['color', 'size']] as const;

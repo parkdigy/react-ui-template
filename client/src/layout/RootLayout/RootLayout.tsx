@@ -5,7 +5,7 @@
 import React, { useState } from 'react';
 import { Route, Routes } from 'react-router';
 import { AppContextProvider, AppContextValue, ScreenSizeContextProvider } from '@context';
-import { ErrorRetry, ToastContainer } from '@ccomp';
+import { ToastContainer } from '@ccomp';
 import RootLayoutAppInitializer from './RootLayoutAppInitializer';
 import AuthLayout from '../AuthLayout';
 import DefaultLayout from '../DefaultLayout';

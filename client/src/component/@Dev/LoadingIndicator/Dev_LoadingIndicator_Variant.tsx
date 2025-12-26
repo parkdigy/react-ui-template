@@ -1,6 +1,5 @@
 import React from 'react';
 import { Dev_Panel, Dev_PanelItem } from '../@Common';
-import { LoadingIndicator } from '@ccomp';
 import { AllColors, FriendlyNameSizes, getSizeOfFriendlyName } from '@theme';
 
 const Dev_LoadingIndicator_Variant = () => {

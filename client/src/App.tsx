@@ -9,7 +9,6 @@ import React from 'react';
 import { RootLayout } from './layout';
 import Modal from 'react-modal';
 import { BrowserRouter } from 'react-router';
-import { ErrorBoundary } from '@ccomp';
 
 Modal.setAppElement('#root');
 
