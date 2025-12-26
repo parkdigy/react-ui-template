@@ -7,6 +7,25 @@ module.exports = {
     'PageRootContainer',
   ],
 
+  // Errors
+  ErrorBoundary: [path.resolve(__dirname, '../src/component/@Common/Errors/ErrorBoundary/index.ts'), 'default'],
+  ErrorBoundaryProps: [
+    path.resolve(__dirname, '../src/component/@Common/Errors/ErrorBoundary/index.ts'),
+    'ErrorBoundaryProps',
+  ],
+  ErrorRetry: [path.resolve(__dirname, '../src/component/@Common/Errors/ErrorRetry/index.ts'), 'default'],
+  ErrorRetryProps: [path.resolve(__dirname, '../src/component/@Common/Errors/ErrorRetry/index.ts'), 'ErrorRetryProps'],
+
+  // Loadings
+  Loading: [path.resolve(__dirname, '../src/component/@Common/Loadings/Loading/index.ts'), 'default'],
+  LoadingProps: [path.resolve(__dirname, '../src/component/@Common/Loadings/Loading/index.ts'), 'LoadingProps'],
+  LoadingCommands: [path.resolve(__dirname, '../src/component/@Common/Loadings/Loading/index.ts'), 'LoadingCommands'],
+  LoadingIndicator: [path.resolve(__dirname, '../src/component/@Common/Loadings/LoadingIndicator/index.ts'), 'default'],
+  LoadingIndicatorProps: [
+    path.resolve(__dirname, '../src/component/@Common/Loadings/LoadingIndicator/index.ts'),
+    'LoadingIndicatorProps',
+  ],
+
   // Layout
   Box: [path.resolve(__dirname, '../src/component/@Common/Layouts/Box/index.ts'), 'Box'],
   BoxProps: [path.resolve(__dirname, '../src/component/@Common/Layouts/Box/index.ts'), 'BoxProps'],

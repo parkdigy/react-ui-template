@@ -1,6 +1,19 @@
 // Container
 declare const PageRootContainer: typeof import('../component/@Common/index.ts').PageRootContainer;
 
+// Errors
+declare const ErrorBoundary: typeof import('../component/@Common/index.ts').ErrorBoundary;
+declare type ErrorBoundaryProps = import('../component/@Common/index.ts').ErrorBoundaryProps;
+declare const ErrorRetry: typeof import('../component/@Common/index.ts').ErrorRetry;
+declare type ErrorRetryProps = import('../component/@Common/index.ts').ErrorRetryProps;
+
+// Loadings
+declare const Loading: typeof import('../component/@Common/index.ts').Loading;
+declare type LoadingProps = import('../component/@Common/index.ts').LoadingProps;
+declare type LoadingCommands = import('../component/@Common/index.ts').LoadingCommands;
+declare const LoadingIndicator: typeof import('../component/@Common/index.ts').LoadingIndicator;
+declare type LoadingIndicatorProps = import('../component/@Common/index.ts').LoadingIndicatorProps;
+
 // Layout
 declare const Box: typeof import('../component/@Common/index.ts').Box;
 declare type BoxProps = import('../component/@Common/index.ts').BoxProps;
