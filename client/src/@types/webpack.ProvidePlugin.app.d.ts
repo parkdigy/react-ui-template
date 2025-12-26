@@ -25,9 +25,9 @@ declare const loadable: typeof import('../global/loadable/index.ts').default;
 
 // api
 declare const api: typeof import('../global/api/index.ts').default;
-declare type ApiResult = import('../global/api/index.ts').apiResult;
-declare type ApiPaging = import('../global/api/index.ts').apiPaging;
-declare type ApiPageLimitRequestData = import('../global/api/index.ts').apiPageLimitRequestData;
+declare type ApiResult = import('../global/api/index.ts').ApiResult;
+declare type ApiPaging = import('../global/api/index.ts').ApiPaging;
+declare type ApiPageLimitRequestData = import('../global/api/index.ts').ApiPageLimitRequestData;
 
 // Const
 declare const Const: typeof import('../constant/index').default;
