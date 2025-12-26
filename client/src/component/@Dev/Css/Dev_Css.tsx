@@ -1,7 +1,6 @@
 import React from 'react';
 import { AllColors, getFriendlyNameOfSize, Sizes, Theme } from '@theme';
 import { Grid, Tabs } from '@ccomp';
-import { useLocation } from 'react-router';
 
 const TabValue = ['size', 'color'] as const;
 type TabValue = (typeof TabValue)[number];

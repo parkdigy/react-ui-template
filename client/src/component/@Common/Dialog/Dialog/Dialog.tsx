@@ -18,7 +18,6 @@ import {
   __removeRef,
   __setIsHiding,
 } from './Dialog.function';
-import { useLocation } from 'react-router';
 import DialogModal from './DialogModal';
 import './Dialog.scss';
 

@@ -7,7 +7,6 @@ import React from 'react';
 import { ErrorBoundaryProps as Props } from './ErrorBoundary.types';
 import { ErrorBoundary as ReactErrorBoundary, FallbackProps } from 'react-error-boundary';
 import { Loading, LoadingCommands } from '../../Loadings';
-import { useLocation } from 'react-router';
 
 const FallbackRender = ({ error, resetErrorBoundary, root }: FallbackProps & { root?: boolean }) => {
   /********************************************************************************************************************

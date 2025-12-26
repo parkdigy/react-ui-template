@@ -2,7 +2,6 @@ import React from 'react';
 import { DevButtonsProps as Props } from './DevButtons.types';
 import DevButton from './DevButton';
 import { useAppState, useScreenSize } from '@context';
-import { useLocation } from 'react-router';
 import './DevButtons.scss';
 
 export const DevButtons = ({}: Props) => {

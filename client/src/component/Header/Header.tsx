@@ -1,7 +1,6 @@
 import React from 'react';
 import { HeaderProps as Props } from './Header.types';
 import { ContentContainer, Logo } from '@ccomp';
-import { useLocation } from 'react-router';
 import './Header.scss';
 
 export const Header = ({ layout }: Props) => {

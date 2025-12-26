@@ -3,7 +3,6 @@ import { AuthSignInProps as Props } from './AuthSignIn.types';
 import { Form, FormCheckbox, FormEmail, FormPassword, PageRootContainer, TTitle } from '@ccomp';
 import { Const } from '@const';
 import { useAppState, useScreenSize } from '@context';
-import { useSearchParams } from 'react-router';
 
 export const AuthSignIn = ({}: Props) => {
   /********************************************************************************************************************

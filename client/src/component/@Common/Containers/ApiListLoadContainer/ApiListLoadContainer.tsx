@@ -6,7 +6,6 @@ import {
   ApiListLoadContainerFinalData,
 } from './ApiListLoadContainer.types';
 import { useForwardRef, useTimeoutRef } from '@pdg/react-hook';
-import { useSearchParams } from 'react-router';
 import { ErrorRetry } from '../../Errors';
 import Pagination from '../../Navigations/Pagination';
 import NoData from '../../Feedbacks/NoData';
