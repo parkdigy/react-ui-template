@@ -40,16 +40,13 @@ export function FormRadioGroupItem<T extends string | number | boolean>({
    * Effect
    * ******************************************************************************************************************/
 
-  {
-    const effectEvent = useEffectEvent(() => {
-      if (labelWidth && !buttonFullWidth) {
-        onChangeWidth?.(
-          contains(['button', 'smallButton'], type) ? labelWidth : labelWidth + _radioItemIconSize + _radioItemGap + 1
-        ); // 1:오차 보정
-      }
-    });
-    useEffect(() => effectEvent(), [type, labelWidth, itemsKey]);
-  }
+  useEventEffect(() => {
+    if (labelWidth && !buttonFullWidth) {
+      onChangeWidth?.(
+        contains(['button', 'smallButton'], type) ? labelWidth : labelWidth + _radioItemIconSize + _radioItemGap + 1
+      ); // 1:오차 보정
+    }
+  }, [type, labelWidth, itemsKey]);
 
   /********************************************************************************************************************
    * Commands
@@ -64,12 +61,9 @@ export function FormRadioGroupItem<T extends string | number | boolean>({
     []
   );
 
-  {
-    const effectEvent = useEffectEvent(() => {
-      onCommands?.(commands);
-    });
-    useEffect(() => effectEvent(), [commands]);
-  }
+  useEventEffect(() => {
+    onCommands?.(commands);
+  }, [commands]);
 
   /********************************************************************************************************************
    * Render

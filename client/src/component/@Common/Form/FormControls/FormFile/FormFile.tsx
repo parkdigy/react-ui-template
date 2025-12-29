@@ -73,17 +73,10 @@ export const FormFile = ({
    * Effect
    * ******************************************************************************************************************/
 
-  {
-    const effectEvent = useEffectEvent(() => {
-      onErrorChange?.(error);
-      controlGroupState && controlGroupState.onErrorChange(name, error);
-    });
-    const firstSkipRef = useRef(true);
-    useEffect(() => {
-      if (firstSkipRef.current) firstSkipRef.current = false;
-      else return effectEvent();
-    }, [error]);
-  }
+  useFirstSkipEffect(() => {
+    onErrorChange?.(error);
+    controlGroupState && controlGroupState.onErrorChange(name, error);
+  }, [error]);
 
   /********************************************************************************************************************
    * Function

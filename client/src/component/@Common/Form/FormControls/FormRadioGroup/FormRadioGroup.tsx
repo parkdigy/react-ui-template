@@ -106,7 +106,7 @@ export const FormRadioGroup = <T extends string | number | boolean>({
 
   /** 첫번째 활성 아이템 인덱스 */
   const [firstItemIndex, setFirstItemIndex] = useState<number>();
-  if (useChanged(items, true)) {
+  useChanged(() => {
     let newIndex = undefined;
     if (items) {
       for (let i = 0; i < items.length; i += 1) {
@@ -117,7 +117,7 @@ export const FormRadioGroup = <T extends string | number | boolean>({
       }
     }
     setFirstItemIndex(newIndex);
-  }
+  }, [items]);
 
   /********************************************************************************************************************
    * Variable
@@ -183,90 +183,62 @@ export const FormRadioGroup = <T extends string | number | boolean>({
    * Effect
    * ******************************************************************************************************************/
 
-  {
-    const effectEvent = useEffectEvent(() => {
-      // 첫번째 활성화 아이템 커맨드 초기화
-      firstItemCommandsRef.current = null;
-      // 자동 넓이 그리드 최초 계산 여부 초기화
-      isFirstCalcAutoGridColsRef.current = true;
-      // 최대 넓이 아이템 초기화
-      setItemMaxWidth(0);
-      // overflow 상태 초기화
-      setIsOverflowing(false);
-      // overflow 체크용 넓이 초기화
-      overflowCheckMinWidthRef.current = 0;
+  useEventEffect(() => {
+    // 첫번째 활성화 아이템 커맨드 초기화
+    firstItemCommandsRef.current = null;
+    // 자동 넓이 그리드 최초 계산 여부 초기화
+    isFirstCalcAutoGridColsRef.current = true;
+    // 최대 넓이 아이템 초기화
+    setItemMaxWidth(0);
+    // overflow 상태 초기화
+    setIsOverflowing(false);
+    // overflow 체크용 넓이 초기화
+    overflowCheckMinWidthRef.current = 0;
 
-      setItemsKey((prev) => prev + 1);
+    setItemsKey((prev) => prev + 1);
 
-      if (useAutoGrid) {
-        nextTick(() => {
-          checkOverflow();
-        });
-      }
-    });
-    useEffect(() => {
-      return effectEvent();
-    }, [items]);
-  }
+    if (useAutoGrid) {
+      nextTick(() => {
+        checkOverflow();
+      });
+    }
+  }, [items]);
 
-  {
-    const effectEvent = useEffectEvent(() => {
-      if (error) validate();
-    });
-    const firstSkipRef = useRef(true);
-    useEffect(() => {
-      if (firstSkipRef.current) firstSkipRef.current = false;
-      else return effectEvent();
-    }, [value]);
-  }
+  useFirstSkipEffect(() => {
+    if (error) validate();
+  }, [value]);
 
-  {
-    const effectEvent = useEffectEvent(() => {
-      onErrorChange?.(error);
-      controlGroupState && controlGroupState.onErrorChange(name, error);
-    });
-    const firstSkipRef = useRef(true);
-    useEffect(() => {
-      if (firstSkipRef.current) firstSkipRef.current = false;
-      else return effectEvent();
-    }, [error]);
-  }
+  useFirstSkipEffect(() => {
+    onErrorChange?.(error);
+    controlGroupState && controlGroupState.onErrorChange(name, error);
+  }, [error]);
 
   /** overflow 상태 체크 및 설정 */
-  {
-    const effectEvent = useEffectEvent(() => {
-      checkOverflow();
-    });
-    useEffect(() => {
-      return effectEvent();
-    }, [useAutoGrid, maxWidth]);
-  }
+
+  useEventEffect(() => {
+    checkOverflow();
+  }, [useAutoGrid, maxWidth]);
 
   /** 자동 넓이 그리드 cols 계산 */
-  {
-    const effectEvent = useEffectEvent(() => {
-      if (useAutoGrid && containerWidth && itemMaxWidth) {
-        setUpdateAutoGridColsTimeout(
-          () => {
-            isFirstCalcAutoGridColsRef.current = false;
+  useEventEffect(() => {
+    if (useAutoGrid && containerWidth && itemMaxWidth) {
+      setUpdateAutoGridColsTimeout(
+        () => {
+          isFirstCalcAutoGridColsRef.current = false;
 
-            let newAutoGridCols = 12;
+          let newAutoGridCols = 12;
 
-            let totalWidth = newAutoGridCols * itemMaxWidth + (newAutoGridCols - 1) * gap;
-            while (newAutoGridCols > 1 && totalWidth > containerWidth) {
-              newAutoGridCols -= 1;
-              totalWidth = newAutoGridCols * itemMaxWidth + (newAutoGridCols - 1) * gap;
-            }
-            setAutoGridCols(newAutoGridCols as GridCols);
-          },
-          isFirstCalcAutoGridColsRef.current ? 0 : 50
-        );
-      }
-    });
-    useEffect(() => {
-      return effectEvent();
-    }, [items, useAutoGrid, containerWidth, itemMaxWidth, gap]);
-  }
+          let totalWidth = newAutoGridCols * itemMaxWidth + (newAutoGridCols - 1) * gap;
+          while (newAutoGridCols > 1 && totalWidth > containerWidth) {
+            newAutoGridCols -= 1;
+            totalWidth = newAutoGridCols * itemMaxWidth + (newAutoGridCols - 1) * gap;
+          }
+          setAutoGridCols(newAutoGridCols as GridCols);
+        },
+        isFirstCalcAutoGridColsRef.current ? 0 : 50
+      );
+    }
+  }, [items, useAutoGrid, containerWidth, itemMaxWidth, gap]);
 
   /********************************************************************************************************************
    * Commands

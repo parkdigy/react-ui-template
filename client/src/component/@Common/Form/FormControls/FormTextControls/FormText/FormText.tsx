@@ -87,7 +87,7 @@ export const FormText = ({
    * ******************************************************************************************************************/
 
   const [preventKeys, setPreventKeys] = useState<RegExp>();
-  if (useChanged(initPreventKeys, true)) {
+  useChanged(() => {
     if (initPreventKeys) {
       const finalPreventKeys = initPreventKeys.global
         ? initPreventKeys
@@ -105,7 +105,7 @@ export const FormText = ({
     } else {
       setPreventKeys(undefined);
     }
-  }
+  }, [initPreventKeys]);
 
   /********************************************************************************************************************
    * Function
@@ -141,7 +141,7 @@ export const FormText = ({
 
   /** value */
   const [value, _setValue] = useState(getFinalValue(initValue));
-  useChanged(initValue) && _setValue(getFinalValue(initValue));
+  useFirstSkipChanged(() => _setValue(getFinalValue(initValue)), [initValue]);
   const valueRef = useAutoUpdateRef(value);
 
   /********************************************************************************************************************
@@ -154,17 +154,10 @@ export const FormText = ({
    * Effect
    * ******************************************************************************************************************/
 
-  {
-    const effectEvent = useEffectEvent(() => {
-      onErrorChange?.(error);
-      controlGroupState && controlGroupState.onErrorChange(name, error);
-    });
-    const firstSkipRef = useRef(true);
-    useEffect(() => {
-      if (firstSkipRef.current) firstSkipRef.current = false;
-      else return effectEvent();
-    }, [error]);
-  }
+  useFirstSkipEffect(() => {
+    onErrorChange?.(error);
+    controlGroupState && controlGroupState.onErrorChange(name, error);
+  }, [error]);
 
   /********************************************************************************************************************
    * Function
@@ -242,12 +235,9 @@ export const FormText = ({
 
   useForwardRef(ref, commands);
 
-  {
-    const effectEvent = useEffectEvent(() => {
-      onCommands?.(commands);
-    });
-    useEffect(() => effectEvent(), [commands]);
-  }
+  useEventEffect(() => {
+    onCommands?.(commands);
+  }, [commands]);
 
   /********************************************************************************************************************
    * Event Handler

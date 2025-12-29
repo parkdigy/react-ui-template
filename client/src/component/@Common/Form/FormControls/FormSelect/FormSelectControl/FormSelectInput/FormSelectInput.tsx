@@ -40,12 +40,9 @@ const FormSelectInput = ({
    * Effect
    * ******************************************************************************************************************/
 
-  {
-    const effectEvent = useEffectEvent(() => {
-      onChangeValue(value);
-    });
-    useEffect(() => effectEvent(), [value]);
-  }
+  useEventEffect(() => {
+    onChangeValue(value);
+  }, [value]);
 
   /********************************************************************************************************************
    * Commands
@@ -63,12 +60,9 @@ const FormSelectInput = ({
     []
   );
 
-  {
-    const effectEvent = useEffectEvent(() => {
-      onCommands(commands);
-    });
-    useEffect(() => effectEvent(), [commands]);
-  }
+  useEventEffect(() => {
+    onCommands(commands);
+  }, [commands]);
 
   /********************************************************************************************************************
    * Event Handler

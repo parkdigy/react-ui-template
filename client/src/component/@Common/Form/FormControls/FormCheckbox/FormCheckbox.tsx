@@ -52,7 +52,7 @@ export const FormCheckbox = ({
 
   /** checked */
   const [checked, _setChecked] = useState(initChecked);
-  useChanged(initChecked) && _setChecked(initChecked);
+  useFirstSkipChanged(() => _setChecked(initChecked), [initChecked]);
   const checkedRef = useAutoUpdateRef(checked);
   const setChecked = useCallback(
     (value: React.SetStateAction<typeof initChecked>) => {
@@ -109,28 +109,14 @@ export const FormCheckbox = ({
    * Effect
    * ******************************************************************************************************************/
 
-  {
-    const effectEvent = useEffectEvent(() => {
-      onErrorChange?.(error);
-      controlGroupState && controlGroupState.onErrorChange(name, error);
-    });
-    const firstSkipRef = useRef(true);
-    useEffect(() => {
-      if (firstSkipRef.current) firstSkipRef.current = false;
-      else return effectEvent();
-    }, [error]);
-  }
+  useFirstSkipEffect(() => {
+    onErrorChange?.(error);
+    controlGroupState && controlGroupState.onErrorChange(name, error);
+  }, [error]);
 
-  {
-    const effectEvent = useEffectEvent(() => {
-      if (error) validate();
-    });
-    const firstSkipRef = useRef(true);
-    useEffect(() => {
-      if (firstSkipRef.current) firstSkipRef.current = false;
-      else return effectEvent();
-    }, []);
-  }
+  useFirstSkipEffect(() => {
+    if (error) validate();
+  }, [checked]);
 
   /********************************************************************************************************************
    * Commands

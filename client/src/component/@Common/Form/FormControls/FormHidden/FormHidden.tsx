@@ -32,7 +32,7 @@ export const FormHidden = ({
    * ******************************************************************************************************************/
 
   const [value, _setValue] = useState(initValue ?? '');
-  useChanged(initValue ?? '') && _setValue(initValue ?? '');
+  useFirstSkipChanged(() => _setValue(initValue ?? ''), [initValue]);
   const valueRef = useAutoUpdateRef(value);
   const setValue = useCallback(
     (v: typeof value) => {

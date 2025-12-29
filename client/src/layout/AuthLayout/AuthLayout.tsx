@@ -17,12 +17,9 @@ export const AuthLayout = ({}: Props) => {
    * Effect
    * ******************************************************************************************************************/
 
-  {
-    const effectEvent = useEffectEvent(() => {
-      removeHtmlLoading();
-    });
-    useEffect(() => effectEvent(), []);
-  }
+  useEventEffect(() => {
+    removeHtmlLoading();
+  }, []);
 
   /********************************************************************************************************************
    * Render

@@ -122,14 +122,11 @@ function ApiListLoadContainer<T extends { [key in string]: any } = any, TListIte
     };
   }, []);
 
-  {
-    const effectEvent = useEffectEvent(() => {
-      if (load) {
-        doLoad(false);
-      }
-    });
-    useEffect(() => effectEvent(), [load, data]);
-  }
+  useEventEffect(() => {
+    if (load) {
+      doLoad(false);
+    }
+  }, [load, data]);
 
   /********************************************************************************************************************
    * Commands

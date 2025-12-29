@@ -30,17 +30,18 @@ function FormSelectDropdown<T extends string | number>({
 
   const { ref: containerRef, height: containerHeight } = useResizeDetector<HTMLDivElement>({ handleWidth: false });
 
-  {
-    const effectEvent = useEffectEvent(() => {
-      if (containerRef.current && containerHeight) {
-        const { bottom } = containerRef.current.getBoundingClientRect();
-        if (window.scrollY + bottom > window.scrollY + window.innerHeight) {
-          window.scrollTo({ left: 0, top: window.scrollY + bottom - window.innerHeight, behavior: 'smooth' });
-        }
+  /********************************************************************************************************************
+   * Effect
+   * ******************************************************************************************************************/
+
+  useEventEffect(() => {
+    if (containerRef.current && containerHeight) {
+      const { bottom } = containerRef.current.getBoundingClientRect();
+      if (window.scrollY + bottom > window.scrollY + window.innerHeight) {
+        window.scrollTo({ left: 0, top: window.scrollY + bottom - window.innerHeight, behavior: 'smooth' });
       }
-    });
-    useEffect(() => effectEvent(), [containerHeight]);
-  }
+    }
+  }, [containerHeight]);
 
   /********************************************************************************************************************
    * State
@@ -92,48 +93,38 @@ function FormSelectDropdown<T extends string | number>({
   );
 
   /********************************************************************************************************************
-   * Effect
+   * Changed
    * ******************************************************************************************************************/
 
-  {
-    const effectEvent = useEffectEvent(() => {
-      if (isOpen) {
-        setTempActiveItem(activeItem ? activeItem : getFirstEnabledItem());
-      } else {
-        setTempActiveItem(undefined);
-        setIsSetSimpleBarRef(false);
+  useChanged(() => {
+    if (isOpen) {
+      setTempActiveItem(activeItem ? activeItem : getFirstEnabledItem());
+    } else {
+      setTempActiveItem(undefined);
+      setIsSetSimpleBarRef(false);
+    }
+  }, [isOpen]);
+
+  useChanged(() => {
+    if (isOpen && searchable) {
+      let found = false;
+
+      if (tempActiveItem) {
+        found = items?.find((item) => item.value === tempActiveItem.value) !== undefined;
       }
-    });
-    useEffect(() => {
-      return effectEvent();
-    }, [isOpen]);
-  }
 
-  {
-    const effectEvent = useEffectEvent(() => {
-      if (isOpen && searchable) {
-        let found = false;
-
-        if (tempActiveItem) {
-          found = items?.find((item) => item.value === tempActiveItem.value) !== undefined;
-        }
-
-        if (!found && activeItem) {
-          found = items?.find((item) => item.value === activeItem.value) !== undefined;
-          if (found) {
-            setTempActiveItem(activeItem);
-          }
-        }
-
-        if (!found) {
-          setTempActiveItem(getFirstEnabledItem());
+      if (!found && activeItem) {
+        found = items?.find((item) => item.value === activeItem.value) !== undefined;
+        if (found) {
+          setTempActiveItem(activeItem);
         }
       }
-    });
-    useEffect(() => {
-      return effectEvent();
-    }, [isOpen, items]);
-  }
+
+      if (!found) {
+        setTempActiveItem(getFirstEnabledItem());
+      }
+    }
+  }, [isOpen, items]);
 
   /********************************************************************************************************************
    * Commands
@@ -191,12 +182,9 @@ function FormSelectDropdown<T extends string | number>({
     [getFirstEnabledItem, itemsRef, setTempActiveItem, tempActiveItemRef]
   );
 
-  {
-    const effectEvent = useEffectEvent(() => {
-      onCommands(commands);
-    });
-    useEffect(() => effectEvent(), [commands]);
-  }
+  useEventEffect(() => {
+    onCommands(commands);
+  }, [commands]);
 
   /********************************************************************************************************************
    * Event Handler

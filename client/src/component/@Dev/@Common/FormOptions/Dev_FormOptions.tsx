@@ -143,31 +143,26 @@ const Dev_FormOptions = <TColors extends AllColors = AllColors, TBackgroundColor
    * Effect
    * ******************************************************************************************************************/
 
-  {
-    const effectEvent = useEffectEvent(() => {
-      const newData: Dev_FormOptionsData<TColors, TBackgroundColors> = {};
+  useEventEffect(() => {
+    const newData: Dev_FormOptionsData<TColors, TBackgroundColors> = {};
 
-      flatOptions.forEach((v) => {
-        if (v === 'cols') {
-          if (colsUseResponsive) {
-            newData.cols = colsResponsiveCols;
-          } else {
-            newData.cols = ifEmpty(cols, undefined);
-          }
-        } else if (allControlNames.includes(v)) {
-          newData[v] = allControls[v] as any;
+    flatOptions.forEach((v) => {
+      if (v === 'cols') {
+        if (colsUseResponsive) {
+          newData.cols = colsResponsiveCols;
+        } else {
+          newData.cols = ifEmpty(cols, undefined);
         }
-      });
-
-      if (!equal(newData, dataRef.current)) {
-        setData(newData);
-        onChangeRef.current(newData);
+      } else if (allControlNames.includes(v)) {
+        newData[v] = allControls[v] as any;
       }
     });
-    useEffect(() => {
-      return effectEvent();
-    }, [cols, colsUseResponsive, colsResponsiveCols, flatOptions, allControls, allControlNames]);
-  }
+
+    if (!equal(newData, dataRef.current)) {
+      setData(newData);
+      onChangeRef.current(newData);
+    }
+  }, [cols, colsUseResponsive, colsResponsiveCols, flatOptions, allControls, allControlNames]);
 
   /********************************************************************************************************************
    * Memo - Controls

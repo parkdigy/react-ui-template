@@ -123,12 +123,9 @@ const RootLayout = () => {
    * Effect
    * ******************************************************************************************************************/
 
-  {
-    const effectEvent = useEffectEvent(() => {
-      loadAuth();
-    });
-    useEffect(() => effectEvent(), []);
-  }
+  useEventEffect(() => {
+    loadAuth();
+  }, []);
 
   useEffect(() => {
     g.theme.setColorScheme(colorScheme);

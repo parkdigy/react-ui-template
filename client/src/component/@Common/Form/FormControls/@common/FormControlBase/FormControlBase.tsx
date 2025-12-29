@@ -56,20 +56,17 @@ export const FormControlBase = ({
    * Effect
    * ******************************************************************************************************************/
 
-  {
-    const effectEvent = useEffectEvent(() => {
-      if (name) {
-        addControl(type, name, commands);
-        controlGroupState?.addControl(name);
+  useEventEffect(() => {
+    if (name) {
+      addControl(type, name, commands);
+      controlGroupState?.addControl(name);
 
-        return () => {
-          removeControl(name);
-          controlGroupState?.removeControl(name);
-        };
-      }
-    });
-    useEffect(() => effectEvent(), [name, commands]);
-  }
+      return () => {
+        removeControl(name);
+        controlGroupState?.removeControl(name);
+      };
+    }
+  }, [name, commands]);
 
   /********************************************************************************************************************
    * Render

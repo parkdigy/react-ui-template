@@ -84,14 +84,11 @@ export const ApiLoadContainer = <T = any, TApiData = any>({
     };
   }, []);
 
-  {
-    const effectEvent = useEffectEvent(() => {
-      if (load) {
-        doLoad(false);
-      }
-    });
-    useEffect(() => effectEvent(), [load, data]);
-  }
+  useEventEffect(() => {
+    if (load) {
+      doLoad(false);
+    }
+  }, [load, data]);
 
   /********************************************************************************************************************
    * Commands

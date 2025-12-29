@@ -42,16 +42,9 @@ const FallbackRender = ({ error, resetErrorBoundary, root }: FallbackProps & { r
     }, 300);
   }
 
-  {
-    const effectEvent = useEffectEvent(() => {
-      resetErrorBoundary();
-    });
-    const firstSkipRef = useRef(true);
-    useEffect(() => {
-      if (firstSkipRef.current) firstSkipRef.current = false;
-      else return effectEvent();
-    }, [location]);
-  }
+  useFirstSkipEffect(() => {
+    resetErrorBoundary();
+  }, [location]);
 
   /********************************************************************************************************************
    * Render

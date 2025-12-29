@@ -139,41 +139,20 @@ export const FormSelect = <T extends string | number>({
    * Effect
    * ******************************************************************************************************************/
 
-  {
-    const effectEvent = useEffectEvent(() => {
-      setActiveItem(getItemOfValue(initValue));
-    });
-    const firstSkipRef = useRef(true);
-    useEffect(() => {
-      if (firstSkipRef.current) firstSkipRef.current = false;
-      else return effectEvent();
-    }, [initValue, items]);
-  }
+  useFirstSkipEffect(() => {
+    setActiveItem(getItemOfValue(initValue));
+  }, [initValue, items]);
 
-  {
-    const effectEvent = useEffectEvent(() => {
-      if (error) {
-        validate();
-      }
-    });
-    const firstSkipRef = useRef(true);
-    useEffect(() => {
-      if (firstSkipRef.current) firstSkipRef.current = false;
-      else return effectEvent();
-    }, [activeItem]);
-  }
+  useFirstSkipEffect(() => {
+    if (error) {
+      validate();
+    }
+  }, [activeItem]);
 
-  {
-    const effectEvent = useEffectEvent(() => {
-      onErrorChange?.(error);
-      controlGroupState && controlGroupState.onErrorChange(name, error);
-    });
-    const firstSkipRef = useRef(true);
-    useEffect(() => {
-      if (firstSkipRef.current) firstSkipRef.current = false;
-      else return effectEvent();
-    }, [error]);
-  }
+  useFirstSkipEffect(() => {
+    onErrorChange?.(error);
+    controlGroupState && controlGroupState.onErrorChange(name, error);
+  }, [error]);
 
   /********************************************************************************************************************
    * Commands

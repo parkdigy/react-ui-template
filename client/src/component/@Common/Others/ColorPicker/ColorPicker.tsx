@@ -34,51 +34,43 @@ export const ColorPicker = ({ ref, className, defaultColor, color: initColor, on
    * Effect
    * ******************************************************************************************************************/
 
-  {
-    const effectEvent = useEffectEvent(() => {
-      if (!isOpen) {
-        _setColor(initColor);
-      }
-    });
-    useEffect(() => {
-      return effectEvent();
-    }, [initColor]);
-  }
+  useEventEffect(() => {
+    if (!isOpen) {
+      _setColor(initColor);
+    }
+  }, [initColor]);
 
   /** 외부 영역 클릭 시 팝오버 닫기 */
-  {
-    const effectEvent = useEffectEvent(() => {
-      let startedInside = false;
-      let startedWhenMounted = false;
+  useEventEffect(() => {
+    let startedInside = false;
+    let startedWhenMounted = false;
 
-      const clickHandler = (event: MouseEvent) => {
-        if (!isOpenRef.current) return;
-        if (event.target && (event.target as HTMLElement).className.includes(`ColorPicker__Swatch-${id}`)) return;
-        if (startedInside || !startedWhenMounted) return;
-        if (!popoverRef.current || popoverRef.current.contains(event.target as any)) return;
+    const clickHandler = (event: MouseEvent) => {
+      if (!isOpenRef.current) return;
+      if (event.target && (event.target as HTMLElement).className.includes(`ColorPicker__Swatch-${id}`)) return;
+      if (startedInside || !startedWhenMounted) return;
+      if (!popoverRef.current || popoverRef.current.contains(event.target as any)) return;
 
-        setIsOpen(false);
-      };
+      setIsOpen(false);
+    };
 
-      const validateEventStart = (event: MouseEvent | TouchEvent) => {
-        if (!isOpenRef.current) return;
+    const validateEventStart = (event: MouseEvent | TouchEvent) => {
+      if (!isOpenRef.current) return;
 
-        startedWhenMounted = !!popoverRef.current;
-        startedInside = !!popoverRef.current && popoverRef.current.contains(event.target as any);
-      };
+      startedWhenMounted = !!popoverRef.current;
+      startedInside = !!popoverRef.current && popoverRef.current.contains(event.target as any);
+    };
 
-      document.addEventListener('mousedown', validateEventStart);
-      document.addEventListener('touchstart', validateEventStart);
-      document.addEventListener('click', clickHandler);
+    document.addEventListener('mousedown', validateEventStart);
+    document.addEventListener('touchstart', validateEventStart);
+    document.addEventListener('click', clickHandler);
 
-      return () => {
-        document.removeEventListener('mousedown', validateEventStart);
-        document.removeEventListener('touchstart', validateEventStart);
-        document.removeEventListener('click', clickHandler);
-      };
-    });
-    useEffect(() => effectEvent(), []);
-  }
+    return () => {
+      document.removeEventListener('mousedown', validateEventStart);
+      document.removeEventListener('touchstart', validateEventStart);
+      document.removeEventListener('click', clickHandler);
+    };
+  }, []);
 
   /********************************************************************************************************************
    * Function

@@ -75,29 +75,17 @@ function FormSelectControl<T extends string | number>({
    * Effect
    * ******************************************************************************************************************/
 
-  {
-    const effectEvent = useEffectEvent(() => {
-      if (isFocused) {
-        onFocus?.();
-      } else {
-        onBlur?.();
-      }
-    });
-    const firstSkipRef = useRef(true);
-    useEffect(() => {
-      if (firstSkipRef.current) firstSkipRef.current = false;
-      else return effectEvent();
-    }, [isFocused]);
-  }
+  useFirstSkipEffect(() => {
+    if (isFocused) {
+      onFocus?.();
+    } else {
+      onBlur?.();
+    }
+  }, [isFocused]);
 
-  {
-    const effectEvent = useEffectEvent(() => {
-      onCommands(commands);
-    });
-    useEffect(() => {
-      return effectEvent();
-    }, [commands]);
-  }
+  useEventEffect(() => {
+    onCommands(commands);
+  }, [commands]);
 
   /********************************************************************************************************************
    * Function

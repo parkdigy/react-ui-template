@@ -53,19 +53,14 @@ export const Dev_Form = () => {
    * Effect
    * ******************************************************************************************************************/
 
-  {
-    const effectEvent = useEffectEvent(() => {
-      const hash = g.location.deHash(location);
-      if (hash.sm && TabValue.includes(hash.sm as TabValue)) {
-        setActiveTab(hash.sm as TabValue);
-      } else {
-        setActiveTab('text');
-      }
-    });
-    useEffect(() => {
-      return effectEvent();
-    }, [location]);
-  }
+  useEventEffect(() => {
+    const hash = g.location.deHash(location);
+    if (hash.sm && TabValue.includes(hash.sm as TabValue)) {
+      setActiveTab(hash.sm as TabValue);
+    } else {
+      setActiveTab('text');
+    }
+  }, [location]);
 
   /********************************************************************************************************************
    * Render

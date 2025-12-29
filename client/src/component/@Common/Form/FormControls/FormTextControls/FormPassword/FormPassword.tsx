@@ -41,11 +41,11 @@ export const FormPassword = ({
 
   /** error */
   const [error, _setError] = useState(initError);
-  useChanged(initError) && _setError(initError);
+  useFirstSkipChanged(() => _setError(initError), [initError]);
 
   /** value */
   const [value, setValue] = useState(initValue);
-  useChanged(initValue) && setValue(initValue);
+  useFirstSkipChanged(() => setValue(initValue), [initValue]);
 
   /** isContainsAlphabet */
   const [isContainsAlphabet, setIsContainsAlphabet] = useState(false);
@@ -84,21 +84,16 @@ export const FormPassword = ({
    * Effect
    * ******************************************************************************************************************/
 
-  {
-    const effectEvent = useEffectEvent(() => {
-      if (rules) {
-        setUpdateValueRulesTimeout(() => {
-          setIsContainsAlphabet(notEmpty(value) && new RegExp(/[a-z]/i).test(value));
-          setIsContainsNumeric(notEmpty(value) && new RegExp(/[\d]/i).test(value));
-          setIsContainsSpecialChar(notEmpty(value) && new RegExp(/[`~!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/i).test(value));
-          setIsOverLength(notEmpty(value) && value.length >= 8);
-        }, 100);
-      }
-    });
-    useEffect(() => {
-      return effectEvent();
-    }, [value]);
-  }
+  useChanged(() => {
+    if (rules) {
+      setUpdateValueRulesTimeout(() => {
+        setIsContainsAlphabet(notEmpty(value) && new RegExp(/[a-z]/i).test(value));
+        setIsContainsNumeric(notEmpty(value) && new RegExp(/[\d]/i).test(value));
+        setIsContainsSpecialChar(notEmpty(value) && new RegExp(/[`~!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/i).test(value));
+        setIsOverLength(notEmpty(value) && value.length >= 8);
+      }, 100);
+    }
+  }, [value]);
 
   /********************************************************************************************************************
    * Function
@@ -112,23 +107,11 @@ export const FormPassword = ({
     [_setError, onErrorChange]
   );
 
-  {
-    const effectEvent = useEffectEvent(() => {
-      if (
-        rules &&
-        error !== false &&
-        isContainsSpecialChar &&
-        isContainsAlphabet &&
-        isContainsNumeric &&
-        isOverLength
-      ) {
-        textCommands?.setError(false);
-      }
-    });
-    useEffect(() => {
-      return effectEvent();
-    }, [rules, isContainsAlphabet, isContainsNumeric, isContainsSpecialChar, isOverLength]);
-  }
+  useEventEffect(() => {
+    if (rules && error !== false && isContainsSpecialChar && isContainsAlphabet && isContainsNumeric && isOverLength) {
+      textCommands?.setError(false);
+    }
+  }, [rules, isContainsAlphabet, isContainsNumeric, isContainsSpecialChar, isOverLength]);
 
   /********************************************************************************************************************
    * Commands
