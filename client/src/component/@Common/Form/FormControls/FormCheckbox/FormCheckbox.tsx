@@ -1,7 +1,6 @@
 import React from 'react';
 import { FormCheckboxCommands, FormCheckboxProps as Props } from './FormCheckbox.types';
 import { FormControlBase } from '../@common';
-import { useAutoUpdateRef, useForwardRef } from '@pdg/react-hook';
 import { useFormControlGroupState, useFormState } from '../../FormContext';
 import IconActive from './icon_active.svg';
 import IconDefault from './icon_default.svg';
@@ -66,7 +65,7 @@ export const FormCheckbox = ({
 
   /** error */
   const [error, setError] = useState(initError);
-  useChanged(initError) && setError(initError);
+  useFirstSkipChanged(() => setError(initError), [initError]);
 
   /********************************************************************************************************************
    * Variable

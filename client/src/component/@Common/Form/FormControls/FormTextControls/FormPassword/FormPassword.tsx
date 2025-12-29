@@ -1,6 +1,5 @@
 import React from 'react';
 import { FormPasswordCommands, FormPasswordProps as Props } from './FormPassword.types';
-import { useForwardRef, useTimeoutRef } from '@pdg/react-hook';
 import { useFormState } from '../../../FormContext';
 import { FormText, FormTextCommands } from '../FormText';
 import { ShowButton } from './ShowButton';

@@ -1,7 +1,6 @@
 import React from 'react';
 import { FormHiddenCommands, FormHiddenProps as Props } from './FormHidden.types';
 import { useFormState } from '../../FormContext';
-import { useAutoUpdateRef, useForwardRef } from '@pdg/react-hook';
 import { FormControlBase, FormControlCommands } from '../@common';
 
 export const FormHidden = ({

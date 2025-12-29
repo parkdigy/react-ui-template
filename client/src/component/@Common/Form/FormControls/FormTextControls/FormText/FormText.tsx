@@ -1,7 +1,6 @@
 import React from 'react';
 import { FormTextCommands, FormTextProps as Props } from './FormText.types';
 import { FormControlBase } from '../../@common';
-import { useAutoUpdateRef, useForwardRef, useTimeoutRef } from '@pdg/react-hook';
 import { koreanAppendRul } from '@pdg/korean';
 import { useFormControlGroupState, useFormState } from '../../../FormContext';
 import { FormInput } from './FormInput';
@@ -138,7 +137,7 @@ export const FormText = ({
 
   /** error */
   const [error, setError] = useState(initError);
-  useChanged(initError) && setError(initError);
+  useFirstSkipChanged(() => setError(initError), [initError]);
 
   /** value */
   const [value, _setValue] = useState(getFinalValue(initValue));

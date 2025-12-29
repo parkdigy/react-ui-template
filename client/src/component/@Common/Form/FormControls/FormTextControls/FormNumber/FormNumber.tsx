@@ -1,6 +1,5 @@
 import React from 'react';
 import { FormNumberCommands, FormNumberProps as Props } from './FormNumber.types';
-import { useForwardRef } from '@pdg/react-hook';
 import { FormText, FormTextCommands } from '../FormText';
 import { formatNumber } from '@pdg/formatting';
 

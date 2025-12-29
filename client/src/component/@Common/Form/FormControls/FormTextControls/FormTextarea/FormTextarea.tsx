@@ -1,7 +1,6 @@
 import React from 'react';
 import { FormTextareaCommands, FormTextareaProps as Props } from './FormTextarea.types';
 import { FormControlBase } from '../../@common';
-import { useForwardRef, useTimeoutRef } from '@pdg/react-hook';
 import { koreanAppendRul } from '@pdg/korean';
 import { useFormControlGroupState, useFormState } from '../../../FormContext';
 import './FormTextarea.scss';
@@ -61,10 +60,10 @@ export const FormTextarea = ({
 
   /** error */
   const [error, setError] = useState(initError);
-  useChanged(initError) && setError(initError);
+  useFirstSkipChanged(() => setError(initError), [initError]);
 
   const [value, _setValue] = useState(initValue);
-  useChanged(initValue) && _setValue(initValue);
+  useFirstSkipChanged(() => _setValue(initValue), [initValue]);
   const valueRef = useAutoUpdateRef(value);
 
   /********************************************************************************************************************

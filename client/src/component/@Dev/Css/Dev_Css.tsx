@@ -30,17 +30,17 @@ export const Dev_Css = () => {
   const [activeTab, setActiveTab] = useState<TabValue>('size');
 
   /********************************************************************************************************************
-   * Effect
+   * Changed
    * ******************************************************************************************************************/
 
-  if (useChanged(location, true)) {
+  useChanged(() => {
     const hash = g.location.deHash(location);
     if (hash.sm && TabValue.includes(hash.sm as TabValue)) {
       setActiveTab(hash.sm as TabValue);
     } else {
       setActiveTab('size');
     }
-  }
+  }, [location]);
 
   /********************************************************************************************************************
    * Render

@@ -1,6 +1,5 @@
 import React from 'react';
 import { ApiLoadContainerCommands, ApiLoadContainerProps as Props } from './ApiLoadContainer.types';
-import { useForwardRef, useTimeoutRef } from '@pdg/react-hook';
 import ErrorRetry from '../../Errors/ErrorRetry';
 
 export const ApiLoadContainer = <T = any, TApiData = any>({

@@ -1,7 +1,6 @@
 import React, { ChangeEvent } from 'react';
 import { FormFileCommands, FormFileProps as Props } from './FormFile.types';
 import { FormControlBase } from '../@common';
-import { useForwardRef, useTimeoutRef } from '@pdg/react-hook';
 import { koreanAppendRul } from '@pdg/korean';
 import { useFormControlGroupState, useFormState } from '../../FormContext';
 import './FormFile.scss';
@@ -58,7 +57,7 @@ export const FormFile = ({
 
   /** error */
   const [error, setError] = useState(initError);
-  useChanged(initError) && setError(initError);
+  useFirstSkipChanged(() => setError(initError), [initError]);
 
   /** file */
   const [file, _setFile] = useState<File>();

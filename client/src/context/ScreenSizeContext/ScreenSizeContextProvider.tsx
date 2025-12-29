@@ -30,7 +30,11 @@ const ScreenSizeContextProvider = ({ children }: Props) => {
   const [lastScreenAliasValue, setLastScreenAliasValue] = useState<string>();
   const [screenSizeInfo, setScreenSizeInfo] = useState<ScreenSizeInfo>();
 
-  if (useChanged(windowWidth, true)) {
+  /********************************************************************************************************************
+   * Changed
+   * ******************************************************************************************************************/
+
+  useChanged(() => {
     const screenAliases = objectKeys(AllScreenAliases).filter((screen) => {
       const [min] = AllScreenAliases[screen];
       if (theme.screens[min] <= windowWidth) {
@@ -92,7 +96,7 @@ const ScreenSizeContextProvider = ({ children }: Props) => {
         largerThanOrEqual,
       });
     }
-  }
+  }, [windowWidth]);
 
   /********************************************************************************************************************
    * Return

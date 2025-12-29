@@ -1,7 +1,6 @@
 import React, { useRef } from 'react';
 import { FormSelectCommands, FormSelectItem, FormSelectProps as Props } from './FormSelect.types';
 import { FormControlBase } from '../@common';
-import { useAutoUpdateRef } from '@pdg/react-hook';
 import { koreanAppendRul } from '@pdg/korean';
 import { useFormControlGroupState, useFormState } from '../../FormContext';
 import { FormSelectControl, FormSelectControlCommands } from './FormSelectControl';
@@ -81,7 +80,7 @@ export const FormSelect = <T extends string | number>({
 
   /** error */
   const [error, setError] = useState(initError);
-  useChanged(initError) && setError(initError);
+  useFirstSkipChanged(() => setError(initError), [initError]);
 
   /********************************************************************************************************************
    * Variable

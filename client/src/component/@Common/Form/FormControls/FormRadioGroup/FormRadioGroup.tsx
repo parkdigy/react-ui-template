@@ -1,7 +1,6 @@
 import React from 'react';
 import { FormRadioGroupCommands, FormRadioGroupItemInfo, FormRadioGroupProps as Props } from './FormRadioGroup.types';
 import { FormControlBase } from '../@common';
-import { useAutoUpdateRef, useForwardRef, useTimeoutRef } from '@pdg/react-hook';
 import { FormRadioGroupItem, FormRadioGroupItemCommands } from './FormRadioGroupItem';
 import { koreanAppendRul } from '@pdg/korean';
 import { useFormControlGroupState, useFormState } from '../../FormContext';
@@ -79,11 +78,11 @@ export const FormRadioGroup = <T extends string | number | boolean>({
 
   /** error */
   const [error, setError] = useState(initError);
-  useChanged(initError) && setError(initError);
+  useFirstSkipChanged(() => setError(initError), [initError]);
 
   /** value */
   const [value, _setValue] = useState(initValue);
-  useChanged(initValue) && _setValue(initValue);
+  useFirstSkipChanged(() => _setValue(initValue), [initValue]);
   const valueRef = useAutoUpdateRef(value);
   const setValue = useCallback(
     (value: React.SetStateAction<typeof initValue>) => {

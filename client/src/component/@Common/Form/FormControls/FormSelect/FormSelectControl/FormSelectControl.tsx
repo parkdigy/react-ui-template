@@ -1,7 +1,6 @@
 import React, { useRef } from 'react';
 import { FormSelectControlCommands, FormSelectControlProps as Props } from './FormSelectControl.types';
 import { FormSelectInput, FormSelectInputCommands } from './FormSelectInput';
-import { useTimeoutRef } from '@pdg/react-hook';
 import { FormSelectItem } from '../FormSelect.types';
 import { FormSelectDropdown, FormSelectDropdownCommands } from './FormSelectDropdown';
 import { FormSelectRight } from './FormSelectRight';

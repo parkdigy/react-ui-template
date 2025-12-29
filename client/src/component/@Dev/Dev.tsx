@@ -80,17 +80,17 @@ export const Dev = ({}: Props) => {
   const [activeTab, setActiveTab] = useState<TabValue>('color');
 
   /********************************************************************************************************************
-   * Effect
+   * Changed
    * ******************************************************************************************************************/
 
-  if (useChanged(location, true)) {
+  useChanged(() => {
     const hash = g.location.deHash(location);
     if (hash.m && TabValue.includes(hash.m as any)) {
       setActiveTab(hash.m as TabValue);
     } else {
       setActiveTab('color');
     }
-  }
+  }, [location]);
 
   /********************************************************************************************************************
    * Render

@@ -8,18 +8,17 @@ export const ThemeProvider = ({ children, colorScheme }: Props) => {
    * ******************************************************************************************************************/
 
   const [isFirstSet, setIsFirstSet] = useState(true);
-  const [lastTheme, setLastTheme] = useState(Theme);
+  const [finalTheme, setFinalTheme] = useState(Theme);
 
   /********************************************************************************************************************
-   * Variable
+   * Changed
    * ******************************************************************************************************************/
 
-  let finalTheme = lastTheme;
-  if (useChanged(colorScheme, true)) {
+  useChanged(() => {
     document.documentElement.setAttribute('data-color-scheme', colorScheme);
 
     const rootStyle = getComputedStyle(document.documentElement);
-    const theme = { ...lastTheme, dark: colorScheme === 'dark' };
+    const theme = { ...finalTheme, dark: colorScheme === 'dark' };
 
     // 컬러 설정
     for (const key of objectKeys(Theme.colors)) {
@@ -77,12 +76,10 @@ export const ThemeProvider = ({ children, colorScheme }: Props) => {
       }
     }
 
-    setLastTheme(theme);
+    setFinalTheme(theme);
 
     gTheme.setTheme(theme);
-
-    finalTheme = theme;
-  }
+  }, [colorScheme]);
 
   /********************************************************************************************************************
    * Render
