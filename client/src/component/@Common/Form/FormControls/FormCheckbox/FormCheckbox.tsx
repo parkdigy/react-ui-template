@@ -55,10 +55,9 @@ export const FormCheckbox = ({
   useFirstSkipChanged(() => _setChecked(initChecked), [initChecked]);
   const checkedRef = useAutoUpdateRef(checked);
   const setChecked = useCallback(
-    (value: React.SetStateAction<typeof initChecked>) => {
-      const v = typeof value === 'function' ? value(checkedRef.current) : value;
-      _setChecked(v);
-      checkedRef.current = v;
+    (newValue: typeof initChecked) => {
+      _setChecked(newValue);
+      checkedRef.current = newValue;
     },
     [checkedRef]
   );

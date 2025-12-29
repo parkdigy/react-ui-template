@@ -85,10 +85,9 @@ export const FormRadioGroup = <T extends string | number | boolean>({
   useFirstSkipChanged(() => _setValue(initValue), [initValue]);
   const valueRef = useAutoUpdateRef(value);
   const setValue = useCallback(
-    (value: React.SetStateAction<typeof initValue>) => {
-      const v = typeof value === 'function' ? value(valueRef.current) : value;
-      _setValue(v);
-      valueRef.current = v;
+    (newValue: typeof initValue) => {
+      _setValue(newValue);
+      valueRef.current = newValue;
     },
     [valueRef]
   );
