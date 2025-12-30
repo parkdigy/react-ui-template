@@ -156,7 +156,7 @@ export const FormText = ({
 
   useFirstSkipEffect(() => {
     onErrorChange?.(error);
-    controlGroupState && controlGroupState.onErrorChange(name, error);
+    controlGroupState?.onErrorChange(name, error);
   }, [error]);
 
   /********************************************************************************************************************

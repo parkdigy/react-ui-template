@@ -102,7 +102,7 @@ export const Dev = ({}: Props) => {
         items={TabItems}
         value={activeTab}
         onChange={(v) => {
-          v !== activeTab && g.nav.go(`#m=${v}`);
+          if (v !== activeTab) g.nav.go(`#m=${v}`);
         }}
       />
 

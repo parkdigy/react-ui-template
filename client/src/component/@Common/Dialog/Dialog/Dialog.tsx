@@ -242,7 +242,7 @@ const Dialog = () => {
 
   const handleCancelClick = useCallback(
     (dialogProps: DialogInnerProps) => {
-      dialogProps.onCancel && dialogProps.onCancel();
+      dialogProps.onCancel?.();
       commandClose(dialogProps.id);
     },
     [commandClose]
@@ -251,7 +251,7 @@ const Dialog = () => {
   const handleConfirmClick = useCallback(
     (dialogProps: DialogInnerProps) => {
       const autoHide = ifUndefined(dialogProps.autoHide, false);
-      dialogProps.onConfirm && dialogProps.onConfirm();
+      dialogProps.onConfirm?.();
       if (autoHide) {
         commandClose(dialogProps.id);
       }

@@ -54,7 +54,7 @@ export const Dev_Button = () => {
         items={TabItems}
         value={activeTab}
         onChange={(v) => {
-          v !== activeTab && g.nav.go(`#m=button&sm=${v}`);
+          if (v !== activeTab) g.nav.go(`#m=button&sm=${v}`);
         }}
       />
 

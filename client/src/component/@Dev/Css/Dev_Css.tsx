@@ -54,7 +54,7 @@ export const Dev_Css = () => {
         items={TabItems}
         value={activeTab}
         onChange={(v) => {
-          v !== activeTab && g.nav.go(`#m=css&sm=${v}`);
+          if (v !== activeTab) g.nav.go(`#m=css&sm=${v}`);
         }}
       />
 

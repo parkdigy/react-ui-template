@@ -151,7 +151,7 @@ export const FormSelect = <T extends string | number>({
 
   useFirstSkipEffect(() => {
     onErrorChange?.(error);
-    controlGroupState && controlGroupState.onErrorChange(name, error);
+    controlGroupState?.onErrorChange(name, error);
   }, [error]);
 
   /********************************************************************************************************************

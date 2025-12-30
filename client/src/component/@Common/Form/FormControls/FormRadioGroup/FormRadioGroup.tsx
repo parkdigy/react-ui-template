@@ -209,7 +209,7 @@ export const FormRadioGroup = <T extends string | number | boolean>({
 
   useFirstSkipEffect(() => {
     onErrorChange?.(error);
-    controlGroupState && controlGroupState.onErrorChange(name, error);
+    controlGroupState?.onErrorChange(name, error);
   }, [error]);
 
   /** overflow 상태 체크 및 설정 */

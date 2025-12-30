@@ -86,7 +86,7 @@ export const Dev_Form = () => {
         items={TabItems}
         value={activeTab}
         onChange={(v) => {
-          v !== activeTab && g.nav.go(`#m=form&sm=${v}`);
+          if (v !== activeTab) g.nav.go(`#m=form&sm=${v}`);
         }}
       />
 
