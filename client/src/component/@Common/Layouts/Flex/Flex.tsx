@@ -1,4 +1,3 @@
-import React from 'react';
 import { type FlexProps as Props } from './Flex.types';
 import Box from '../Box';
 import './Flex.scss';

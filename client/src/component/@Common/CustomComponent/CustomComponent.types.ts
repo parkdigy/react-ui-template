@@ -30,10 +30,6 @@ export const CustomComponentPaddingStyles = [
 ] as const;
 export type CustomComponentPaddingStyles = CustomComponentPaddingBaseStyles & CustomComponentPaddingCustomStyles;
 
-const A: CustomComponentPaddingBaseStyles = {
-  paddingLeft: '10px',
-};
-ll(A);
 /********************************************************************************************************************
  * Margin
  * ******************************************************************************************************************/

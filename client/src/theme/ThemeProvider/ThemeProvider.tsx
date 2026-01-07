@@ -1,6 +1,6 @@
-import { ThemeProviderProps as Props } from './ThemeProvider.types';
+import { type ThemeProviderProps as Props } from './ThemeProvider.types';
 import ThemeContext from './ThemeContext';
-import { AllColors, AllSizes, ButtonColors, DefaultColors, SizeInfo } from '../@types';
+import { AllColors, AllSizes, ButtonColors, DefaultColors, type SizeInfo } from '../@types';
 
 export const ThemeProvider = ({ children, colorScheme }: Props) => {
   /********************************************************************************************************************

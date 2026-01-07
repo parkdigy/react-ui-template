@@ -1,9 +1,9 @@
-import React, { useRef } from 'react';
-import { FormSelectCommands, FormSelectItem, FormSelectProps as Props } from './FormSelect.types';
+import { useRef } from 'react';
+import { type FormSelectCommands, type FormSelectItem, type FormSelectProps as Props } from './FormSelect.types';
 import { FormControlBase } from '../@common';
 import { koreanAppendRul } from '@pdg/korean';
 import { useFormControlGroupState, useFormState } from '../../FormContext';
-import { FormSelectControl, FormSelectControlCommands } from './FormSelectControl';
+import { FormSelectControl, type FormSelectControlCommands } from './FormSelectControl';
 
 export const FormSelect = <T extends string | number>({
   ref,

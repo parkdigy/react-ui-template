@@ -1,5 +1,5 @@
 import { Dev_Panel, Dev_PanelItem } from '../@Common';
-import { PlacesType } from 'react-tooltip';
+import { type PlacesType } from 'react-tooltip';
 import { DefaultColors } from '@theme';
 
 const Dev_Tooltip_Variant = () => {
