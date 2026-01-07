@@ -33,6 +33,7 @@ export default defineConfig([
         sourceType: 'module',
       },
       globals: {
+        React: 'writable',
         ...Object.keys(WebpackProviderPluginCommonComponent).reduce((acc, key) => {
           acc[key] = 'readonly';
           return acc;
@@ -54,6 +55,7 @@ export default defineConfig([
       'react-hooks/rules-of-hooks': 'error',
       'react-hooks/exhaustive-deps': 'error',
       'react/no-unescaped-entities': 'off',
+      'react/react-in-jsx-scope': 'off',
       'react/jsx-no-undef': ['error', { allowGlobals: true }],
       'no-plusplus': 'error',
       'prefer-template': 'error',

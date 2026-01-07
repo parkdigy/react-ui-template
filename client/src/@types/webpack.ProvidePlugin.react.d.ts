@@ -1,5 +1,7 @@
+import React from 'react';
+
 declare global {
-  namespace React {}
+  const React: typeof React;
 
   type Ref<T> = React.Ref<T>;
 
