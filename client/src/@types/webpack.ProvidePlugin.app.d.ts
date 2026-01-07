@@ -1,8 +1,4 @@
 declare global {
-  export type { ApiResult, ApiPaging, ApiPageLimitRequestData } from '../global/api/index.ts';
-}
-
-declare global {
   // base
   const objectKeys: typeof import('../global/base/index.ts').objectKeys;
   const nextTick: typeof import('../global/base/index.ts').nextTick;
@@ -30,6 +26,9 @@ declare global {
 
   // api
   const api: typeof import('../global/api/index.ts').default;
+  type ApiResult = import('../global/api/index.ts').ApiResult;
+  type ApiPaging = import('../global/api/index.ts').ApiPaging;
+  type ApiPageLimitRequestData = import('../global/api/index.ts').ApiPageLimitRequestData;
 
   // Const
   const Const: typeof import('../constant/index').default;
