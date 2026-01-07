@@ -1,6 +1,6 @@
 import { AllSizes, SizeCssVarNameInfo, SizeInfo } from './size';
 import { AllScreens } from './screen';
-import { AllColors } from './color';
+import { AllColors, ButtonColors, DefaultColors } from './color';
 
 /********************************************************************************************************************
  * Theme
@@ -22,6 +22,15 @@ export interface Theme {
       colors: Record<AllColors, string>;
     };
   };
+  isAllColor: (color: string | undefined) => color is ReadonlyArray<AllColors>[number];
+  isDefaultColor: (color: string | undefined) => color is ReadonlyArray<DefaultColors>[number];
+  isButtonColor: (color: string | undefined) => color is ReadonlyArray<ButtonColors>[number];
+  getColor: (...values: Array<AllColors | string | undefined>) => string | undefined;
+  getBackground: (...values: Array<AllColors | string | number | undefined>) => string | number | undefined;
+  getSizeValue: (
+    sizeValue: keyof SizeInfo,
+    ...values: Array<AllSizes | string | number | undefined>
+  ) => string | number | undefined;
 }
 
 const cssValue = {
@@ -84,4 +93,10 @@ export const Theme: Theme = {
     },
     vars: copy(cssValue),
   },
+  isAllColor: (color): color is ReadonlyArray<AllColors>[number] => false,
+  isDefaultColor: (color): color is ReadonlyArray<DefaultColors>[number] => false,
+  isButtonColor: (color): color is ReadonlyArray<ButtonColors>[number] => false,
+  getColor: () => undefined,
+  getBackground: () => undefined,
+  getSizeValue: () => undefined,
 };

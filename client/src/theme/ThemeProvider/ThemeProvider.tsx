@@ -1,6 +1,7 @@
 import React from 'react';
 import { ThemeProviderProps as Props } from './ThemeProvider.types';
 import ThemeContext from './ThemeContext';
+import { AllColors, AllSizes, ButtonColors, DefaultColors, SizeInfo } from '../@types';
 
 export const ThemeProvider = ({ children, colorScheme }: Props) => {
   /********************************************************************************************************************
@@ -76,6 +77,21 @@ export const ThemeProvider = ({ children, colorScheme }: Props) => {
       }
     }
 
+    theme.isAllColor = (color): color is ReadonlyArray<AllColors>[number] =>
+      color && !color.startsWith('#') ? contains(AllColors, color) : false;
+
+    theme.isDefaultColor = (color): color is ReadonlyArray<DefaultColors>[number] =>
+      color && !color.startsWith('#') ? contains(DefaultColors, color) : false;
+
+    theme.isButtonColor = (color): color is ReadonlyArray<ButtonColors>[number] =>
+      color && !color.startsWith('#') ? contains(ButtonColors, color) : false;
+
+    theme.getColor = (...values) => themeGetColor(theme, ...values);
+
+    theme.getBackground = (...values) => themGetBackground(theme, ...values);
+
+    theme.getSizeValue = (sizeValue, ...values) => themeGetSizeValue(theme, sizeValue, ...values);
+
     setFinalTheme(theme);
 
     gTheme.setTheme(theme);
@@ -89,3 +105,50 @@ export const ThemeProvider = ({ children, colorScheme }: Props) => {
 };
 
 export default ThemeProvider;
+
+/********************************************************************************************************************
+ * themeGetColor
+ * ******************************************************************************************************************/
+
+const themeGetColor = (theme: Theme, ...values: Array<AllColors | string | undefined>) => {
+  for (const value of values) {
+    if (value !== undefined) {
+      if (!value.startsWith('#') && contains(AllColors, value)) {
+        return theme.colors[value as AllColors];
+      }
+      return value;
+    }
+  }
+};
+
+/********************************************************************************************************************
+ * themeGetBackground
+ * ******************************************************************************************************************/
+const themGetBackground = (theme: Theme, ...values: Array<AllColors | string | number | undefined>) => {
+  for (const value of values) {
+    if (value !== undefined) {
+      if (typeof value === 'string' && !value.startsWith('#') && contains(AllColors, value)) {
+        return theme.colors[value as AllColors];
+      }
+      return value;
+    }
+  }
+};
+
+/********************************************************************************************************************
+ * themeGetSize
+ * ******************************************************************************************************************/
+const themeGetSizeValue = (
+  theme: Theme,
+  sizeValue: keyof SizeInfo,
+  ...values: Array<AllSizes | string | number | undefined>
+) => {
+  for (const value of values) {
+    if (value !== undefined) {
+      if (typeof value === 'string' && contains(AllSizes, value)) {
+        return theme.sizes[value as AllSizes][sizeValue];
+      }
+      return value;
+    }
+  }
+};

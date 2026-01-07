@@ -33,7 +33,7 @@ function ApiListLoadContainer<T extends { [key in string]: any } = any, TListIte
 
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const page = Number(ifNull(searchParams.get('p'), '1'));
+  const page = Number(searchParams.get('p') ?? '1');
 
   /********************************************************************************************************************
    * Ref

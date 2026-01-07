@@ -81,8 +81,8 @@ export const Chip = ({
       outlineBaseColor = baseColor;
     } else if (variant === 'outlined') {
       color = baseColor;
-      borderWidth = ifUndefined(initBorderWidth, 1);
-      borderStyle = ifUndefined(initBorderStyle, 'solid');
+      borderWidth = initBorderWidth ?? 1;
+      borderStyle = initBorderStyle ?? 'solid';
       if (initBorderColor) {
         borderColor = contains(AllColors, initBorderColor) ? theme.colors[initBorderColor] : initBorderColor;
       } else {
@@ -99,7 +99,7 @@ export const Chip = ({
     .hexa();
 
   const sizeInfo = theme.sizes[size];
-  const fontSize = ifUndefined(initFontSize, sizeInfo.fontSize);
+  const fontSize = initFontSize ?? sizeInfo.fontSize;
   const lineHeight = `${fontSize * 2.5 - (variant === 'outlined' ? 2 : 0)}px`;
 
   /********************************************************************************************************************

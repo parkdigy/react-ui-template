@@ -1,7 +1,7 @@
 import React from 'react';
 import { BadgeProps as Props } from './Badge.types';
 import './Badge.scss';
-import { AllColors, ButtonColors, DefaultColors, getDefaultOnColor } from '@theme';
+import { getDefaultOnColor } from '@theme';
 import Color from 'color';
 
 export const Badge = ({
@@ -24,23 +24,23 @@ export const Badge = ({
    * Variable
    * ******************************************************************************************************************/
 
-  const variant = ifUndefined(initVariant, content === '' ? 'dot' : 'standard');
+  const variant = initVariant ?? (content === '' ? 'dot' : 'standard');
 
-  const finalInitColor = ifUndefined(ifUndefined(initColor, initC), 'error');
-  const finalInitBackgroundColor = ifUndefined(initBackgroundColor, initBgColor);
+  const finalInitColor = initColor ?? initC ?? 'error';
+  const finalInitBackgroundColor = initBackgroundColor ?? initBgColor;
 
   const isCustomColor = finalInitBackgroundColor !== undefined;
-  const isNamedColor = contains(ButtonColors, finalInitColor);
-  const isDefaultColor = isNamedColor && contains(DefaultColors, finalInitColor);
+  const isButtonColor = theme.isButtonColor(finalInitColor);
+  const isDefaultColor = isButtonColor && theme.isDefaultColor(finalInitColor);
 
-  const baseColor = isNamedColor ? theme.colors[finalInitColor] : finalInitColor;
+  const baseColor = isButtonColor ? theme.colors[finalInitColor] : finalInitColor;
 
   let color: CSSProperties['color'] | undefined;
   let backgroundColor: CSSProperties['backgroundColor'] | undefined;
 
   if (isCustomColor) {
     color = baseColor;
-    backgroundColor = contains(AllColors, finalInitBackgroundColor)
+    backgroundColor = theme.isAllColor(finalInitBackgroundColor)
       ? theme.colors[finalInitBackgroundColor]
       : finalInitBackgroundColor;
   } else {
@@ -71,8 +71,8 @@ export const Badge = ({
               {
                 '--Badge__Content-color': color,
                 '--Badge__Content-background-color': backgroundColor,
-                '--Badge__Content-offset-x': `${ifUndefined(offset?.x, 0)}px`,
-                '--Badge__Content-offset-y': `${ifUndefined(offset?.y, 0)}px`,
+                '--Badge__Content-offset-x': `${offset?.x ?? 0}px`,
+                '--Badge__Content-offset-y': `${offset?.y ?? 0}px`,
               } as CSSProperties
             }
           >

@@ -1,8 +1,7 @@
 import React from 'react';
 import { CustomComponentProps as Props } from './CustomComponent.types';
-import { AllColors, AllSizes } from '@theme';
 
-function CustomComponent<T>({
+const CustomComponent = <T,>({
   component: Component,
   style: initStyle,
   hidden,
@@ -170,295 +169,221 @@ function CustomComponent<T>({
   cssVars,
   // component props
   ...componentProps
-}: Props<T>) {
-  /********************************************************************************************************************
-   * Use
-   * ******************************************************************************************************************/
-
+}: Props<T>) => {
   const theme = useTheme();
-
-  /********************************************************************************************************************
-   * Variable
-   * ******************************************************************************************************************/
 
   const style: CSSProperties = { ...cssVars, ...initStyle };
 
   // display
-  if (hidden) style.display = 'none';
-  else if (display !== undefined) style.display = display;
+  g.style.assign(style, 'display', hidden ? 'none' : display);
 
   // padding
-  if (padding !== undefined) style.padding = padding;
-  else if (p !== undefined) style.padding = p;
-
-  if (paddingLeft !== undefined) style.paddingLeft = paddingLeft;
-  else if (pl !== undefined) style.paddingLeft = pl;
-  else if (ph !== undefined) style.paddingLeft = ph;
-
-  if (paddingRight !== undefined) style.paddingRight = paddingRight;
-  else if (pr !== undefined) style.paddingRight = pr;
-  else if (ph !== undefined) style.paddingRight = ph;
-
-  if (paddingTop !== undefined) style.paddingTop = paddingTop;
-  else if (pt !== undefined) style.paddingTop = pt;
-  else if (pv !== undefined) style.paddingTop = pv;
-
-  if (paddingBottom !== undefined) style.paddingBottom = paddingBottom;
-  else if (pb !== undefined) style.paddingBottom = pb;
-  else if (pv !== undefined) style.paddingBottom = pv;
+  g.style.assign(style, 'padding', padding, p);
+  g.style.assign(style, 'paddingLeft', paddingLeft, pl, ph);
+  g.style.assign(style, 'paddingRight', paddingRight, pr, ph);
+  g.style.assign(style, 'paddingTop', paddingTop, pt, pv);
+  g.style.assign(style, 'paddingBottom', paddingBottom, pb, pv);
 
   // margin
-  if (margin !== undefined) style.margin = margin;
-  else if (m !== undefined) style.margin = m;
-
-  if (marginLeft !== undefined) style.marginLeft = marginLeft;
-  else if (ml !== undefined) style.marginLeft = ml;
-  else if (mh !== undefined) style.marginLeft = mh;
-
-  if (marginRight !== undefined) style.marginRight = marginRight;
-  else if (mr !== undefined) style.marginRight = mr;
-  else if (mh !== undefined) style.marginRight = mh;
-
-  if (marginTop !== undefined) style.marginTop = marginTop;
-  else if (mt !== undefined) style.marginTop = mt;
-  else if (mv !== undefined) style.marginTop = mv;
-
-  if (marginBottom !== undefined) style.marginBottom = marginBottom;
-  else if (mb !== undefined) style.marginBottom = mb;
-  else if (mv !== undefined) style.marginBottom = mv;
+  g.style.assign(style, 'margin', margin, m);
+  g.style.assign(style, 'marginLeft', marginLeft, ml, mh);
+  g.style.assign(style, 'marginRight', marginRight, mr, mh);
+  g.style.assign(style, 'marginTop', marginTop, mt, mv);
+  g.style.assign(style, 'marginBottom', marginBottom, mb, mv);
 
   // border
-  const borderColor =
-    initBorderColor !== undefined && !initBorderColor.startsWith('#') && contains(AllColors, initBorderColor)
-      ? theme.colors[initBorderColor]
-      : initBorderColor;
-  if (borderColor !== undefined) style.borderColor = borderColor;
+  const borderColor = theme.getColor(initBorderColor);
+  g.style.assign(style, 'border', border);
+  g.style.assign(style, 'borderColor', borderColor);
+  g.style.assign(
+    style,
+    'borderStyle',
+    borderStyle,
+    border === undefined && borderColor !== undefined ? 'solid' : undefined
+  );
+  g.style.assign(style, 'borderWidth', borderWidth, border === undefined && borderColor !== undefined ? 1 : undefined);
 
-  const borderLeftColor =
-    initBorderLeftColor !== undefined &&
-    !initBorderLeftColor.startsWith('#') &&
-    contains(AllColors, initBorderLeftColor)
-      ? theme.colors[initBorderLeftColor]
-      : initBorderLeftColor;
-  if (borderLeftColor !== undefined) style.borderLeftColor = borderLeftColor;
+  // borderLeft
+  const borderLeftColor = theme.getColor(initBorderLeftColor);
+  g.style.assign(style, 'borderLeft', borderLeft);
+  g.style.assign(style, 'borderLeftColor', borderLeftColor);
+  g.style.assign(
+    style,
+    'borderLeftStyle',
+    borderLeftStyle,
+    borderLeft === undefined && borderLeftColor !== undefined ? 'solid' : undefined
+  );
+  g.style.assign(
+    style,
+    'borderLeftWidth',
+    borderLeftWidth,
+    borderLeft === undefined && borderLeftColor !== undefined ? 1 : undefined
+  );
 
-  const borderRightColor =
-    initBorderRightColor !== undefined &&
-    !initBorderRightColor.startsWith('#') &&
-    contains(AllColors, initBorderRightColor)
-      ? theme.colors[initBorderRightColor]
-      : initBorderRightColor;
-  if (borderRightColor !== undefined) style.borderRightColor = borderRightColor;
+  // borderRight
+  const borderRightColor = theme.getColor(initBorderRightColor);
+  g.style.assign(style, 'borderRight', borderRight);
+  g.style.assign(style, 'borderRightColor', borderRightColor);
+  g.style.assign(
+    style,
+    'borderRightStyle',
+    borderRightStyle,
+    borderRight === undefined && borderRightColor !== undefined ? 'solid' : undefined
+  );
+  g.style.assign(
+    style,
+    'borderRightWidth',
+    borderRightWidth,
+    borderRight === undefined && borderRightColor !== undefined ? 1 : undefined
+  );
 
-  const borderTopColor =
-    initBorderTopColor !== undefined && !initBorderTopColor.startsWith('#') && contains(AllColors, initBorderTopColor)
-      ? theme.colors[initBorderTopColor]
-      : initBorderTopColor;
-  if (borderTopColor !== undefined) style.borderTopColor = borderTopColor;
+  // borderTop
+  const borderTopColor = theme.getColor(initBorderTopColor);
+  g.style.assign(style, 'borderTop', borderTop);
+  g.style.assign(style, 'borderTopColor', borderTopColor);
+  g.style.assign(
+    style,
+    'borderTopStyle',
+    borderTopStyle,
+    borderTop === undefined && borderTopColor !== undefined ? 'solid' : undefined
+  );
+  g.style.assign(
+    style,
+    'borderTopWidth',
+    borderTopWidth,
+    borderTop === undefined && borderTopColor !== undefined ? 1 : undefined
+  );
 
-  const borderBottomColor =
-    initBorderBottomColor !== undefined &&
-    !initBorderBottomColor.startsWith('#') &&
-    contains(AllColors, initBorderBottomColor)
-      ? theme.colors[initBorderBottomColor]
-      : initBorderBottomColor;
-  if (borderBottomColor !== undefined) style.borderBottomColor = borderBottomColor;
+  // borderBottom
+  const borderBottomColor = theme.getColor(initBorderBottomColor);
+  g.style.assign(style, 'borderBottom', borderBottom);
+  g.style.assign(style, 'borderBottomColor', borderBottomColor);
+  g.style.assign(
+    style,
+    'borderBottomStyle',
+    borderBottomStyle,
+    borderBottom === undefined && borderBottomColor !== undefined ? 'solid' : undefined
+  );
+  g.style.assign(
+    style,
+    'borderBottomWidth',
+    borderBottomWidth,
+    borderBottom === undefined && borderBottomColor !== undefined ? 1 : undefined
+  );
 
-  if (borderStyle !== undefined) style.borderStyle = borderStyle;
-  else if (border === undefined && borderColor !== undefined) style.borderStyle = 'solid';
-
-  if (borderLeftStyle !== undefined) style.borderLeftStyle = borderLeftStyle;
-  else if (borderLeft === undefined && borderLeftColor !== undefined) style.borderLeftStyle = 'solid';
-
-  if (borderRightStyle !== undefined) style.borderRightStyle = borderRightStyle;
-  else if (borderRight === undefined && borderRightColor !== undefined) style.borderRightStyle = 'solid';
-
-  if (borderTopStyle !== undefined) style.borderTopStyle = borderTopStyle;
-  else if (borderTop === undefined && borderTopColor !== undefined) style.borderTopStyle = 'solid';
-
-  if (borderBottomStyle !== undefined) style.borderBottomStyle = borderBottomStyle;
-  else if (borderBottom === undefined && borderBottomColor !== undefined) style.borderBottomStyle = 'solid';
-
-  if (borderWidth !== undefined) style.borderWidth = borderWidth;
-  else if (border === undefined && borderColor !== undefined) style.borderWidth = 1;
-
-  if (borderLeftWidth !== undefined) style.borderLeftWidth = borderLeftWidth;
-  else if (borderLeft === undefined && borderLeftColor !== undefined) style.borderLeftWidth = 1;
-
-  if (borderRightWidth !== undefined) style.borderRightWidth = borderRightWidth;
-  else if (borderRight === undefined && borderRightColor !== undefined) style.borderRightWidth = 1;
-
-  if (borderTopWidth !== undefined) style.borderTopWidth = borderTopWidth;
-  else if (borderTop === undefined && borderTopColor !== undefined) style.borderTopWidth = 1;
-
-  if (borderBottomWidth !== undefined) style.borderBottomWidth = borderBottomWidth;
-  else if (borderBottom === undefined && borderBottomColor !== undefined) style.borderBottomWidth = 1;
-
-  if (border !== undefined) style.border = border;
-  if (borderLeft !== undefined) style.borderLeft = borderLeft;
-  if (borderRight !== undefined) style.borderRight = borderRight;
-  if (borderTop !== undefined) style.borderTop = borderTop;
-  if (borderBottom !== undefined) style.borderBottom = borderBottom;
-
-  if (initBorderRadius !== undefined) style.borderRadius = initBorderRadius;
-  else if (initRadius !== undefined) style.borderRadius = initRadius;
-
-  if (borderTopLeftRadius !== undefined) style.borderTopLeftRadius = borderTopLeftRadius;
-  if (borderTopRightRadius !== undefined) style.borderTopRightRadius = borderTopRightRadius;
-  if (borderBottomLeftRadius !== undefined) style.borderBottomLeftRadius = borderBottomLeftRadius;
-  if (borderBottomRightRadius !== undefined) style.borderBottomRightRadius = borderBottomRightRadius;
+  // radius
+  g.style.assign(style, 'borderRadius', initBorderRadius, initRadius);
+  g.style.assign(style, 'borderTopLeftRadius', borderTopLeftRadius);
+  g.style.assign(style, 'borderTopRightRadius', borderTopRightRadius);
+  g.style.assign(style, 'borderBottomLeftRadius', borderBottomLeftRadius);
+  g.style.assign(style, 'borderBottomRightRadius', borderBottomRightRadius);
 
   // flex
-  if (flex !== undefined) style.flex = flex;
-  if (gap !== undefined) style.gap = gap;
-  if (flexDirection !== undefined) style.flexDirection = flexDirection;
-  if (flexBasis !== undefined) style.flexBasis = flexBasis;
-  if (flexFlow !== undefined) style.flexFlow = flexFlow;
-  if (flexShrink !== undefined) style.flexShrink = flexShrink;
-  if (flexGrow !== undefined) style.flexGrow = flexGrow;
-  if (flexWrap !== undefined) style.flexWrap = flexWrap;
-  if (alignItems !== undefined) style.alignItems = alignItems;
-  if (alignSelf !== undefined) style.alignSelf = alignSelf;
-  if (alignContent !== undefined) style.alignContent = alignContent;
-  if (alignTracks !== undefined) style.alignTracks = alignTracks;
-  if (justifyItems !== undefined) style.justifyItems = justifyItems;
-  if (justifySelf !== undefined) style.justifySelf = justifySelf;
-  if (justifyContent !== undefined) style.justifyContent = justifyContent;
-  if (justifyTracks !== undefined) style.justifyTracks = justifyTracks;
+  g.style.assign(style, 'flex', flex);
+  g.style.assign(style, 'gap', gap);
+  g.style.assign(style, 'flexDirection', flexDirection);
+  g.style.assign(style, 'flexBasis', flexBasis);
+  g.style.assign(style, 'flexFlow', flexFlow);
+  g.style.assign(style, 'flexShrink', flexShrink);
+  g.style.assign(style, 'flexGrow', flexGrow);
+  g.style.assign(style, 'flexWrap', flexWrap);
+  g.style.assign(style, 'alignItems', alignItems);
+  g.style.assign(style, 'alignSelf', alignSelf);
+  g.style.assign(style, 'alignContent', alignContent);
+  g.style.assign(style, 'alignTracks', alignTracks);
+  g.style.assign(style, 'justifyItems', justifyItems);
+  g.style.assign(style, 'justifySelf', justifySelf);
+  g.style.assign(style, 'justifyContent', justifyContent);
+  g.style.assign(style, 'justifyTracks', justifyTracks);
 
   // font
-  const size = ifUndefined(initSize, initS);
+  const size = initSize ?? initS;
   if (size !== undefined) {
-    style.fontSize = theme.sizes[size].fontSize;
-    style.lineHeight = theme.sizes[size].lineHeight;
+    g.style.assign(style, 'fontSize', theme.sizes[size].fontSize);
+    g.style.assign(style, 'lineHeight', theme.sizes[size].lineHeight);
   }
 
-  let fontSize = ifUndefined(initFontSize, initFs);
-  if (fontSize !== undefined && typeof fontSize === 'string' && contains(AllSizes, fontSize)) {
-    fontSize = theme.sizes[fontSize].fontSize;
-  }
-  if (fontSize !== undefined) style.fontSize = fontSize;
-
-  let lineHeight = ifUndefined(initLineHeight, initLh);
-  if (lineHeight !== undefined && typeof lineHeight === 'string' && contains(AllSizes, lineHeight)) {
-    lineHeight = theme.sizes[lineHeight].lineHeight;
-  }
-  if (lineHeight !== undefined) style.lineHeight = lineHeight;
-
-  const fontWeight = ifUndefined(initFontWeight, initFw);
-  if (fontWeight !== undefined) style.fontWeight = fontWeight;
-  else if (bold) style.fontWeight = 'bold';
-
-  let color = ifUndefined(initColor, initC);
-  if (color !== undefined && !color.startsWith('#') && contains(AllColors, color)) {
-    color = theme.colors[color];
-  }
-  if (color !== undefined) style.color = color;
-
-  if (font !== undefined) style.font = font;
-  if (fontFamily !== undefined) style.fontFamily = fontFamily;
-  if (fontStyle !== undefined) style.fontStyle = fontStyle;
-  if (letterSpacing !== undefined) style.letterSpacing = letterSpacing;
-  if (textAlign !== undefined) style.textAlign = textAlign;
-  if (textDecoration !== undefined) style.textDecoration = textDecoration;
-  if (textTransform !== undefined) style.textTransform = textTransform;
-  if (wordWrap !== undefined) style.wordWrap = wordWrap;
-  if (wordBreak !== undefined) style.wordBreak = wordBreak;
-  if (wordSpacing !== undefined) style.wordSpacing = wordSpacing;
+  g.style.assign(style, 'fontSize', theme.getSizeValue('fontSize', initFontSize, initFs));
+  g.style.assign(style, 'lineHeight', theme.getSizeValue('lineHeight', initLineHeight, initLh));
+  g.style.assign(style, 'fontWeight', initFontWeight, initFw, bold ? 'bold' : undefined);
+  g.style.assign(style, 'color', theme.getColor(initColor, initC));
+  g.style.assign(style, 'font', font);
+  g.style.assign(style, 'fontFamily', fontFamily);
+  g.style.assign(style, 'fontStyle', fontStyle);
+  g.style.assign(style, 'letterSpacing', letterSpacing);
+  g.style.assign(style, 'textAlign', textAlign);
+  g.style.assign(style, 'textDecoration', textDecoration);
+  g.style.assign(style, 'textTransform', textTransform);
+  g.style.assign(style, 'wordWrap', wordWrap);
+  g.style.assign(style, 'wordBreak', wordBreak);
+  g.style.assign(style, 'wordSpacing', wordSpacing);
 
   // background
-  let background = ifUndefined(initBackground, initBg);
-  if (
-    background !== undefined &&
-    typeof background === 'string' &&
-    !background.startsWith('#') &&
-    contains(AllColors, background)
-  ) {
-    background = theme.colors[background];
-  }
-  if (background !== undefined) style.background = background;
-
-  let backgroundColor = ifUndefined(initBackgroundColor, initBgColor);
-  if (backgroundColor !== undefined && !backgroundColor.startsWith('#') && contains(AllColors, backgroundColor)) {
-    backgroundColor = theme.colors[backgroundColor];
-  }
-  if (backgroundColor !== undefined) style.backgroundColor = backgroundColor;
-
-  if (backgroundImage !== undefined) style.backgroundImage = backgroundImage;
-  if (backgroundPosition !== undefined) style.backgroundPosition = backgroundPosition;
-  if (backgroundSize !== undefined) style.backgroundSize = backgroundSize;
-  if (backgroundRepeat !== undefined) style.backgroundRepeat = backgroundRepeat;
+  g.style.assign(style, 'background', theme.getBackground(initBackground, initBg));
+  g.style.assign(style, 'backgroundColor', theme.getColor(initBackgroundColor, initBgColor));
+  g.style.assign(style, 'backgroundImage', backgroundImage);
+  g.style.assign(style, 'backgroundPosition', backgroundPosition);
+  g.style.assign(style, 'backgroundSize', backgroundSize);
+  g.style.assign(style, 'backgroundRepeat', backgroundRepeat);
 
   // position
-  if (position !== undefined) style.position = position;
-  if (top !== undefined) style.top = top;
-  if (left !== undefined) style.left = left;
-  if (right !== undefined) style.right = right;
-  if (bottom !== undefined) style.bottom = bottom;
-  if (zIndex !== undefined) style.zIndex = zIndex;
+  g.style.assign(style, 'position', position);
+  g.style.assign(style, 'top', top);
+  g.style.assign(style, 'left', left);
+  g.style.assign(style, 'right', right);
+  g.style.assign(style, 'bottom', bottom);
+  g.style.assign(style, 'zIndex', zIndex);
 
   // size
-  if (width !== undefined) style.width = width;
-  else if (w !== undefined) style.width = w;
-  else if (fullWidth) style.width = '100%';
-
-  if (height !== undefined) style.height = height;
-  else if (h !== undefined) style.height = h;
-  else if (fullHeight) style.height = '100%';
-
-  if (maxWidth !== undefined) style.maxWidth = maxWidth;
-  if (minWidth !== undefined) style.minWidth = minWidth;
-  if (maxHeight !== undefined) style.maxHeight = maxHeight;
-  if (minHeight !== undefined) style.minHeight = minHeight;
+  g.style.assign(style, 'width', width, w, fullWidth ? '100%' : undefined);
+  g.style.assign(style, 'height', height, h, fullHeight ? '100%' : undefined);
+  g.style.assign(style, 'maxWidth', maxWidth);
+  g.style.assign(style, 'minWidth', minWidth);
+  g.style.assign(style, 'maxHeight', maxHeight);
+  g.style.assign(style, 'minHeight', minHeight);
 
   // transform
-  if (transform !== undefined) style.transform = transform;
-  if (transformOrigin !== undefined) style.transformOrigin = transformOrigin;
-  if (transformStyle !== undefined) style.transformStyle = transformStyle;
-  if (transformBox !== undefined) style.transformBox = transformBox;
+  g.style.assign(style, 'transform', transform);
+  g.style.assign(style, 'transformOrigin', transformOrigin);
+  g.style.assign(style, 'transformStyle', transformStyle);
+  g.style.assign(style, 'transformBox', transformBox);
 
   // transition
-  if (transition !== undefined) style.transition = transition;
-  if (transitionBehavior !== undefined) style.transitionBehavior = transitionBehavior;
-  if (transitionDelay !== undefined) style.transitionDelay = transitionDelay;
-  if (transitionDuration !== undefined) style.transitionDuration = transitionDuration;
-  if (transitionProperty !== undefined) style.transitionProperty = transitionProperty;
-  if (transitionTimingFunction !== undefined) style.transitionTimingFunction = transitionTimingFunction;
+  g.style.assign(style, 'transition', transition);
+  g.style.assign(style, 'transitionBehavior', transitionBehavior);
+  g.style.assign(style, 'transitionDelay', transitionDelay);
+  g.style.assign(style, 'transitionDuration', transitionDuration);
+  g.style.assign(style, 'transitionProperty', transitionProperty);
+  g.style.assign(style, 'transitionTimingFunction', transitionTimingFunction);
 
   // outline
-  const outlineColor =
-    initOutlineColor !== undefined && !initOutlineColor.startsWith('#') && contains(AllColors, initOutlineColor)
-      ? theme.colors[initOutlineColor]
-      : initOutlineColor;
-  if (outlineColor !== undefined) style.outlineColor = outlineColor;
-
-  if (outlineStyle !== undefined) style.outlineStyle = outlineStyle;
-  else if (outline === undefined && outlineWidth !== undefined) style.outlineStyle = 'solid';
-
-  if (outline !== undefined) style.outline = outline;
-  if (outlineWidth !== undefined) style.outlineWidth = outlineWidth;
-  if (outlineOffset !== undefined) style.outlineOffset = outlineOffset;
+  g.style.assign(style, 'outlineColor', theme.getColor(initOutlineColor));
+  g.style.assign(
+    style,
+    'outlineStyle',
+    outlineStyle,
+    outline === undefined && outlineWidth !== undefined ? 'solid' : undefined
+  );
+  g.style.assign(style, 'outline', outline);
+  g.style.assign(style, 'outlineWidth', outlineWidth);
+  g.style.assign(style, 'outlineOffset', outlineOffset);
 
   // others
-  if (boxShadow !== undefined) style.boxShadow = boxShadow;
-  if (overflow !== undefined) style.overflow = overflow;
-  if (overflowX !== undefined) style.overflowX = overflowX;
-  if (overflowY !== undefined) style.overflowY = overflowY;
-  if (cursor !== undefined) style.cursor = cursor;
-  if (opacity !== undefined) style.opacity = opacity;
-  if (visibility !== undefined) style.visibility = visibility;
-  if (whiteSpace !== undefined) style.whiteSpace = whiteSpace;
-  if (textOverflow !== undefined) style.textOverflow = textOverflow;
-  if (pointerEvents !== undefined) style.pointerEvents = pointerEvents;
-  if (userSelect !== undefined) style.userSelect = userSelect;
-  if (verticalAlign !== undefined) style.verticalAlign = verticalAlign;
-  if (filter !== undefined) style.filter = filter;
-
-  /********************************************************************************************************************
-   * Render
-   * ******************************************************************************************************************/
+  g.style.assign(style, 'boxShadow', boxShadow);
+  g.style.assign(style, 'overflow', overflow);
+  g.style.assign(style, 'overflowX', overflowX);
+  g.style.assign(style, 'overflowY', overflowY);
+  g.style.assign(style, 'cursor', cursor);
+  g.style.assign(style, 'opacity', opacity);
+  g.style.assign(style, 'visibility', visibility);
+  g.style.assign(style, 'whiteSpace', whiteSpace);
+  g.style.assign(style, 'textOverflow', textOverflow);
+  g.style.assign(style, 'pointerEvents', pointerEvents);
+  g.style.assign(style, 'userSelect', userSelect);
+  g.style.assign(style, 'verticalAlign', verticalAlign);
+  g.style.assign(style, 'filter', filter);
 
   return <Component style={empty(style) ? undefined : style} {...componentProps} />;
-}
+};
 
 export default CustomComponent;

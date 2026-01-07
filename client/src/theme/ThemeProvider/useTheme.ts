@@ -1,6 +1,6 @@
 import ThemeContext from './ThemeContext';
 
-const useTheme = () => {
+export const useTheme = () => {
   return useContext(ThemeContext);
 };
 

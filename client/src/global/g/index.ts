@@ -10,6 +10,7 @@ import nav from './nav';
 import clipboard from './clipboard';
 import css from './css';
 import react from './react';
+import style from './style';
 import text from './text';
 import theme from './theme';
 
@@ -27,6 +28,7 @@ const g = {
   css,
   react,
   text,
+  style,
   theme,
 };
 
