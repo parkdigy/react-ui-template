@@ -1,4 +1,4 @@
-import { AuthInfo } from '@const';
+import { type AuthInfo } from '@const';
 
 export interface AppContextValue {
   // 테마

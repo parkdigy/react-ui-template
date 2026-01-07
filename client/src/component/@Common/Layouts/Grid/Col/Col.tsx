@@ -1,4 +1,4 @@
-import { ColProps as Props } from './Col.types';
+import { type ColProps as Props } from './Col.types';
 import './Col.scss';
 
 export const Col = ({ children, className, cols = 1, ...props }: Props) => {

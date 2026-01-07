@@ -1,4 +1,4 @@
-import { FormTextCommands, FormTextProps } from '../FormText';
+import { type FormTextCommands, type FormTextProps } from '../FormText';
 
 export interface FormTelCommands extends FormTextCommands {}
 

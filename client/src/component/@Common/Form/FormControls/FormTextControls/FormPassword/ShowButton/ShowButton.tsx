@@ -1,4 +1,4 @@
-import { ShowButtonProps as Props } from './ShowButton.types';
+import { type ShowButtonProps as Props } from './ShowButton.types';
 import { default as IconEyeOn } from './icon_eye_on.svg';
 import { default as IconEyeOff } from './icon_eye_off.svg';
 import './ShowButton.scss';

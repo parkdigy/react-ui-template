@@ -1,4 +1,4 @@
-import { HeaderProps as Props } from './Header.types';
+import { type HeaderProps as Props } from './Header.types';
 import { ContentContainer, Logo } from '@ccomp';
 import './Header.scss';
 

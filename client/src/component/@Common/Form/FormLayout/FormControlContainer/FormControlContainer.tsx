@@ -1,4 +1,4 @@
-import { FormControlContainerProps as Props } from './FormControlContainer.types';
+import { type FormControlContainerProps as Props } from './FormControlContainer.types';
 import { useFormState } from '../../FormContext';
 import './FormControlContainer.scss';
 

@@ -1,4 +1,4 @@
-import { Form, FormCheckbox, FormProps, Tabs } from '@ccomp';
+import { Form, FormCheckbox, type FormProps, Tabs } from '@ccomp';
 import Dev_Form_Text from './Text';
 import Dev_Form_Email from './Email';
 import Dev_Form_Password from './Password';

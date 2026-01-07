@@ -1,4 +1,4 @@
-import { Dev_FormControl_ClearableProps as Props } from './Dev_FormControl_Clearable.types';
+import { type Dev_FormControl_ClearableProps as Props } from './Dev_FormControl_Clearable.types';
 import { FormCheckbox } from '@ccomp';
 import { Dev_PanelItem } from '../../Layout';
 

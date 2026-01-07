@@ -1,4 +1,4 @@
-import { Dev_FormControl_SubControlProps as Props } from './Dev_FormControl_SubControl.types';
+import { type Dev_FormControl_SubControlProps as Props } from './Dev_FormControl_SubControl.types';
 import { FormCheckbox } from '@ccomp';
 import { Dev_PanelItem } from '../../Layout';
 

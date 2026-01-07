@@ -1,4 +1,4 @@
-import { Dev_FormControl_TooltipPlaceProps as Props } from './Dev_FormControl_TooltipPlace.types';
+import { type Dev_FormControl_TooltipPlaceProps as Props } from './Dev_FormControl_TooltipPlace.types';
 import { FormRadioGroup, FormSelect } from '@ccomp';
 import { Dev_PanelItem } from '../../Layout';
 

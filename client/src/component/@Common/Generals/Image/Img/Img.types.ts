@@ -22,10 +22,10 @@ export const ImgStyles = {
 };
 export type ImgStyles = (typeof ImgStyles)[number];
 
-export type ImgHtmlProps = React.DetailedHTMLProps<React.ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>;
+export type ImgHTMLProps = HTMLTagProps<'img'>;
 
 export interface ImgProps
-  extends Omit<ImgHtmlProps, 'children' | 'style'>, Pick<CustomComponentProps<ImgHtmlProps>, ImgStyles | 'w' | 'h'> {
+  extends Omit<ImgHTMLProps, 'children' | 'style'>, Pick<CustomComponentProps<ImgHTMLProps>, ImgStyles | 'w' | 'h'> {
   // 회전 각도
   rotate?: number;
 }

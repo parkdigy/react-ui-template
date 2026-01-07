@@ -1,4 +1,4 @@
-import { FormErrorTextProps as Props } from './FormErrorText.types';
+import { type FormErrorTextProps as Props } from './FormErrorText.types';
 import './FormErrorText.scss';
 
 export const FormErrorText = ({ children, className, absolute }: Props) => {

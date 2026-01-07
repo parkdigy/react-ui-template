@@ -1,5 +1,5 @@
-import { FormEmailCommands, FormEmailProps as Props } from './FormEmail.types';
-import { FormText, FormTextCommands } from '../FormText';
+import { type FormEmailCommands, type FormEmailProps as Props } from './FormEmail.types';
+import { FormText, type FormTextCommands } from '../FormText';
 
 export const FormEmail = ({
   ref,

@@ -7,10 +7,10 @@ import {
   CustomComponentSizeStyles,
 } from '../../CustomComponent';
 
-export type LoadingIndicatorHtmlProps = React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
+export type LoadingIndicatorHTMLProps = HTMLTagProps<'div'>;
 
 export interface LoadingIndicatorProps extends Omit<
-  CustomComponentProps<LoadingIndicatorHtmlProps>,
+  CustomComponentProps<LoadingIndicatorHTMLProps>,
   | 'component'
   | 'style'
   | 'children'

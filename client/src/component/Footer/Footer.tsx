@@ -1,4 +1,4 @@
-import { FooterProps as Props } from './Footer.types';
+import { type FooterProps as Props } from './Footer.types';
 import { ContentContainer } from '@ccomp';
 
 export const Footer = ({}: Props) => {

@@ -18,6 +18,7 @@ declare global {
   // Layout
   const Box: typeof import('../component/@Common/index.ts').Box;
   type BoxProps = import('../component/@Common/index.ts').BoxProps;
+  type BoxStyleProps = import('../component/@Common/index.ts').BoxStyleProps;
   const Span: typeof import('../component/@Common/index.ts').Span;
   type SpanProps = import('../component/@Common/index.ts').SpanProps;
   const Flex: typeof import('../component/@Common/index.ts').Flex;

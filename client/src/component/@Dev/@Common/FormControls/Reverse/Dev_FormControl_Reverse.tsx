@@ -1,4 +1,4 @@
-import { Dev_FormControl_ReverseProps as Props } from './Dev_FormControl_Reverse.types';
+import { type Dev_FormControl_ReverseProps as Props } from './Dev_FormControl_Reverse.types';
 import { FormCheckbox } from '@ccomp';
 import { Dev_PanelItem } from '../../Layout';
 

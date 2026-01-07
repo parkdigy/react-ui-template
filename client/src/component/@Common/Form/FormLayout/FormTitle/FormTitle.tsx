@@ -1,4 +1,4 @@
-import { FormTitleProps as Props } from './FormTitle.types';
+import { type FormTitleProps as Props } from './FormTitle.types';
 import { useFormState } from '../../FormContext';
 import './FormTitle.scss';
 

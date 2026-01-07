@@ -1,4 +1,4 @@
-import { Form, FormProps, FormRadioGroup } from '@ccomp';
+import { Form, type FormProps, FormRadioGroup } from '@ccomp';
 import { Dev_Panel } from '../../@Common';
 
 interface Props {

@@ -1,4 +1,4 @@
-import { FormControlContentContainerProps as Props } from './FormControlContentContainer.types';
+import { type FormControlContentContainerProps as Props } from './FormControlContentContainer.types';
 import './FormControlContentContainer.scss';
 
 export const FormControlContentContainer = ({ children, className, gap = 10 }: Props) => {

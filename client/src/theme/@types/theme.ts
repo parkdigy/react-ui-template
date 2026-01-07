@@ -1,4 +1,4 @@
-import { AllSizes, SizeCssVarNameInfo, SizeInfo } from './size';
+import { AllSizes, type SizeCssVarNameInfo, type SizeInfo } from './size';
 import { AllScreens } from './screen';
 import { AllColors, ButtonColors, DefaultColors } from './color';
 

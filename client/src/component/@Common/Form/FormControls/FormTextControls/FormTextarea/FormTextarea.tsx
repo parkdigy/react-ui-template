@@ -1,4 +1,4 @@
-import { FormTextareaCommands, FormTextareaProps as Props } from './FormTextarea.types';
+import { type FormTextareaCommands, type FormTextareaProps as Props } from './FormTextarea.types';
 import { FormControlBase } from '../../@common';
 import { koreanAppendRul } from '@pdg/korean';
 import { useFormControlGroupState, useFormState } from '../../../FormContext';

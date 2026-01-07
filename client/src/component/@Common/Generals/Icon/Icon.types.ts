@@ -1,10 +1,10 @@
 import { AllColors, AllSizes } from '@theme';
 import { CustomComponentFontStyles, type CustomComponentProps, CustomComponentSizeStyles } from '../../CustomComponent';
 
-export type IconHtmlProps = React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
+export type IconHTMLProps = HTMLElementProps;
 
 export interface IconProps extends Omit<
-  CustomComponentProps<IconHtmlProps>,
+  CustomComponentProps<IconHTMLProps>,
   'component' | 'style' | 'children' | keyof CustomComponentFontStyles | keyof CustomComponentSizeStyles
 > {
   children: string;

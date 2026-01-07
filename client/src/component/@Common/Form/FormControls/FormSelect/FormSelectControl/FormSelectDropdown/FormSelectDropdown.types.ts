@@ -1,4 +1,4 @@
-import { FormSelectItem } from '../../FormSelect.types';
+import { type FormSelectItem } from '../../FormSelect.types';
 
 export interface FormSelectDropdownCommands<T extends string | number> {
   prevItem: () => void;

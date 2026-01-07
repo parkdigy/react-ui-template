@@ -1,4 +1,4 @@
-import { AuthSignInProps as Props } from './AuthSignIn.types';
+import { type AuthSignInProps as Props } from './AuthSignIn.types';
 import { Form, FormCheckbox, FormEmail, FormPassword, PageRootContainer, TTitle } from '@ccomp';
 import { Const } from '@const';
 import { useAppState, useScreenSize } from '@context';

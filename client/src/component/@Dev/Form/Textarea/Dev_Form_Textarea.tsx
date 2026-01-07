@@ -1,8 +1,13 @@
-import { FormTextarea, FormProps } from '@ccomp';
-import { Dev_FormOptions, Dev_FormOptionsData, Dev_FormOptionsRadioGroupOption, Dev_Panel } from '../../@Common';
+import { FormTextarea, type FormProps } from '@ccomp';
+import {
+  Dev_FormOptions,
+  type Dev_FormOptionsData,
+  type Dev_FormOptionsRadioGroupOption,
+  Dev_Panel,
+} from '../../@Common';
 import code from '../Password/Dev_Form_Password.code.md';
 import Dev_Form_Textarea_Variant from './Dev_Form_Textarea_Variant';
-import { FlattenFormOptions } from '../../@types/FlattenFormOptions';
+import { type FlattenFormOptions } from '../../@types/FlattenFormOptions';
 
 const _formOptions = [
   ['title', 'rows'],

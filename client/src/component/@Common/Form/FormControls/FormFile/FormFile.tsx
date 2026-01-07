@@ -1,5 +1,5 @@
-import React, { ChangeEvent } from 'react';
-import { FormFileCommands, FormFileProps as Props } from './FormFile.types';
+import { type ChangeEvent } from 'react';
+import { type FormFileCommands, type FormFileProps as Props } from './FormFile.types';
 import { FormControlBase } from '../@common';
 import { koreanAppendRul } from '@pdg/korean';
 import { useFormControlGroupState, useFormState } from '../../FormContext';

@@ -1,4 +1,4 @@
-import { FormSelectInputCommands, FormSelectInputProps as Props } from './FormSelectInput.types';
+import { type FormSelectInputCommands, type FormSelectInputProps as Props } from './FormSelectInput.types';
 import { FormSelectRight } from '../FormSelectRight';
 import './FormSelectInput.scss';
 

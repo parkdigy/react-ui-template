@@ -1,4 +1,4 @@
-import { FormControlCommands, FormControlCommonProps } from '../@common';
+import { type FormControlCommands, type FormControlCommonProps } from '../@common';
 
 export type FormRadioGroupType = 'radio' | 'button' | 'smallButton';
 

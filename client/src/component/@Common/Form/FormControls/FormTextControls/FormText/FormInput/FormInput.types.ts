@@ -1,7 +1,8 @@
-import { HTMLProps } from 'react';
+export type FormInputHTMLElement = HTMLTagElement<'input'>;
+export type FormInputHTMLProps = HTMLTagProps<'input'>;
 
 export interface FormInputProps extends Pick<
-  HTMLProps<HTMLInputElement>,
+  FormInputHTMLProps,
   | 'type'
   | 'name'
   | 'disabled'
@@ -20,7 +21,7 @@ export interface FormInputProps extends Pick<
   | 'onKeyDown'
   | 'onPaste'
 > {
-  ref?: Ref<HTMLInputElement>;
+  ref?: Ref<FormInputHTMLElement>;
   error: boolean;
   clear?: boolean;
   endAdornment?: ReactNode;

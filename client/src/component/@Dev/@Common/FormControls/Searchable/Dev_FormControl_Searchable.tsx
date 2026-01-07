@@ -1,4 +1,4 @@
-import { Dev_FormControl_SearchableProps as Props } from './Dev_FormControl_Searchable.types';
+import { type Dev_FormControl_SearchableProps as Props } from './Dev_FormControl_Searchable.types';
 import { FormCheckbox } from '@ccomp';
 import { Dev_PanelItem } from '../../Layout';
 

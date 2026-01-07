@@ -1,4 +1,4 @@
-import { FormInputProps as Props } from './FormInput.types';
+import { type FormInputProps as Props } from './FormInput.types';
 import { ClearButton } from './ClearButton';
 import './FormInput.scss';
 

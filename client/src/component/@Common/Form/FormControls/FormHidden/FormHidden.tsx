@@ -1,6 +1,6 @@
-import { FormHiddenCommands, FormHiddenProps as Props } from './FormHidden.types';
+import { type FormHiddenCommands, type FormHiddenProps as Props } from './FormHidden.types';
 import { useFormState } from '../../FormContext';
-import { FormControlBase, FormControlCommands } from '../@common';
+import { FormControlBase, type FormControlCommands } from '../@common';
 
 export const FormHidden = ({
   ref,

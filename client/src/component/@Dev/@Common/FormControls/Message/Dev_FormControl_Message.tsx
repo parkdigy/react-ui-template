@@ -1,4 +1,4 @@
-import { Dev_FormControl_MessageProps as Props } from './Dev_FormControl_Message.types';
+import { type Dev_FormControl_MessageProps as Props } from './Dev_FormControl_Message.types';
 import { Dev_PanelItem } from '../../Layout';
 import { FormTextarea } from '@ccomp';
 

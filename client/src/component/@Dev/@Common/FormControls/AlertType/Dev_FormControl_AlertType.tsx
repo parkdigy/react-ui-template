@@ -1,4 +1,4 @@
-import { Dev_FormControl_AlertTypeProps as Props } from './Dev_FormControl_AlertType.types';
+import { type Dev_FormControl_AlertTypeProps as Props } from './Dev_FormControl_AlertType.types';
 import { AlertType, FormRadioGroup, FormSelect } from '@ccomp';
 import { Dev_PanelItem } from '../../Layout';
 

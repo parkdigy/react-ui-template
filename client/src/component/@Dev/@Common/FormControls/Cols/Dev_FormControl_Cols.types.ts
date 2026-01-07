@@ -1,5 +1,5 @@
 import { AllScreenAliases } from '@theme';
-import { GridCols } from '@ccomp';
+import { type GridCols } from '@ccomp';
 
 export interface Dev_FormControl_ColsProps {
   disabled?: boolean;

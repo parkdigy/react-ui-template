@@ -1,4 +1,4 @@
-import { FormRadioGroupType } from '../FormRadioGroup.types';
+import { type FormRadioGroupType } from '../FormRadioGroup.types';
 
 export interface FormRadioGroupItemCommands {
   focus: () => void;

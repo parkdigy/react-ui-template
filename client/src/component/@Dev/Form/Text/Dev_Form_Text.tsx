@@ -1,8 +1,8 @@
-import { FormProps, FormText } from '@ccomp';
-import { Dev_FormOptions, Dev_FormOptionsData, Dev_Panel } from '../../@Common';
+import { type FormProps, FormText } from '@ccomp';
+import { Dev_FormOptions, type Dev_FormOptionsData, Dev_Panel } from '../../@Common';
 import code from './Dev_Form_Text.code.md';
 import Dev_Form_Text_Variant from './Dev_Form_Text_Variant';
-import { FlattenFormOptions } from '../../@types/FlattenFormOptions';
+import { type FlattenFormOptions } from '../../@types/FlattenFormOptions';
 
 const _formOptions = [
   ['title', 'placeholder'],

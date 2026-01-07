@@ -1,5 +1,5 @@
-import { FormNumberCommands, FormNumberProps as Props } from './FormNumber.types';
-import { FormText, FormTextCommands } from '../FormText';
+import { type FormNumberCommands, type FormNumberProps as Props } from './FormNumber.types';
+import { FormText, type FormTextCommands } from '../FormText';
 import { formatNumber } from '@pdg/formatting';
 
 export const FormNumber = ({ ref, className, name, allowMinus, ...props }: Props) => {

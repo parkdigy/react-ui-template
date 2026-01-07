@@ -1,4 +1,4 @@
-import { GridContextValue } from './GridContext.types';
+import { type GridContextValue } from './GridContext.types';
 
 export interface GridContextProviderProps {
   value: GridContextValue;

@@ -1,4 +1,4 @@
-import { Dev_PanelProps as Props } from './Dev_Panel.types';
+import { type Dev_PanelProps as Props } from './Dev_Panel.types';
 import './Dev_Panel.scss';
 
 export const Dev_Panel = ({ className, ...props }: Props) => {

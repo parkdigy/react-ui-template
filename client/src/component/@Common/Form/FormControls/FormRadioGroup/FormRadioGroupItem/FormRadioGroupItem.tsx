@@ -1,4 +1,4 @@
-import { FormRadioGroupItemCommands, FormRadioGroupItemProps as Props } from './FormRadioGroupItem.types';
+import { type FormRadioGroupItemCommands, type FormRadioGroupItemProps as Props } from './FormRadioGroupItem.types';
 import { useResizeDetector } from 'react-resize-detector';
 import { ReactComponent as IconDefault } from './icon_default.svg';
 import { ReactComponent as IconActive } from './icon_active.svg';

@@ -49,10 +49,11 @@ export const ButtonSizes = {
 } as const;
 export type ButtonSizes = keyof typeof ButtonSizes;
 
-export type ButtonHtmlProps = React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>;
+export type ButtonHTMLElement = HTMLTagElement<'button'>;
+export type ButtonHTMLProps = HTMLTagProps<'button'>;
 
 export interface ButtonProps extends Omit<
-  CustomComponentProps<ButtonHtmlProps>,
+  CustomComponentProps<ButtonHTMLProps>,
   | 'component'
   | 'style'
   | 'c'
@@ -64,7 +65,6 @@ export interface ButtonProps extends Omit<
   | keyof CustomComponentBackgroundStyles
   | keyof CustomComponentBorderStyles
 > {
-  ref?: Ref<HTMLButtonElement>;
   // 스타일 (contained: 채워진 버튼, outlined: 테두리만 있는 버튼, text: 텍스트 버튼)
   variant?: 'contained' | 'outlined' | 'text';
   // 색상

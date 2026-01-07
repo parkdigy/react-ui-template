@@ -1,4 +1,4 @@
-import { toast as _toast, ToastOptions } from 'react-toastify';
+import { toast as _toast, type ToastOptions } from 'react-toastify';
 import './toast.scss';
 
 export const toast = {

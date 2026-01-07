@@ -1,4 +1,4 @@
-import { GridContextProviderProps as Props } from './GridContextProvider.types';
+import { type GridContextProviderProps as Props } from './GridContextProvider.types';
 import GridContext from './GridContext';
 
 export const GridContextProvider = ({ children, value }: Props) => {

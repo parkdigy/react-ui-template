@@ -1,4 +1,4 @@
-import { type IconHtmlProps, type IconProps as Props } from './Icon.types';
+import { type IconHTMLProps, type IconProps as Props } from './Icon.types';
 import { CustomComponent } from '../../CustomComponent';
 import { AllColors, AllSizes } from '@theme';
 import './Icon.scss';
@@ -40,7 +40,7 @@ export const Icon = ({
    * ******************************************************************************************************************/
 
   return (
-    <CustomComponent<IconHtmlProps>
+    <CustomComponent<IconHTMLProps>
       component='i'
       className={classnames(className, 'Icon', iconClassName, isNamedColor && `color-${theme.css.names.colors[color]}`)}
       color={isNamedColor ? undefined : color}

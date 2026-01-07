@@ -1,8 +1,8 @@
-import { Dev_FormOptions, Dev_FormOptionsData, Dev_Panel } from '../@Common';
+import { Dev_FormOptions, type Dev_FormOptionsData, Dev_Panel } from '../@Common';
 import code from './Dev_Alert.code.md';
 import { Alert } from '@ccomp';
 import { Dev_Alert_Variant } from './Dev_Alert_Variant';
-import { FlattenFormOptions } from '../@types/FlattenFormOptions';
+import { type FlattenFormOptions } from '../@types/FlattenFormOptions';
 
 const _formOptions = [['alertType', 'showIcon'], '|', 'title', 'message'] as const;
 type _formOptions = Exclude<FlattenFormOptions<typeof _formOptions>, '|' | null>;

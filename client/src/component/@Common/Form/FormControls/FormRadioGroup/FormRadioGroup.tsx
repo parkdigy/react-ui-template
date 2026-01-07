@@ -1,9 +1,13 @@
-import { FormRadioGroupCommands, FormRadioGroupItemInfo, FormRadioGroupProps as Props } from './FormRadioGroup.types';
+import {
+  type FormRadioGroupCommands,
+  type FormRadioGroupItemInfo,
+  type FormRadioGroupProps as Props,
+} from './FormRadioGroup.types';
 import { FormControlBase } from '../@common';
-import { FormRadioGroupItem, FormRadioGroupItemCommands } from './FormRadioGroupItem';
+import { FormRadioGroupItem, type FormRadioGroupItemCommands } from './FormRadioGroupItem';
 import { koreanAppendRul } from '@pdg/korean';
 import { useFormControlGroupState, useFormState } from '../../FormContext';
-import { GridCols } from '../../../Layouts';
+import { type GridCols } from '../../../Layouts';
 import { useResizeDetector } from 'react-resize-detector';
 import './FormRadioGroup.scss';
 

@@ -1,4 +1,4 @@
-import { FormHelperTextProps as Props } from './FormHelperText.types';
+import { type FormHelperTextProps as Props } from './FormHelperText.types';
 import './FormHelperText.scss';
 
 export const FormHelperText = ({ children, className, focused }: Props) => {

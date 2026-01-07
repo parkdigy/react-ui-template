@@ -1,7 +1,7 @@
-import { Dev_FormOptions, Dev_FormOptionsData, Dev_Panel } from '../@Common';
+import { Dev_FormOptions, type Dev_FormOptionsData, Dev_Panel } from '../@Common';
 import code from './Dev_Pagination.code.md';
 import { Pagination } from '@ccomp';
-import { FlattenFormOptions } from '../@types/FlattenFormOptions';
+import { type FlattenFormOptions } from '../@types/FlattenFormOptions';
 
 const _formOptions = ['currentPage', '|', 'lastPage'] as const;
 type _formOptions = Exclude<FlattenFormOptions<typeof _formOptions>, '|' | null>;

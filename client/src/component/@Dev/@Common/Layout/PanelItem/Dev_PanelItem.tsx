@@ -1,4 +1,4 @@
-import { Dev_PanelItemProps as Props } from './Dev_PanelItem.types';
+import { type Dev_PanelItemProps as Props } from './Dev_PanelItem.types';
 
 export const Dev_PanelItem = ({ title, icon, iconProps, ...props }: Props) => {
   return (

@@ -1,8 +1,8 @@
-import { Dev_FormOptions, Dev_FormOptionsData, Dev_FormOptionsProps, Dev_Panel } from '../../@Common';
+import { Dev_FormOptions, type Dev_FormOptionsData, type Dev_FormOptionsProps, Dev_Panel } from '../../@Common';
 import { AllColors, ButtonColors } from '@theme';
 import code from './Dev_Button_IconButton.code.md';
 import Dev_Button_IconButton_Variant from './Dev_Button_IconButton_Variant';
-import { FlattenFormOptions } from '../../@types/FlattenFormOptions';
+import { type FlattenFormOptions } from '../../@types/FlattenFormOptions';
 
 const _formOptions = [
   'iconButtonVariant',

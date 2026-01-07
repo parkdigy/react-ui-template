@@ -1,4 +1,4 @@
-import { Dev_FormControl_LabelProps as Props } from './Dev_FormControl_Label.types';
+import { type Dev_FormControl_LabelProps as Props } from './Dev_FormControl_Label.types';
 import { Dev_PanelItem } from '../../Layout';
 import { FormText } from '@ccomp';
 

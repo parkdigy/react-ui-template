@@ -2,16 +2,16 @@
  * 화면 크기 정보를 제공하는 Context 의 Provider
  * ******************************************************************************************************************/
 
-import { ScreenSizeContextProviderProps as Props } from './ScreenSizeContextProvider.types';
+import { type ScreenSizeContextProviderProps as Props } from './ScreenSizeContextProvider.types';
 import ScreenSizeContext from './ScreenSizeContext';
 import {
   AllScreenAliases,
-  ScreenSizeInfo,
-  ScreenSizeInfoIsKey,
-  ScreenSizeInfoLargerThanKey,
-  ScreenSizeInfoLargerThanOrEqualKey,
-  ScreenSizeInfoSmallerThanKey,
-  ScreenSizeInfoSmallerThanOrEqualKey,
+  type ScreenSizeInfo,
+  type ScreenSizeInfoIsKey,
+  type ScreenSizeInfoLargerThanKey,
+  type ScreenSizeInfoLargerThanOrEqualKey,
+  type ScreenSizeInfoSmallerThanKey,
+  type ScreenSizeInfoSmallerThanOrEqualKey,
 } from '@theme';
 
 const ScreenSizeContextProvider = ({ children }: Props) => {

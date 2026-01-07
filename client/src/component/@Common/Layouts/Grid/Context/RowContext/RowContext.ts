@@ -1,5 +1,5 @@
 import { createContext } from 'react';
-import { RowContextValue } from './RowContext.types';
+import { type RowContextValue } from './RowContext.types';
 
 const RowContext = createContext<RowContextValue>({} as RowContextValue);
 

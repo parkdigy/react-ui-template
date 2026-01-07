@@ -1,4 +1,4 @@
-import { RowContextValue } from './RowContext.types';
+import { type RowContextValue } from './RowContext.types';
 
 export interface RowContextProviderProps {
   value: RowContextValue;

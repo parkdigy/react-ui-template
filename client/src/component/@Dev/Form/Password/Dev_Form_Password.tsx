@@ -1,8 +1,8 @@
-import { FormPassword, FormProps } from '@ccomp';
-import { Dev_FormOptions, Dev_FormOptionsData, Dev_Panel } from '../../@Common';
+import { FormPassword, type FormProps } from '@ccomp';
+import { Dev_FormOptions, type Dev_FormOptionsData, Dev_Panel } from '../../@Common';
 import code from './Dev_Form_Password.code.md';
 import Dev_Form_Password_Variant from './Dev_Form_Password_Variant';
-import { FlattenFormOptions } from '../../@types/FlattenFormOptions';
+import { type FlattenFormOptions } from '../../@types/FlattenFormOptions';
 
 const _formOptions = [
   ['title', 'placeholder'],

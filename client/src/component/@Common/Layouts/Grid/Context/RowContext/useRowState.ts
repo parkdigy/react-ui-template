@@ -1,5 +1,5 @@
 import RowContext from './RowContext';
-import { RowContextValue } from './RowContext.types';
+import { type RowContextValue } from './RowContext.types';
 import { useContext } from 'react';
 
 export function useRowState(): RowContextValue {

@@ -1,6 +1,10 @@
-import { Dev_FormOptionsData, Dev_FormOptionsOption, Dev_FormOptionsProps as Props } from './Dev_FormOptions.types';
+import {
+  type Dev_FormOptionsData,
+  type Dev_FormOptionsOption,
+  type Dev_FormOptionsProps as Props,
+} from './Dev_FormOptions.types';
 import { Form } from '@ccomp';
-import { Dev_FormControl_Cols, Dev_FormControl_ColsProps } from '../FormControls';
+import { Dev_FormControl_Cols, type Dev_FormControl_ColsProps } from '../FormControls';
 import { Dev_Code } from '../Code';
 import { Dev_Panel } from '../Layout';
 import { AllColors } from '@theme';

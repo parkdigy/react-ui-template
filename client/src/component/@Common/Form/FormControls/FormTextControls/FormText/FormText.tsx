@@ -1,4 +1,4 @@
-import { FormTextCommands, FormTextProps as Props } from './FormText.types';
+import { type FormTextCommands, type FormTextProps as Props } from './FormText.types';
 import { FormControlBase } from '../../@common';
 import { koreanAppendRul } from '@pdg/korean';
 import { useFormControlGroupState, useFormState } from '../../../FormContext';

@@ -1,8 +1,8 @@
 import Dev_LoadingIndicator_Variant from './Dev_LoadingIndicator_Variant';
-import { Dev_FormOptions, Dev_FormOptionsData, Dev_Panel } from '../@Common';
+import { Dev_FormOptions, type Dev_FormOptionsData, Dev_Panel } from '../@Common';
 import { AllColors, ButtonColors } from '@theme';
 import code from '../Icon/Dev_Icon.code.md';
-import { FlattenFormOptions } from '../@types/FlattenFormOptions';
+import { type FlattenFormOptions } from '../@types/FlattenFormOptions';
 
 const _formOptions = [['color', 'size']] as const;
 type _formOptions = Exclude<FlattenFormOptions<typeof _formOptions>, '|' | null>;

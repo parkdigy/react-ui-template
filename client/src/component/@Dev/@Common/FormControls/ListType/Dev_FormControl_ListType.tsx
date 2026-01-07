@@ -1,4 +1,4 @@
-import { Dev_FormControl_ListTypeProps as Props } from './Dev_FormControl_ListType.types';
+import { type Dev_FormControl_ListTypeProps as Props } from './Dev_FormControl_ListType.types';
 import { FormRadioGroup, FormSelect } from '@ccomp';
 import { Dev_PanelItem } from '../../Layout';
 

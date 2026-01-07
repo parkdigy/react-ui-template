@@ -1,4 +1,4 @@
-import { Dev_FormControl_IconPositionProps as Props } from './Dev_FormControl_IconPosition.types';
+import { type Dev_FormControl_IconPositionProps as Props } from './Dev_FormControl_IconPosition.types';
 import { FormRadioGroup, FormSelect } from '@ccomp';
 import { Dev_PanelItem } from '../../Layout';
 

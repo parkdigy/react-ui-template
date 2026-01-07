@@ -1,4 +1,4 @@
-import { Dev_FormControl_HideTitleProps as Props } from './Dev_FormControl_HideTitle.types';
+import { type Dev_FormControl_HideTitleProps as Props } from './Dev_FormControl_HideTitle.types';
 import { FormCheckbox } from '@ccomp';
 import { Dev_PanelItem } from '../../Layout';
 

@@ -1,4 +1,4 @@
-import { type BoxComponent, type BoxHtmlProps, type BoxProps as Props } from './Box.types';
+import { type BoxComponent, type BoxHTMLProps, type BoxProps as Props } from './Box.types';
 import { CustomComponent } from '../../CustomComponent';
 import './Box.scss';
 
@@ -82,7 +82,7 @@ export const Box = <
    * ******************************************************************************************************************/
 
   return (
-    <CustomComponent<BoxHtmlProps<E>>
+    <CustomComponent<BoxHTMLProps<E>>
       component={component ?? 'div'}
       className={classnames(
         className,

@@ -1,5 +1,6 @@
-import { FormControlCommands, FormControlCommonProps } from '../../@common';
-import { HTMLProps } from 'react';
+import { type FormControlCommands, type FormControlCommonProps } from '../../@common';
+
+export type FormTextareaHTMLProps = HTMLTagProps<'textarea'>;
 
 export interface FormTextareaCommands extends FormControlCommands {
   getValue: () => string;
@@ -10,7 +11,7 @@ export interface FormTextareaCommands extends FormControlCommands {
 export interface FormTextareaProps
   extends
     FormControlCommonProps<string>,
-    Pick<HTMLProps<HTMLTextAreaElement>, 'maxLength' | 'rows' | 'onFocus' | 'onBlur' | 'onKeyUp' | 'onKeyDown'> {
+    Pick<FormTextareaHTMLProps, 'maxLength' | 'rows' | 'onFocus' | 'onBlur' | 'onKeyUp' | 'onKeyDown'> {
   ref?: Ref<FormTextareaCommands>;
   placeholder?: string;
   hideEmptyErrorText?: boolean;

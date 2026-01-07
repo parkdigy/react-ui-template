@@ -1,6 +1,6 @@
-import { FormPasswordCommands, FormPasswordProps as Props } from './FormPassword.types';
+import { type FormPasswordCommands, type FormPasswordProps as Props } from './FormPassword.types';
 import { useFormState } from '../../../FormContext';
-import { FormText, FormTextCommands } from '../FormText';
+import { FormText, type FormTextCommands } from '../FormText';
 import { ShowButton } from './ShowButton';
 import { FormRuleCheck } from '../../../FormLayout';
 

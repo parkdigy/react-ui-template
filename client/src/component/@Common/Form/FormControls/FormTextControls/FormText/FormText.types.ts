@@ -1,6 +1,6 @@
-import { FormControlCommands, FormControlCommonProps } from '../../@common';
-import { FormControlType } from '../../../FormContext';
-import { FormInputProps } from './FormInput';
+import { type FormControlCommands, type FormControlCommonProps } from '../../@common';
+import { type FormControlType } from '../../../FormContext';
+import { type FormInputProps } from './FormInput';
 
 export interface FormTextCommands extends FormControlCommands {
   getValue: () => string;

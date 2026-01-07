@@ -1,4 +1,4 @@
-import { FormSelectItem, FormSelectSize } from '../FormSelect.types';
+import { type FormSelectItem, type FormSelectSize } from '../FormSelect.types';
 
 export interface FormSelectControlCommands {
   focus: () => void;

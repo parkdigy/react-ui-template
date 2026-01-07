@@ -1,4 +1,4 @@
-import { Dev_FormControl_HelperTextProps as Props } from './Dev_FormControl_HelperText.types';
+import { type Dev_FormControl_HelperTextProps as Props } from './Dev_FormControl_HelperText.types';
 import { Dev_PanelItem } from '../../Layout';
 import { FormText } from '@ccomp';
 

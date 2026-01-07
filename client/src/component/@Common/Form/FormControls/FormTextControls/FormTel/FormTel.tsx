@@ -1,5 +1,5 @@
-import { FormTelCommands, FormTelProps as Props } from './FormTel.types';
-import { FormText, FormTextCommands } from '../FormText';
+import { type FormTelCommands, type FormTelProps as Props } from './FormTel.types';
+import { FormText, type FormTextCommands } from '../FormText';
 import { formatTelNo } from '@pdg/formatting';
 
 export const FormTel = ({

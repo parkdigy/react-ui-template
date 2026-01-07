@@ -1,5 +1,5 @@
-import { FormUrlCommands, FormUrlProps as Props } from './FormUrl.types';
-import { FormText, FormTextCommands } from '../FormText';
+import { type FormUrlCommands, type FormUrlProps as Props } from './FormUrl.types';
+import { FormText, type FormTextCommands } from '../FormText';
 
 export const FormUrl = ({ ref, className, name, onValidate, ...props }: Props) => {
   /********************************************************************************************************************

@@ -1,4 +1,4 @@
-import { Dev_FormControl_SizeProps as Props } from './Dev_FormControl_Size.types';
+import { type Dev_FormControl_SizeProps as Props } from './Dev_FormControl_Size.types';
 import { FormRadioGroup, FormSelect } from '@ccomp';
 import { FriendlyNameSizes, getSizeOfFriendlyName } from '@theme';
 import { Dev_PanelItem } from '../../Layout';

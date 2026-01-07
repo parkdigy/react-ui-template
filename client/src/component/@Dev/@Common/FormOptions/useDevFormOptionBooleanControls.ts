@@ -1,6 +1,6 @@
 import { useDevFormControl } from '../FormControls';
-import { Dev_FormOptionsOption, Dev_FormOptionsProps } from './Dev_FormOptions.types';
-import { UseDevFormControlData } from '../FormControls/useDevFormControl';
+import { type Dev_FormOptionsOption, type Dev_FormOptionsProps } from './Dev_FormOptions.types';
+import { type UseDevFormControlData } from '../FormControls/useDevFormControl';
 
 export const useDevFormOptionBooleanControls = ({
   flatOptions,

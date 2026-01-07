@@ -1,4 +1,4 @@
-import { Dev_CodeProps as Props } from './Dev_Code.types';
+import { type Dev_CodeProps as Props } from './Dev_Code.types';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { darcula, docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import { makeProps } from './Dev_Code.functions';

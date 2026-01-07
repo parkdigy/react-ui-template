@@ -1,9 +1,9 @@
-import { Dev_FormOptions, Dev_FormOptionsData, Dev_FormOptionsProps, Dev_Panel } from '../../@Common';
+import { Dev_FormOptions, type Dev_FormOptionsData, type Dev_FormOptionsProps, Dev_Panel } from '../../@Common';
 import { AllColors } from '@theme';
 import code from './Dev_Button_TextButton.code.md';
 import { TextButton } from '@ccomp';
 import Dev_Button_TextButton_Variant from './Dev_Button_TextButton_Variant';
-import { FlattenFormOptions } from '../../@types/FlattenFormOptions';
+import { type FlattenFormOptions } from '../../@types/FlattenFormOptions';
 
 const _formOptions = [['color', 'size'], '|', 'url', '|', ['loading', 'disabled']] as const;
 type _formOptions = Exclude<FlattenFormOptions<typeof _formOptions>, '|' | null>;

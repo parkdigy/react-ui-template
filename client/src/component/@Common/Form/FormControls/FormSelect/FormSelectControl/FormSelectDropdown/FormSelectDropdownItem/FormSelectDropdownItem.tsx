@@ -1,4 +1,4 @@
-import { FormSelectDropdownItemProps as Props } from './FormSelectDropdownItem.types';
+import { type FormSelectDropdownItemProps as Props } from './FormSelectDropdownItem.types';
 import './FormSelectDropdownItem.scss';
 
 export function FormSelectDropdownItem<T extends string | number>({

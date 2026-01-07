@@ -3,7 +3,7 @@
  * ******************************************************************************************************************/
 
 import { AllColors, ButtonColors, DefaultColors, getDefaultOnColor } from '@theme';
-import { type ButtonHtmlProps, type ButtonProps as Props, ButtonSizes } from './Button.types';
+import { type ButtonHTMLProps, type ButtonProps as Props, ButtonSizes } from './Button.types';
 import { LoadingIndicator } from '../../../Loadings';
 import { CustomComponent } from '../../../CustomComponent';
 import Color from 'color';
@@ -166,7 +166,7 @@ const Button = ({
    * ******************************************************************************************************************/
 
   return (
-    <CustomComponent<ButtonHtmlProps>
+    <CustomComponent<ButtonHTMLProps>
       component='button'
       className={classnames(
         className,

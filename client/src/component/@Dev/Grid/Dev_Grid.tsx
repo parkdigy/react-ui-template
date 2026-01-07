@@ -1,6 +1,6 @@
 import code from './Dev_Grid.code.md';
-import { Dev_FormOptions, Dev_FormOptionsData, Dev_Panel } from '../@Common';
-import { FlattenFormOptions } from '../@types/FlattenFormOptions';
+import { Dev_FormOptions, type Dev_FormOptionsData, Dev_Panel } from '../@Common';
+import { type FlattenFormOptions } from '../@types/FlattenFormOptions';
 
 const _formOptions = ['cols', '|', 'gap'] as const;
 type _formOptions = Exclude<FlattenFormOptions<typeof _formOptions>, '|' | null>;

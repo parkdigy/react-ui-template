@@ -1,4 +1,4 @@
-import { ClearButtonProps as Props } from './ClearButton.types';
+import { type ClearButtonProps as Props } from './ClearButton.types';
 import './ClearButton.scss';
 
 export const ClearButton = ({ onClick }: Props) => {

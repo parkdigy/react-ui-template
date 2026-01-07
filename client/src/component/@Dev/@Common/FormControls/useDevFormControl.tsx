@@ -1,10 +1,10 @@
 import {
-  Dev_FormOptionsControlPropsMap,
-  Dev_FormOptionsData,
-  Dev_FormOptionsOption,
-  Dev_FormOptionsProps,
+  type Dev_FormOptionsControlPropsMap,
+  type Dev_FormOptionsData,
+  type Dev_FormOptionsOption,
+  type Dev_FormOptionsProps,
 } from '../FormOptions';
-import { ScreenSizeInfo } from '@theme';
+import { type ScreenSizeInfo } from '@theme';
 import { Dev_FormControl_ButtonVariant } from './ButtonVariant';
 import { Dev_FormControl_IconButtonVariant } from './IconButtonVariant';
 import { Dev_FormControl_AlertType } from './AlertType';

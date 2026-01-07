@@ -1,6 +1,6 @@
 import SimpleBar from 'simplebar-react';
-import { FormSelectDropdownCommands, FormSelectDropdownProps as Props } from './FormSelectDropdown.types';
-import { FormSelectItem } from '../../FormSelect.types';
+import { type FormSelectDropdownCommands, type FormSelectDropdownProps as Props } from './FormSelectDropdown.types';
+import { type FormSelectItem } from '../../FormSelect.types';
 import { FormSelectDropdownItem } from './FormSelectDropdownItem';
 import { useResizeDetector } from 'react-resize-detector';
 import './FormSelectDropdown.scss';

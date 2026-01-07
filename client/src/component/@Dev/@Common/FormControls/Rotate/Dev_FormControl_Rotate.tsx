@@ -1,4 +1,4 @@
-import { Dev_FormControl_RotateProps as Props } from './Dev_FormControl_Rotate.types';
+import { type Dev_FormControl_RotateProps as Props } from './Dev_FormControl_Rotate.types';
 import { FormRadioGroup, FormSelect } from '@ccomp';
 import { Dev_PanelItem } from '../../Layout';
 

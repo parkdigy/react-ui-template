@@ -1,8 +1,8 @@
-import { FormProps, FormSelect } from '@ccomp';
-import { Dev_FormOptions, Dev_FormOptionsData, Dev_Panel } from '../../@Common';
+import { type FormProps, FormSelect } from '@ccomp';
+import { Dev_FormOptions, type Dev_FormOptionsData, Dev_Panel } from '../../@Common';
 import code from './Dev_Form_Select.code.md';
 import Dev_Form_Select_Variant from './Dev_Form_Select_Variant';
-import { FlattenFormOptions } from '../../@types/FlattenFormOptions';
+import { type FlattenFormOptions } from '../../@types/FlattenFormOptions';
 
 const _formOptions = [
   'formSelectSize',

@@ -1,4 +1,4 @@
-import { Dev_FormControl_UrlProps as Props } from './Dev_FormControl_Url.types';
+import { type Dev_FormControl_UrlProps as Props } from './Dev_FormControl_Url.types';
 import { Dev_PanelItem } from '../../Layout';
 import { FormUrl } from '@ccomp';
 

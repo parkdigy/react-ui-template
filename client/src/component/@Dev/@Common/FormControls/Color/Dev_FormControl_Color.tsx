@@ -1,4 +1,4 @@
-import { Dev_FormControl_ColorProps as Props } from './Dev_FormControl_Color.types';
+import { type Dev_FormControl_ColorProps as Props } from './Dev_FormControl_Color.types';
 import { ColorPicker, FormRadioGroup, FormSelect } from '@ccomp';
 import { AllColors, DefaultColors } from '@theme';
 import { Dev_PanelItem } from '../../Layout';

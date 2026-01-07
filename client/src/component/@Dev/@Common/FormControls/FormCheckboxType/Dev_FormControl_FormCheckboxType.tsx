@@ -1,4 +1,4 @@
-import { Dev_FormControl_FormCheckboxTypeProps as Props } from './Dev_FormControl_FormCheckboxType.types';
+import { type Dev_FormControl_FormCheckboxTypeProps as Props } from './Dev_FormControl_FormCheckboxType.types';
 import { FormRadioGroup, FormSelect } from '@ccomp';
 import { Dev_PanelItem } from '../../Layout';
 

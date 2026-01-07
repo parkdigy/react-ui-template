@@ -1,4 +1,4 @@
-import { FormSelectSize } from '../../FormSelect.types';
+import { type FormSelectSize } from '../../FormSelect.types';
 
 export interface FormSelectRightProps {
   // 사이즈

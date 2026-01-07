@@ -3,7 +3,7 @@
  * ******************************************************************************************************************/
 
 import { createContext } from 'react';
-import { ScreenSizeInfo } from '@theme';
+import { type ScreenSizeInfo } from '@theme';
 
 const ScreenSizeContext = createContext<ScreenSizeInfo>({} as ScreenSizeInfo);
 
