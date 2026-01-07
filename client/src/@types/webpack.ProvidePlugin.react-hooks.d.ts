@@ -1,38 +1,40 @@
+import * as React from 'react';
+
 declare global {
   // id
-  const useId: typeof import('react').useId;
+  const useId: typeof React.useId;
 
   // state
-  const useState: typeof import('react').useState;
-  const useReducer: typeof import('react').useReducer;
+  const useState: typeof React.useState;
+  const useReducer: typeof React.useReducer;
 
   // context
-  const useContext: typeof import('react').useContext;
+  const useContext: typeof React.useContext;
 
   // ref
-  const useRef: typeof import('react').useRef;
-  const useImperativeHandle: typeof import('react').useImperativeHandle;
+  const useRef: typeof React.useRef;
+  const useImperativeHandle: typeof React.useImperativeHandle;
 
   // effect
-  const useEffect: typeof import('react').useEffect;
-  const useEffectEvent: typeof import('react').useEffectEvent;
-  const useLayoutEffect: typeof import('react').useLayoutEffect;
-  const useInsertionEffect: typeof import('react').useInsertionEffect;
+  const useEffect: typeof React.useEffect;
+  const useEffectEvent: typeof React.useEffectEvent;
+  const useLayoutEffect: typeof React.useLayoutEffect;
+  const useInsertionEffect: typeof React.useInsertionEffect;
 
   // performance
-  const useCallback: typeof import('react').useCallback;
-  const useMemo: typeof import('react').useMemo;
-  const useTransition: typeof import('react').useTransition;
-  const useDeferredValue: typeof import('react').useDeferredValue;
+  const useCallback: typeof React.useCallback;
+  const useMemo: typeof React.useMemo;
+  const useTransition: typeof React.useTransition;
+  const useDeferredValue: typeof React.useDeferredValue;
 
   // form
-  const useActionState: typeof import('react').useActionState;
+  const useActionState: typeof React.useActionState;
 
   // debug
-  const useDebugValue: typeof import('react').useDebugValue;
+  const useDebugValue: typeof React.useDebugValue;
 
   // storage
-  const useSyncExternalStore: typeof import('react').useSyncExternalStore;
+  const useSyncExternalStore: typeof React.useSyncExternalStore;
 }
 
 export {};

@@ -1,8 +1,8 @@
-import PdgTypes from '@pdg/types';
-import PdgCompare from '@pdg/compare';
-import PdgDateTime from '@pdg/date-time';
-import PdgData from '@pdg/data';
-import PdgReactHook from '@pdg/react-hook';
+import * as PdgTypes from '@pdg/types';
+import * as PdgCompare from '@pdg/compare';
+import * as PdgDateTime from '@pdg/date-time';
+import * as PdgData from '@pdg/data';
+import * as PdgReactHook from '@pdg/react-hook';
 
 declare global {
   // types - ObjectArray
