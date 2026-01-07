@@ -1,102 +1,123 @@
-declare global {
-  // types
-  export type {
-    ValueOf,
-    Dict,
-    Arr,
-    IsObject,
-    IsArray,
-    ObjectMerge,
-    ArrayMerge,
-    MutableArray,
-    FlattenArray,
-    Prettify,
-    Writable,
-    Func,
-    Lv,
-    Vl,
-    FirstLetter,
-    UpperLetter,
-    LowerLetter,
-    NullableKeys,
-    NotNullableKeys,
-    NullableProperties,
-    NotNullableProperties,
-    PartialPick,
-    PartialOmit,
-    RequiredPick,
-    RequiredOmit,
-    Spread,
-    InValue,
-    IsEmpty,
-    IsUnionInclude,
-    IsStringLiteralUnion,
-  } from '@pdg/types';
-}
+import PdgTypes from '@pdg/types';
+import PdgCompare from '@pdg/compare';
+import PdgDateTime from '@pdg/date-time';
+import PdgData from '@pdg/data';
+import PdgReactHook from '@pdg/react-hook';
 
 declare global {
+  // types - ObjectArray
+  type ValueOf<T> = PdgTypes.ValueOf<T>;
+  type Dict<T = any> = PdgTypes.Dict<T>;
+  type Arr<T = any> = PdgTypes.Arr<T>;
+  type IsObject<T> = PdgTypes.IsObject<T>;
+  type IsArray<T> = PdgTypes.IsArray<T>;
+  type ObjectMerge<T> = PdgTypes.ObjectMerge<T>;
+  type ArrayMerge<A extends any[]> = PdgTypes.ArrayMerge<A>;
+  type MutableArray<T> = PdgTypes.MutableArray<T>;
+  type FlattenArray<T> = PdgTypes.FlattenArray<T>;
+  type Prettify<T> = PdgTypes.Prettify<T>;
+  type Writable<T> = PdgTypes.Writable<T>;
+  // types - Function
+  type Func = PdgTypes.Func;
+  // types - Data
+  type Lv<
+    L = unknown,
+    V = unknown,
+    Other = {
+      [key: string]: unknown;
+    },
+  > = PdgTypes.Lv<L, V, Other>;
+  type Vl<
+    V = unknown,
+    L = unknown,
+    Other = {
+      [key: string]: unknown;
+    },
+  > = PdgTypes.Vl<V, L, Other>;
+  // types - Letter
+  type FirstLetter<T> = PdgTypes.FirstLetter<T>;
+  type UpperLetter = PdgTypes.UpperLetter;
+  type LowerLetter = PdgTypes.LowerLetter;
+  // types - Null
+  type NullableKeys<T> = PdgTypes.NullableKeys<T>;
+  type NotNullableKeys<T> = PdgTypes.NotNullableKeys<T>;
+  type NullableProperties<T> = PdgTypes.NullableProperties<T>;
+  type NotNullableProperties<T> = PdgTypes.NotNullableProperties<T>;
+  // types - PickOmit
+  type PartialPick<T, K extends keyof T> = PdgTypes.PartialPick<T, K>;
+  type PartialOmit<T, K extends keyof T> = PdgTypes.PartialOmit<T, K>;
+  type RequiredPick<T, K extends keyof T> = PdgTypes.RequiredPick<T, K>;
+  type RequiredOmit<T, K extends keyof T> = PdgTypes.RequiredOmit<T, K>;
+  // types - Spread
+  type Spread<A extends readonly [...any]> = PdgTypes.Spread<A>;
+  // types - Compare
+  type InValue<T, TValue> = PdgTypes.InValue<T, TValue>;
+  type IsEmpty<T extends Dict | any[]> = PdgTypes.IsEmpty<T>;
+  type IsUnionInclude<UnionType, TargetType> = PdgTypes.IsUnionInclude<UnionType, TargetType>;
+  type IsStringLiteralUnion<U> = PdgTypes.IsStringLiteralUnion<U>;
+
   // compare
-  const ifEmpty: typeof import('@pdg/compare').ifEmpty;
-  const ifNotEmpty: typeof import('@pdg/compare').ifNotEmpty;
-  const isEmpty: typeof import('@pdg/compare').isEmpty;
-  const isNotEmpty: typeof import('@pdg/compare').isNotEmpty;
-  const empty: typeof import('@pdg/compare').empty;
-  const notEmpty: typeof import('@pdg/compare').notEmpty;
-  const ifNotNull: typeof import('@pdg/compare').ifNotNull;
-  const ifNull: typeof import('@pdg/compare').ifNull;
-  const isNotNull: typeof import('@pdg/compare').isNotNull;
-  const isNull: typeof import('@pdg/compare').isNull;
-  const ifNotUndefined: typeof import('@pdg/compare').ifNotUndefined;
-  const ifUndefined: typeof import('@pdg/compare').ifUndefined;
-  const isNotUndefined: typeof import('@pdg/compare').isNotUndefined;
-  const isUndefined: typeof import('@pdg/compare').isUndefined;
-  const ifNotNullAndUndefined: typeof import('@pdg/compare').ifNotNullAndUndefined;
-  const ifNullOrUndefined: typeof import('@pdg/compare').ifNullOrUndefined;
-  const isNotNullAndUndefined: typeof import('@pdg/compare').isNotNullAndUndefined;
-  const isNullOrUndefined: typeof import('@pdg/compare').isNullOrUndefined;
-  const isContains: typeof import('@pdg/compare').isContains;
-  const contains: typeof import('@pdg/compare').contains;
-  const isEqual: typeof import('@pdg/compare').isEqual;
-  const equal: typeof import('@pdg/compare').equal;
-  const isBusinessNo: typeof import('@pdg/compare').isBusinessNo;
-  const isEmail: typeof import('@pdg/compare').isEmail;
-  const isInteger: typeof import('@pdg/compare').isInteger;
-  const isMobileNo: typeof import('@pdg/compare').isMobileNo;
-  const isNumericText: typeof import('@pdg/compare').isNumericText;
-  const isPersonalNo: typeof import('@pdg/compare').isPersonalNo;
-  const isTelNo: typeof import('@pdg/compare').isTelNo;
-  const isUrl: typeof import('@pdg/compare').isUrl;
+  const ifEmpty: typeof PdgCompare.ifEmpty;
+  const ifNotEmpty: typeof PdgCompare.ifNotEmpty;
+  const isEmpty: typeof PdgCompare.isEmpty;
+  const isNotEmpty: typeof PdgCompare.isNotEmpty;
+  const empty: typeof PdgCompare.empty;
+  const notEmpty: typeof PdgCompare.notEmpty;
+  const ifNotNull: typeof PdgCompare.ifNotNull;
+  const ifNull: typeof PdgCompare.ifNull;
+  const isNotNull: typeof PdgCompare.isNotNull;
+  const isNull: typeof PdgCompare.isNull;
+  const ifNotUndefined: typeof PdgCompare.ifNotUndefined;
+  const ifUndefined: typeof PdgCompare.ifUndefined;
+  const isNotUndefined: typeof PdgCompare.isNotUndefined;
+  const isUndefined: typeof PdgCompare.isUndefined;
+  const ifNotNullAndUndefined: typeof PdgCompare.ifNotNullAndUndefined;
+  const ifNullOrUndefined: typeof PdgCompare.ifNullOrUndefined;
+  const isNotNullAndUndefined: typeof PdgCompare.isNotNullAndUndefined;
+  const isNullOrUndefined: typeof PdgCompare.isNullOrUndefined;
+  const isContains: typeof PdgCompare.isContains;
+  const contains: typeof PdgCompare.contains;
+  const isEqual: typeof PdgCompare.isEqual;
+  const equal: typeof PdgCompare.equal;
+  const isBusinessNo: typeof PdgCompare.isBusinessNo;
+  const isEmail: typeof PdgCompare.isEmail;
+  const isInteger: typeof PdgCompare.isInteger;
+  const isMobileNo: typeof PdgCompare.isMobileNo;
+  const isNumericText: typeof PdgCompare.isNumericText;
+  const isPersonalNo: typeof PdgCompare.isPersonalNo;
+  const isTelNo: typeof PdgCompare.isTelNo;
+  const isUrl: typeof PdgCompare.isUrl;
 
   // date
-  const beginDateOfDay: typeof import('@pdg/date-time').beginDateOfDay;
-  const beginDateOfMonth: typeof import('@pdg/date-time').beginDateOfMonth;
-  const endDateOfDay: typeof import('@pdg/date-time').endDateOfDay;
-  const endDateOfMonth: typeof import('@pdg/date-time').endDateOfMonth;
-  const extractDate: typeof import('@pdg/date-time').extractDate;
-  const now: typeof import('@pdg/date-time').now;
-  const nowJs: typeof import('@pdg/date-time').nowJs;
-  const nowTime: typeof import('@pdg/date-time').nowTime;
-  const weekdayText: typeof import('@pdg/date-time').weekdayText;
+  const beginDateOfDay: typeof PdgDateTime.beginDateOfDay;
+  const beginDateOfMonth: typeof PdgDateTime.beginDateOfMonth;
+  const endDateOfDay: typeof PdgDateTime.endDateOfDay;
+  const endDateOfMonth: typeof PdgDateTime.endDateOfMonth;
+  const extractDate: typeof PdgDateTime.extractDate;
+  const now: typeof PdgDateTime.now;
+  const nowJs: typeof PdgDateTime.nowJs;
+  const nowTime: typeof PdgDateTime.nowTime;
+  const weekdayText: typeof PdgDateTime.weekdayText;
 
   // data
-  const lv: typeof import('@pdg/data').lv;
-  const vl: typeof import('@pdg/data').vl;
-  const copy: typeof import('@pdg/data').copy;
+  const lv: typeof PdgData.lv;
+  const vl: typeof PdgData.vl;
+  const copy: typeof PdgData.copy;
 
   // react-hook
-  const useChanged: typeof import('@pdg/react-hook').useChanged;
-  const useFirstSkipChanged: typeof import('@pdg/react-hook').useFirstSkipChanged;
-  const useEventEffect: typeof import('@pdg/react-hook').useEventEffect;
-  const useEventLayoutEffect: typeof import('@pdg/react-hook').useEventLayoutEffect;
-  const useFirstSkipEffect: typeof import('@pdg/react-hook').useFirstSkipEffect;
-  const useFirstSkipLayoutEffect: typeof import('@pdg/react-hook').useFirstSkipLayoutEffect;
-  const useForwardRef: typeof import('@pdg/react-hook').useForwardRef;
-  const useMountedRef: typeof import('@pdg/react-hook').useMountedRef;
-  const useAutoUpdateRef: typeof import('@pdg/react-hook').useAutoUpdateRef;
-  const useTimeoutRef: typeof import('@pdg/react-hook').useTimeoutRef;
-  const clearTimeoutRef: typeof import('@pdg/react-hook').clearTimeoutRef;
-  const useIntervalRef: typeof import('@pdg/react-hook').useIntervalRef;
-  const clearIntervalRef: typeof import('@pdg/react-hook').clearIntervalRef;
+  const useChanged: typeof PdgReactHook.useChanged;
+  const useFirstSkipChanged: typeof PdgReactHook.useFirstSkipChanged;
+  const useEventEffect: typeof PdgReactHook.useEventEffect;
+  const useEventLayoutEffect: typeof PdgReactHook.useEventLayoutEffect;
+  const useFirstSkipEffect: typeof PdgReactHook.useFirstSkipEffect;
+  const useFirstSkipLayoutEffect: typeof PdgReactHook.useFirstSkipLayoutEffect;
+  const useForwardRef: typeof PdgReactHook.useForwardRef;
+  const useMountedRef: typeof PdgReactHook.useMountedRef;
+  const useAutoUpdateRef: typeof PdgReactHook.useAutoUpdateRef;
+  const useTimeoutRef: typeof PdgReactHook.useTimeoutRef;
+  const clearTimeoutRef: typeof PdgReactHook.clearTimeoutRef;
+  const useIntervalRef: typeof PdgReactHook.useIntervalRef;
+  const clearIntervalRef: typeof PdgReactHook.clearIntervalRef;
 }
 
 export {};

@@ -1,16 +1,4 @@
 declare global {
-  // api
-  export type { ApiResult, ApiPaging, ApiPageLimitRequestData } from '../global/api/index.ts';
-
-  // materialIcons
-  export type {
-    MaterialIconTypes,
-    DevMaterialIconTypes,
-    LiveMaterialIconTypes,
-  } from '../global/materialIcons/index.ts';
-}
-
-declare global {
   // base
   const objectKeys: typeof import('../global/base/index.ts').objectKeys;
   const nextTick: typeof import('../global/base/index.ts').nextTick;
@@ -44,6 +32,9 @@ declare global {
 
   // api
   const api: typeof import('../global/api/index.ts').default;
+  type ApiResult = import('../global/api/index.ts').ApiResult;
+  type ApiPaging = import('../global/api/index.ts').ApiPaging;
+  type ApiPageLimitRequestData = import('../global/api/index.ts').ApiPageLimitRequestData;
 
   // Const
   const Const: typeof import('../constant/index').default;
@@ -53,12 +44,15 @@ declare global {
 
   // materialIcons
   const MaterialIconTypes: typeof import('../global/materialIcons/index.ts').MaterialIconTypes;
+  type MaterialIconTypes = import('../global/materialIcons/index.ts').MaterialIconTypes;
   const DevMaterialIconTypes: typeof import('../global/materialIcons/index.ts').DevMaterialIconTypes;
+  type DevMaterialIconTypes = import('../global/materialIcons/index.ts').DevMaterialIconTypes;
   const LiveMaterialIconTypes: typeof import('../global/materialIcons/index.ts').LiveMaterialIconTypes;
+  type LiveMaterialIconTypes = import('../global/materialIcons/index.ts').LiveMaterialIconTypes;
 
   // theme
   const Theme: typeof import('../theme/index.ts').Theme;
-  declare type Theme = import('../theme/index.ts').Theme;
+  type Theme = import('../theme/index.ts').Theme;
   const useTheme: typeof import('../theme/index.ts').useTheme;
 
   // toast
