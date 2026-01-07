@@ -2,7 +2,7 @@ declare global {
   namespace React {}
 }
 
-export global {
+declare global {
   export type { Ref, RefObject, ReactElement, ElementType, ReactNode, ComponentType, CSSProperties } from 'react';
 }
 
