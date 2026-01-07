@@ -25,6 +25,7 @@ module.exports = {
   gClipboard: [path.resolve(__dirname, '../src/global/g/clipboard.ts'), 'default'],
   gCss: [path.resolve(__dirname, '../src/global/g/css.ts'), 'default'],
   gReact: [path.resolve(__dirname, '../src/global/g/react.ts'), 'default'],
+  gStyle: [path.resolve(__dirname, '../src/global/g/style.ts'), 'default'],
   gText: [path.resolve(__dirname, '../src/global/g/text.ts'), 'default'],
   gTheme: [path.resolve(__dirname, '../src/global/g/theme.ts'), 'default'],
 
