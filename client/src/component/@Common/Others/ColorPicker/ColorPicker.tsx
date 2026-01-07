@@ -1,5 +1,4 @@
-import React from 'react';
-import { ColorPickerProps as Props } from './ColorPicker.types';
+import { type ColorPickerProps as Props } from './ColorPicker.types';
 import { HexAlphaColorPicker } from 'react-colorful';
 import './ColorPicker.scss';
 

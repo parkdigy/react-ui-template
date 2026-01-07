@@ -1,5 +1,4 @@
-import React from 'react';
-import { TextButtonProps as Props } from './TextButton.types';
+import { type TextButtonProps as Props } from './TextButton.types';
 import './TextButton.scss';
 
 export const TextButton = ({ className, children, ...props }: Props) => {

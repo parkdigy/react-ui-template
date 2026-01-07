@@ -1,4 +1,3 @@
-import React from 'react';
 import { FooterProps as Props } from './Footer.types';
 import { ContentContainer } from '@ccomp';
 

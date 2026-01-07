@@ -1,4 +1,4 @@
-import { ContentContainerProps } from '../ContentContainer';
+import { type ContentContainerProps } from '../ContentContainer';
 
 export interface PageRootContainerProps extends ContentContainerProps {
   fullScreen?: boolean;

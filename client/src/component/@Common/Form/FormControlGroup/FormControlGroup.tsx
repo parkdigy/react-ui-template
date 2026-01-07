@@ -1,5 +1,4 @@
-import React from 'react';
-import { FormControlGroupProps as Props } from './FormControlGroup.types';
+import { type FormControlGroupProps as Props } from './FormControlGroup.types';
 import {
   FormControlContainer,
   FormControlContentContainer,
@@ -8,7 +7,7 @@ import {
   FormTitle,
 } from '../FormLayout';
 import { useResizeDetector } from 'react-resize-detector';
-import { FormControlGroupContextProvider, FormControlGroupContextValue, useFormState } from '../FormContext';
+import { FormControlGroupContextProvider, type FormControlGroupContextValue, useFormState } from '../FormContext';
 
 export const FormControlGroup = ({
   children,

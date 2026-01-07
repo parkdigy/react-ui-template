@@ -1,5 +1,4 @@
-import React from 'react';
-import { PageRootContainerProps as Props } from './PageRootContainer.types';
+import { type PageRootContainerProps as Props } from './PageRootContainer.types';
 import { ContentContainer } from '../ContentContainer';
 
 export const PageRootContainer = ({ className, fullScreen, flex, containerProps, ...props }: Props) => {

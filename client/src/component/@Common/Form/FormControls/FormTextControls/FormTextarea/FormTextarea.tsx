@@ -1,4 +1,3 @@
-import React from 'react';
 import { FormTextareaCommands, FormTextareaProps as Props } from './FormTextarea.types';
 import { FormControlBase } from '../../@common';
 import { koreanAppendRul } from '@pdg/korean';

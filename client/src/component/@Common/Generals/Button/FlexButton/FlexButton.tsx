@@ -1,5 +1,4 @@
-import React from 'react';
-import { FlexButtonProps as Props } from './FlexButton.types';
+import { type FlexButtonProps as Props } from './FlexButton.types';
 import './FlexButton.scss';
 
 export const FlexButton = ({ className, disabled, url, externalUrlOpenInThisTab, onClick, ...props }: Props) => {

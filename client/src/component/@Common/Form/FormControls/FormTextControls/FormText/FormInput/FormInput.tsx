@@ -1,4 +1,3 @@
-import React from 'react';
 import { FormInputProps as Props } from './FormInput.types';
 import { ClearButton } from './ClearButton';
 import './FormInput.scss';

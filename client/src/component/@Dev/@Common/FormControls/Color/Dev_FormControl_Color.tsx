@@ -1,4 +1,3 @@
-import React from 'react';
 import { Dev_FormControl_ColorProps as Props } from './Dev_FormControl_Color.types';
 import { ColorPicker, FormRadioGroup, FormSelect } from '@ccomp';
 import { AllColors, DefaultColors } from '@theme';

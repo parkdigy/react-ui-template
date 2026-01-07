@@ -1,4 +1,3 @@
-import React from 'react';
 import { DevProps as Props } from './Dev.types';
 import { PageRootContainer, Tabs } from '@ccomp';
 import { Dev_Color } from './Color';

@@ -1,5 +1,4 @@
-import React from 'react';
-import { AlertProps as Props } from './Alert.types';
+import { type AlertProps as Props } from './Alert.types';
 import { DefaultColors } from '@theme';
 import Color from 'color';
 import './Alert.scss';

@@ -1,4 +1,3 @@
-import React from 'react';
 import { FormHelperTextProps as Props } from './FormHelperText.types';
 import './FormHelperText.scss';
 

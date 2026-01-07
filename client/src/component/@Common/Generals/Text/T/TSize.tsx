@@ -1,5 +1,3 @@
-import React from 'react';
-
 interface SizeProps extends Omit<TProps, 's' | 'size' | 'fontSize'> {}
 interface SizeFontWeightProps extends Omit<TProps, 's' | 'size' | 'fontSize' | 'fw' | 'fontWeight'> {}
 

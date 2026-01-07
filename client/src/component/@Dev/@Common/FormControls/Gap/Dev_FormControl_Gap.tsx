@@ -1,4 +1,3 @@
-import React from 'react';
 import { Dev_FormControl_GapProps as Props } from './Dev_FormControl_Gap.types';
 import { FormRadioGroup, FormSelect } from '@ccomp';
 import { Dev_PanelItem } from '../../Layout';

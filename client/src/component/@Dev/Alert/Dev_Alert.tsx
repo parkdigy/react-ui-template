@@ -1,4 +1,3 @@
-import React from 'react';
 import { Dev_FormOptions, Dev_FormOptionsData, Dev_Panel } from '../@Common';
 import code from './Dev_Alert.code.md';
 import { Alert } from '@ccomp';

@@ -1,4 +1,3 @@
-import React from 'react';
 import { FormSelectInputCommands, FormSelectInputProps as Props } from './FormSelectInput.types';
 import { FormSelectRight } from '../FormSelectRight';
 import './FormSelectInput.scss';

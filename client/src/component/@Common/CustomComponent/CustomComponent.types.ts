@@ -1,4 +1,3 @@
-import React from 'react';
 import { AllColors, AllSizes } from '@theme';
 
 /********************************************************************************************************************
@@ -31,6 +30,10 @@ export const CustomComponentPaddingStyles = [
 ] as const;
 export type CustomComponentPaddingStyles = CustomComponentPaddingBaseStyles & CustomComponentPaddingCustomStyles;
 
+const A: CustomComponentPaddingBaseStyles = {
+  paddingLeft: '10px',
+};
+ll(A);
 /********************************************************************************************************************
  * Margin
  * ******************************************************************************************************************/
@@ -353,9 +356,11 @@ export type CustomComponentAllStyles = CustomComponentPaddingStyles &
   CustomComponentEtcStyles &
   CustomComponentCustomStyles;
 
-export type CustomComponentProps<T> = Omit<T, 'hidden' | 'style' | keyof CustomComponentAllStyles> &
+export type CustomComponentBaseProps<T> = Omit<T, 'hidden' | 'style' | keyof CustomComponentAllStyles> &
   CustomComponentAllStyles & {
     component: React.ElementType;
     style?: Omit<CSSProperties, keyof CustomComponentAllStyles>;
     hidden?: boolean;
   };
+
+export type CustomComponentProps<T> = Omit<CustomComponentBaseProps<T>, 'component'>;

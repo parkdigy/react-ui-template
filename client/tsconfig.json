@@ -8,6 +8,7 @@
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowImportingTsExtensions": false,
+    "allowSyntheticDefaultImports": true,
     "verbatimModuleSyntax": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,

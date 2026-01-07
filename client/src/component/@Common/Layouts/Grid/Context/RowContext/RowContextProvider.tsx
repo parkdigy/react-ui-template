@@ -1,4 +1,3 @@
-import React from 'react';
 import { RowContextProviderProps as Props } from './RowContextProvider.types';
 import RowContext from './RowContext';
 

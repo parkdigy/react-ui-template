@@ -1,4 +1,3 @@
-import React from 'react';
 import { EtcColors, OpacityColors, OpacityReverseColors, TextColors, Theme } from '@theme';
 import { Grid } from '@ccomp';
 

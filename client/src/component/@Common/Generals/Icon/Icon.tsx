@@ -1,5 +1,4 @@
-import React from 'react';
-import { IconHtmlProps, IconProps as Props } from './Icon.types';
+import { type IconHtmlProps, type IconProps as Props } from './Icon.types';
 import { CustomComponent } from '../../CustomComponent';
 import { AllColors, AllSizes } from '@theme';
 import './Icon.scss';

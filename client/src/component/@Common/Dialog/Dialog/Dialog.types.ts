@@ -1,5 +1,3 @@
-import { ReactElement } from 'react';
-
 export type DialogPosition = 'top' | 'center' | 'bottom';
 
 type DialogButtonProps = Omit<ButtonProps, 'children' | 'onPress'>;
@@ -50,11 +48,11 @@ export interface DialogInnerProps extends DialogProps {
 export interface DialogOnlyProps extends DialogCommonProps {}
 
 export interface DialogAlertProps
-  extends DialogCommonProps,
-    Pick<DialogProps, 'confirmLabel' | 'confirmButtonColor' | 'confirmButtonProps'> {}
+  extends DialogCommonProps, Pick<DialogProps, 'confirmLabel' | 'confirmButtonColor' | 'confirmButtonProps'> {}
 
 export interface DialogConfirmProps
-  extends DialogCommonProps,
+  extends
+    DialogCommonProps,
     Pick<
       DialogProps,
       | 'cancelLabel'

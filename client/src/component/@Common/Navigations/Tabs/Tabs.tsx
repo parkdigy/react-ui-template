@@ -1,5 +1,4 @@
-import React from 'react';
-import { TabsProps as Props } from './Tabs.types';
+import { type TabsProps as Props } from './Tabs.types';
 import './Tabs.scss';
 
 export const Tabs = <T extends string>({ ref, items, value, onChange }: Props<T>) => {

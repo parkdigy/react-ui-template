@@ -1,4 +1,3 @@
-import React from 'react';
 import { FormErrorTextProps as Props } from './FormErrorText.types';
 import './FormErrorText.scss';
 

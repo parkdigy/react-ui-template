@@ -1,4 +1,4 @@
-import { ITooltip, TooltipRefProps } from 'react-tooltip';
+import { type ITooltip, type TooltipRefProps } from 'react-tooltip';
 import { AllSizes, DefaultColors } from '@theme';
 
 export interface TooltipProps extends Omit<ITooltip, 'id' | 'variant' | 'content'> {

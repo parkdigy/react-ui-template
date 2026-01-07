@@ -1,5 +1,4 @@
-import React from 'react';
-import { LoadingIndicatorHtmlProps, LoadingIndicatorProps as Props } from './LoadingIndicator.types';
+import { type LoadingIndicatorHtmlProps, type LoadingIndicatorProps as Props } from './LoadingIndicator.types';
 import { AllColors, AllSizes, Theme } from '@theme';
 import './LoadingIndicator.scss';
 import { CustomComponent } from '../../CustomComponent';

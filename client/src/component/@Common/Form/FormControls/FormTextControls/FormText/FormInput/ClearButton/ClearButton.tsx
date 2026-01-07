@@ -1,4 +1,3 @@
-import React from 'react';
 import { ClearButtonProps as Props } from './ClearButton.types';
 import './ClearButton.scss';
 

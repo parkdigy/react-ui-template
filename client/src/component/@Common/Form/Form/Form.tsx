@@ -1,10 +1,10 @@
-import React, { FormEvent } from 'react';
-import { FormCommands, FormProps as Props } from './Form.types';
-import { FormContextProvider, FormContextValue, FormControlType } from '../FormContext';
-import { FormControlCommands } from '../FormControls';
-import { FormCheckboxCommands, FormFileCommands, FormTextCommands } from '../FormControls';
-import { FormRadioGroupCommands } from '../FormControls';
-import { FormSelectCommands } from '../FormControls';
+import { type FormEvent } from 'react';
+import { type FormCommands, type FormProps as Props } from './Form.types';
+import { FormContextProvider, type FormContextValue, type FormControlType } from '../FormContext';
+import { type FormControlCommands } from '../FormControls';
+import { type FormCheckboxCommands, type FormFileCommands, type FormTextCommands } from '../FormControls';
+import { type FormRadioGroupCommands } from '../FormControls';
+import { type FormSelectCommands } from '../FormControls';
 import './Form.scss';
 
 export const Form = ({

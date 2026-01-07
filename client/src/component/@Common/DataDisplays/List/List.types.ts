@@ -2,7 +2,7 @@ export type ListType = 'info';
 
 export type ListVariant = 'default' | 'bordered';
 
-export interface ListProps extends Omit<BoxProps, 'type' | 'title' | 'children'> {
+export interface ListProps extends Omit<BoxProps, 'type' | 'title' | 'children' | 'gap'> {
   type?: ListType;
   variant?: ListVariant;
   items: ReactNode[];

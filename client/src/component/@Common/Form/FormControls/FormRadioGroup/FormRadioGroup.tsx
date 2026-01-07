@@ -1,4 +1,3 @@
-import React from 'react';
 import { FormRadioGroupCommands, FormRadioGroupItemInfo, FormRadioGroupProps as Props } from './FormRadioGroup.types';
 import { FormControlBase } from '../@common';
 import { FormRadioGroupItem, FormRadioGroupItemCommands } from './FormRadioGroupItem';

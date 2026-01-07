@@ -1,4 +1,3 @@
-import React from 'react';
 import { Dev_CodeProps as Props } from './Dev_Code.types';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { darcula, docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';

@@ -1,5 +1,4 @@
-import React from 'react';
-import { HoverButtonProps as Props } from './HoverButton.types';
+import { type HoverButtonProps as Props } from './HoverButton.types';
 import { HoverContainer } from '../../../Containers';
 import FlexButton from '../FlexButton';
 

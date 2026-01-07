@@ -1,5 +1,4 @@
-import React from 'react';
-import { TProps as Props } from './T.types';
+import { type TProps as Props } from './T.types';
 import { AllSizes, Theme } from '@theme';
 import './T.scss';
 

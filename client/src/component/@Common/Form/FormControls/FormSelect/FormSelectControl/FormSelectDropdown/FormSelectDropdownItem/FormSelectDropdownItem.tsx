@@ -1,4 +1,3 @@
-import React from 'react';
 import { FormSelectDropdownItemProps as Props } from './FormSelectDropdownItem.types';
 import './FormSelectDropdownItem.scss';
 

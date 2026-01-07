@@ -1,11 +1,10 @@
-import React from 'react';
 import {
-  DialogAlertProps,
-  DialogInnerCommands,
-  DialogConfirmProps,
-  DialogCommands,
-  DialogOnlyProps,
-  DialogInnerProps,
+  type DialogAlertProps,
+  type DialogInnerCommands,
+  type DialogConfirmProps,
+  type DialogCommands,
+  type DialogOnlyProps,
+  type DialogInnerProps,
 } from './Dialog.types';
 import {
   __addRef,

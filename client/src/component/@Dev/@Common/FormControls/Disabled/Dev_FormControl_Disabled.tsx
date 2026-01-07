@@ -1,4 +1,3 @@
-import React from 'react';
 import { Dev_FormControl_DisabledProps as Props } from './Dev_FormControl_Disabled.types';
 import { FormCheckbox } from '@ccomp';
 import { Dev_PanelItem } from '../../Layout';

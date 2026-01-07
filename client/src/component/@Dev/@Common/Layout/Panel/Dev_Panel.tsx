@@ -1,4 +1,3 @@
-import React from 'react';
 import { Dev_PanelProps as Props } from './Dev_Panel.types';
 import './Dev_Panel.scss';
 

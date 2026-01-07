@@ -1,4 +1,3 @@
-import React from 'react';
 import { AllColors, getFriendlyNameOfSize, Sizes, Theme } from '@theme';
 import { Grid, Tabs } from '@ccomp';
 

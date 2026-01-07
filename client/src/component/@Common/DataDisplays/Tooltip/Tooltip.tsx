@@ -1,6 +1,5 @@
-import React from 'react';
-import { TooltipProps as Props } from './Tooltip.types';
-import { Tooltip as ReactTooltip } from 'react-tooltip';
+import { type TooltipProps as Props } from './Tooltip.types';
+import { type Tooltip as ReactTooltip } from 'react-tooltip';
 import { AllSizes, getDefaultOnColor, Theme } from '@theme';
 import './Tooltip.scss';
 

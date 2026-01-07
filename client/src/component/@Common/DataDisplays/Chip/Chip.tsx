@@ -1,8 +1,7 @@
-import React from 'react';
-import { ChipProps as Props } from './Chip.types';
-import './Chip.scss';
+import { type ChipProps as Props } from './Chip.types';
 import { AllColors, DefaultColors, getDefaultOnColor, OpacityColors, TextColors } from '@theme';
 import Color from 'color';
+import './Chip.scss';
 
 export const Chip = ({
   className,

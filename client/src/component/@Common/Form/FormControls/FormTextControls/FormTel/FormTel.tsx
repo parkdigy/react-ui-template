@@ -1,4 +1,3 @@
-import React from 'react';
 import { FormTelCommands, FormTelProps as Props } from './FormTel.types';
 import { FormText, FormTextCommands } from '../FormText';
 import { formatTelNo } from '@pdg/formatting';

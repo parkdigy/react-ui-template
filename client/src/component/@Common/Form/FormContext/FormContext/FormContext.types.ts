@@ -1,4 +1,4 @@
-import { FormControlCommands } from '../../FormControls/@common';
+import { type FormControlCommands } from '../../FormControls';
 
 export type FormControlType =
   | 'text'

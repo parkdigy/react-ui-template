@@ -1,8 +1,7 @@
-import React from 'react';
-import { GridProps as Props } from './Grid.types';
-import './Grid.scss';
-import { GridContextProvider, GridContextValue } from '../Context';
+import { type GridProps as Props } from './Grid.types';
+import { GridContextProvider, type GridContextValue } from '../Context';
 import { AllScreenAliases, GeneralScreens } from '@theme';
+import './Grid.scss';
 
 export const Grid = ({ children, className, cols = 12, gap = 0, ...props }: Props) => {
   /********************************************************************************************************************

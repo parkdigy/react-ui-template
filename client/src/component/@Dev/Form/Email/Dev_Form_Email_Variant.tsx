@@ -1,4 +1,3 @@
-import React from 'react';
 import { Form, FormEmail, FormProps } from '@ccomp';
 import { Dev_Panel } from '../../@Common';
 

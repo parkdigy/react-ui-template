@@ -2,7 +2,6 @@
  * 화면 크기 정보를 제공하는 Context 의 Provider
  * ******************************************************************************************************************/
 
-import React from 'react';
 import { ScreenSizeContextProviderProps as Props } from './ScreenSizeContextProvider.types';
 import ScreenSizeContext from './ScreenSizeContext';
 import {

@@ -1,5 +1,5 @@
 import { AllColors, AllSizes, ButtonColors } from '@theme';
-import { BoxProps } from '../../../Layouts';
+import { type BoxProps } from '../../../Layouts';
 import {
   CustomComponentBackgroundStyles,
   CustomComponentFlexStyles,

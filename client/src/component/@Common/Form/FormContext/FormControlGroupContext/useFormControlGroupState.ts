@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import FormControlGroupContext from './FormControlGroupContext';
-import { FormControlGroupContextValue } from './FormControlGroupContext.types';
+import { type FormControlGroupContextValue } from './FormControlGroupContext.types';
 
 export const useFormControlGroupState = (): FormControlGroupContextValue | undefined => {
   const value = useContext(FormControlGroupContext);

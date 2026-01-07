@@ -1,8 +1,7 @@
-import React from 'react';
-import { BadgeProps as Props } from './Badge.types';
-import './Badge.scss';
+import { type BadgeProps as Props } from './Badge.types';
 import { getDefaultOnColor } from '@theme';
 import Color from 'color';
+import './Badge.scss';
 
 export const Badge = ({
   children,

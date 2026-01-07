@@ -1,4 +1,3 @@
-import React from 'react';
 import { Tabs } from '@ccomp';
 import Dev_Button_Button from './Button';
 import Dev_Button_IconButton from './IconButton';

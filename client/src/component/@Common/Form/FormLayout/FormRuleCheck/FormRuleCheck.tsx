@@ -1,4 +1,3 @@
-import React from 'react';
 import { FormRuleCheckProps as Props } from './FormRuleCheck.types';
 import { ReactComponent as IconCheck } from './icon_check.svg';
 

@@ -1,4 +1,3 @@
-import React from 'react';
 import { ImgLogo } from '@assets';
 import { Dev_Panel } from '../@Common';
 import SvgImage from './image.svg';

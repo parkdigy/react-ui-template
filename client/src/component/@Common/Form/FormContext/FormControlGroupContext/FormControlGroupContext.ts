@@ -1,5 +1,5 @@
 import { createContext } from 'react';
-import { FormControlGroupContextValue } from './FormControlGroupContext.types';
+import { type FormControlGroupContextValue } from './FormControlGroupContext.types';
 
 const FormControlGroupContext = createContext<FormControlGroupContextValue>({} as any);
 

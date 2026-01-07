@@ -1,4 +1,3 @@
-import React from 'react';
 import { Dev_FormControl_ShowIconProps as Props } from './Dev_FormControl_ShowIcon.types';
 import { FormCheckbox } from '@ccomp';
 import { Dev_PanelItem } from '../../Layout';

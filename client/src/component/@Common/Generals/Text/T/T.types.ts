@@ -1,4 +1,4 @@
-import { BoxProps } from '@ccomp';
+import { type BoxProps } from '@ccomp';
 
 export interface TProps extends Omit<BoxProps, 'display' | 'color'> {
   ref?: Ref<HTMLDivElement>;

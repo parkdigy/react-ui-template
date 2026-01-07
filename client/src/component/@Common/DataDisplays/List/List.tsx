@@ -1,5 +1,4 @@
-import React from 'react';
-import { ListProps as Props } from './List.types';
+import { type ListProps as Props } from './List.types';
 import ListTitle from './ListTitle';
 import ListItem from './ListItem';
 import './List.scss';

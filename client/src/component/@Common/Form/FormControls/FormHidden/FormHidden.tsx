@@ -1,4 +1,3 @@
-import React from 'react';
 import { FormHiddenCommands, FormHiddenProps as Props } from './FormHidden.types';
 import { useFormState } from '../../FormContext';
 import { FormControlBase, FormControlCommands } from '../@common';

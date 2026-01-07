@@ -1,5 +1,4 @@
-import React from 'react';
-import { HoverProps as Props } from './Hover.types';
+import { type HoverProps as Props } from './Hover.types';
 import './Hover.scss';
 import { AllColors, AllSizes } from '@theme';
 

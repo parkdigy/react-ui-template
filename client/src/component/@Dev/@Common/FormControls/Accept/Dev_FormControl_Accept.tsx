@@ -1,4 +1,3 @@
-import React from 'react';
 import { Dev_FormControl_AcceptProps as Props } from './Dev_FormControl_Accept.types';
 import { Dev_PanelItem } from '../../Layout';
 import { FormText } from '@ccomp';

@@ -1,5 +1,4 @@
 import { FormControlCommands, FormControlCommonProps } from '../@common';
-import React from 'react';
 
 export interface FormFileCommands extends FormControlCommands {
   getFile: () => File | undefined;

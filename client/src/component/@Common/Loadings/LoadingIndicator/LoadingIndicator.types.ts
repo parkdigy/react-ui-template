@@ -1,10 +1,9 @@
 import { AllColors, AllSizes } from '@theme';
-import React from 'react';
 import {
   CustomComponentBorderStyles,
   CustomComponentFontStyles,
   CustomComponentPaddingStyles,
-  CustomComponentProps,
+  type CustomComponentProps,
   CustomComponentSizeStyles,
 } from '../../CustomComponent';
 

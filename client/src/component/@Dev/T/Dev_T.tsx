@@ -1,4 +1,3 @@
-import React from 'react';
 import { AllColors } from '@theme';
 import { Dev_FormOptions, Dev_FormOptionsData, Dev_Panel } from '../@Common';
 import code from './Dev_T.code.md';

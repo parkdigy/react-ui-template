@@ -1,4 +1,4 @@
-import { Props as ReactSvgProps } from 'react-svg';
+import { type Props as ReactSvgProps } from 'react-svg';
 import { AllColors } from '@theme';
 
 export interface SvgProps extends Omit<ReactSvgProps, 'ref'> {

@@ -1,4 +1,3 @@
-import React from 'react';
 import { ThemeProviderProps as Props } from './ThemeProvider.types';
 import ThemeContext from './ThemeContext';
 import { AllColors, AllSizes, ButtonColors, DefaultColors, SizeInfo } from '../@types';

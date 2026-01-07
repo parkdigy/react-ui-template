@@ -1,4 +1,3 @@
-import React from 'react';
 import { Dev_FormControl_OnRetryProps as Props } from './Dev_FormControl_OnRetry.types';
 import { FormCheckbox } from '@ccomp';
 import { Dev_PanelItem } from '../../Layout';

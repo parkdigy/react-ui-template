@@ -1,4 +1,4 @@
-import { ListType } from '../List.types';
+import { type ListType } from '../List.types';
 
 export interface ListTitleProps {
   type: ListType;

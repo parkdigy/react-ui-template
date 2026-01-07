@@ -1,5 +1,4 @@
-import React from 'react';
-import { ListTitleProps as Props } from './ListTitle.types';
+import { type ListTitleProps as Props } from './ListTitle.types';
 import './ListTitle.scss';
 import IconInfo from './icon_info.svg';
 

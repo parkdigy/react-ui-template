@@ -1,5 +1,3 @@
-import React from 'react';
-
 interface Props extends Omit<TProps, 'fw' | 'fontWeight'> {}
 
 export const TBold = (props: Props) => <T fw={700} {...props} />;

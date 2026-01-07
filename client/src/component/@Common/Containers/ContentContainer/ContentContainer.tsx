@@ -1,5 +1,4 @@
-import React from 'react';
-import { ContentContainerProps as Props } from './ContentContainer.types';
+import { type ContentContainerProps as Props } from './ContentContainer.types';
 import './ContentContainer.scss';
 
 export const ContentContainer = ({ className, children, containerProps, ...props }: Props) => {

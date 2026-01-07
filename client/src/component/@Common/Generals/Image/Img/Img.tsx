@@ -1,5 +1,4 @@
-import React from 'react';
-import { ImgHtmlProps, ImgProps as Props } from './Img.types';
+import { type ImgHtmlProps, type ImgProps as Props } from './Img.types';
 import { CustomComponent } from '../../../CustomComponent';
 import './Img.scss';
 

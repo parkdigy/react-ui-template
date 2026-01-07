@@ -1,8 +1,7 @@
-import React from 'react';
 import {
   CustomComponentBackgroundStyles,
   CustomComponentBorderStyles,
-  CustomComponentProps,
+  type CustomComponentProps,
 } from '../../../CustomComponent';
 import { AllColors, AllSizes, ButtonColors } from '@theme';
 

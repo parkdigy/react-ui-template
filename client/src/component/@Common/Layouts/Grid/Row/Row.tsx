@@ -1,7 +1,6 @@
-import React, { ReactElement } from 'react';
-import { RowProps as Props } from './Row.types';
+import { type RowProps as Props } from './Row.types';
+import { type ColProps } from '../Col';
 import { useGridState } from '../Context';
-import { ColProps } from '../Col';
 
 export const Row = ({ children }: Props) => {
   const { cols: gridCols } = useGridState();

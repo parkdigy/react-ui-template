@@ -1,5 +1,4 @@
-import React from 'react';
-import { PaginationProps as Props } from './Pagination.types';
+import { type PaginationProps as Props } from './Pagination.types';
 import './Pagination.scss';
 
 const PAGE_LIMIT = 5;

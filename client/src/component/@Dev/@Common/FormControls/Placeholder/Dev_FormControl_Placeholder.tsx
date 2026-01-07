@@ -1,4 +1,3 @@
-import React from 'react';
 import { Dev_FormControl_PlaceholderProps as Props } from './Dev_FormControl_Placeholder.types';
 import { Dev_PanelItem } from '../../Layout';
 import { FormText } from '@ccomp';

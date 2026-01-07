@@ -1,4 +1,4 @@
-import { DialogInnerProps } from '../Dialog.types';
+import { type DialogInnerProps } from '../Dialog.types';
 
 export interface DialogModalProps extends DialogInnerProps {
   onCancelClick: (props: DialogInnerProps) => void;

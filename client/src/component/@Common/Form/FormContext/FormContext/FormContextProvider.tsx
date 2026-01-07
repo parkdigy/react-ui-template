@@ -1,5 +1,4 @@
-import React from 'react';
-import { FormContextProviderProps as Props } from './FormContextProvider.types';
+import { type FormContextProviderProps as Props } from './FormContextProvider.types';
 import FormContext from './FormContext';
 
 const FormContextProvider = ({ children, value }: Props) => {

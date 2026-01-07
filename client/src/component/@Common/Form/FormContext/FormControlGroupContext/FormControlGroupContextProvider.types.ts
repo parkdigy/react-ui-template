@@ -1,4 +1,4 @@
-import { FormControlGroupContextValue } from './FormControlGroupContext.types';
+import { type FormControlGroupContextValue } from './FormControlGroupContext.types';
 
 export interface FormControlGroupContextProviderProps {
   value: FormControlGroupContextValue;

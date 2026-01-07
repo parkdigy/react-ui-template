@@ -1,5 +1,4 @@
-import React from 'react';
-import { PanelProps as Props } from './Panel.types';
+import { type PanelProps as Props } from './Panel.types';
 import './Panel.scss';
 
 export const Panel = ({ className, ...props }: Props) => {

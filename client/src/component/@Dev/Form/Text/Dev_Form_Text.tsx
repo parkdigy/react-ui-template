@@ -1,4 +1,3 @@
-import React from 'react';
 import { FormProps, FormText } from '@ccomp';
 import { Dev_FormOptions, Dev_FormOptionsData, Dev_Panel } from '../../@Common';
 import code from './Dev_Form_Text.code.md';

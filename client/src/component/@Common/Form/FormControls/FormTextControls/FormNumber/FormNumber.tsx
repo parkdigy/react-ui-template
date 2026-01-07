@@ -1,4 +1,3 @@
-import React from 'react';
 import { FormNumberCommands, FormNumberProps as Props } from './FormNumber.types';
 import { FormText, FormTextCommands } from '../FormText';
 import { formatNumber } from '@pdg/formatting';

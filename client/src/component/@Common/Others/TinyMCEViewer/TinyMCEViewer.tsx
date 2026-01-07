@@ -1,5 +1,4 @@
-import React from 'react';
-import { TinyMCEViewerProps as Props } from './TinyMCEViewer.types';
+import { type TinyMCEViewerProps as Props } from './TinyMCEViewer.types';
 import './TinyMCEViewer.scss';
 
 export const TinyMCEViewer = ({ children }: Props) => {

@@ -1,3 +1,3 @@
-import { BoxButtonProps } from '../BoxButton';
+import { type BoxButtonProps } from '../BoxButton';
 
 export interface TextButtonProps extends BoxButtonProps {}

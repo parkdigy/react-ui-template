@@ -1,4 +1,3 @@
-import React from 'react';
 import { Dev_FormControl_TitleProps as Props } from './Dev_FormControl_Title.types';
 import { Dev_PanelItem } from '../../Layout';
 import { FormText } from '@ccomp';

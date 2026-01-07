@@ -1,4 +1,3 @@
-import React from 'react';
 import { AuthSignInProps as Props } from './AuthSignIn.types';
 import { Form, FormCheckbox, FormEmail, FormPassword, PageRootContainer, TTitle } from '@ccomp';
 import { Const } from '@const';

@@ -1,4 +1,3 @@
-import React from 'react';
 import { ColProps as Props } from './Col.types';
 import './Col.scss';
 

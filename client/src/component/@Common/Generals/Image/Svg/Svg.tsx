@@ -1,5 +1,4 @@
-import React from 'react';
-import { SvgProps as Props } from './Svg.types';
+import { type SvgProps as Props } from './Svg.types';
 import { ReactSVG } from 'react-svg';
 import { AllColors } from '@theme';
 import './Svg.scss';

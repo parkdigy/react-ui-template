@@ -1,4 +1,4 @@
-import { FormContextValue } from './FormContext.types';
+import { type FormContextValue } from './FormContext.types';
 
 export interface FormContextProviderProps {
   value: FormContextValue;

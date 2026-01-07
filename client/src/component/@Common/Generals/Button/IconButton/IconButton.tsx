@@ -1,5 +1,4 @@
-import React from 'react';
-import { IconButtonProps as Props } from './IconButton.types';
+import { type IconButtonProps as Props } from './IconButton.types';
 import { AllColors, AllSizes, ButtonColors, DefaultColors, getDefaultOnColor } from '@theme';
 import Color from 'color';
 import './IconButton.scss';

@@ -1,4 +1,3 @@
-import React from 'react';
 import { DefaultColors } from '@theme';
 import { Dev_FormOptions, Dev_FormOptionsData, Dev_Panel } from '../@Common';
 import Dev_Tooltip_Variant from './Dev_Tooltip_Variant';

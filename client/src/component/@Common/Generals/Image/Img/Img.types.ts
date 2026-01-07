@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   CustomComponentBackgroundStyles,
   CustomComponentBorderStyles,
@@ -6,7 +5,7 @@ import {
   CustomComponentMarginStyles,
   CustomComponentPaddingStyles,
   CustomComponentPositionStyles,
-  CustomComponentProps,
+  type CustomComponentProps,
   CustomComponentTransformStyles,
   CustomComponentTransitionStyles,
 } from '../../../CustomComponent';
@@ -26,8 +25,7 @@ export type ImgStyles = (typeof ImgStyles)[number];
 export type ImgHtmlProps = React.DetailedHTMLProps<React.ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>;
 
 export interface ImgProps
-  extends Omit<ImgHtmlProps, 'children' | 'style'>,
-    Pick<CustomComponentProps<ImgHtmlProps>, ImgStyles | 'w' | 'h'> {
+  extends Omit<ImgHtmlProps, 'children' | 'style'>, Pick<CustomComponentProps<ImgHtmlProps>, ImgStyles | 'w' | 'h'> {
   // 회전 각도
   rotate?: number;
 }

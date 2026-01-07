@@ -1,5 +1,4 @@
-import React from 'react';
-import { DevButtonProps as Props } from './DevButton.types';
+import { type DevButtonProps as Props } from './DevButton.types';
 import './DevButton.scss';
 
 export const DevButton = ({ icon, onClick }: Props) => {

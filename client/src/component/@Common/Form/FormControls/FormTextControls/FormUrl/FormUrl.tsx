@@ -1,4 +1,3 @@
-import React from 'react';
 import { FormUrlCommands, FormUrlProps as Props } from './FormUrl.types';
 import { FormText, FormTextCommands } from '../FormText';
 

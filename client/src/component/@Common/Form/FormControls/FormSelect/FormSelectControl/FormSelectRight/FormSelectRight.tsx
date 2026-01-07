@@ -1,4 +1,3 @@
-import React from 'react';
 import { FormSelectRightProps as Props } from './FormSelectRight.types';
 import { LoadingIndicator } from '../../../../../Loadings';
 import { ReactComponent as IconArrowDown } from './icon_arrow_down.svg';

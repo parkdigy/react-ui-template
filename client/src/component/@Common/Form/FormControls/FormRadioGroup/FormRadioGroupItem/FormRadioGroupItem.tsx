@@ -1,4 +1,3 @@
-import React from 'react';
 import { FormRadioGroupItemCommands, FormRadioGroupItemProps as Props } from './FormRadioGroupItem.types';
 import { useResizeDetector } from 'react-resize-detector';
 import { ReactComponent as IconDefault } from './icon_default.svg';

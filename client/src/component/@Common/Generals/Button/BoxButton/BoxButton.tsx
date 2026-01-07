@@ -1,5 +1,4 @@
-import React from 'react';
-import { BoxButtonProps as Props } from './BoxButton.types';
+import { type BoxButtonProps as Props } from './BoxButton.types';
 import './BoxButton.scss';
 
 export const BoxButton = ({ className, disabled, url, externalUrlOpenInThisTab, onClick, ...props }: Props) => {

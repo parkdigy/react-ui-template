@@ -1,5 +1,4 @@
-import React from 'react';
-import { CustomComponentProps as Props } from './CustomComponent.types';
+import { type CustomComponentBaseProps as Props } from './CustomComponent.types';
 
 const CustomComponent = <T,>({
   component: Component,

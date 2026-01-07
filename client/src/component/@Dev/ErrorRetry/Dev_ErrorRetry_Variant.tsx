@@ -1,4 +1,3 @@
-import React from 'react';
 import { Dev_Panel, Dev_PanelItem } from '../@Common';
 import { DefaultColors } from '@theme';
 

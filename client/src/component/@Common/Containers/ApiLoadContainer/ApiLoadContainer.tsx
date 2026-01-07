@@ -1,5 +1,4 @@
-import React from 'react';
-import { ApiLoadContainerCommands, ApiLoadContainerProps as Props } from './ApiLoadContainer.types';
+import { type ApiLoadContainerCommands, type ApiLoadContainerProps as Props } from './ApiLoadContainer.types';
 import ErrorRetry from '../../Errors/ErrorRetry';
 
 export const ApiLoadContainer = <T = any, TApiData = any>({

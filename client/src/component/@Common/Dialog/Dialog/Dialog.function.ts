@@ -1,10 +1,9 @@
-import React from 'react';
 import {
-  DialogAlertProps,
-  DialogCommands,
-  DialogConfirmProps,
-  DialogInnerCommands,
-  DialogOnlyProps,
+  type DialogAlertProps,
+  type DialogCommands,
+  type DialogConfirmProps,
+  type DialogInnerCommands,
+  type DialogOnlyProps,
 } from './Dialog.types';
 
 let refs: React.RefObject<DialogInnerCommands>[] = [];

@@ -1,5 +1,4 @@
-import React from 'react';
-import { FormControlBaseProps as Props } from './FormControlBase.types';
+import { type FormControlBaseProps as Props } from './FormControlBase.types';
 import { useFormControlGroupState, useFormState } from '../../../FormContext';
 import { useResizeDetector } from 'react-resize-detector';
 import {

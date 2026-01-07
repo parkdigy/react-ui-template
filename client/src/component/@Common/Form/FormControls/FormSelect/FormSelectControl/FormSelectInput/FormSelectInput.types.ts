@@ -1,4 +1,3 @@
-import React from 'react';
 import { FormSelectSize } from '../../FormSelect.types';
 
 export interface FormSelectInputCommands {

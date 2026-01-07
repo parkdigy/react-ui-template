@@ -1,4 +1,3 @@
-import React from 'react';
 import { Form, FormCheckbox, FormProps, Tabs } from '@ccomp';
 import Dev_Form_Text from './Text';
 import Dev_Form_Email from './Email';

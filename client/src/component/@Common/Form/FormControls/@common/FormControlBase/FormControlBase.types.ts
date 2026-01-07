@@ -1,5 +1,5 @@
-import { FormControlType } from '../../../FormContext';
-import { BoxStyleProps } from '../../../../Layouts';
+import { type FormControlType } from '../../../FormContext';
+import { type BoxStyleProps } from '../../../../Layouts';
 
 export interface FormControlCommands {
   focus: () => void;
@@ -27,8 +27,10 @@ export interface FormControlCommonProps<T> extends Omit<BoxStyleProps, 's' | 'si
   onErrorChange?: (error: string | boolean) => void;
 }
 
-export interface FormControlBaseProps
-  extends Omit<FormControlCommonProps<any>, 'value' | 'onChange' | 'onValidate' | 'onErrorChange'> {
+export interface FormControlBaseProps extends Omit<
+  FormControlCommonProps<any>,
+  'value' | 'onChange' | 'onValidate' | 'onErrorChange'
+> {
   type: FormControlType;
   commands: FormControlCommands | null;
   children: ReactNode;

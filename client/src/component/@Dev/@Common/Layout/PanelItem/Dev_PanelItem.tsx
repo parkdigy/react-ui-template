@@ -1,4 +1,3 @@
-import React from 'react';
 import { Dev_PanelItemProps as Props } from './Dev_PanelItem.types';
 
 export const Dev_PanelItem = ({ title, icon, iconProps, ...props }: Props) => {

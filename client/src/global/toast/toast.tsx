@@ -1,4 +1,3 @@
-import React from 'react';
 import { toast as _toast, ToastOptions } from 'react-toastify';
 import './toast.scss';
 

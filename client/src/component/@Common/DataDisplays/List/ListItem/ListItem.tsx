@@ -1,5 +1,4 @@
-import React from 'react';
-import { ListItemProps as Props } from './ListItem.types';
+import { type ListItemProps as Props } from './ListItem.types';
 import './ListItem.scss';
 
 const ListItem = ({ content, bulletColor }: Props) => {

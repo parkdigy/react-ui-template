@@ -1,5 +1,4 @@
-import React from 'react';
-import { LogoProps as Props } from './Logo.types';
+import { type LogoProps as Props } from './Logo.types';
 import { ImgLogo } from '@assets';
 import './Logo.scss';
 

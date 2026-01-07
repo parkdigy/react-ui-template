@@ -1,4 +1,3 @@
-import React from 'react';
 import { FormEmailCommands, FormEmailProps as Props } from './FormEmail.types';
 import { FormText, FormTextCommands } from '../FormText';
 

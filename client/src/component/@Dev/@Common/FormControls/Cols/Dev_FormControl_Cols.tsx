@@ -1,4 +1,3 @@
-import React from 'react';
 import { Dev_FormControl_ColsProps as Props } from './Dev_FormControl_Cols.types';
 import { FormCheckbox, FormRadioGroup, FormSelect, GridCols } from '@ccomp';
 import { Dev_PanelItem } from '../../Layout';

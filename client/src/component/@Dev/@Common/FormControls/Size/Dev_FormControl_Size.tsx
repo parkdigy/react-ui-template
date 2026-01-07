@@ -1,4 +1,3 @@
-import React from 'react';
 import { Dev_FormControl_SizeProps as Props } from './Dev_FormControl_Size.types';
 import { FormRadioGroup, FormSelect } from '@ccomp';
 import { FriendlyNameSizes, getSizeOfFriendlyName } from '@theme';

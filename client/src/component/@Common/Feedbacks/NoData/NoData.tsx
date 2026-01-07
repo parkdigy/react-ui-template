@@ -1,5 +1,4 @@
-import React from 'react';
-import { NoDataProps as Props } from './NoData.types';
+import { type NoDataProps as Props } from './NoData.types';
 
 export const NoData = ({ message, ...props }: Props) => {
   return (

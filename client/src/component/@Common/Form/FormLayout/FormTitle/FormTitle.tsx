@@ -1,4 +1,3 @@
-import React from 'react';
 import { FormTitleProps as Props } from './FormTitle.types';
 import { useFormState } from '../../FormContext';
 import './FormTitle.scss';

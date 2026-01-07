@@ -1,4 +1,3 @@
-import React from 'react';
 import { FormPasswordCommands, FormPasswordProps as Props } from './FormPassword.types';
 import { useFormState } from '../../../FormContext';
 import { FormText, FormTextCommands } from '../FormText';
