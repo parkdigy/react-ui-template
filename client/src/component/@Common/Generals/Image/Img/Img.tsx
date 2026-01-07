@@ -1,5 +1,4 @@
 import { type ImgHTMLProps, type ImgProps as Props } from './Img.types';
-import { CustomComponent } from '../../../CustomComponent';
 import './Img.scss';
 
 export const Img = ({ className, rotate, ...props }: Props) => {

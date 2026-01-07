@@ -5,7 +5,6 @@ import {
   CustomComponentMarginStyles,
   CustomComponentPaddingStyles,
   CustomComponentPositionStyles,
-  type CustomComponentProps,
   CustomComponentTransformStyles,
   CustomComponentTransitionStyles,
 } from '../../../CustomComponent';

@@ -169,68 +169,72 @@ const CustomComponent = <T,>({
   // component props
   ...componentProps
 }: Props<T>) => {
+  /********************************************************************************************************************
+   * Use
+   * ******************************************************************************************************************/
+
   const theme = useTheme();
+
+  /********************************************************************************************************************
+   * style
+   * ******************************************************************************************************************/
 
   const style: CSSProperties = { ...cssVars, ...initStyle };
 
+  function assign<T extends keyof CSSProperties>(key: T, ...values: Array<CSSProperties[T] | undefined>) {
+    for (const value of values) {
+      if (value !== undefined) {
+        style[key] = value;
+        return;
+      }
+    }
+  }
+
   // display
-  gStyle.assign(style, 'display', hidden ? 'none' : display);
+  assign('display', hidden ? 'none' : display);
 
   // padding
-  gStyle.assign(style, 'padding', padding, p);
-  gStyle.assign(style, 'paddingLeft', paddingLeft, pl, ph);
-  gStyle.assign(style, 'paddingRight', paddingRight, pr, ph);
-  gStyle.assign(style, 'paddingTop', paddingTop, pt, pv);
-  gStyle.assign(style, 'paddingBottom', paddingBottom, pb, pv);
+  assign('padding', padding ?? p);
+  assign('paddingLeft', paddingLeft ?? pl ?? ph);
+  assign('paddingRight', paddingRight ?? pr ?? ph);
+  assign('paddingTop', paddingTop ?? pt ?? pv);
+  assign('paddingBottom', paddingBottom ?? pb ?? pv);
 
   // margin
-  gStyle.assign(style, 'margin', margin, m);
-  gStyle.assign(style, 'marginLeft', marginLeft, ml, mh);
-  gStyle.assign(style, 'marginRight', marginRight, mr, mh);
-  gStyle.assign(style, 'marginTop', marginTop, mt, mv);
-  gStyle.assign(style, 'marginBottom', marginBottom, mb, mv);
+  assign('margin', margin ?? m);
+  assign('marginLeft', marginLeft ?? ml ?? mh);
+  assign('marginRight', marginRight ?? mr ?? mh);
+  assign('marginTop', marginTop ?? mt ?? mv);
+  assign('marginBottom', marginBottom ?? mb ?? mv);
 
   // border
   const borderColor = theme.getColor(initBorderColor);
-  gStyle.assign(style, 'border', border);
-  gStyle.assign(style, 'borderColor', borderColor);
-  gStyle.assign(
-    style,
-    'borderStyle',
-    borderStyle,
-    border === undefined && borderColor !== undefined ? 'solid' : undefined
-  );
-  gStyle.assign(style, 'borderWidth', borderWidth, border === undefined && borderColor !== undefined ? 1 : undefined);
+  assign('border', border);
+  assign('borderColor', borderColor);
+  assign('borderStyle', borderStyle, border === undefined && borderColor !== undefined ? 'solid' : undefined);
+  assign('borderWidth', borderWidth, border === undefined && borderColor !== undefined ? 1 : undefined);
 
   // borderLeft
   const borderLeftColor = theme.getColor(initBorderLeftColor);
-  gStyle.assign(style, 'borderLeft', borderLeft);
-  gStyle.assign(style, 'borderLeftColor', borderLeftColor);
-  gStyle.assign(
-    style,
+  assign('borderLeft', borderLeft);
+  assign('borderLeftColor', borderLeftColor);
+  assign(
     'borderLeftStyle',
     borderLeftStyle,
     borderLeft === undefined && borderLeftColor !== undefined ? 'solid' : undefined
   );
-  gStyle.assign(
-    style,
-    'borderLeftWidth',
-    borderLeftWidth,
-    borderLeft === undefined && borderLeftColor !== undefined ? 1 : undefined
-  );
+  assign('borderLeftWidth', borderLeftWidth, borderLeft === undefined && borderLeftColor !== undefined ? 1 : undefined);
 
   // borderRight
   const borderRightColor = theme.getColor(initBorderRightColor);
-  gStyle.assign(style, 'borderRight', borderRight);
-  gStyle.assign(style, 'borderRightColor', borderRightColor);
-  gStyle.assign(
-    style,
+  assign('borderRight', borderRight);
+  assign('borderRightColor', borderRightColor);
+  assign(
     'borderRightStyle',
     borderRightStyle,
     borderRight === undefined && borderRightColor !== undefined ? 'solid' : undefined
   );
-  gStyle.assign(
-    style,
+  assign(
     'borderRightWidth',
     borderRightWidth,
     borderRight === undefined && borderRightColor !== undefined ? 1 : undefined
@@ -238,149 +242,141 @@ const CustomComponent = <T,>({
 
   // borderTop
   const borderTopColor = theme.getColor(initBorderTopColor);
-  gStyle.assign(style, 'borderTop', borderTop);
-  gStyle.assign(style, 'borderTopColor', borderTopColor);
-  gStyle.assign(
-    style,
+  assign('borderTop', borderTop);
+  assign('borderTopColor', borderTopColor);
+  assign(
     'borderTopStyle',
     borderTopStyle,
     borderTop === undefined && borderTopColor !== undefined ? 'solid' : undefined
   );
-  gStyle.assign(
-    style,
-    'borderTopWidth',
-    borderTopWidth,
-    borderTop === undefined && borderTopColor !== undefined ? 1 : undefined
-  );
+  assign('borderTopWidth', borderTopWidth, borderTop === undefined && borderTopColor !== undefined ? 1 : undefined);
 
   // borderBottom
   const borderBottomColor = theme.getColor(initBorderBottomColor);
-  gStyle.assign(style, 'borderBottom', borderBottom);
-  gStyle.assign(style, 'borderBottomColor', borderBottomColor);
-  gStyle.assign(
-    style,
+  assign('borderBottom', borderBottom);
+  assign('borderBottomColor', borderBottomColor);
+  assign(
     'borderBottomStyle',
     borderBottomStyle,
     borderBottom === undefined && borderBottomColor !== undefined ? 'solid' : undefined
   );
-  gStyle.assign(
-    style,
+  assign(
     'borderBottomWidth',
     borderBottomWidth,
     borderBottom === undefined && borderBottomColor !== undefined ? 1 : undefined
   );
 
   // radius
-  gStyle.assign(style, 'borderRadius', initBorderRadius, initRadius);
-  gStyle.assign(style, 'borderTopLeftRadius', borderTopLeftRadius);
-  gStyle.assign(style, 'borderTopRightRadius', borderTopRightRadius);
-  gStyle.assign(style, 'borderBottomLeftRadius', borderBottomLeftRadius);
-  gStyle.assign(style, 'borderBottomRightRadius', borderBottomRightRadius);
+  assign('borderRadius', initBorderRadius ?? initRadius);
+  assign('borderTopLeftRadius', borderTopLeftRadius);
+  assign('borderTopRightRadius', borderTopRightRadius);
+  assign('borderBottomLeftRadius', borderBottomLeftRadius);
+  assign('borderBottomRightRadius', borderBottomRightRadius);
 
   // flex
-  gStyle.assign(style, 'flex', flex);
-  gStyle.assign(style, 'gap', gap);
-  gStyle.assign(style, 'flexDirection', flexDirection);
-  gStyle.assign(style, 'flexBasis', flexBasis);
-  gStyle.assign(style, 'flexFlow', flexFlow);
-  gStyle.assign(style, 'flexShrink', flexShrink);
-  gStyle.assign(style, 'flexGrow', flexGrow);
-  gStyle.assign(style, 'flexWrap', flexWrap);
-  gStyle.assign(style, 'alignItems', alignItems);
-  gStyle.assign(style, 'alignSelf', alignSelf);
-  gStyle.assign(style, 'alignContent', alignContent);
-  gStyle.assign(style, 'alignTracks', alignTracks);
-  gStyle.assign(style, 'justifyItems', justifyItems);
-  gStyle.assign(style, 'justifySelf', justifySelf);
-  gStyle.assign(style, 'justifyContent', justifyContent);
-  gStyle.assign(style, 'justifyTracks', justifyTracks);
+  assign('flex', flex);
+  assign('gap', gap);
+  assign('flexDirection', flexDirection);
+  assign('flexBasis', flexBasis);
+  assign('flexFlow', flexFlow);
+  assign('flexShrink', flexShrink);
+  assign('flexGrow', flexGrow);
+  assign('flexWrap', flexWrap);
+  assign('alignItems', alignItems);
+  assign('alignSelf', alignSelf);
+  assign('alignContent', alignContent);
+  assign('alignTracks', alignTracks);
+  assign('justifyItems', justifyItems);
+  assign('justifySelf', justifySelf);
+  assign('justifyContent', justifyContent);
+  assign('justifyTracks', justifyTracks);
 
   // font
   const size = initSize ?? initS;
-  if (size !== undefined) {
-    gStyle.assign(style, 'fontSize', theme.sizes[size].fontSize);
-    gStyle.assign(style, 'lineHeight', theme.sizes[size].lineHeight);
-  }
-
-  gStyle.assign(style, 'fontSize', theme.getSizeValue('fontSize', initFontSize, initFs));
-  gStyle.assign(style, 'lineHeight', theme.getSizeValue('lineHeight', initLineHeight, initLh));
-  gStyle.assign(style, 'fontWeight', initFontWeight, initFw, bold ? 'bold' : undefined);
-  gStyle.assign(style, 'color', theme.getColor(initColor, initC));
-  gStyle.assign(style, 'font', font);
-  gStyle.assign(style, 'fontFamily', fontFamily);
-  gStyle.assign(style, 'fontStyle', fontStyle);
-  gStyle.assign(style, 'letterSpacing', letterSpacing);
-  gStyle.assign(style, 'textAlign', textAlign);
-  gStyle.assign(style, 'textDecoration', textDecoration);
-  gStyle.assign(style, 'textTransform', textTransform);
-  gStyle.assign(style, 'wordWrap', wordWrap);
-  gStyle.assign(style, 'wordBreak', wordBreak);
-  gStyle.assign(style, 'wordSpacing', wordSpacing);
+  assign(
+    'fontSize',
+    theme.getSizeValue('fontSize', initFontSize ?? initFs, size ? theme.sizes[size].fontSize : undefined)
+  );
+  assign(
+    'lineHeight',
+    theme.getSizeValue('lineHeight', initLineHeight ?? initLh, size ? theme.sizes[size].lineHeight : undefined)
+  );
+  assign('fontWeight', initFontWeight ?? initFw, bold ? 'bold' : undefined);
+  assign('color', theme.getColor(initColor ?? initC));
+  assign('font', font);
+  assign('fontFamily', fontFamily);
+  assign('fontStyle', fontStyle);
+  assign('letterSpacing', letterSpacing);
+  assign('textAlign', textAlign);
+  assign('textDecoration', textDecoration);
+  assign('textTransform', textTransform);
+  assign('wordWrap', wordWrap);
+  assign('wordBreak', wordBreak);
+  assign('wordSpacing', wordSpacing);
 
   // background
-  gStyle.assign(style, 'background', theme.getBackground(initBackground, initBg));
-  gStyle.assign(style, 'backgroundColor', theme.getColor(initBackgroundColor, initBgColor));
-  gStyle.assign(style, 'backgroundImage', backgroundImage);
-  gStyle.assign(style, 'backgroundPosition', backgroundPosition);
-  gStyle.assign(style, 'backgroundSize', backgroundSize);
-  gStyle.assign(style, 'backgroundRepeat', backgroundRepeat);
+  assign('background', theme.getBackground(initBackground ?? initBg));
+  assign('backgroundColor', theme.getColor(initBackgroundColor ?? initBgColor));
+  assign('backgroundImage', backgroundImage);
+  assign('backgroundPosition', backgroundPosition);
+  assign('backgroundSize', backgroundSize);
+  assign('backgroundRepeat', backgroundRepeat);
 
   // position
-  gStyle.assign(style, 'position', position);
-  gStyle.assign(style, 'top', top);
-  gStyle.assign(style, 'left', left);
-  gStyle.assign(style, 'right', right);
-  gStyle.assign(style, 'bottom', bottom);
-  gStyle.assign(style, 'zIndex', zIndex);
+  assign('position', position);
+  assign('top', top);
+  assign('left', left);
+  assign('right', right);
+  assign('bottom', bottom);
+  assign('zIndex', zIndex);
 
   // size
-  gStyle.assign(style, 'width', width, w, fullWidth ? '100%' : undefined);
-  gStyle.assign(style, 'height', height, h, fullHeight ? '100%' : undefined);
-  gStyle.assign(style, 'maxWidth', maxWidth);
-  gStyle.assign(style, 'minWidth', minWidth);
-  gStyle.assign(style, 'maxHeight', maxHeight);
-  gStyle.assign(style, 'minHeight', minHeight);
+  assign('width', width ?? w, fullWidth ? '100%' : undefined);
+  assign('height', height ?? h, fullHeight ? '100%' : undefined);
+  assign('maxWidth', maxWidth);
+  assign('minWidth', minWidth);
+  assign('maxHeight', maxHeight);
+  assign('minHeight', minHeight);
 
   // transform
-  gStyle.assign(style, 'transform', transform);
-  gStyle.assign(style, 'transformOrigin', transformOrigin);
-  gStyle.assign(style, 'transformStyle', transformStyle);
-  gStyle.assign(style, 'transformBox', transformBox);
+  assign('transform', transform);
+  assign('transformOrigin', transformOrigin);
+  assign('transformStyle', transformStyle);
+  assign('transformBox', transformBox);
 
   // transition
-  gStyle.assign(style, 'transition', transition);
-  gStyle.assign(style, 'transitionBehavior', transitionBehavior);
-  gStyle.assign(style, 'transitionDelay', transitionDelay);
-  gStyle.assign(style, 'transitionDuration', transitionDuration);
-  gStyle.assign(style, 'transitionProperty', transitionProperty);
-  gStyle.assign(style, 'transitionTimingFunction', transitionTimingFunction);
+  assign('transition', transition);
+  assign('transitionBehavior', transitionBehavior);
+  assign('transitionDelay', transitionDelay);
+  assign('transitionDuration', transitionDuration);
+  assign('transitionProperty', transitionProperty);
+  assign('transitionTimingFunction', transitionTimingFunction);
 
   // outline
-  gStyle.assign(style, 'outlineColor', theme.getColor(initOutlineColor));
-  gStyle.assign(
-    style,
-    'outlineStyle',
-    outlineStyle,
-    outline === undefined && outlineWidth !== undefined ? 'solid' : undefined
-  );
-  gStyle.assign(style, 'outline', outline);
-  gStyle.assign(style, 'outlineWidth', outlineWidth);
-  gStyle.assign(style, 'outlineOffset', outlineOffset);
+  assign('outlineColor', theme.getColor(initOutlineColor));
+  assign('outlineStyle', outlineStyle, outline === undefined && outlineWidth !== undefined ? 'solid' : undefined);
+  assign('outline', outline);
+  assign('outlineWidth', outlineWidth);
+  assign('outlineOffset', outlineOffset);
 
   // others
-  gStyle.assign(style, 'boxShadow', boxShadow);
-  gStyle.assign(style, 'overflow', overflow);
-  gStyle.assign(style, 'overflowX', overflowX);
-  gStyle.assign(style, 'overflowY', overflowY);
-  gStyle.assign(style, 'cursor', cursor);
-  gStyle.assign(style, 'opacity', opacity);
-  gStyle.assign(style, 'visibility', visibility);
-  gStyle.assign(style, 'whiteSpace', whiteSpace);
-  gStyle.assign(style, 'textOverflow', textOverflow);
-  gStyle.assign(style, 'pointerEvents', pointerEvents);
-  gStyle.assign(style, 'userSelect', userSelect);
-  gStyle.assign(style, 'verticalAlign', verticalAlign);
-  gStyle.assign(style, 'filter', filter);
+  assign('boxShadow', boxShadow);
+  assign('overflow', overflow);
+  assign('overflowX', overflowX);
+  assign('overflowY', overflowY);
+  assign('cursor', cursor);
+  assign('opacity', opacity);
+  assign('visibility', visibility);
+  assign('whiteSpace', whiteSpace);
+  assign('textOverflow', textOverflow);
+  assign('pointerEvents', pointerEvents);
+  assign('userSelect', userSelect);
+  assign('verticalAlign', verticalAlign);
+  assign('filter', filter);
+
+  /********************************************************************************************************************
+   * Render
+   * ******************************************************************************************************************/
 
   return <Component style={empty(style) ? undefined : style} {...componentProps} />;
 };

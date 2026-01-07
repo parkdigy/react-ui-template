@@ -1,8 +1,4 @@
-import {
-  CustomComponentBackgroundStyles,
-  CustomComponentBorderStyles,
-  type CustomComponentProps,
-} from '../../../CustomComponent';
+import { CustomComponentBackgroundStyles, CustomComponentBorderStyles } from '../../../CustomComponent';
 import { AllColors, AllSizes, ButtonColors } from '@theme';
 
 export const ButtonSizes = {
@@ -54,7 +50,6 @@ export type ButtonHTMLProps = HTMLTagProps<'button'>;
 
 export interface ButtonProps extends Omit<
   CustomComponentProps<ButtonHTMLProps>,
-  | 'component'
   | 'style'
   | 'c'
   | 'color'

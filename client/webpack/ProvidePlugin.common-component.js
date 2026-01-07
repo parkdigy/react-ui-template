@@ -7,6 +7,9 @@ module.exports = {
     'PageRootContainer',
   ],
 
+  // CustomComponent
+  CustomComponent: [path.resolve(__dirname, '../src/component/@Common/CustomComponent/index.ts'), 'default'],
+
   // Errors
   ErrorBoundary: [path.resolve(__dirname, '../src/component/@Common/Errors/ErrorBoundary/index.ts'), 'default'],
   ErrorRetry: [path.resolve(__dirname, '../src/component/@Common/Errors/ErrorRetry/index.ts'), 'default'],

@@ -1,5 +1,4 @@
 import { type IconHTMLProps, type IconProps as Props } from './Icon.types';
-import { CustomComponent } from '../../CustomComponent';
 import { AllColors, AllSizes } from '@theme';
 import './Icon.scss';
 

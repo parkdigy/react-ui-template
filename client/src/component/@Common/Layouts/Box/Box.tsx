@@ -1,5 +1,4 @@
 import { type BoxComponent, type BoxHTMLProps, type BoxProps as Props } from './Box.types';
-import { CustomComponent } from '../../CustomComponent';
 import './Box.scss';
 
 export const Box = <

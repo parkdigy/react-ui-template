@@ -1,11 +1,11 @@
 import { AllColors, AllSizes } from '@theme';
-import { CustomComponentFontStyles, type CustomComponentProps, CustomComponentSizeStyles } from '../../CustomComponent';
+import { CustomComponentFontStyles, CustomComponentSizeStyles } from '../../CustomComponent';
 
 export type IconHTMLProps = HTMLElementProps;
 
 export interface IconProps extends Omit<
   CustomComponentProps<IconHTMLProps>,
-  'component' | 'style' | 'children' | keyof CustomComponentFontStyles | keyof CustomComponentSizeStyles
+  'style' | 'children' | keyof CustomComponentFontStyles | keyof CustomComponentSizeStyles
 > {
   children: string;
   type?: MaterialIconTypes;

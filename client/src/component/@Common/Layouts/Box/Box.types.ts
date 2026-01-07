@@ -1,4 +1,4 @@
-import { type CustomComponentProps, CustomComponentAllStyles } from '../../CustomComponent';
+import { CustomComponentAllStyles } from '../../CustomComponent';
 
 export interface BoxStyleProps extends CustomComponentAllStyles {}
 

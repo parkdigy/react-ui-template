@@ -2,6 +2,10 @@ declare global {
   // Container
   const PageRootContainer: typeof import('../component/@Common/index.ts').PageRootContainer;
 
+  // CustomComponent
+  const CustomComponent: typeof import('../component/@Common/index.ts').CustomComponent;
+  type CustomComponentProps<T> = import('../component/@Common/index.ts').CustomComponentProps<T>;
+
   // Errors
   const ErrorBoundary: typeof import('../component/@Common/index.ts').ErrorBoundary;
   type ErrorBoundaryProps = import('../component/@Common/index.ts').ErrorBoundaryProps;

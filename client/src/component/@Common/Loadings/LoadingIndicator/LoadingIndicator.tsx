@@ -1,7 +1,6 @@
 import { type LoadingIndicatorHTMLProps, type LoadingIndicatorProps as Props } from './LoadingIndicator.types';
 import { AllColors, AllSizes, Theme } from '@theme';
 import './LoadingIndicator.scss';
-import { CustomComponent } from '../../CustomComponent';
 
 export const LoadingIndicator = ({
   className,
