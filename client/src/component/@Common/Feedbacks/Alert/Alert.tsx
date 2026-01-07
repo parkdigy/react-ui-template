@@ -22,7 +22,7 @@ export const Alert = ({ className, type = 'info', title, showIcon, message, word
     case 'success':
       color = 'success';
       icon = 'CheckCircle';
-      backgroundColorRatio = 1.35;
+      backgroundColorRatio = theme.dark ? 0.75 : 1.35;
       break;
     case 'warning':
       color = 'warning';
@@ -37,10 +37,16 @@ export const Alert = ({ className, type = 'info', title, showIcon, message, word
   }
 
   const baseColor = theme.colors[color];
-  const backgroundColor = Color(baseColor).lighten(backgroundColorRatio).string();
-  const borderColor = Color(baseColor)
-    .lighten(backgroundColorRatio * 0.6)
-    .string();
+  const backgroundColor = theme.dark
+    ? Color(baseColor).darken(backgroundColorRatio).string()
+    : Color(baseColor).lighten(backgroundColorRatio).string();
+  const borderColor = theme.dark
+    ? Color(baseColor)
+        .darken(backgroundColorRatio * 0.6)
+        .string()
+    : Color(baseColor)
+        .lighten(backgroundColorRatio * 0.6)
+        .string();
 
   /********************************************************************************************************************
    * Render
