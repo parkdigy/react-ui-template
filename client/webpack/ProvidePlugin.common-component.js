@@ -9,87 +9,44 @@ module.exports = {
 
   // Errors
   ErrorBoundary: [path.resolve(__dirname, '../src/component/@Common/Errors/ErrorBoundary/index.ts'), 'default'],
-  ErrorBoundaryProps: [
-    path.resolve(__dirname, '../src/component/@Common/Errors/ErrorBoundary/index.ts'),
-    'ErrorBoundaryProps',
-  ],
   ErrorRetry: [path.resolve(__dirname, '../src/component/@Common/Errors/ErrorRetry/index.ts'), 'default'],
-  ErrorRetryProps: [path.resolve(__dirname, '../src/component/@Common/Errors/ErrorRetry/index.ts'), 'ErrorRetryProps'],
 
   // Loadings
   Loading: [path.resolve(__dirname, '../src/component/@Common/Loadings/Loading/index.ts'), 'default'],
-  LoadingProps: [path.resolve(__dirname, '../src/component/@Common/Loadings/Loading/index.ts'), 'LoadingProps'],
-  LoadingCommands: [path.resolve(__dirname, '../src/component/@Common/Loadings/Loading/index.ts'), 'LoadingCommands'],
   LoadingIndicator: [path.resolve(__dirname, '../src/component/@Common/Loadings/LoadingIndicator/index.ts'), 'default'],
-  LoadingIndicatorProps: [
-    path.resolve(__dirname, '../src/component/@Common/Loadings/LoadingIndicator/index.ts'),
-    'LoadingIndicatorProps',
-  ],
 
   // Layout
   Box: [path.resolve(__dirname, '../src/component/@Common/Layouts/Box/index.ts'), 'Box'],
-  BoxProps: [path.resolve(__dirname, '../src/component/@Common/Layouts/Box/index.ts'), 'BoxProps'],
   Span: [path.resolve(__dirname, '../src/component/@Common/Layouts/Span/index.ts'), 'Span'],
-  SpanProps: [path.resolve(__dirname, '../src/component/@Common/Layouts/Span/index.ts'), 'SpanProps'],
   Flex: [path.resolve(__dirname, '../src/component/@Common/Layouts/Flex/index.ts'), 'Flex'],
-  FlexProps: [path.resolve(__dirname, '../src/component/@Common/Layouts/Flex/index.ts'), 'FlexProps'],
   Divider: [path.resolve(__dirname, '../src/component/@Common/Layouts/Divider/index.ts'), 'Divider'],
-  DividerProps: [path.resolve(__dirname, '../src/component/@Common/Layouts/Divider/index.ts'), 'DividerProps'],
   Panel: [path.resolve(__dirname, '../src/component/@Common/Layouts/Panel/index.ts'), 'Panel'],
-  PanelProps: [path.resolve(__dirname, '../src/component/@Common/Layouts/Panel/index.ts'), 'PanelProps'],
   Grid: [path.resolve(__dirname, '../src/component/@Common/Layouts/Grid/index.ts'), 'Grid'],
-  GridProps: [path.resolve(__dirname, '../src/component/@Common/Layouts/Grid/index.ts'), 'GridProps'],
   Row: [path.resolve(__dirname, '../src/component/@Common/Layouts/Grid/Row/index.ts'), 'Row'],
-  RowProps: [path.resolve(__dirname, '../src/component/@Common/Layouts/Grid/Row/index.ts'), 'RowProps'],
   Col: [path.resolve(__dirname, '../src/component/@Common/Layouts/Grid/Col/index.ts'), 'Col'],
-  ColProps: [path.resolve(__dirname, '../src/component/@Common/Layouts/Grid/Col/index.ts'), 'ColProps'],
 
   // Image
   Img: [path.resolve(__dirname, '../src/component/@Common/Generals/Image/Img/index.ts'), 'Img'],
-  ImgProps: [path.resolve(__dirname, '../src/component/@Common/Generals/Image/Img/index.ts'), 'ImgProps'],
   Svg: [path.resolve(__dirname, '../src/component/@Common/Generals/Image/Svg/index.ts'), 'Svg'],
-  SvgProps: [path.resolve(__dirname, '../src/component/@Common/Generals/Image/Svg/index.ts'), 'SvgProps'],
 
   // Icon
   Icon: [path.resolve(__dirname, '../src/component/@Common/Generals/Icon/index.ts'), 'default'],
-  IconProps: [path.resolve(__dirname, '../src/component/@Common/Generals/Icon/index.ts'), 'IconProps'],
 
   // Button
   Button: [path.resolve(__dirname, '../src/component/@Common/Generals/Button/Button/index.ts'), 'Button'],
-  ButtonProps: [path.resolve(__dirname, '../src/component/@Common/Generals/Button/Button/index.ts'), 'ButtonProps'],
   TextButton: [path.resolve(__dirname, '../src/component/@Common/Generals/Button/TextButton/index.ts'), 'TextButton'],
-  TextButtonProps: [
-    path.resolve(__dirname, '../src/component/@Common/Generals/Button/TextButton/index.ts'),
-    'TextButtonProps',
-  ],
   IconButton: [path.resolve(__dirname, '../src/component/@Common/Generals/Button/IconButton/index.ts'), 'IconButton'],
-  IconButtonProps: [
-    path.resolve(__dirname, '../src/component/@Common/Generals/Button/IconButton/index.ts'),
-    'IconButtonProps',
-  ],
   FlexButton: [path.resolve(__dirname, '../src/component/@Common/Generals/Button/FlexButton/index.ts'), 'FlexButton'],
-  FlexButtonProps: [
-    path.resolve(__dirname, '../src/component/@Common/Generals/Button/FlexButton/index.ts'),
-    'FlexButtonProps',
-  ],
   BoxButton: [path.resolve(__dirname, '../src/component/@Common/Generals/Button/BoxButton/index.ts'), 'BoxButton'],
-  BoxButtonProps: [
-    path.resolve(__dirname, '../src/component/@Common/Generals/Button/BoxButton/index.ts'),
-    'BoxButtonProps',
-  ],
 
   // Dialog
   Dialog: [path.resolve(__dirname, '../src/component/@Common/Dialog/Dialog/index.ts'), 'Dialog'],
-  DialogProps: [path.resolve(__dirname, '../src/component/@Common/Dialog/Dialog/index.ts'), 'DialogProps'],
-  DialogCommands: [path.resolve(__dirname, '../src/component/@Common/Dialog/Dialog/index.ts'), 'DialogCommands'],
 
   // Alert
   Alert: [path.resolve(__dirname, '../src/component/@Common/Feedbacks/Alert/index.ts'), 'Alert'],
-  AlertProps: [path.resolve(__dirname, '../src/component/@Common/Feedbacks/Alert/index.ts'), 'AlertProps'],
 
   // Tooltip
   Tooltip: [path.resolve(__dirname, '../src/component/@Common/DataDisplays/Tooltip/index.ts'), 'Tooltip'],
-  TooltipProps: [path.resolve(__dirname, '../src/component/@Common/DataDisplays/Tooltip/index.ts'), 'TooltipProps'],
 
   // T - Default
   T: [path.resolve(__dirname, '../src/component/@Common/Generals/Text/T/T.tsx'), 'default'],
