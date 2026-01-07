@@ -2,14 +2,13 @@
  * 루트 레이아웃 컴포넌트
  * ******************************************************************************************************************/
 
-import React, { useState } from 'react';
 import { Route, Routes } from 'react-router';
-import { AppContextProvider, AppContextValue, ScreenSizeContextProvider } from '@context';
+import { AppContextProvider, type AppContextValue, ScreenSizeContextProvider } from '@context';
 import { ToastContainer } from '@ccomp';
 import RootLayoutAppInitializer from './RootLayoutAppInitializer';
 import AuthLayout from '../AuthLayout';
 import DefaultLayout from '../DefaultLayout';
-import { AuthInfo } from '@const';
+import { type AuthInfo } from '@const';
 import { ThemeProvider } from '@theme';
 import DevButtons from './DevButtons';
 import { RootLoading } from './RootLoading';

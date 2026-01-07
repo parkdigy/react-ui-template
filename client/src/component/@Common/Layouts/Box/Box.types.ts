@@ -1,5 +1,5 @@
 import React from 'react';
-import { CustomComponentProps, CustomComponentAllStyles } from '../../CustomComponent';
+import { type CustomComponentProps, CustomComponentAllStyles } from '../../CustomComponent';
 
 export interface BoxStyleProps extends CustomComponentAllStyles {}
 
@@ -14,7 +14,7 @@ export interface BoxProps<
   C extends BoxComponent = 'div',
   E extends HTMLDivElement | HTMLSpanElement = C extends 'span' ? HTMLSpanElement : HTMLDivElement,
 >
-  extends Omit<CustomComponentProps<BoxHtmlProps<E>>, 'component' | 'wrap' | keyof BoxStyleProps>, BoxStyleProps {
+  extends Omit<CustomComponentProps<BoxHtmlProps<E>>, 'wrap' | keyof BoxStyleProps>, BoxStyleProps {
   ref?: Ref<E>;
   component?: C;
   center?: boolean;

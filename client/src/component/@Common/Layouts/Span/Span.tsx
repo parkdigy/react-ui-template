@@ -1,6 +1,4 @@
-import React from 'react';
-import { SpanProps as Props } from './Span.types';
-import Box from '../Box';
+import { type SpanProps as Props } from './Span.types';
 
 export const Span = (props: Props) => {
   return <Box component='span' {...props} />;

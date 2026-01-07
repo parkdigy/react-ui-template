@@ -1,5 +1,4 @@
-import React from 'react';
-import { BoxComponent, BoxHtmlProps, BoxProps as Props } from './Box.types';
+import { type BoxComponent, type BoxHtmlProps, type BoxProps as Props } from './Box.types';
 import { CustomComponent } from '../../CustomComponent';
 import './Box.scss';
 

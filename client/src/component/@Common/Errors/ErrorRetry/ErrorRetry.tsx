@@ -2,9 +2,8 @@
  * 에러 발생 시 재시도 컴포넌트
  * ******************************************************************************************************************/
 
-import React from 'react';
 import { getDefaultOnColor } from '@theme';
-import { ErrorRetryProps as Props } from './ErrorRetry.types';
+import { type ErrorRetryProps as Props } from './ErrorRetry.types';
 import './ErrorRetry.scss';
 
 const ErrorRetry = ({

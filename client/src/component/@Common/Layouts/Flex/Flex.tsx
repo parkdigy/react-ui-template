@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlexProps as Props } from './Flex.types';
+import { type FlexProps as Props } from './Flex.types';
 import Box from '../Box';
 import './Flex.scss';
 

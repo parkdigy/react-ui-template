@@ -5,7 +5,6 @@
 import './init';
 import './sass/index.scss';
 
-import React from 'react';
 import { RootLayout } from './layout';
 import Modal from 'react-modal';
 import { BrowserRouter } from 'react-router';
@@ -17,7 +16,7 @@ const App = () => {
    * Effect
    * ******************************************************************************************************************/
 
-  React.useEffect(() => {
+  useEffect(() => {
     /** 페이지 Refresh 시 스크롤 위치가 이상하게 잡히는 현상 해결을 위한 처리 */
     if ('scrollRestoration' in history) {
       history.scrollRestoration = 'manual';

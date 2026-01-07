@@ -8,4 +8,4 @@ export * from './AppContextProvider.types';
 
 export * from './AppContext.types';
 
-export { default as useAppState } from './useAppState';
+export * from './useAppState';
