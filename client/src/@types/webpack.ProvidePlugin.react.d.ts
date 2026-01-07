@@ -1,27 +1,31 @@
-import React from 'react';
+import * as _React from 'react';
 
 declare global {
-  const React: typeof React;
+  namespace React {
+    export type {} from 'react';
+  }
 
-  type Ref<T> = React.Ref<T>;
+  const React: typeof _React;
 
-  type RefObject<T> = React.RefObject<T>;
+  type Ref<T> = _React.Ref<T>;
+
+  type RefObject<T> = _React.RefObject<T>;
 
   type ReactElement<
     P = unknown,
-    T extends string | React.JSXElementConstructor<any> = string | React.JSXElementConstructor<any>,
-  > = React.ReactElement<P, T>;
+    T extends string | _React.JSXElementConstructor<any> = string | _React.JSXElementConstructor<any>,
+  > = _React.ReactElement<P, T>;
 
   type ElementType<
     P = any,
-    Tag extends keyof React.JSX.IntrinsicElements = keyof React.JSX.IntrinsicElements,
-  > = React.ElementType<P, Tag>;
+    Tag extends keyof _React.JSX.IntrinsicElements = keyof _React.JSX.IntrinsicElements,
+  > = _React.ElementType<P, Tag>;
 
-  type ReactNode = React.ReactNode;
+  type ReactNode = _React.ReactNode;
 
-  type ComponentType<P = {}> = React.ComponentType<P>;
+  type ComponentType<P = {}> = _React.ComponentType<P>;
 
-  type CSSProperties = React.CSSProperties;
+  type CSSProperties = _React.CSSProperties;
 }
 
 export {};
