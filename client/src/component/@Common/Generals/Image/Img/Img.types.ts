@@ -25,7 +25,9 @@ export type ImgStyles = (typeof ImgStyles)[number];
 export type ImgHTMLProps = HTMLTagProps<'img'>;
 
 export interface ImgProps
-  extends Omit<ImgHTMLProps, 'children' | 'style'>, Pick<CustomComponentProps<ImgHTMLProps>, ImgStyles | 'w' | 'h'> {
+  extends
+    Omit<ImgHTMLProps, 'children' | 'style' | 'width' | 'height'>,
+    Pick<CustomComponentProps<ImgHTMLProps>, ImgStyles | 'w' | 'h' | 'width' | 'height'> {
   // 회전 각도
   rotate?: number;
 }
