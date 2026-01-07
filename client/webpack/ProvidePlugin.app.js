@@ -28,9 +28,6 @@ module.exports = {
 
   // api
   api: [path.resolve(__dirname, '../src/global/api/index.ts'), 'default'],
-  ApiResult: [path.resolve(__dirname, '../src/global/api/index.ts'), 'ApiResult'],
-  ApiPaging: [path.resolve(__dirname, '../src/global/api/index.ts'), 'ApiPaging'],
-  ApiPageLimitRequestData: [path.resolve(__dirname, '../src/global/api/index.ts'), 'ApiPageLimitRequestData'],
 
   // Const
   Const: [path.resolve(__dirname, '../src/constant/index.ts'), 'default'],
