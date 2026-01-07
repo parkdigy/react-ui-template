@@ -3,8 +3,7 @@
  * - 기본 Context Provider
  * ******************************************************************************************************************/
 
-import React from 'react';
-import { AppContextProviderProps as Props } from './AppContextProvider.types';
+import { type AppContextProviderProps as Props } from './AppContextProvider.types';
 import AppContext from '../AppContext';
 
 const AppContextProvider = ({ children, value }: Props) => {

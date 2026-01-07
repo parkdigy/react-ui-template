@@ -10,6 +10,7 @@ import pluginPdgReactHooks from '@pdg/react-hook/eslint-plugin';
 export default defineConfig([
   ...tseslint.config(eslint.configs.recommended, tseslint.configs.recommended),
   pluginReact.configs.flat.recommended,
+  pluginReact.configs.flat['jsx-runtime'],
   pluginReactHooks.configs.flat.recommended,
   pluginPdgReactHooks.configs.flat.recommended,
   {

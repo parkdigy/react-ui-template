@@ -1,6 +1,4 @@
-import React from 'react';
-import { StackProps as Props } from './Stack.types';
-import Box from '../Box';
+import { type StackProps as Props } from './Stack.types';
 
 export const Stack = ({ row, center, wrap, alignItems, flexDirection, flexWrap, spacing, ...props }: Props) => {
   return (

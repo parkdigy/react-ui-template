@@ -2,7 +2,6 @@
  * 기본 레이아웃 컴포넌트
  * ******************************************************************************************************************/
 
-import React from 'react';
 import MainRouter from '../../router';
 import { useAppState } from '@context';
 

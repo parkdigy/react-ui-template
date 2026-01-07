@@ -1,5 +1,4 @@
-import React from 'react';
-import { ImgProps as Props } from './Img.types';
+import { type ImgProps as Props } from './Img.types';
 
 export const Img = ({
   m,

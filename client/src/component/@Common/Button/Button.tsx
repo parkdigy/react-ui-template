@@ -1,9 +1,8 @@
 /********************************************************************************************************************
- * Box 컴포넌트
+ * 버튼 컴포넌트
  * ******************************************************************************************************************/
 
-import React from 'react';
-import { ButtonProps as Props } from './Button.types';
+import { type ButtonProps as Props } from './Button.types';
 
 const Button = ({ color, fullWidth, className: initClassName, size, ...props }: Props) => {
   const className = useMemo(

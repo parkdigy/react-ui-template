@@ -1,5 +1,3 @@
-import React from 'react';
-
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   ref?: Ref<HTMLButtonElement>;
   variant?: 'contained' | 'outlined' | 'text';

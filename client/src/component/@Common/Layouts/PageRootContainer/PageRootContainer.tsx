@@ -1,5 +1,4 @@
-import React from 'react';
-import { PageRootContainerProps as Props } from './PageRootContainer.types';
+import { type PageRootContainerProps as Props } from './PageRootContainer.types';
 
 export const PageRootContainer = ({ children }: Props) => {
   return <>{children}</>;

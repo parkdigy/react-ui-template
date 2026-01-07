@@ -1,5 +1,4 @@
-import React from 'react';
-import { BoxProps as Props } from './Box.types';
+import { type BoxProps as Props } from './Box.types';
 
 export const Box = ({
   bold,

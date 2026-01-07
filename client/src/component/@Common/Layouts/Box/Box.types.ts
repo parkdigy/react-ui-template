@@ -1,5 +1,3 @@
-import React from 'react';
-
 export interface BoxProps extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   bold?: boolean;
   // css

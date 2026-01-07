@@ -1,5 +1,4 @@
-import React from 'react';
-import { TProps as Props } from './T.types';
+import { type TProps as Props } from './T.types';
 
 export const T = ({ inline, center, textAlign, s, w, lh, c, ...props }: Props) => {
   const Component = inline ? Span : Div;

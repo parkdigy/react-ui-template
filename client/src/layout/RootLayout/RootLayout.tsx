@@ -4,10 +4,8 @@
 
 import '../../init';
 
-import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router';
 import { AppContextProvider } from '@context';
-import { ErrorRetry, Loading, LoadingCommands } from '@ccomp';
 import RootLayoutAppInitializer from './RootLayoutAppInitializer';
 import { useErrorBoundary, withErrorBoundary } from 'react-use-error-boundary';
 import DefaultLayout from '../DefaultLayout';
