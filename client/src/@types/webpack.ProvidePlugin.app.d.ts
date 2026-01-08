@@ -35,6 +35,7 @@ declare global {
   type ApiResult = import('../global/api/index.ts').ApiResult;
   type ApiPaging = import('../global/api/index.ts').ApiPaging;
   type ApiPageLimitRequestData = import('../global/api/index.ts').ApiPageLimitRequestData;
+  const createApi: typeof import('../global/api/index.ts').createApi;
 
   // Const
   const Const: typeof import('../constant/index').default;
