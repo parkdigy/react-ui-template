@@ -43,6 +43,9 @@ declare global {
   // mediaQuery
   const useScreenSize: typeof import('../context/ScreenSizeContext/useScreenSize.ts').default;
 
+  // Context
+  const useAppState: typeof import('../context/index.ts').useAppState;
+
   // materialIcons
   const MaterialIconTypes: typeof import('../global/materialIcons/index.ts').MaterialIconTypes;
   type MaterialIconTypes = import('../global/materialIcons/index.ts').MaterialIconTypes;

@@ -42,6 +42,9 @@ module.exports = {
   // mediaQuery
   useScreenSize: [path.resolve(__dirname, '../src/context/ScreenSizeContext/useScreenSize.ts'), 'default'],
 
+  // Context
+  useAppState: [path.resolve(__dirname, '../src/context/AppContext/useAppState.ts'), 'default'],
+
   // materialIcons
   MaterialIconTypes: [path.resolve(__dirname, '../src/global/materialIcons/index.ts'), 'MaterialIconTypes'],
   DevMaterialIconTypes: [path.resolve(__dirname, '../src/global/materialIcons/index.ts'), 'DevMaterialIconTypes'],

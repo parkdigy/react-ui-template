@@ -1,5 +1,4 @@
 import { MainRouter } from '../../router';
-import { useAppState } from '@context';
 import { ErrorBoundary, Footer, Header } from '@comp';
 import './DefaultLayout.scss';
 
