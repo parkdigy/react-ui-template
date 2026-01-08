@@ -1,4 +1,3 @@
-import { useRef } from 'react';
 import { type FormSelectCommands, type FormSelectItem, type FormSelectProps as Props } from './FormSelect.types';
 import { FormControlBase } from '../@common';
 import { koreanAppendRul } from '@pdg/korean';

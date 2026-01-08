@@ -1,4 +1,3 @@
-import { useRef } from 'react';
 import { type FormSelectControlCommands, type FormSelectControlProps as Props } from './FormSelectControl.types';
 import { FormSelectInput, type FormSelectInputCommands } from './FormSelectInput';
 import { type FormSelectItem } from '../FormSelect.types';

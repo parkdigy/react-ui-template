@@ -1,6 +1,5 @@
 import GridContext from './GridContext';
 import { type GridContextValue } from './GridContext.types';
-import { useContext } from 'react';
 
 export function useGridState(): GridContextValue {
   const value = useContext(GridContext);

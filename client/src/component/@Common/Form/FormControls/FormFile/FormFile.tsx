@@ -1,4 +1,3 @@
-import { type ChangeEvent } from 'react';
 import { type FormFileCommands, type FormFileProps as Props } from './FormFile.types';
 import { FormControlBase } from '../@common';
 import { koreanAppendRul } from '@pdg/korean';
@@ -206,7 +205,7 @@ export const FormFile = ({
   );
 
   const handleFileChange = useCallback(
-    (e: ChangeEvent<HTMLInputElement>) => {
+    (e: React.ChangeEvent<HTMLInputElement>) => {
       const target = e.currentTarget;
       const file = (target.files as FileList)[0];
 

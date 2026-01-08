@@ -1,6 +1,5 @@
 import FormContext from './FormContext';
 import { type FormContextValue } from './FormContext.types';
-import { useContext } from 'react';
 
 export const useFormState = (): FormContextValue => {
   const value = useContext(FormContext);

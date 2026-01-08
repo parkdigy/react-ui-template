@@ -1,4 +1,3 @@
-import { type FormEvent } from 'react';
 import { type FormCommands, type FormProps as Props } from './Form.types';
 import { FormContextProvider, type FormContextValue, type FormControlType } from '../FormContext';
 import { type FormControlCommands } from '../FormControls';
@@ -98,7 +97,7 @@ export const Form = ({
    * ******************************************************************************************************************/
 
   const handleSubmit = useCallback(
-    (e: FormEvent<HTMLFormElement>) => {
+    (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
 
       submit();

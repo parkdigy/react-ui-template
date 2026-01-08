@@ -1,5 +1,4 @@
 import ScreenSizeContext from './ScreenSizeContext';
-import { useContext } from 'react';
 import { type ScreenSizeInfo } from '@theme';
 
 export default function useScreenSize(): ScreenSizeInfo {

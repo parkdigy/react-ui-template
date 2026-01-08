@@ -1,7 +1,6 @@
-import { lazy } from 'react';
 import { createRoot } from 'react-dom/client';
 
-const App = lazy(() => import('./App'));
+const App = React.lazy(() => import('./App'));
 
 const container = document.getElementById('root');
 if (container) {
