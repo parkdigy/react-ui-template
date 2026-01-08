@@ -1,4 +1,3 @@
-import { useAppState } from '@context';
 import { AuthRouter } from '../../router';
 import { ErrorBoundary, Footer, Header } from '@comp';
 import './AuthLayout.scss';
