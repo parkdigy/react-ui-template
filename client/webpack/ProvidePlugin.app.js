@@ -36,4 +36,7 @@ module.exports = {
   // mediaQuery
   mediaQuery: [path.resolve(__dirname, '../src/global/mediaQuery/index.ts'), 'default'],
   useScreenSize: [path.resolve(__dirname, '../src/global/mediaQuery/index.ts'), 'useScreenSize'],
+
+  // Context
+  useAppState: [path.resolve(__dirname, '../src/context/AppContext/useAppState.ts'), 'default'],
 };

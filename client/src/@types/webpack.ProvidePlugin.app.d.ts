@@ -37,6 +37,9 @@ declare global {
   // mediaQuery
   const mediaQuery: typeof import('../global/mediaQuery/index.ts').default;
   const useScreenSize: typeof import('../global/mediaQuery/index.ts').useScreenSize;
+
+  // Context
+  const useAppState: typeof import('../context/index.ts').useAppState;
 }
 
 export {};

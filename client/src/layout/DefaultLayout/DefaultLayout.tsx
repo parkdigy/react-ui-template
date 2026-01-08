@@ -3,7 +3,6 @@
  * ******************************************************************************************************************/
 
 import MainRouter from '../../router';
-import { useAppState } from '@context';
 
 const DefaultLayout = () => {
   const { removeHtmlLoading } = useAppState();
