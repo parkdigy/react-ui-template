@@ -22,6 +22,8 @@
 #PUB#/server/tsconfig.json
 #PUB#/server/webpack.config.js
 #PUB#.env.example
+#PUB#.git-commit.js
+#PUB#.git-merge.js
 #PUB#.eslintignore
 #PUB#.gitmodules
 #PUB#.prettierignore
