@@ -21,7 +21,10 @@ declare global {
 
   // Layout
   const Box: typeof import('../component/@Common/index.ts').Box;
-  type BoxProps = import('../component/@Common/index.ts').BoxProps;
+  type BoxProps<
+    C extends BoxComponent = 'div',
+    E extends HTMLDivElement | HTMLSpanElement = C extends 'span' ? HTMLSpanElement : HTMLDivElement,
+  > = import('../component/@Common/index.ts').BoxProps<C, E>;
   type BoxStyleProps = import('../component/@Common/index.ts').BoxStyleProps;
   const Span: typeof import('../component/@Common/index.ts').Span;
   type SpanProps = import('../component/@Common/index.ts').SpanProps;
