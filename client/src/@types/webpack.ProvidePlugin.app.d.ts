@@ -40,10 +40,8 @@ declare global {
   // Const
   const Const: typeof import('../constant/index').default;
 
-  // mediaQuery
-  const useScreenSize: typeof import('../context/ScreenSizeContext/useScreenSize.ts').default;
-
   // Context
+  const useScreenSize: typeof import('../context/index.ts').useScreenSize;
   const useAppState: typeof import('../context/index.ts').useAppState;
 
   // materialIcons

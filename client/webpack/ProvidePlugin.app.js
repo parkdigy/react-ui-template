@@ -39,10 +39,8 @@ module.exports = {
   // Const
   Const: [path.resolve(__dirname, '../src/constant/index.ts'), 'default'],
 
-  // mediaQuery
-  useScreenSize: [path.resolve(__dirname, '../src/context/ScreenSizeContext/useScreenSize.ts'), 'default'],
-
   // Context
+  useScreenSize: [path.resolve(__dirname, '../src/context/ScreenSizeContext/useScreenSize.ts'), 'default'],
   useAppState: [path.resolve(__dirname, '../src/context/AppContext/useAppState.ts'), 'default'],
 
   // materialIcons
