@@ -1,6 +1,5 @@
 import { type DevButtonsProps as Props } from './DevButtons.types';
 import DevButton from './DevButton';
-import { useAppState, useScreenSize } from '@context';
 import './DevButtons.scss';
 
 export const DevButtons = ({}: Props) => {
