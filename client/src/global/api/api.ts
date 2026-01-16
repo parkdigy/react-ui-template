@@ -28,6 +28,16 @@ export default {
   },
 
   /**
+   * PUT 요청
+   * @param path API 경로
+   * @param data 요청 데이터
+   * @param option API 옵션
+   */
+  put<T>(path: string, data?: ApiRequestData, option?: ApiRequestOption) {
+    return new Api<T>(defaultOption).put(path, data, option);
+  },
+
+  /**
    * PATCH 요청
    * @param path API 경로
    * @param data 요청 데이터
