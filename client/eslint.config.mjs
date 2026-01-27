@@ -5,7 +5,7 @@ import typescriptEslintParser from '@typescript-eslint/parser';
 import pluginReact from 'eslint-plugin-react';
 import pluginReactHooks from 'eslint-plugin-react-hooks';
 import WebpackProviderPluginCommonComponent from './webpack/ProvidePlugin.common-component.js';
-import pluginPdgReactHooks from '@pdg/react-hook/eslint-plugin';
+import pluginPdgReactHooks from '@pdg/eslint-plugin-react-hook';
 
 export default defineConfig([
   ...tseslint.config(eslint.configs.recommended, tseslint.configs.recommended),
