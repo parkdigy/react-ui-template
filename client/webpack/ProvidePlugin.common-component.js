@@ -51,6 +51,9 @@ module.exports = {
   // Tooltip
   Tooltip: [path.resolve(__dirname, '../src/component/@Common/DataDisplays/Tooltip/index.ts'), 'Tooltip'],
 
+  // NumberText
+  NumberText: [path.resolve(__dirname, '../src/component/@Common/Generals/Text/NumberText/index.ts'), 'NumberText'],
+
   // T - Default
   T: [path.resolve(__dirname, '../src/component/@Common/Generals/Text/T/T.tsx'), 'default'],
 

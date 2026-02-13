@@ -76,6 +76,10 @@ declare global {
   const Tooltip: typeof import('../component/@Common/index.ts').Tooltip;
   type TooltipProps = import('../component/@Common/index.ts').TooltipProps;
 
+  // NumberText
+  const NumberText: typeof import('../component/@Common/index.ts').NumberText;
+  type NumberTextProps = import('../component/@Common/index.ts').NumberTextProps;
+
   // T - Default
   const T: typeof import('../component/@Common/index.ts').T;
   type TProps = import('../component/@Common/index.ts').TProps;
