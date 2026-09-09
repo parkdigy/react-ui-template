@@ -93,8 +93,11 @@ export const Theme: Theme = {
     },
     vars: copy(cssValue),
   },
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   isAllColor: (color): color is ReadonlyArray<AllColors>[number] => false,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   isDefaultColor: (color): color is ReadonlyArray<DefaultColors>[number] => false,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   isButtonColor: (color): color is ReadonlyArray<ButtonColors>[number] => false,
   getColor: () => undefined,
   getBackground: () => undefined,

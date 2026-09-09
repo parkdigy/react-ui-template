@@ -11,7 +11,6 @@ const CopyPlugin = require('copy-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const { SourceMapDevToolPlugin } = require('webpack');
 const TsConfigJson = require('./tsconfig.json');
-const SyntaxHighlighter = require('react-syntax-highlighter');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const MyProvidePlugin = require('./webpack/ProvidePlugin');
 
@@ -86,11 +85,6 @@ const options = {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
     alias,
   },
-  externals: isProduction
-    ? {
-        'react-syntax-highlighter': SyntaxHighlighter,
-      }
-    : undefined,
   output: {
     path: outputPath,
     publicPath: '/',

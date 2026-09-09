@@ -1,14 +1,20 @@
 import { type Dev_CodeProps as Props } from './Dev_Code.types';
-import SyntaxHighlighter from 'react-syntax-highlighter';
+import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
+import jsx from 'react-syntax-highlighter/dist/esm/languages/prism/jsx';
+import javascript from 'react-syntax-highlighter/dist/esm/languages/prism/javascript';
+import typescript from 'react-syntax-highlighter/dist/esm/languages/prism/typescript';
 import { darcula, docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import { makeProps } from './Dev_Code.functions';
+
+SyntaxHighlighter.registerLanguage('jsx', jsx);
+SyntaxHighlighter.registerLanguage('javascript', javascript);
+SyntaxHighlighter.registerLanguage('typescript', typescript);
 
 export const Dev_Code = ({ children, propsMap, customStyle }: Props) => {
   /********************************************************************************************************************
    * Use
    * ******************************************************************************************************************/
 
-  ll(children);
   const theme = useTheme();
 
   /********************************************************************************************************************
@@ -38,7 +44,7 @@ export const Dev_Code = ({ children, propsMap, customStyle }: Props) => {
 
   return children ? (
     <SyntaxHighlighter
-      language='typescript'
+      language='jsx'
       style={theme.dark ? darcula : docco}
       customStyle={{ border: '1px solid var(--color-opacity-20)', padding: 10, borderRadius: 4, ...customStyle }}
     >

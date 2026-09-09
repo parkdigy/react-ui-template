@@ -1,51 +1,63 @@
-# React Template 구조와 변경 영향
+# React UI Template 구조와 변경 영향
 
 ## 실행 구조
 
 ```text
 브라우저
-  └─ client/src/index.tsx
-      └─ App → RootLayout
-          ├─ init/axios
-          ├─ BrowserRouter + AppContextProvider
+  └─ client/src/index.tsx → App
+      ├─ init/axios + 전역 Sass
+      └─ BrowserRouter → ErrorBoundary → RootLayout
+          ├─ ThemeProvider + ScreenSizeContextProvider + AppContextProvider
           ├─ RootLayoutAppInitializer → g.nav / g.location
-          └─ DefaultLayout → router/index.tsx → 화면 컴포넌트
+          ├─ /auth/* → AuthLayout → AuthRouter
+          └─ /*      → DefaultLayout → MainRouter
+                         └─ local: /dev/controls → @Dev 컴포넌트 카탈로그
 
 개발: client webpack-dev-server : APP_HOST:APP_PORT
   └─ /api/* → API_URL/*
 
 운영: server/src/app.ts : APP_PORT 또는 APP_SECURE_PORT
-  ├─ /api/version/app                 로컬 버전 응답
-  ├─ /api/* → API_URL/*               외부 API 프록시
-  ├─ /deploy/github                   GitHub push 배포 훅
-  ├─ client/dist 정적 파일 제공
-  └─ 나머지 경로 → EJS로 index.html 렌더링
+  ├─ 로컬 API 버전·AASA 엔드포인트
+  ├─ /api/* → API_URL/*
+  ├─ /deploy/github
+  ├─ client/dist 정적 파일
+  └─ 정규식 fallback → EJS로 client/dist/index.html 렌더링
 ```
 
 ## 패키지와 생성 결과
 
 | 영역 | 소스·설정 | 생성 결과 | 핵심 명령 |
 | --- | --- | --- | --- |
-| 루트 | `package.json`, `.env`, 배포 스크립트 | 배포 브랜치/묶음 | `npm run verify`, `npm run build` |
-| 클라이언트 | `client/src`, `client/public`, `client/webpack` | `client/dist`, `client/build/report.html` | `npm run client:dev`, `npm run client:build` |
-| 서버 | `server/src`, `server/webpack.config.js`, `server/ecosystem.config.js` | 개발 `server/@dev`, 운영 `server/dist/app.js` | `npm run server:dev`, `npm run server:build` |
+| 루트 | `package.json`, `.env*`, `.publish*` | 배포 브랜치·배포 묶음 | `npm run verify`, `npm run build` |
+| 클라이언트 | `client/src`, `client/public`, `client/webpack*`, `client/package.json` | `client/dist`, `client/build/report.html`, `client/tsconfig.tsbuildinfo` | `npm run client:dev`, `npm run client:build` |
+| 서버 | `server/src`, `server/webpack.config.js`, `server/ecosystem.config.js`, `server/package.json` | 개발 `server/@dev`, 운영 `server/dist/app.js` | `npm run server:dev`, `npm run server:build` |
 
-루트에 npm workspace 설정은 없다. 각 디렉터리는 별도 `package.json`과 의존성 설치 경계를 가진다.
+- 루트에 npm workspace 설정은 없다. 루트·`client`·`server`는 각자 `package.json`과 `node_modules`를 가진 별도 설치 경계다.
+- 저장소는 lockfile을 `.gitignore`로 제외한다. 설치된 모듈에서의 성공은 깨끗한 설치 재현성을 증명하지 않는다.
+- `client/package.json`은 브라우저 런타임 패키지까지 `devDependencies`에 둔다. 일반적인 dependencies 관례로 임의 재분류하지 말고 배포 방식과 함께 검토한다.
 
 ## 클라이언트 경계
 
-### 진입점과 레이아웃
+### 진입점, 컨텍스트와 라우팅
 
-- `client/src/index.tsx`가 React root를 만들고 `App`을 렌더링한다.
-- `RootLayout`이 전역 초기화, 오류 경계, HTML 로딩 제어, 라우터, 앱 컨텍스트를 소유한다.
+- `client/src/index.tsx`가 React root를 만들고 lazy `App`을 렌더링한다.
+- `App`은 초기화와 전역 Sass, `BrowserRouter`, 루트 오류 경계를 설치한다.
+- `RootLayout`은 테마·화면 크기·앱 컨텍스트, 인증 초기화, HTML 로딩, dialog와 toast를 소유한다.
 - `RootLayoutAppInitializer`는 React Router 상태를 `g.nav`와 `g.location`에 연결한다.
-- `DefaultLayout` 아래에서 `client/src/router/index.tsx`의 화면 라우트가 렌더링된다.
+- `/auth/*`는 `AuthLayout`과 `AuthRouter`, 그 밖의 경로는 `DefaultLayout`과 `MainRouter`가 처리한다. 각 router의 wildcard는 현재 `/`로 이동한다.
+- `/dev/controls`와 `DevButtons`는 `env.isLocal`일 때만 노출된다. Webpack 운영 빌드는 `client/src/component/@Dev`를 `ignore-loader`로 제외하므로 운영 코드가 `@Dev` 구현에 의존하면 안 된다.
 
-### 컴포넌트 규칙
+### 컴포넌트와 카탈로그 계약
 
-- 공통 컴포넌트는 `client/src/component/@Common/{분류}/{이름}`에 구현, 타입, `index.ts`를 둔다.
-- 기능 화면은 `client/src/component/{기능}` 아래에 두고 인접 `index.ts`와 `client/src/component/index.ts`로 export한다.
-- 경로 별칭은 `client/tsconfig.json`이 기준이며 Webpack이 이를 읽어 동일 alias를 만든다.
+- 공통 UI는 `client/src/component/@Common/{분류}/{이름}` 아래의 구현, `*.types.ts`, SCSS와 인접 `index.ts`로 구성된다.
+- export는 분류별 barrel, `client/src/component/@Common/index.ts`, `client/src/component/index.ts`로 이어진다. 자동 주입 여부와 무관하게 이 공개 경로를 확인한다.
+- 기능 화면은 `client/src/component/{기능}` 아래에 두고 인접·상위 barrel과 router에서 연결한다.
+- `client/src/component/@Dev`는 공통 컴포넌트의 로컬 카탈로그다. 대화형 옵션, variant 예제, `*.code.md`의 표시 코드는 실제 props와 사용법을 따라야 한다.
+- `*.md`와 `*.txt`는 Webpack `asset/source`로 읽는다. 예제 문서의 placeholder 문법은 인접한 기존 예제를 재사용한다.
+
+### 경로 별칭
+
+- `client/tsconfig.json`의 `paths`가 `@comp`, `@ccomp`, `@theme`, `@context` 등의 기준이며 Webpack이 이를 읽어 같은 alias를 만든다.
 
 ### 자동 주입 전역
 
@@ -60,6 +72,16 @@
 
 각 식별자의 TypeScript 선언은 `client/src/@types/webpack.ProvidePlugin.*.d.ts`에 있다. 공통 컴포넌트 목록은 ESLint 전역에도 사용되므로 주입 설정, 타입 선언, ESLint 인식을 함께 맞춘다.
 
+React Compiler가 Babel에 설치되어 있고 ESLint는 `React.FC`, `React.memo`, `React.forwardRef` 사용을 금지한다. ref가 필요한 기존 컴포넌트는 저장소의 `useForwardRef` 패턴을 따른다.
+
+### 테마와 스타일
+
+- `client/src/theme/@types`가 색상·크기·화면 키와 `Theme` 기본 shape를 정의한다.
+- `client/src/sass/theme-light.scss`, `theme-dark.scss`, `theme-size.scss`, `theme-screen.scss`가 해당 CSS 변수를 제공하고 `sass/index.scss`가 이를 불러온다.
+- `ThemeProvider`는 계산된 CSS 변수를 읽어 런타임 theme과 `g.theme`을 채운다. 선언된 색상·크기·화면 변수가 없으면 오류를 던진다.
+- 공통 컴포넌트의 색상·크기 props를 바꾸면 TypeScript union, Sass 변수, provider 변환, 카탈로그 옵션을 함께 확인한다.
+- 개발은 `style-loader`, 운영은 `MiniCssExtractPlugin`으로 스타일을 처리하므로 운영 전용 경로 문제는 개발 서버만으로 검증되지 않는다.
+
 ### API 계약
 
 - 화면 코드는 `client/src/global/api`의 `api` 또는 `createApi`를 기준으로 호출한다.
@@ -67,35 +89,40 @@
 - 브라우저 요청의 `/api/foo`는 개발 Webpack과 운영 Express 모두 외부 `API_URL/foo`로 전달된다.
 - `APP_HOST`와 `API_URL` 도메인이 다르면 쿠키가 적용되지 않는다는 기존 운영 제약이 있다.
 - Axios 초기화는 `XSRF-TOKEN` 쿠키를 `X-CSRF-TOKEN` 헤더로 연결한다.
+- 개발 HTML은 `.env` 값을, 운영 HTML은 Express가 EJS로 주입한 `appEnv`와 `title`을 `window.$$MyAppConfig`에 담는다. `global/env`는 이 값을 모드와 버전 플래그로 변환한다.
 
 ## 서버 경계
 
 - `server/src/init`이 루트 `.env`와 서버 전역 유틸리티를 먼저 초기화한다.
 - Redis 세션은 관련 환경값이 모두 있고 `SESSION_DRIVER=redis`일 때만 설치된다.
-- `/api/version/app`은 외부 프록시보다 먼저 등록되어 로컬에서 처리된다.
-- 외부 API 프록시는 `^/api`를 제거하고 선택적으로 keep-alive agent를 사용한다.
+- `/api/version/app`과 중첩된 버전 경로, `/apple-app-site-association`, `/.well-known/apple-app-site-association`은 외부 프록시보다 먼저 등록된다.
+- 외부 API 프록시는 `/api` prefix를 제거해 `API_URL`로 전달하고 선택적으로 keep-alive agent를 사용한다.
 - JSON/body parser는 현재 프록시 뒤, `/deploy/github` 앞에 있다. 순서 변경은 프록시 본문과 webhook 서명 계산에 영향을 줄 수 있다.
-- 마지막 `*` 라우트는 React Router 새로고침을 위해 `client/dist/index.html`을 EJS로 렌더링한다.
-- 스케줄러는 로컬이 아닌 환경에서만 PM2 일일 reload job을 등록하며, `JobBase`가 같은 프로세스 안의 중복 실행을 막는다.
-- SIGINT 처리, HTTPS→HTTPS 리다이렉트, keep-alive timeout은 서버 생명주기 계약이다.
+- `express.static` 다음의 정규식 fallback은 React Router 새로고침을 위해 `client/dist/index.html`을 EJS로 렌더링한다. Express 5 경로 문법을 고려해 임의의 문자열 wildcard로 되돌리지 않는다.
+- 스케줄러는 로컬이 아닌 환경에서 시작하며 `PM2_RELOAD`가 활성화된 경우에만 일일 reload job을 등록한다. `JobBase`는 같은 프로세스 안의 중복 실행만 막는다.
+- SIGINT 종료, HTTP→HTTPS redirect, API/app keep-alive timeout, PM2 `ready` 신호와 Slack 기동 알림은 서버 생명주기 계약이다.
 
 ## 변경 영향표
 
 | 변경 종류 | 함께 확인할 곳 | 최소 검증 |
 | --- | --- | --- |
-| 새 화면·라우트 | 기능 폴더 `index.ts`, `component/index.ts`, `router/index.tsx`, 레이아웃 | `npm run verify` + 브라우저 직접 확인 |
-| 공통 컴포넌트 | 구현·타입·barrel, 필요 시 ProvidePlugin과 `.d.ts` | `npm run verify` + 사용 화면 확인 |
+| 공통 컴포넌트 props·동작 | 구현·타입·SCSS·barrel, ProvidePlugin, `@Dev` 예제·`*.code.md` | `npm run verify` + `/dev/controls` 직접 확인 |
+| 새 앱 화면·라우트 | 기능 barrel, `MainRouter`/`AuthRouter`, 레이아웃, 로딩·오류 상태 | `npm run verify` + 대상 URL 직접 확인 |
 | 전역 유틸리티 | 실제 export, ProvidePlugin, 전역 `.d.ts`, ESLint globals | `npm run verify` + `npm run client:build` |
+| 테마 색상·크기·화면 | theme 타입·기본값, Sass 변수, `ThemeProvider`, 사용 컴포넌트·카탈로그 | `npm run verify` + light/dark·반응형 확인 |
 | API 요청/응답 | 화면 타입, `global/api`, 오류 처리, 프록시 경로 | `npm run verify` + 실제 요청 확인 |
-| 서버 로컬 API | 컨트롤러 export, `app.ts` 라우트 순서, body parser | `npm run verify` + HTTP 상태/본문 확인 |
-| 환경 변수 | `.env.example`, 소비 코드, 개발·운영 차이 | `npm run verify` + 해당 환경 기동 |
+| 서버 로컬 API·AASA | 컨트롤러/파일, `app.ts` 라우트 순서, proxy·parser·fallback | `npm run verify` + HTTP 상태/본문 확인 |
+| 환경 변수 | `.env.example`, 소비 코드, 개발 HTML과 운영 EJS 차이 | `npm run verify` + 해당 환경 기동 |
 | Webpack/자산 | client 또는 server config, public 복사, dist 소비 경로 | `npm run build` |
+| 의존성 | 대상 `package.json`, loader/externals, 깨끗한 별도 설치 | `npm run verify`; 필요 시 격리된 clean install/build |
 | 세션·보안·배포 | Redis 조건, CSP/CSRF, webhook 서명, PM2 경로 | 전체 빌드 + 격리된 환경 검증과 별도 리뷰 |
 
 ## 알려진 검증 경계
 
-- 현재 저장소에는 자동 테스트 스크립트가 없다. `npm run verify`는 lint와 TypeScript 정적 검사만 보장한다.
-- `npm run build`는 번들 생성 가능성을 검증하지만 브라우저 UX, 외부 API, Redis, HTTPS, Slack, GitHub webhook, PM2 동작까지 증명하지 않는다.
+- 현재 저장소에는 자동 테스트 runner와 `test` 스크립트가 없다. `npm run verify`는 lint와 TypeScript 정적 검사만 보장한다.
+- `npm run build`는 server를 먼저, client를 나중에 번들링하고 기존 dist를 정리한다. 번들 성공은 브라우저 UX, 외부 API, Redis, HTTPS, Slack, GitHub webhook, PM2 동작까지 증명하지 않는다.
 - 클라이언트는 `react`와 `react-dom`을 실행 시 사용하지만 현재 `client/package.json`의 직접 의존성에는 선언하지 않는다. 설치된 모듈만 있는 환경의 빌드 성공을 새 환경의 재현성 증거로 보지 말고, 의존성 정책을 바꿀 때는 깨끗한 설치를 별도로 확인한다.
 - `client/tsconfig.json`과 `server/tsconfig.json`은 `src/**/*.test.tsx`를 제외하므로 테스트를 추가하면 별도 테스트 runner와 타입 검사 범위를 설계해야 한다.
+- 개발 서버의 `@Dev` 화면은 운영 번들 제외, CSS 추출, Express EJS 주입과 정적 fallback을 검증하지 않는다. 반대로 운영 빌드는 사용자 상호작용을 검증하지 않는다.
+- lockfile이 추적되지 않고 클라이언트 런타임 패키지가 `devDependencies`에 있으므로 현재 설치 트리의 성공을 새 환경의 재현성 증거로 표현하지 않는다.
 - `client/dist`와 `server/dist`는 기본 `.gitignore` 대상이지만 배포 준비 과정에서 규칙을 바꾸는 기존 절차가 있다. 일반 개발 중에는 ignore 규칙을 변경하지 않는다.

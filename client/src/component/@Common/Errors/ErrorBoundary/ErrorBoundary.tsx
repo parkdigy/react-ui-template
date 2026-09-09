@@ -23,7 +23,7 @@ const FallbackRender = ({ error, resetErrorBoundary, root }: FallbackProps & { r
    * Effect
    * ******************************************************************************************************************/
 
-  const isChunkLoadError = error.name === 'ChunkLoadError';
+  const isChunkLoadError = error instanceof Error && error.name === 'ChunkLoadError';
 
   if (isChunkLoadError) {
     loadable.checkUpdate();
@@ -86,7 +86,7 @@ const FallbackRender = ({ error, resetErrorBoundary, root }: FallbackProps & { r
             <i className={iconClassName} style={{ fontSize: 40 }}>
               error
             </i>
-            {env.isLocal && (
+            {env.isLocal && error instanceof Error && (
               <div style={{ textAlign: 'center' }}>
                 {error.stack && typeof error.stack === 'string' ? (
                   <div
