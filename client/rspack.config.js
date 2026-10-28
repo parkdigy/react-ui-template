@@ -2,6 +2,7 @@ const path = require('node:path');
 const fs = require('node:fs');
 const rspack = require('@rspack/core');
 const { ReactRefreshRspackPlugin } = require('@rspack/plugin-react-refresh');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const env = {
   ...require('dotenv').config({ path: path.resolve(__dirname, '../.env'), quiet: true }).parsed,
   ...process.env,
@@ -47,12 +48,21 @@ class BuildStatsPlugin {
   }
 }
 
+function vendorChunkName(module) {
+  const packagePath = module.context?.split(/[\\/]node_modules[\\/]/).pop();
+  if (!packagePath || packagePath === module.context) return;
+  const [scope, name] = packagePath.split(/[\\/]/);
+  return scope === '@pdg' ? `vendors/_pdg_${name}` : `vendors/${scope.replace('@', '')}`;
+}
+
 module.exports = {
   context: __dirname,
   mode: isProduction ? 'production' : 'development',
-  devtool: isProduction ? false : 'eval-cheap-module-source-map',
+  devtool: false,
   target: 'browserslist',
   entry: './src',
+  // Rspack CLI otherwise enables on-demand compilation for the development server.
+  lazyCompilation: false,
   stats: 'errors-warnings',
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
@@ -71,7 +81,7 @@ module.exports = {
     port: Number(env.APP_PORT),
     hot: true,
     historyApiFallback: true,
-    client: { overlay: { errors: true, warnings: false, runtimeErrors: true } },
+    client: { overlay: { errors: false, warnings: false, runtimeErrors: false }, progress: false },
     proxy: env.API_URL
       ? [
           {
@@ -79,6 +89,7 @@ module.exports = {
             target: env.API_URL,
             changeOrigin: true,
             pathRewrite: { '^/api': '' },
+            logger: { info: () => {}, warn: console.warn, error: console.error },
           },
         ]
       : [],
@@ -91,55 +102,114 @@ module.exports = {
   optimization: {
     minimize: isProduction,
     runtimeChunk: true,
-    splitChunks: isProduction ? { chunks: 'all' } : false,
+    removeAvailableModules: isProduction,
+    removeEmptyChunks: isProduction,
+    splitChunks: isProduction
+      ? {
+          chunks: 'all',
+          cacheGroups: {
+            common: {
+              test: /[\\/]node_modules[\\/](react|react-dom|react-router|history|stylis)[\\/]/,
+              chunks: 'all',
+              name(module) {
+                return vendorChunkName(module)?.replace('vendors/', 'vendors/_common_');
+              },
+            },
+            defaultVendors: {
+              test: /[\\/]node_modules[\\/]/,
+              chunks: 'all',
+              name: vendorChunkName,
+            },
+          },
+        }
+      : {},
   },
   plugins: [
     new MyProvidePlugin(),
-    new rspack.CssExtractRspackPlugin({ filename: 'css/[name].[contenthash].css' }),
     new rspack.HtmlRspackPlugin({ template: './public/index.html' }),
     new AppHtmlPlugin(),
     new rspack.CopyRspackPlugin({ patterns: [{ from: './public/robots.txt' }] }),
     new rspack.IgnorePlugin({ resourceRegExp: /^\.\/locale$/, contextRegExp: /moment$/ }),
     ...(isProduction
-      ? [new rspack.CircularCheckRspackPlugin({ exclude: /node_modules/, failOnError: true }), new BuildStatsPlugin()]
-      : [new ReactRefreshRspackPlugin({ overlay: false })]),
+      ? [
+          new rspack.CircularCheckRspackPlugin({ exclude: /a\.js|node_modules/, failOnError: true }),
+          new rspack.CssExtractRspackPlugin({ filename: 'css/[name].[contenthash].css' }),
+          new BundleAnalyzerPlugin({
+            openAnalyzer: false,
+            analyzerMode: 'static',
+            reportFilename: '../build/report.html',
+          }),
+          new BuildStatsPlugin(),
+        ]
+      : [
+          new rspack.SourceMapDevToolPlugin({ filename: '[file].map' }),
+          new ReactRefreshRspackPlugin({ overlay: false }),
+        ]),
   ],
   module: {
     rules: [
       {
-        test: /\.[jt]sx?$/,
-        include: path.resolve(__dirname, 'src'),
-        loader: 'builtin:swc-loader',
-        options: {
-          jsc: {
-            parser: { syntax: 'typescript', tsx: true },
-            transform: {
-              react: { runtime: 'automatic', development: !isProduction, refresh: !isProduction },
-              reactCompiler: { target: '19', panicThreshold: 'all_errors' },
+        test: /\.m?js$/,
+        enforce: 'pre',
+        resolve: { fullySpecified: false },
+        loader: 'source-map-loader',
+      },
+      {
+        oneOf: [
+          ...(isProduction
+            ? [
+                {
+                  test: /[\\/]src[\\/]component[\\/]@Dev[\\/]/,
+                  type: 'javascript/auto',
+                  loader: 'ignore-loader',
+                },
+              ]
+            : []),
+          {
+            test: /\.[jt]sx?$/,
+            include: path.resolve(__dirname, 'src'),
+            loader: 'builtin:swc-loader',
+            options: {
+              jsc: {
+                parser: { syntax: 'typescript', tsx: true },
+                transform: {
+                  react: { runtime: 'automatic', development: !isProduction, refresh: !isProduction },
+                  reactCompiler: { target: '19', panicThreshold: 'all_errors' },
+                },
+              },
+              env: { mode: 'usage', coreJs: require('core-js/package.json').version, proposals: true },
             },
           },
-          env: { mode: 'usage', coreJs: require('core-js/package.json').version, proposals: true },
-        },
-      },
-      {
-        test: /\.(sa|sc|c)ss$/,
-        type: 'javascript/auto',
-        use: [rspack.CssExtractRspackPlugin.loader, 'css-loader', 'sass-loader'],
-      },
-      {
-        test: /\.svg$/i,
-        use: [
-          { loader: '@svgr/webpack', options: { exportType: 'named', namedExport: 'ReactComponent' } },
-          { loader: 'url-loader', options: { limit: 100 * 1024, name: 'assets/[name].[contenthash].[ext]' } },
+          {
+            test: /\.(sa|sc|c)ss$/,
+            type: 'javascript/auto',
+            use: [
+              isProduction
+                ? { loader: rspack.CssExtractRspackPlugin.loader, options: { publicPath: '../' } }
+                : 'style-loader',
+              'css-loader',
+              'sass-loader',
+            ],
+          },
+          { test: /\.html$/i, loader: 'html-loader', options: { minimize: true } },
+          {
+            test: /\.svg$/i,
+            issuer: /\.[jt]sx?$/,
+            type: 'javascript/auto',
+            use: [
+              { loader: '@svgr/webpack', options: { exportType: 'named', namedExport: 'ReactComponent' } },
+              { loader: 'url-loader', options: { limit: 100 * 1024, name: 'assets/[name].[contenthash].[ext]' } },
+            ],
+          },
+          {
+            test: /\.(png|jpe?g|gif|svg)$/i,
+            type: 'asset',
+            parser: { dataUrlCondition: { maxSize: 100 * 1024 } },
+          },
+          { test: /\.(woff2?|eot|ttf|otf)$/i, type: 'asset/resource' },
+          { test: /\.(txt|md)$/i, type: 'asset/source' },
         ],
       },
-      {
-        test: /\.(png|jpe?g|gif)$/i,
-        type: 'asset',
-        parser: { dataUrlCondition: { maxSize: 100 * 1024 } },
-      },
-      { test: /\.(woff2?|eot|ttf|otf)$/i, type: 'asset/resource' },
-      { test: /\.(txt|md)$/i, type: 'asset/source' },
     ],
   },
 };

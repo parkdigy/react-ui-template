@@ -12,9 +12,14 @@ Node 버전은 `.nvmrc`를 기준으로 맞추고 루트, `client`, `server`에�
 클라이언트와 서버 모두 `builtin:swc-loader`를 사용한다. React Compiler는 SWC에서 실행하며,
 전역 자동 주입 설정은 `client/rspack`, 대응 타입은 `client/src/@types/rspack.ProvidePlugin.*.d.ts`에 있다.
 기존 빌드 설정과 Babel 플러그인, 서버 개발용 `node-hot-loader`는 제거했다.
-`eslint-plugin-react-hooks`는 내부 분석용 Babel을 간접 의존성으로 사용하므로 설치 트리에 남지만 빌드에는 사용하지 않는다.
+앱의 TSX 변환과 React Compiler는 SWC가 담당한다. `eslint-plugin-react-hooks`와 SVG를 변환하는 SVGR은 내부적으로 Babel을 사용한다.
 
-번들 분석 데이터는 `client/build/stats.json`으로 생성한다. SVG는 이미지 URL 자산으로 처리한다.
+운영 빌드는 패키지별 vendor 청크를 분리하고, `client/build/report.html`과 `client/build/stats.json`을 생성한다.
+`client/src/component/@Dev`의 카탈로그 구현과 예제는 운영 번들에서 제외한다.
+개발 스타일은 `style-loader`로 주입하며, 운영 CSS는 `css/`에 추출한다. 개발 JavaScript의 외부 소스맵과 의존성 소스맵을 지원한다.
+SVG는 기본 URL export와 `ReactComponent` named export를 제공하며, CSS와 HTML에서 참조하는 SVG는 이미지 자산으로 처리한다.
+HTML import는 `html-loader`로 최소화하고, 이미지 참조를 빌드 자산 경로로 변환한다.
+개발 서버의 자동 지연 컴파일은 끄고 전체 번들을 컴파일해 제공한다.
 개발 서버와 Express 모두 `/api` 접두사를 제거해 `API_URL`로 전달한다.
 환경 변수는 루트 `.env`를 읽으며 실행 명령에 전달한 환경 변수가 우선한다.
 

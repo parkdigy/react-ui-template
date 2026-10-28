@@ -45,7 +45,7 @@
 - `RootLayout`은 테마·화면 크기·앱 컨텍스트, 인증 초기화, HTML 로딩, dialog와 toast를 소유한다.
 - `RootLayoutAppInitializer`는 React Router 상태를 `g.nav`와 `g.location`에 연결한다.
 - `/auth/*`는 `AuthLayout`과 `AuthRouter`, 그 밖의 경로는 `DefaultLayout`과 `MainRouter`가 처리한다. 각 router의 wildcard는 현재 `/`로 이동한다.
-- `/dev/controls`와 `DevButtons`는 `env.isLocal`일 때만 노출된다. 현재 Rspack 설정에는 `@Dev` 전용 제외 규칙이 없으므로, 로컬 노출 조건과 운영 번들에서의 코드 제외를 구분한다.
+- `/dev/controls`와 `DevButtons`는 `env.isLocal`일 때만 노출된다. 운영 Rspack 빌드는 `@Dev` 경로를 `ignore-loader`로 비워 카탈로그 구현과 예제 모듈을 제외한다.
 
 ### 컴포넌트와 카탈로그 계약
 
@@ -80,7 +80,7 @@ React Compiler는 `builtin:swc-loader`의 `jsc.transform.reactCompiler`로 활�
 - `client/src/sass/theme-light.scss`, `theme-dark.scss`, `theme-size.scss`, `theme-screen.scss`가 해당 CSS 변수를 제공하고 `sass/index.scss`가 이를 불러온다.
 - `ThemeProvider`는 계산된 CSS 변수를 읽어 런타임 theme과 `g.theme`을 채운다. 선언된 색상·크기·화면 변수가 없으면 오류를 던진다.
 - 공통 컴포넌트의 색상·크기 props를 바꾸면 TypeScript union, Sass 변수, provider 변환, 카탈로그 옵션을 함께 확인한다.
-- 개발과 운영 모두 `CssExtractRspackPlugin`으로 CSS를 추출한다. 운영 정적 자산 경로는 개발 서버만으로 검증되지 않는다.
+- 개발은 `style-loader`로 스타일을 주입하고 운영은 `CssExtractRspackPlugin`으로 CSS를 추출한다. 운영 CSS 자산은 `../assets/` 상대 경로로 참조한다.
 
 ### API 계약
 
@@ -125,7 +125,7 @@ React Compiler는 `builtin:swc-loader`의 `jsc.transform.reactCompiler`로 활�
 - 서버 개발은 Rspack 감시 빌드 후 Node 프로세스를 재시작한다. 모듈별 HMR 대신 프로세스 재시작으로 적용한다.
 - 빌드 시 lint와 TypeScript 검사를 선행한다. 개발 시 lint와 클라이언트 TypeScript 검사는 watch로 실행한다.
 - SVG는 `@svgr/webpack`과 `url-loader`로 기본 URL export와 `ReactComponent` named export를 함께 제공한다.
-- 번들 분석은 `client/build/stats.json`을 사용한다.
+- 번들 분석은 `client/build/report.html`과 `client/build/stats.json`을 사용한다. 운영 vendor 청크는 common 패키지, @pdg 패키지, 나머지 패키지별로 이름을 분리한다.
 - `client/tsconfig.json`과 `server/tsconfig.json`은 `src/**/*.test.tsx`를 제외하므로 테스트를 추가하면 별도 테스트 runner와 타입 검사 범위를 설계해야 한다.
 - 개발 서버의 `@Dev` 화면은 운영 번들 구성, Express EJS 주입과 정적 fallback을 검증하지 않는다. 반대로 운영 빌드는 사용자 상호작용을 검증하지 않는다.
 - lockfile이 추적되지 않고 클라이언트 런타임 패키지가 `devDependencies`에 있으므로 현재 설치 트리의 성공을 새 환경의 재현성 증거로 표현하지 않는다.
