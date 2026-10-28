@@ -111,6 +111,7 @@
   "allowScripts": {
     "@parcel/watcher@2.6.0": true,
     "core-js@3.50.0": true,
-    "fsevents@2.3.3": true
+    "fsevents@2.3.3": true,
+    "postinstall-postinstall@2.1.0": true
   }
 }
