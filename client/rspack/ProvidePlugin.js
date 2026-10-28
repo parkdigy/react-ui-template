@@ -1,4 +1,4 @@
-const webpack = require('webpack');
+const rspack = require('@rspack/core');
 const app = require('./ProvidePlugin.app');
 const react = require('./ProvidePlugin.react');
 const reactHooks = require('./ProvidePlugin.react-hooks');
@@ -8,7 +8,7 @@ const reactComponents = require('./ProvidePlugin.common-component');
 
 class MyProvidePlugin {
   apply(compiler) {
-    new webpack.ProvidePlugin({
+    new rspack.ProvidePlugin({
       ...app,
       ...react,
       ...reactHooks,

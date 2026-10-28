@@ -7,7 +7,7 @@ description: React UI Template의 공통 컴포넌트와 로컬 카탈로그, Re
 
 ## 언제 사용하는가
 
-- 이 저장소에서 공통 UI, 개발용 컴포넌트 카탈로그, 화면·라우팅, API 호출, 서버, 환경 변수, Webpack 또는 배포 경로를 변경할 때 사용한다.
+- 이 저장소에서 공통 UI, 개발용 컴포넌트 카탈로그, 화면·라우팅, API 호출, 서버, 환경 변수, Rspack 또는 배포 경로를 변경할 때 사용한다.
 - 한 파일의 수정이 barrel export, 자동 주입 타입, Sass 테마, 데모 코드, 프록시나 생성 결과에 미치는 영향을 판단할 때 사용한다.
 - 설명만 하거나 코드 변경 없이 진단하라는 요청에서는 탐색과 보고까지만 수행한다.
 
@@ -40,7 +40,7 @@ description: React UI Template의 공통 컴포넌트와 로컬 카탈로그, Re
 - 테마: TypeScript 키·타입 → `theme-light.scss`, `theme-dark.scss`, `theme-size.scss`, `theme-screen.scss` → `ThemeProvider`의 CSS 변수 로딩 → 사용 컴포넌트와 로컬 카탈로그
 - API 호출: 응답 타입 → `global/api` 래퍼와 오류 처리 → `/api` 경로 재작성 → 쿠키·CSRF 조건
 - 서버 엔드포인트: 로컬 라우트 → 프록시 상대 순서 → body parser → 컨트롤러 export → 정적 제공과 SPA fallback
-- 환경·운영: `.env.example` → Webpack/Express 소비 코드 → HTTPS·세션·keep-alive·PM2 영향
+- 환경·운영: `.env.example` → Rspack/Express 소비 코드 → HTTPS·세션·keep-alive·PM2 영향
 - 빌드·의존성: 대상 설치 경계의 `package.json` → loader/externals/복사 규칙 → 클라이언트 `dist`와 서버 `dist/app.js` → PM2 실행 경로
 
 ### 3. 구현
@@ -59,7 +59,7 @@ description: React UI Template의 공통 컴포넌트와 로컬 카탈로그, Re
 
 1. 수정 파일과 관련 export·타입·스타일·예제 참조를 `rg`로 검색한다.
 2. 루트에서 `npm run verify`를 실행한다.
-3. Webpack, 환경 주입, 자산 loader, Sass 추출, 서버 번들 또는 배포 경로에 영향을 줬다면 `npm run build`를 추가 실행한다.
+3. Rspack, 환경 주입, 자산 loader, Sass 추출, 서버 번들 또는 배포 경로에 영향을 줬다면 `npm run build`를 추가 실행한다.
 4. UI 변경은 `npm run dev`에서 일반 화면과 `/auth/*`, 공통 컴포넌트라면 `/dev/controls`의 기본·오류·상호작용·반응형 상태를 확인한다.
 5. 서버 또는 프록시 변경은 가능한 경우 `npm run server:dev`와 실제 HTTP 요청으로 로컬 라우트 우선순위, 상태 코드·응답·경로 재작성을 확인한다.
 6. 운영 전용 분기라면 `@Dev` 제외, 런타임 HTML 설정 주입, 정적 자산과 SPA 새로고침 경로를 빌드 결과로 점검한다.
