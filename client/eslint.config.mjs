@@ -4,7 +4,7 @@ import tseslint from 'typescript-eslint';
 import typescriptEslintParser from '@typescript-eslint/parser';
 import pluginReact from 'eslint-plugin-react';
 import pluginReactHooks from 'eslint-plugin-react-hooks';
-import WebpackProviderPluginCommonComponent from './webpack/ProvidePlugin.common-component.js';
+import RspackProviderPluginCommonComponent from './rspack/ProvidePlugin.common-component.js';
 import pluginPdgReactHooks from '@pdg/eslint-plugin-react-hook';
 
 export default defineConfig([
@@ -34,7 +34,7 @@ export default defineConfig([
       },
       globals: {
         React: 'writable',
-        ...Object.keys(WebpackProviderPluginCommonComponent).reduce((acc, key) => {
+        ...Object.keys(RspackProviderPluginCommonComponent).reduce((acc, key) => {
           acc[key] = 'readonly';
           return acc;
         }, {}),
@@ -108,7 +108,7 @@ export default defineConfig([
   },
   {
     ignores: ['node_modules/', 'dist/'],
-    files: ['webpack/**/*.js', '*.js'],
+    files: ['rspack/**/*.js', '*.js'],
     languageOptions: {
       globals: {
         module: 'readonly',

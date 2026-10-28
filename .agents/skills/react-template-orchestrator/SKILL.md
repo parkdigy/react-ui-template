@@ -37,7 +37,7 @@ description: React Template 저장소의 클라이언트, Express 서버, 환경
 - 자동 주입 전역: 실제 export → `ProvidePlugin.*.js` → 대응 `.d.ts` → ESLint globals
 - API 호출: 응답 타입 → `global/api` 래퍼와 오류 처리 → `/api` 경로 재작성 → 쿠키·CSRF 조건
 - 서버 엔드포인트: 미들웨어·body parser 순서 → 컨트롤러 export → 프록시보다 앞/뒤의 라우트 위치 → 응답 계약
-- 환경·운영: `.env.example` → Webpack/Express 소비 코드 → HTTPS·세션·keep-alive·PM2 영향
+- 환경·운영: `.env.example` → Rspack/Express 소비 코드 → HTTPS·세션·keep-alive·PM2 영향
 - 빌드: 클라이언트 `dist` → 서버 정적 제공 경로 → 서버 `dist/app.js` → PM2 실행 경로
 
 ### 3. 구현
@@ -54,7 +54,7 @@ description: React Template 저장소의 클라이언트, Express 서버, 환경
 
 1. 수정 파일과 관련 export·타입 참조를 검색한다.
 2. 루트에서 `npm run verify`를 실행한다.
-3. Webpack, 정적 자산, 환경 주입, 서버 번들에 영향을 줬다면 `npm run build`를 추가 실행한다.
+3. Rspack, 정적 자산, 환경 주입, 서버 번들에 영향을 줬다면 `npm run build`를 추가 실행한다.
 4. UI 변경은 `npm run dev`에서 실제 화면, 라우팅, 로딩·오류 상태를 확인한다.
 5. 서버 또는 프록시 변경은 가능한 경우 `npm run server:dev`와 실제 HTTP 요청으로 상태 코드·응답·경로 재작성을 확인한다.
 6. `git diff --check`와 `git status --short`로 최종 변경을 점검한다.

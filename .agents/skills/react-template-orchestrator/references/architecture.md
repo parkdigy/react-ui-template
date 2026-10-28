@@ -11,7 +11,7 @@
           ├─ RootLayoutAppInitializer → g.nav / g.location
           └─ DefaultLayout → router/index.tsx → 화면 컴포넌트
 
-개발: client webpack-dev-server : APP_HOST:APP_PORT
+개발: client Rspack 개발 서버 : APP_HOST:APP_PORT
   └─ /api/* → API_URL/*
 
 운영: server/src/app.ts : APP_PORT 또는 APP_SECURE_PORT
@@ -27,8 +27,8 @@
 | 영역 | 소스·설정 | 생성 결과 | 핵심 명령 |
 | --- | --- | --- | --- |
 | 루트 | `package.json`, `.env`, 배포 스크립트 | 배포 브랜치/묶음 | `npm run verify`, `npm run build` |
-| 클라이언트 | `client/src`, `client/public`, `client/webpack` | `client/dist`, `client/build/report.html` | `npm run client:dev`, `npm run client:build` |
-| 서버 | `server/src`, `server/webpack.config.js`, `server/ecosystem.config.js` | 개발 `server/@dev`, 운영 `server/dist/app.js` | `npm run server:dev`, `npm run server:build` |
+| 클라이언트 | `client/src`, `client/public`, `client/rspack` | `client/dist`, `client/build/stats.json` | `npm run client:dev`, `npm run client:build` |
+| 서버 | `server/src`, `server/rspack.config.js`, `server/ecosystem.config.js` | 개발 `server/@dev`, 운영 `server/dist/app.js` | `npm run server:dev`, `npm run server:build` |
 
 루트에 npm workspace 설정은 없다. 각 디렉터리는 별도 `package.json`과 의존성 설치 경계를 가진다.
 
@@ -45,11 +45,11 @@
 
 - 공통 컴포넌트는 `client/src/component/@Common/{분류}/{이름}`에 구현, 타입, `index.ts`를 둔다.
 - 기능 화면은 `client/src/component/{기능}` 아래에 두고 인접 `index.ts`와 `client/src/component/index.ts`로 export한다.
-- 경로 별칭은 `client/tsconfig.json`이 기준이며 Webpack이 이를 읽어 동일 alias를 만든다.
+- 경로 별칭은 `client/tsconfig.json`이 기준이며 Rspack이 이를 읽어 동일 alias를 만든다.
 
 ### 자동 주입 전역
 
-`client/webpack/ProvidePlugin.js`는 다음 묶음을 합친다.
+`client/rspack/ProvidePlugin.js`는 다음 묶음을 합친다.
 
 - `ProvidePlugin.react.js`: `React`
 - `ProvidePlugin.react-hooks.js`: React 훅
@@ -58,13 +58,13 @@
 - `ProvidePlugin.common-component.js`: `Button`, `PageRootContainer`, `T` 등 공통 컴포넌트
 - `ProvidePlugin.app.js`: `api`, `g`, `env`, `loadable`, 컨텍스트 훅 등 앱 전역
 
-각 식별자의 TypeScript 선언은 `client/src/@types/webpack.ProvidePlugin.*.d.ts`에 있다. 공통 컴포넌트 목록은 ESLint 전역에도 사용되므로 주입 설정, 타입 선언, ESLint 인식을 함께 맞춘다.
+각 식별자의 TypeScript 선언은 `client/src/@types/rspack.ProvidePlugin.*.d.ts`에 있다. 공통 컴포넌트 목록은 ESLint 전역에도 사용되므로 주입 설정, 타입 선언, ESLint 인식을 함께 맞춘다.
 
 ### API 계약
 
 - 화면 코드는 `client/src/global/api`의 `api` 또는 `createApi`를 기준으로 호출한다.
 - 공통 응답은 `ApiResult`, 목록은 필요 시 `ApiPaging` 계약을 사용한다.
-- 브라우저 요청의 `/api/foo`는 개발 Webpack과 운영 Express 모두 외부 `API_URL/foo`로 전달된다.
+- 브라우저 요청의 `/api/foo`는 개발 Rspack과 운영 Express 모두 외부 `API_URL/foo`로 전달된다.
 - `APP_HOST`와 `API_URL` 도메인이 다르면 쿠키가 적용되지 않는다는 기존 운영 제약이 있다.
 - Axios 초기화는 `XSRF-TOKEN` 쿠키를 `X-CSRF-TOKEN` 헤더로 연결한다.
 
@@ -89,13 +89,17 @@
 | API 요청/응답 | 화면 타입, `global/api`, 오류 처리, 프록시 경로 | `npm run verify` + 실제 요청 확인 |
 | 서버 로컬 API | 컨트롤러 export, `app.ts` 라우트 순서, body parser | `npm run verify` + HTTP 상태/본문 확인 |
 | 환경 변수 | `.env.example`, 소비 코드, 개발·운영 차이 | `npm run verify` + 해당 환경 기동 |
-| Webpack/자산 | client 또는 server config, public 복사, dist 소비 경로 | `npm run build` |
+| Rspack/자산 | client 또는 server config, public 복사, dist 소비 경로 | `npm run build` |
 | 세션·보안·배포 | Redis 조건, CSP/CSRF, webhook 서명, PM2 경로 | 전체 빌드 + 격리된 환경 검증과 별도 리뷰 |
 
 ## 알려진 검증 경계
 
 - 현재 저장소에는 자동 테스트 스크립트가 없다. `npm run verify`는 lint와 TypeScript 정적 검사만 보장한다.
 - `npm run build`는 번들 생성 가능성을 검증하지만 브라우저 UX, 외부 API, Redis, HTTPS, Slack, GitHub webhook, PM2 동작까지 증명하지 않는다.
-- 클라이언트는 `react`와 `react-dom`을 실행 시 사용하지만 현재 `client/package.json`의 직접 의존성에는 선언하지 않는다. 설치된 모듈만 있는 환경의 빌드 성공을 새 환경의 재현성 증거로 보지 말고, 의존성 정책을 바꿀 때는 깨끗한 설치를 별도로 확인한다.
+- React/React DOM은 클라이언트 직접 의존성으로 선언한다. Rspack/SWC로 TSX와 React Compiler를 처리하고 개발 시 Fast Refresh를 사용한다.
+- 서버 개발은 Rspack 감시 빌드 후 Node 프로세스를 재시작한다. 모듈별 HMR 대신 프로세스 재시작으로 적용한다.
+- 빌드 시 lint와 TypeScript 검사를 선행한다. 개발 시 lint와 클라이언트 TypeScript 검사는 watch로 실행한다.
+- SVG는 이미지 URL 자산으로 처리한다. 기존 소스에 SVG 컴포넌트 import는 없다.
+- 번들 분석은 `client/build/stats.json`을 사용한다.
 - `client/tsconfig.json`과 `server/tsconfig.json`은 `src/**/*.test.tsx`를 제외하므로 테스트를 추가하면 별도 테스트 runner와 타입 검사 범위를 설계해야 한다.
 - `client/dist`와 `server/dist`는 기본 `.gitignore` 대상이지만 배포 준비 과정에서 규칙을 바꾸는 기존 절차가 있다. 일반 개발 중에는 ignore 규칙을 변경하지 않는다.
