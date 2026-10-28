@@ -127,7 +127,14 @@ module.exports = {
         use: [rspack.CssExtractRspackPlugin.loader, 'css-loader', 'sass-loader'],
       },
       {
-        test: /\.(png|jpe?g|gif|svg)(\?\S*)?$/i,
+        test: /\.svg$/i,
+        use: [
+          { loader: '@svgr/webpack', options: { exportType: 'named', namedExport: 'ReactComponent' } },
+          { loader: 'url-loader', options: { limit: 100 * 1024, name: 'assets/[name].[contenthash].[ext]' } },
+        ],
+      },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
         type: 'asset',
         parser: { dataUrlCondition: { maxSize: 100 * 1024 } },
       },
